@@ -104,18 +104,20 @@ Widget lastPage(context) {
               fontSize: 15, color: lightTextColor, fontFamily: pfontFamily),
         ),
         SizedBox(height: 50),
-        RaisedButton(
-          padding: EdgeInsets.all(15),
+        ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            padding: EdgeInsets.all(15),
+            backgroundColor: primaryColor,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(8.0),
+            ),
+          ),
           onPressed: () {
             onIntroEnd(context);
           },
           child: Text(
             'Let\'s Get Started',
             style: TextStyle(color: Colors.white, fontSize: 15),
-          ),
-          color: primaryColor,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8.0),
           ),
         ),
       ],

@@ -97,7 +97,7 @@ class _RegisterButtonState extends State<RegisterButton> {
               ),
               actions: <Widget>[
                 Center(
-                  child: FlatButton(
+                  child: TextButton(
                     child: Text("Register new team"),
                     onPressed: () {
                       Navigator.pop(context);
@@ -118,7 +118,7 @@ class _RegisterButtonState extends State<RegisterButton> {
                   ),
                 ),
                 Center(
-                  child: FlatButton(
+                  child: TextButton(
                     child: Text("Join existing team"),
                     onPressed: () {
                       Navigator.pop(context);
@@ -152,7 +152,7 @@ class _RegisterButtonState extends State<RegisterButton> {
               title: Text('Are you sure you want to register ?'),
               content: Text("This cannot be undone."),
               actions: <Widget>[
-                FlatButton(
+                TextButton(
                   child: Text("Proceed"),
                   onPressed: () {
                     () async {
@@ -176,7 +176,7 @@ class _RegisterButtonState extends State<RegisterButton> {
                     Navigator.pop(context);
                   },
                 ),
-                FlatButton(
+                TextButton(
                   child: Text("Cancel"),
                   onPressed: () {
                     setState(() {
@@ -256,10 +256,12 @@ class _RegisterButtonState extends State<RegisterButton> {
                 SizedBox(height: 35),
                 FractionallySizedBox(
                   widthFactor: .8,
-                  child: RaisedButton(
-                    color: primaryColor,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5),
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: primaryColor,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(5),
+                      ),
                     ),
                     onPressed: () {
                       Navigator.of(context).pop();
@@ -273,10 +275,12 @@ class _RegisterButtonState extends State<RegisterButton> {
                 ),
                 FractionallySizedBox(
                   widthFactor: .8,
-                  child: RaisedButton(
-                    color: primaryColor,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5),
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: primaryColor,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(5),
+                      ),
                     ),
                     onPressed: () {
                       Navigator.of(context).pop();
@@ -345,7 +349,13 @@ class _RegisterButtonState extends State<RegisterButton> {
     return ButtonTheme(
       minWidth: MediaQuery.of(context).size.width / 2.3,
       height: 45.0,
-      child: RaisedButton(
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: buttonColor,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(5),
+          ),
+        ),
         onPressed: () {
           if (widget.eventDetails.needRegistration == 1) {
             if (registered) {
@@ -361,12 +371,10 @@ class _RegisterButtonState extends State<RegisterButton> {
         },
         child: isLoading
             ? LoadingAnimation(color: Colors.white)
-            : Text(buttonText),
-        color: buttonColor,
-        textColor: Colors.white,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(5),
-        ),
+            : Text(
+                buttonText,
+                style: TextStyle(color: Colors.white),
+              ),
       ),
     );
   }

@@ -16,19 +16,19 @@ class DemoPage extends StatelessWidget {
             children: <Widget>[
               SizedBox(height: 30),
               // Links to pages
-              RaisedButton(
+              ElevatedButton(
                   child: Text('Test Page'),
                   onPressed: () {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) => TestPage()));
                   }),
-              RaisedButton(
+              ElevatedButton(
                   child: Text('Page Before Test'),
                   onPressed: () {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) => PreTestPage()));
                   }),
-              RaisedButton(
+              ElevatedButton(
                   child: Text('Page with list of all Tests'),
                   onPressed: () {
                     Navigator.push(context,

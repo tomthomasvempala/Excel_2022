@@ -427,10 +427,13 @@ class _UpdateProfileState extends State<UpdateProfile> {
                   ButtonTheme(
                     minWidth: MediaQuery.of(context).size.width / 3,
                     buttonColor: primaryColor,
-                    child: RaisedButton(
-                      textColor: Colors.white,
-                      color: primaryColor,
-                      child: Text("Submit"),
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: primaryColor),
+                      child: Text(
+                        "Submit",
+                        style: TextStyle(color: Colors.white),
+                      ),
                       onPressed: () {
                         _formKey.currentState.save();
                         _formKey.currentState.validate()
@@ -444,7 +447,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
                                     (Route<dynamic> route) => false,
                                   );
                                 } else {
-                                  Scaffold.of(context)
+                                  ScaffoldMessenger.of(context)
                                       .showSnackBar(snackBar(value));
                                 }
                               }).catchError((e) => print(e))

@@ -80,9 +80,11 @@ class _AddReferalState extends State<AddReferal> {
             ),
             loading
                 ? LoadingAnimation()
-                : RaisedButton(
-                    color: Color(0xfff5f5f5),
-                    elevation: 1,
+                : ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Color(0xfff5f5f5),
+                      elevation: 1,
+                    ),
                     child: Text(
                       "Add Referal Code",
                       style: TextStyle(color: primaryColor),
@@ -116,8 +118,10 @@ Widget referedBy(referer) {
             ),
           ),
         ),
-        RaisedButton(
-          disabledColor: Color(0x0a000000),
+        ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: Color(0x0a000000),
+          ),
           child: Text("Add referal Code"),
           onPressed: null,
         ),

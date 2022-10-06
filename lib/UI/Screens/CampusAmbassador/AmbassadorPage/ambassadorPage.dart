@@ -88,7 +88,7 @@ class _AmbassadorPageState extends State<AmbassadorPage> {
                         await SocialShare.copyToClipboard(
                           ambassadorData["id"].toString(),
                         );
-                        Scaffold.of(context).showSnackBar(
+                        ScaffoldMessenger.of(context).showSnackBar(
                           snackBar("Copied"),
                         );
                       },
@@ -133,8 +133,8 @@ class _AmbassadorPageState extends State<AmbassadorPage> {
             ),
           ),
           SizedBox(height: 20),
-          RaisedButton(
-            color: primaryColor,
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(backgroundColor: primaryColor),
             child: Text(
               "Retry",
               style: TextStyle(color: Colors.white),

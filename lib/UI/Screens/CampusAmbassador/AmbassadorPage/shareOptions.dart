@@ -87,7 +87,7 @@ class SharingOptions extends StatelessWidget {
               await SocialShare.copyToClipboard(
                 message,
               );
-              Scaffold.of(context).showSnackBar(
+              ScaffoldMessenger.of(context).showSnackBar(
                 snackBar("Message Copied"),
               );
             },

@@ -66,16 +66,20 @@ class _HighlightsSectionState extends State<HighlightsSection> {
                       children: <Widget>[
                         Text("Failed to fetch Highlights"),
                         SizedBox(height: 20),
-                        RaisedButton(
-                          color: primaryColor,
-                          textColor: Colors.white,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(18.0),
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: primaryColor,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(18.0),
+                            ),
                           ),
                           onPressed: () {
                             fetchfromNet();
                           },
-                          child: Text("Retry"),
+                          child: Text(
+                            "Retry",
+                            style: TextStyle(color: Colors.white),
+                          ),
                         )
                       ],
                     ),

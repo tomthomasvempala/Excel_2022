@@ -64,7 +64,7 @@ class _ProfilePageState extends State<ProfilePage> {
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
           actions: <Widget>[
-            FlatButton(
+            TextButton(
               child: Text(
                 "Yes",
                 style: TextStyle(fontSize: 14.5, color: primaryColor),
@@ -75,7 +75,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 Navigator.pop(context);
               },
             ),
-            FlatButton(
+            TextButton(
               child: Text(
                 "Cancel",
                 style: TextStyle(fontSize: 14.5, color: primaryColor),

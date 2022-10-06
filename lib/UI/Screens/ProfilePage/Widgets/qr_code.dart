@@ -58,10 +58,11 @@ class QrCode extends StatelessWidget {
               ),
               // QR code
               SizedBox(height: 7),
-              RaisedButton(
-                  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                  color: primaryColor,
-                  textColor: Colors.white,
+              ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                    backgroundColor: primaryColor,
+                  ),
                   child: Text(
                     'SHOW QR CODE',
                     style: ProfileTheme.buttonTextStyle,

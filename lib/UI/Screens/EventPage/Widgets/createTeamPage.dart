@@ -149,7 +149,13 @@ class _CreateTeamPageState extends State<CreateTeamPage> {
                 ButtonTheme(
                   minWidth: MediaQuery.of(context).size.width / 2.3,
                   height: 45.0,
-                  child: RaisedButton(
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: primaryColor,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                    ),
                     onPressed: isLoading
                         ? null
                         : () {
@@ -157,12 +163,10 @@ class _CreateTeamPageState extends State<CreateTeamPage> {
                           },
                     child: isLoading
                         ? LoadingAnimation(color: Colors.white)
-                        : Text("Submit"),
-                    color: primaryColor,
-                    textColor: Colors.white,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5),
-                    ),
+                        : Text(
+                            "Submit",
+                            style: TextStyle(color: Colors.white),
+                          ),
                   ),
                 ),
                 SizedBox(height: 100),

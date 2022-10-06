@@ -33,10 +33,13 @@ Widget pageBody(questionDetails, Map<String, String> answers, var updateAnswer,
           children: List.generate(
             questionDetails['options'].length,
             (index) {
-              return RaisedButton(
-                color: answers[questionDetails['id']] == index.toString()
-                    ? primaryColor
-                    : Colors.white,
+              return ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor:
+                      answers[questionDetails['id']] == index.toString()
+                          ? primaryColor
+                          : Colors.white,
+                ),
                 onPressed: () {
                   updateAnswer(questionDetails['id'], index.toString());
                 },

@@ -153,29 +153,31 @@ Est quisquam quia repellendus est ut dolorem.
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    RaisedButton(
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.white,
+                        padding: EdgeInsets.fromLTRB(30, 0, 30, 0),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: new BorderRadius.circular(12.0),
+                        ),
+                      ),
                       onPressed: () {
                         // Navigator.push(
                         //     context,
                         //     MaterialPageRoute(
                         //         builder: (context) => ScoreDialog()));
-                        
+
                         Navigator.push(
                             context,
                             MaterialPageRoute(
                                 builder: (context) => TestPage()));
                       },
-                      color: Colors.white,
-                      padding: EdgeInsets.fromLTRB(30, 0, 30, 0),
                       child: Text(
                         'Start Test',
                         style: TextStyle(
                           color: Colors.indigo[900],
                           fontSize: 15,
                         ),
-                      ),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: new BorderRadius.circular(12.0),
                       ),
                     ),
                   ],
