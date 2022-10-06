@@ -2,7 +2,7 @@ import 'package:excelapp/Accounts/account_services.dart';
 import 'package:excelapp/Services/API/campus_ambassador.dart';
 import 'package:excelapp/UI/Components/AlertDialog/alertDialog.dart';
 import 'package:excelapp/UI/Components/LoadingUI/loadingAnimation.dart';
-import 'package:excelapp/UI/Screens/CampusAmbassador/campusAmbassadorMAin.dart';
+import 'package:excelapp/UI/Screens/CampusAmbassador/campusAmbassadorMain.dart';
 import 'package:excelapp/UI/constants.dart';
 import 'package:flutter/material.dart';
 
