@@ -107,8 +107,13 @@ class _ResultsPageState extends State<ResultsPage> {
             ),
           ),
           SizedBox(height: 30),
-          RaisedButton(
-            color: primaryColor,
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: primaryColor,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+            ),
             onPressed: () {
               Navigator.pushReplacement(
                 context,
@@ -117,9 +122,6 @@ class _ResultsPageState extends State<ResultsPage> {
                 ),
               );
             },
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10),
-            ),
             child: Text(
               "Retry",
               style: TextStyle(color: Colors.white),

@@ -83,13 +83,14 @@ class _LoginScreenState extends State<LoginScreen> {
                 SizedBox(height: 100),
                 ButtonTheme(
                   minWidth: MediaQuery.of(context).size.width / 2,
-                  child: RaisedButton(
-                    color: Colors.white,
-                    textColor: primaryColor,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(6),
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.white,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(6),
+                      ),
                     ),
-                    child: Text("Login"),
+                    child: Text("Login", style: TextStyle(color: primaryColor)),
                     onPressed: () => authentication(context),
                   ),
                 ),

@@ -2,7 +2,7 @@ import 'package:excelapp/Accounts/account_services.dart';
 import 'package:excelapp/Services/API/campus_ambassador.dart';
 import 'package:excelapp/UI/Components/AlertDialog/alertDialog.dart';
 import 'package:excelapp/UI/Components/LoadingUI/loadingAnimation.dart';
-import 'package:excelapp/UI/Screens/CampusAmbassador/campusAmbassadorMAin.dart';
+import 'package:excelapp/UI/Screens/CampusAmbassador/campusAmbassadorMain.dart';
 import 'package:excelapp/UI/constants.dart';
 import 'package:flutter/material.dart';
 
@@ -64,11 +64,13 @@ class _JoinAmbassadorProgramState extends State<JoinAmbassadorProgram> {
           SizedBox(height: 25),
           loading
               ? LoadingAnimation()
-              : RaisedButton(
-                  color: primaryColor,
-                  padding: EdgeInsets.symmetric(vertical: 15, horizontal: 40),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20)),
+              : ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: primaryColor,
+                    padding: EdgeInsets.symmetric(vertical: 15, horizontal: 40),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20)),
+                  ),
                   child: Text(
                     "Join Program",
                     style: TextStyle(color: Colors.white),

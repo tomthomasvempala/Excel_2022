@@ -67,13 +67,16 @@ class CategoryCard extends StatelessWidget {
                   style: contentStyle,
                 ),
                 SizedBox(height: 10),
-                TextButton( //OutlineButton
-                style: ButtonStyle(
-                  shape:MaterialStateProperty.all <RoundedRectangleBorder>( RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(5)
-                  )),textStyle: MaterialStateProperty.all<TextStyle>(TextStyle(color: Colors.white,)),
-                    
-                    ),
+                TextButton(
+                  //OutlineButton
+                  style: ButtonStyle(
+                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                        RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(5))),
+                    textStyle: MaterialStateProperty.all<TextStyle>(TextStyle(
+                      color: Colors.white,
+                    )),
+                  ),
                   onPressed: () {
                     Navigator.push(
                       context,
@@ -84,7 +87,10 @@ class CategoryCard extends StatelessWidget {
                   },
                   child: Text(
                     'View',
-                    style: TextStyle(fontFamily: pfontFamily, fontSize: 13),
+                    style: TextStyle(
+                        fontFamily: pfontFamily,
+                        fontSize: 13,
+                        color: Colors.white),
                   ),
                   // borderSide: BorderSide(
                   //   color: Colors.white,

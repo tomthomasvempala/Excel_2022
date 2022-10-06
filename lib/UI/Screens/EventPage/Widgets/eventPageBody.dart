@@ -138,8 +138,13 @@ class EventPageBody extends StatelessWidget {
                     buttonColor: Colors.black,
                     minWidth: deviceWidth / 2.3,
                     height: 45.0,
-                    child: RaisedButton(
-                      color: Colors.white,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.white,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(5),
+                        ),
+                      ),
                       onPressed: () {
                         Navigator.push(
                           context,
@@ -150,15 +155,14 @@ class EventPageBody extends StatelessWidget {
                           ),
                         );
                       },
-                      child: Text('More Details'),
-                      textColor: Colors.black,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(5),
+                      child: Text(
+                        'More Details',
+                        style: TextStyle(color: Colors.black),
                       ),
                     ),
                   ),
                   // Register button
-                  registerButton,
+                  registerButton
                 ],
               ),
               // For Hero Widget

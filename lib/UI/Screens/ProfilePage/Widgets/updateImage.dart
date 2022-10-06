@@ -186,12 +186,14 @@ class _ImgUploadState extends State<ImgUpload> {
     return Center(
       child: Container(
         width: MediaQuery.of(context).size.width * .6,
-        child: RaisedButton(
-          elevation: 5,
-          color: primaryColor,
-          padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+        child: ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            elevation: 5,
+            backgroundColor: primaryColor,
+            padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+          ),
           child: Row(
             children: [
               Icon(

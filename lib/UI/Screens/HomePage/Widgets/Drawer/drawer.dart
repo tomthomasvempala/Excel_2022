@@ -176,7 +176,7 @@ class DrawerOption extends StatelessWidget {
   DrawerOption({this.text, this.onPressed, this.icon});
   @override
   Widget build(BuildContext context) {
-    return FlatButton(
+    return TextButton(
       onPressed: onPressed,
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 15, vertical: 7),
