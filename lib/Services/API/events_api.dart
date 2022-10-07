@@ -19,7 +19,7 @@ class EventsAPI {
     print("- Event list $endpoint network fetch");
     try {
       var response =
-          await http.get(APIConfig.baseUrl + '/events/type' + '/$endpoint');
+          await http.get(Uri.parse(APIConfig.baseUrl + '/events/type' + '/$endpoint'));
       List responseData = json.decode(response.body);
       await HiveDB.storeData(
           valueName: "eventlist-$endpoint", value: responseData);

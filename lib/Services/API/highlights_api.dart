@@ -16,7 +16,7 @@ fetchHighlightsFromStorage() async {
 fetchAndStoreHighlightsFromNet() async {
   print("-    Highlights: Network Fetch    -");
   try {
-    var response = await http.get(APIConfig.baseUrl + "/highlights");
+    var response = await http.get(Uri.parse(APIConfig.baseUrl + "/highlights"));
     List responseData = json.decode(response.body);
     await HiveDB.storeData(valueName: "highlights", value: responseData);
     return responseData

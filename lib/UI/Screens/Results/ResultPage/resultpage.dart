@@ -29,8 +29,8 @@ class _ResultPageState extends State<ResultPage> {
   fetchResultDetails() async {
     print("- Result of " + widget.event.id.toString() + " network fetch");
     try {
-      var response = await http.get(
-          APIConfig.baseUrl + "/Result/event/" + widget.event.id.toString());
+      var response = await http.get(Uri.parse(
+          APIConfig.baseUrl + "/Result/event/" + widget.event.id.toString()));
       if (response.statusCode != 200) return "error";
       var responseData = json.decode(response.body);
       return responseData;

@@ -11,8 +11,8 @@ getAuthorisedData(String url) async {
   String jwt = prefs.getString('jwt');
 
   // print(jwt);
-  var response = await http.get(
-    url,
+  var response = await http.get(Uri.parse(
+    url),
     headers: AccountConfig.getHeader(jwt),
   );
   // If token has expired, refresh it
@@ -22,8 +22,8 @@ getAuthorisedData(String url) async {
     if (jwt == null) return null;
 
     // Retrying Request
-    response = await http.get(
-      url,
+    response = await http.get(Uri.parse(
+      url),
       headers: AccountConfig.getHeader(jwt),
     );
   }

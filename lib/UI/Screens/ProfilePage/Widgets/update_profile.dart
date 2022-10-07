@@ -8,7 +8,7 @@ import 'package:excelapp/UI/Screens/ProfilePage/profile_main.dart';
 import 'package:excelapp/UI/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:searchable_dropdown/searchable_dropdown.dart';
+// import 'package:searchable_dropdown/searchable_dropdown.dart';
 
 class UpdateProfile extends StatefulWidget {
   final User user;
@@ -365,34 +365,34 @@ class _UpdateProfileState extends State<UpdateProfile> {
                             border: Border.all(color: Colors.black12),
                             borderRadius: BorderRadius.circular(3),
                           ),
-                          child: SearchableDropdown.single(
-                            underline: Center(),
-                            readOnly: _categoryId == null || _categoryId == 2,
-                            items: institutions
-                                .map<DropdownMenuItem<String>>((val) {
-                              return DropdownMenuItem<String>(
-                                value: val.name,
-                                child: Text(
-                                  val.name.toString(),
-                                  style: TextStyle(
-                                    color: Colors.black87,
-                                    fontSize: 14,
-                                  ),
-                                ),
-                              );
-                            }).toList(),
-                            displayClearIcon: false,
-                            hint: _institutionName ?? 'Select Institution',
-                            style: TextStyle(fontSize: 14),
-                            icon: Icon(Icons.keyboard_arrow_down),
-                            searchHint: 'Enter Institution Name',
-                            onChanged: (value) {
-                              setState(() {
-                                _institutionName = value;
-                              });
-                            },
-                            isExpanded: true,
-                          ),
+                          // child: SearchableDropdown.single(
+                          //   underline: Center(),
+                          //   readOnly: _categoryId == null || _categoryId == 2,
+                          //   items: institutions
+                          //       .map<DropdownMenuItem<String>>((val) {
+                          //     return DropdownMenuItem<String>(
+                          //       value: val.name,
+                          //       child: Text(
+                          //         val.name.toString(),
+                          //         style: TextStyle(
+                          //           color: Colors.black87,
+                          //           fontSize: 14,
+                          //         ),
+                          //       ),
+                          //     );
+                          //   }).toList(),
+                          //   displayClearIcon: false,
+                          //   hint: _institutionName ?? 'Select Institution',
+                          //   style: TextStyle(fontSize: 14),
+                          //   icon: Icon(Icons.keyboard_arrow_down),
+                          //   searchHint: 'Enter Institution Name',
+                          //   onChanged: (value) {
+                          //     setState(() {
+                          //       _institutionName = value;
+                          //     });
+                          //   },
+                          //   isExpanded: true,
+                          // ),
                         )
                       : Center(),
 

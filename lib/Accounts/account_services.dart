@@ -15,8 +15,8 @@ class AccountServices {
     String jwt = prefs.getString('jwt');
 
     try {
-      var response = await http.get(
-        AccountConfig.url + 'profile/',
+      var response = await http.get(Uri.parse(
+        AccountConfig.url + 'profile/'),
         headers: AccountConfig.getHeader(jwt),
       );
 
@@ -107,8 +107,8 @@ class AccountServices {
     // Update user database
     try {
       print("fetching user details");
-      var response = await http.get(
-        AccountConfig.url + 'profile',
+      var response = await http.get(Uri.parse(
+        AccountConfig.url + 'profile'),
         headers: AccountConfig.getHeader(jwt),
       );
       Map<String, dynamic> responseData = json.decode(response.body);

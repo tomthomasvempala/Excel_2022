@@ -25,7 +25,8 @@ class _LandingPageState extends State<LandingPage> {
         ),
         PageViewModel(
           decoration: PageDecoration(
-              contentPadding: EdgeInsets.symmetric(horizontal: 0)),
+              // contentPadding: EdgeInsets.symmetric(horizontal: 0)
+              ),
           bodyWidget: page(
               "Our Motto",
               "Inspire  |  Innovate  |  Engineer\n\nInnovation drives the modern day world. Excel has been inspiring youth to innovate and bring out the best engineers in them !",
@@ -35,7 +36,8 @@ class _LandingPageState extends State<LandingPage> {
         ),
         PageViewModel(
           decoration: PageDecoration(
-              contentPadding: EdgeInsets.symmetric(horizontal: 0)),
+              // contentPadding: EdgeInsets.symmetric(horizontal: 0)
+              ),
           bodyWidget: page(
               "Come Join Us",
               "Certain events wake us, nurture us and revitalize us. But how often do these events come? Either you wait for those moments or you create them. Sometimes life offers you a chance to take yourself to the next level. All you have to do is to seize them.",
@@ -45,14 +47,15 @@ class _LandingPageState extends State<LandingPage> {
         ),
         PageViewModel(
           decoration: PageDecoration(
-              contentPadding: EdgeInsets.symmetric(horizontal: 0)),
+              // contentPadding: EdgeInsets.symmetric(horizontal: 0)
+              ),
           bodyWidget: lastPage(context),
           title: "",
         ),
       ],
       onDone: () => onIntroEnd(context),
       showSkipButton: true,
-      skipFlex: 0,
+      // skipFlex: 0,
       nextFlex: 0,
       skip: Text('Skip',
           style: TextStyle(fontWeight: FontWeight.w600, color: primaryColor)),

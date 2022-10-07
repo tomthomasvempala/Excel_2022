@@ -21,18 +21,19 @@ class HighlightsBody extends StatelessWidget {
         )),
       );
 
-    return CarouselSlider.builder(
-      itemCount: highLightsMap.length,
-      viewportFraction: .9,
-      height: MediaQuery.of(context).size.width * .9 * (3 / 5),
-      enlargeCenterPage: true,
-      autoPlay: true,
-      autoPlayInterval: Duration(seconds: autoplayseconds),
-      itemBuilder: (BuildContext build, index) {
-        return GestureDetector(
-          child: HighlightsCard(highLightsMap[index]),
-        );
-      },
-    );
+    return FlutterLogo();
+    // CarouselSlider.builder(
+    //   itemCount: highLightsMap.length,
+    //   viewportFraction: .9,
+    //   height: MediaQuery.of(context).size.width * .9 * (3 / 5),
+    //   enlargeCenterPage: true,
+    //   autoPlay: true,
+    //   autoPlayInterval: Duration(seconds: autoplayseconds),
+    //   itemBuilder: (BuildContext build, index) {
+    //     return GestureDetector(
+    //       child: HighlightsCard(highLightsMap[index]),
+    //     );
+    //   },
+    // );
   }
 }

@@ -28,8 +28,8 @@ class AuthService {
     try {
       print(AccountConfig.url + 'auth/login/');
       Map<String, String> token = {"accessToken": accessToken};
-      var response = await http.post(
-        AccountConfig.url + 'auth/login/',
+      var response = await http.post(Uri.parse(
+        AccountConfig.url + 'auth/login/'),
         headers: {"Content-Type": "application/json"},
         body: json.encode(token),
       );

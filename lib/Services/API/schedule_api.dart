@@ -14,7 +14,7 @@ fetchScheduleFromStorage() async {
 fetchAndStoreScheduleFromNet() async {
   print("-    Schedule: Network Fetch    -");
   try {
-    var response = await http.get(APIConfig.baseUrl + "/schedule");
+    var response = await http.get(Uri.parse(APIConfig.baseUrl + "/schedule"));
     List responseData = json.decode(response.body);
     Map<String, dynamic> scheduleData = {"day1": [], "day2": [], "day3": []};
     for (var i in responseData) {

@@ -9,8 +9,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 putAuthorisedData({String url, body}) async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
   String jwt = prefs.getString('jwt');
-  var response = await http.put(
-    url,
+  var response = await http.put(Uri.parse(
+    url),
     headers: {
       HttpHeaders.authorizationHeader: "Bearer " + jwt,
       "Content-Type": "application/json"
@@ -24,8 +24,8 @@ putAuthorisedData({String url, body}) async {
     jwt = await refreshToken();
     if (jwt == null) return null;
     // Retrying Request
-    response = await http.put(
-      url,
+    response = await http.put(Uri.parse(
+      url),
       headers: {
         HttpHeaders.authorizationHeader: "Bearer " + jwt,
         "Content-Type": "application/json"

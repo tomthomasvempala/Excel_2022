@@ -26,7 +26,7 @@ class _ResultsPageState extends State<ResultsPage> {
   Future fetchResults() async {
     print("- Results network fetch");
     try {
-      var response = await http.get(APIConfig.baseUrl + "/events/results_out");
+      var response = await http.get(Uri.parse(APIConfig.baseUrl + "/events/results_out"));
       if (response.statusCode != 200) return "error";
       var responseData = json.decode(response.body);
       return responseData.map<Event>((event) => Event.fromJson(event)).toList();

@@ -8,8 +8,8 @@ Future<String> refreshToken() async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
   String refreshToken = prefs.getString('refreshToken');
   // Refreshing Token
-  var refreshResponse = await http.post(
-    AccountConfig.url + "Auth/refresh",
+  var refreshResponse = await http.post(Uri.parse(
+    AccountConfig.url + "Auth/refresh"),
     headers: {
       "Content-Type": "application/json",
       "Accept": "application/json",
