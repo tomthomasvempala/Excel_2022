@@ -6,15 +6,30 @@ Widget homeAppBar(context) {
   return AppBar(
     backgroundColor: Colors.white,
     elevation: 0,
-    title: Text(
-      'Excel 2020',
-      style: TextStyle(
-        color: primaryColor,
-        fontSize: 20,
-        fontWeight: FontWeight.bold,
-        fontFamily: pfontFamily,
-      ),
-    ),
+    title: Center(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text(
+          'EXCEL ',
+          style: TextStyle(
+            color: primaryColor,
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+            fontFamily: pfontFamily,
+          ),
+        ),
+        Text(
+          '2022',
+          style: TextStyle(
+            color: primaryColor,
+            fontSize: 20,
+            fontWeight: FontWeight.w100,
+            fontFamily: pfontFamily,
+          ),
+        ),
+      ],
+    )),
     // actions: <Widget>[
     //   IconButton(
     //     onPressed: () {

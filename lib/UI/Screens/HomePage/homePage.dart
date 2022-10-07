@@ -17,7 +17,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: homeAppBar(context),
-      drawer: CustomDrawer(),
+      // drawer: CustomDrawer(),
       body: Container(
         child: SingleChildScrollView(
           physics: BouncingScrollPhysics(),
