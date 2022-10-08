@@ -6,6 +6,7 @@ import 'package:excelapp/UI/Screens/HomePage/Widgets/Categories/categories.dart'
 import 'package:excelapp/UI/Screens/HomePage/Widgets/socialIcons.dart';
 import 'package:excelapp/UI/Screens/HomePage/Widgets/Stories/stories.dart';
 import 'package:excelapp/UI/Screens/HomePage/Widgets/Drawer/drawer.dart';
+import 'package:excelapp/UI/Screens/HomePage/Widgets/LatestNews/latestNews.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -16,7 +17,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Color(0xffedf5f6),
       appBar: homeAppBar(context),
       // drawer: CustomDrawer(),
       body: Container(
@@ -26,6 +27,7 @@ class _HomePageState extends State<HomePage> {
             children: <Widget>[
               // Stories(),
               HighlightsSection(),
+              LatestNewsSection(),
               Discover(),
               Categories(),
               SocialIcons(),
