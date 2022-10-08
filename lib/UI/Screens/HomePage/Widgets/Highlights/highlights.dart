@@ -24,19 +24,20 @@ class _HighlightsSectionState extends State<HighlightsSection> {
     }
   }
 
-  initialisePage() async {
-    var datafromStorage = await fetchHighlightsFromStorage();
-    if (datafromStorage != null) {
-      estream.add(datafromStorage);
-      dataLoaded = true;
-    }
-    await fetchfromNet();
-  }
+  // initialisePage() async {
+  //   var datafromStorage = await fetchHighlightsFromStorage();
+  //   if (datafromStorage != null) {
+  //     estream.add(datafromStorage);
+  //     dataLoaded = true;
+  //   }
+  //   await fetchfromNet();
+  // }
 
   @override
   void initState() {
     estream = StreamController<dynamic>();
-    initialisePage();
+    // initialisePage();
+    fetchfromNet();
     super.initState();
   }
 
