@@ -1,3 +1,4 @@
+import 'package:excelapp/UI/Screens/HomePage/Widgets/Discover/discover.dart';
 import 'package:excelapp/UI/Screens/HomePage/Widgets/Highlights/highlights.dart';
 import 'package:excelapp/UI/Screens/HomePage/Widgets/home_appBar.dart';
 import 'package:flutter/material.dart';
@@ -27,6 +28,7 @@ class _HomePageState extends State<HomePage> {
               // Stories(),
               HighlightsSection(),
               LatestNewsSection(),
+              Discover(),
               Categories(),
               SocialIcons(),
               SizedBox(height: MediaQuery.of(context).size.height / 6)
