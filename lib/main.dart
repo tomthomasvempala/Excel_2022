@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
         SystemUiOverlayStyle(statusBarColor: Color(0x07000033)));
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Excel 2020',
+      title: 'Excel 2022',
       theme: ThemeData(
         primarySwatch: Colors.blue,
         appBarTheme: AppBarTheme(brightness: Brightness.light),

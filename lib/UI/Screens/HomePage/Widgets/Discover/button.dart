@@ -11,7 +11,8 @@ class DiscoverButtons extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: data["padding"],
+      // padding: data["padding"],
+      padding: EdgeInsets.fromLTRB(0,0,0,0),
       child: Container(
         height: 72,
         width: width,
