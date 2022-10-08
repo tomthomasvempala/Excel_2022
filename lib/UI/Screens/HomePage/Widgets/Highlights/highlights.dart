@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:excelapp/Services/API/highlights_api.dart';
+import 'package:excelapp/UI/Screens/HomePage/Widgets/Highlights/data.dart';
 import 'package:flutter/material.dart';
 import 'package:excelapp/UI/constants.dart';
 import 'package:shimmer/shimmer.dart';
@@ -17,24 +18,26 @@ class _HighlightsSectionState extends State<HighlightsSection> {
   fetchfromNet() async {
     var dataFromNet = await fetchAndStoreHighlightsFromNet();
     if (!dataLoaded || dataFromNet != "error") {
-      estream.add(dataFromNet);
+      //estream.add(dataFromNet);
+      estream.add(highlightsData);
       dataLoaded = true;
     }
   }
 
-  initialisePage() async {
-    var datafromStorage = await fetchHighlightsFromStorage();
-    if (datafromStorage != null) {
-      estream.add(datafromStorage);
-      dataLoaded = true;
-    }
-    await fetchfromNet();
-  }
+  // initialisePage() async {
+  //   var datafromStorage = await fetchHighlightsFromStorage();
+  //   if (datafromStorage != null) {
+  //     estream.add(datafromStorage);
+  //     dataLoaded = true;
+  //   }
+  //   await fetchfromNet();
+  // }
 
   @override
   void initState() {
     estream = StreamController<dynamic>();
-    initialisePage();
+    // initialisePage();
+    fetchfromNet();
     super.initState();
   }
 
