@@ -21,8 +21,8 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xffedf5f6),
-      appBar: homeAppBar(context),
+      backgroundColor: Color.fromRGBO(237, 245, 246, 1),
+      // appBar: homeAppBar(context),
       // drawer: CustomDrawer(),
       body: Container(
         child: SingleChildScrollView(
@@ -30,6 +30,7 @@ class _HomePageState extends State<HomePage> {
           child: Column(
             children: <Widget>[
               // Stories(),
+              ExcelTitle(),
               QuickAccessBar(),
               HighlightsSection(),
               Discover(),

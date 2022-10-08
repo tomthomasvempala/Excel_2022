@@ -23,7 +23,7 @@ class _LatestNewsSectionState extends State<LatestNewsSection> {
               children: [
                 Row(
                   children: [
-                    FaIcon(FontAwesomeIcons.microphone),
+                    FaIcon(Icons.mic_outlined),
                     SizedBox(width: 10),
                     Text("Latest News", style: headingStyle),
                   ],

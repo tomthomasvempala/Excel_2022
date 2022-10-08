@@ -15,7 +15,7 @@ class SocialIcons extends StatelessWidget {
             style: TextStyle(
               // fontFamily: pfontFamily,
               fontSize: 18.0,
-              color: primaryColor,
+              color: secondaryColor,
               fontWeight: FontWeight.bold,
             ),
           ),

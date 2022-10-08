@@ -50,3 +50,38 @@ Widget homeAppBar(context) {
     iconTheme: IconThemeData(color: primaryColor),
   );
 }
+
+class ExcelTitle extends StatelessWidget {
+  const ExcelTitle({Key key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(0,40,0,20),
+      child: Center(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            'EXCEL ',
+            style: TextStyle(
+              color: secondaryColor,
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+              fontFamily: pfontFamily,
+            ),
+          ),
+          Text(
+            '2022',
+            style: TextStyle(
+              color: secondaryColor,
+              fontSize: 20,
+              fontWeight: FontWeight.w100,
+              fontFamily: pfontFamily,
+            ),
+          ),
+        ],
+      )),
+    );
+  }
+}
