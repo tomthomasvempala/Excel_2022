@@ -28,7 +28,7 @@ class HighlightsCard extends StatelessWidget {
                         fit: BoxFit.fill,
                       ),
                       Opacity(
-                        opacity: 0.5,
+                        opacity: 0.3,
                         child: Container(
                           decoration: BoxDecoration(
                             gradient: LinearGradient(
