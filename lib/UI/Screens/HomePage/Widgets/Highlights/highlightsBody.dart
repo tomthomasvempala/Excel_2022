@@ -31,7 +31,7 @@ class HighlightsBody extends StatelessWidget {
       ),
       itemBuilder: (BuildContext build, index, pageViewIndex) {
         return GestureDetector(
-          child: HighlightsCard(highLightsMap[index]),
+          child: HighlightsCard(highLightsMap[index],index),
         );
       },
     );
