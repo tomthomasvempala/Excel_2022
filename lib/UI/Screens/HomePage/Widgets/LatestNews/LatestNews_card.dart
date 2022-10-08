@@ -14,7 +14,9 @@ class LastestNewsCard extends StatelessWidget {
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(16),
-              child: Image.network('https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg'),
+              child: 
+              // Image.network('https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg'),
+              Image(image: AssetImage('assets/sampleposter.png'),)
             ),
             SizedBox(height: 16,),
             Align(

@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import '../constants.dart';
 
 class ProfileTheme {
-  static var bgColor = Colors.grey[200];
+  static var bgColor = Color.fromRGBO(251, 255, 255, 1);
+  static var bgColor2 = Color.fromRGBO(228,237,239, 1);
   static double imageHeight = 160;
   static var headingStyle = TextStyle(
     fontWeight: FontWeight.w600,
