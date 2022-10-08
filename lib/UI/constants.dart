@@ -20,5 +20,5 @@ final headingStyle = TextStyle(
   fontWeight: FontWeight.bold,
   fontSize: 19,
   fontFamily: pfontFamily,
-  color: primaryColor,
+  color: secondaryColor,
 );

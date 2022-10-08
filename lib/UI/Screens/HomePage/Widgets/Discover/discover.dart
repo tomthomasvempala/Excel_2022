@@ -17,13 +17,20 @@ class Discover extends StatelessWidget {
       children: [
         //heading
         Container(
-          alignment: Alignment.centerLeft,
-          padding: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
-          child: Text(
-            "Discover",
-            style: headingStyle,
-          ),
-        ),
+            alignment: Alignment.centerLeft,
+            padding: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
+            child: Row(
+              children: [
+                Icon(Icons.compass_calibration_outlined),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal:5),
+                  child: Text(
+                    "Discover",
+                    style: headingStyle,
+                  ),
+                ),
+              ],
+            )),
 
         //buttons row 1
         Row(
