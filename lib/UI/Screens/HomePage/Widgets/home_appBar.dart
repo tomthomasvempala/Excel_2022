@@ -13,7 +13,7 @@ Widget homeAppBar(context) {
         Text(
           'EXCEL ',
           style: TextStyle(
-            color: primaryColor,
+            color: secondaryColor,
             fontSize: 20,
             fontWeight: FontWeight.bold,
             fontFamily: pfontFamily,
@@ -22,7 +22,7 @@ Widget homeAppBar(context) {
         Text(
           '2022',
           style: TextStyle(
-            color: primaryColor,
+            color: secondaryColor,
             fontSize: 20,
             fontWeight: FontWeight.w100,
             fontFamily: pfontFamily,

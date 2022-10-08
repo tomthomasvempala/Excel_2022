@@ -1,3 +1,5 @@
+import 'package:excelapp/UI/Themes/profile_themes.dart';
+import 'package:excelapp/UI/constants.dart';
 import 'package:flutter/material.dart';
 import './BottomNavigationBarWidget/fab_bottom_app_bar.dart';
 
@@ -20,15 +22,15 @@ class BottomNavigation extends StatelessWidget {
     return FABBottomAppBar(
       centerItemText: '',
       color: Colors.grey,
-      selectedColor: Color(0xff252a50),
+      selectedColor: primaryColor,
       notchedShape: CircularNotchedRectangle(),
       onTabSelected: (index) => onSelectTab(
         TabItem.values[index],
       ),
       items: [
         FABBottomAppBarItem(iconData: Icons.home, text: ''),
-        FABBottomAppBarItem(iconData: Icons.list, text: ''),
-        FABBottomAppBarItem(iconData: Icons.favorite, text: ''),
+        FABBottomAppBarItem(iconData: Icons.compass_calibration, text: ''),
+        FABBottomAppBarItem(iconData: Icons.calendar_month_rounded , text: ''),
         FABBottomAppBarItem(iconData: Icons.account_circle, text: ''),
       ],
     );

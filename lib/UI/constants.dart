@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-const Color primaryColor = Color(0xff252a50);
+const Color primaryColor = Color.fromARGB(255, 14, 152, 232);
+const Color secondaryColor = Color(0xFF252A50);
 const Color lightTextColor = Color(0xff555555);
 
 const String pfontFamily = "poppins";
