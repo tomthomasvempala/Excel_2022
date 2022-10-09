@@ -11,7 +11,6 @@ import 'package:excelapp/UI/Screens/HomePage/Widgets/Drawer/drawer.dart';
 
 import 'package:excelapp/UI/Screens/HomePage/Widgets/LatestNews/latestNews.dart';
 
-
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
@@ -30,9 +29,18 @@ class _HomePageState extends State<HomePage> {
           child: Column(
             children: <Widget>[
               // Stories(),
-              ExcelTitle(),
-              QuickAccessBar(),
-              HighlightsSection(),
+              Container(
+                height: 430,
+                color: Colors.white,
+                child: Column(
+                  children: [
+                    ExcelTitle(),
+                    QuickAccessBar(),
+                    HighlightsSection(),
+                  ],
+                ),
+              ),
+
               Discover(),
               LatestNewsSection(),
               // Categories(),
