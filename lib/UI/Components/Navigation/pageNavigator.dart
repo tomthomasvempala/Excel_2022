@@ -15,10 +15,10 @@ class NavigatingPage extends StatelessWidget {
         return HomePage();
         break;
       case 1:
-        return Schedule();
+        return Center();
         break;
       case 2:
-        return FavouritesScreen();
+        return Schedule();
         break;
       case 3:
         return CheckUserLoggedIn();

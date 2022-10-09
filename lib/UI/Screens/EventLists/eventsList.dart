@@ -35,6 +35,7 @@ class _EventsListState extends State<EventsList> {
 
     // Fetch from net & update
     var result2 = await EventsAPI.fetchAndStoreEventListFromNet(endpoint);
+    result2=[];
     if (result2 == "error" && result1 == null) {
       estream.add("error");
       return;

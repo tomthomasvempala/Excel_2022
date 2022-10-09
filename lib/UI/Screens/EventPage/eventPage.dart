@@ -31,6 +31,7 @@ class _EventPageState extends State<EventPage> {
     if (result1 != null) estream.add(result1);
     // Fetch from net & update
     var result2 = await EventsAPI.fetchAndStoreEventDetailsFromNet(id);
+    estream.add([]);
     if (result2 == "error" && result1 == null) {
       estream.add("error");
       return;
