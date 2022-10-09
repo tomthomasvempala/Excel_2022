@@ -13,11 +13,11 @@ class SocialIcons extends StatelessWidget {
           Text(
             'Stay in Touch !',
             style: TextStyle(
-              // fontFamily: pfontFamily,
-              fontSize: 18.0,
-              color: secondaryColor,
-              fontWeight: FontWeight.bold,
-            ),
+                // fontFamily: pfontFamily,
+                fontSize: 18.0,
+                color: secondaryColor,
+                fontWeight: FontWeight.bold,
+                fontFamily: pfontFamily),
           ),
           SizedBox(
             height: 15.0,

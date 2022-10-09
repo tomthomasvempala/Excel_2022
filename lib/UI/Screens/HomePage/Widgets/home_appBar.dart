@@ -8,7 +8,7 @@ Widget homeAppBar(context) {
     elevation: 0,
     title: Center(
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
           'EXCEL ',
@@ -57,17 +57,17 @@ class ExcelTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(0,40,0,20),
+      padding: const EdgeInsets.fromLTRB(0, 60, 0, 20),
       child: Center(
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
             'EXCEL ',
             style: TextStyle(
               color: secondaryColor,
               fontSize: 20,
-              fontWeight: FontWeight.bold,
+              fontWeight: FontWeight.w900,
               fontFamily: pfontFamily,
             ),
           ),
@@ -76,7 +76,7 @@ class ExcelTitle extends StatelessWidget {
             style: TextStyle(
               color: secondaryColor,
               fontSize: 20,
-              fontWeight: FontWeight.w100,
+              fontWeight: FontWeight.w500,
               fontFamily: pfontFamily,
             ),
           ),

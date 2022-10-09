@@ -43,69 +43,64 @@ class _HighlightsSectionState extends State<HighlightsSection> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Container(
-            alignment: Alignment.centerLeft,
-            padding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
-            child: Text(
-              "Highlights",
-              style: headingStyle,
-            ),
-          ),
-          StreamBuilder(
-            stream: estream.stream,
-            builder: (context, snapshot) {
-              // Handle When no data
-              if (snapshot.data == "error")
-                return Container(
-                  color: Color(0xffeeeeee),
-                  margin: EdgeInsets.symmetric(horizontal: 20),
-                  padding: EdgeInsets.symmetric(vertical: 40, horizontal: 20),
-                  child: Center(
-                    child: Column(
-                      children: <Widget>[
-                        Text("Failed to fetch Highlights"),
-                        SizedBox(height: 20),
-                        ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: primaryColor,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(18.0),
+    return Padding(
+      padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
+      child: Container(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            StreamBuilder(
+              stream: estream.stream,
+              builder: (context, snapshot) {
+                // Handle When no data
+                if (snapshot.data == "error")
+                  return Container(
+                    color: Color(0xffeeeeee),
+                    margin: EdgeInsets.symmetric(horizontal: 20),
+                    padding: EdgeInsets.symmetric(vertical: 40, horizontal: 20),
+                    child: Center(
+                      child: Column(
+                        children: <Widget>[
+                          Text("Failed to fetch Highlights"),
+                          SizedBox(height: 20),
+                          ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: primaryColor,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(18.0),
+                              ),
                             ),
-                          ),
-                          onPressed: () {
-                            fetchfromNet();
-                          },
-                          child: Text(
-                            "Retry",
-                            style: TextStyle(color: Colors.white),
-                          ),
-                        )
-                      ],
+                            onPressed: () {
+                              fetchfromNet();
+                            },
+                            child: Text(
+                              "Retry",
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          )
+                        ],
+                      ),
                     ),
-                  ),
-                );
-              if (snapshot.hasData)
-                return HighlightsBody(highLightsMap: snapshot.data);
-              else {
-                return Container(
-                  child: Shimmer.fromColors(
-                    child: Container(
-                      color: Colors.white,
-                      height: MediaQuery.of(context).size.height / 4,
-                      margin: EdgeInsets.symmetric(horizontal: 15),
+                  );
+                if (snapshot.hasData)
+                  return HighlightsBody(highLightsMap: snapshot.data);
+                else {
+                  return Container(
+                    child: Shimmer.fromColors(
+                      child: Container(
+                        color: Colors.white,
+                        height: MediaQuery.of(context).size.height / 4,
+                        margin: EdgeInsets.symmetric(horizontal: 15),
+                      ),
+                      baseColor: Colors.grey[300],
+                      highlightColor: Colors.grey[100],
                     ),
-                    baseColor: Colors.grey[300],
-                    highlightColor: Colors.grey[100],
-                  ),
-                );
-              }
-            },
-          ),
-        ],
+                  );
+                }
+              },
+            ),
+          ],
+        ),
       ),
     );
   }

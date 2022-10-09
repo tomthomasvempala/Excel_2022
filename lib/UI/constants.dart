@@ -4,8 +4,8 @@ const Color primaryColor = Color.fromARGB(255, 14, 152, 232);
 const Color secondaryColor = Color(0xFF252A50);
 const Color lightTextColor = Color(0xff555555);
 
-const String pfontFamily = "poppins";
-const String sfontFamily = "quicksand";
+const String pfontFamily = "mulish";
+const String sfontFamily = "mulish";
 
 var screenSize;
 
@@ -29,5 +29,3 @@ final pStyle = TextStyle(
   fontFamily: pfontFamily,
   color: secondaryColor,
 );
-
-
