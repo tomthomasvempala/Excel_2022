@@ -8,8 +8,12 @@ class HighlightsCard extends StatelessWidget {
   final Highlights highlights;
   final int index;
   Color firstColor;
-  HighlightsCard(this.highlights,this.index){
-    firstColor = this.index%3==0?ExcelTheme.aevaBlue:this.index%3==1?ExcelTheme.aevaCyan:ExcelTheme.aevaDark;
+  HighlightsCard(this.highlights, this.index) {
+    firstColor = this.index % 3 == 0
+        ? ExcelTheme.aevaBlue
+        : this.index % 3 == 1
+            ? ExcelTheme.aevaCyan
+            : ExcelTheme.aevaDark;
   }
 
   @override
@@ -21,15 +25,14 @@ class HighlightsCard extends StatelessWidget {
         children: <Widget>[
           Container(
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(15.0),
-              image: DecorationImage(image: NetworkImage(highlights.image),fit: BoxFit.cover)
-            ),
+                borderRadius: BorderRadius.circular(15.0),
+                image: DecorationImage(
+                    image: NetworkImage(highlights.image), fit: BoxFit.cover)),
             child: Stack(
               children: [
                 ClipRRect(
                     borderRadius: BorderRadius.circular(15.0),
                     child: Stack(children: <Widget>[
-                      
                       Opacity(
                         opacity: 0.9,
                         child: Container(
@@ -37,14 +40,14 @@ class HighlightsCard extends StatelessWidget {
                             gradient: LinearGradient(
                               begin: FractionalOffset.bottomCenter,
                               end: FractionalOffset.topCenter,
-                              colors: [firstColor, firstColor.withOpacity(0.5)],
+                              colors: [firstColor, firstColor.withOpacity(0.4)],
                               stops: [0.0, 1],
                             ),
                           ),
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsets.fromLTRB(25, 100, 0, 10),
+                        padding: EdgeInsets.fromLTRB(20, 100, 0, 10),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [

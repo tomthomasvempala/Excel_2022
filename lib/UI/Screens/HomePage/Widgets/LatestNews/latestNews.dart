@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class LatestNewsSection extends StatefulWidget {
-
   @override
   State<LatestNewsSection> createState() => _LatestNewsSectionState();
 }
@@ -28,7 +27,14 @@ class _LatestNewsSectionState extends State<LatestNewsSection> {
                     Text("Latest News", style: headingStyle),
                   ],
                 ),
-                Text("from Excel 2022", style: TextStyle(color: Color(0xff778585), fontWeight: FontWeight.w600,fontSize: 11),),
+                Text(
+                  "from Excel 2022",
+                  style: TextStyle(
+                      color: Color(0xff778585),
+                      fontWeight: FontWeight.w600,
+                      fontSize: 11,
+                      fontFamily: pfontFamily),
+                ),
               ],
             ),
           ),

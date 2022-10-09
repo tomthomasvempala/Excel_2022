@@ -20,22 +20,29 @@ class Discover extends StatelessWidget {
         children: [
           //heading
           Container(
-              margin: EdgeInsets.all(15),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
-                    children: [
-                      FaIcon(FontAwesomeIcons.compass),
-                      SizedBox(width: 10),
-                      Text("Discover", style: headingStyle),
-                    ],
-                  ),
-                  Text("our prime events", style: TextStyle(color: Color(0xff778585), fontWeight: FontWeight.w600,fontSize: 11),),
-                ],
-              ),
+            margin: EdgeInsets.all(15),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  children: [
+                    FaIcon(FontAwesomeIcons.compass),
+                    SizedBox(width: 10),
+                    Text("Discover", style: headingStyle),
+                  ],
+                ),
+                Text(
+                  "our prime events",
+                  style: TextStyle(
+                      color: Color(0xff778585),
+                      fontWeight: FontWeight.w600,
+                      fontSize: 11,
+                      fontFamily: pfontFamily),
+                ),
+              ],
             ),
-    
+          ),
+
           //buttons row 1
           Container(
             child: Row(
@@ -60,10 +67,12 @@ class Discover extends StatelessWidget {
               ],
             ),
           ),
-        SizedBox(height: 16,),
+          SizedBox(
+            height: 16,
+          ),
           //buttons row 2
           Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               InkWell(
                   onTap: () {

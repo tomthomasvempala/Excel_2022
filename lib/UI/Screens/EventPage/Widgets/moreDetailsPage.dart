@@ -215,7 +215,7 @@ class MoreDetails extends StatelessWidget {
                 color: primaryColor,
                 fontSize: 15.0,
                 decoration: TextDecoration.none,
-                fontFamily: 'Quicksand-Light',
+                fontFamily: 'Mulish-Light',
               ),
             ),
           )
