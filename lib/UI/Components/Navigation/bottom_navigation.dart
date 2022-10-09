@@ -31,11 +31,9 @@ class BottomNavigation extends StatelessWidget {
       items: [
         FABBottomAppBarItem(iconData: FontAwesomeIcons.house, text: ''),
         FABBottomAppBarItem(iconData: FontAwesomeIcons.compass, text: ''),
-        FABBottomAppBarItem(iconData: FontAwesomeIcons.calendar , text: ''),
+        FABBottomAppBarItem(iconData: FontAwesomeIcons.calendar, text: ''),
         FABBottomAppBarItem(iconData: Icons.account_circle, text: ''),
       ],
     );
   }
-
-
 }
