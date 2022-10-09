@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 
 class FABBottomAppBarItem {
@@ -60,7 +62,7 @@ class FABBottomAppBarState extends State<FABBottomAppBar> {
       shape: widget.notchedShape,
       child: Row(
         mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: items,
       ),
       color: widget.backgroundColor,
@@ -94,7 +96,6 @@ class FABBottomAppBarState extends State<FABBottomAppBar> {
     Color color = _selectedIndex == index ? widget.selectedColor : widget.color;
     return Expanded(
       child: SizedBox(
-        height: widget.height,
         child: Material(
           type: MaterialType.transparency,
           child: InkWell(
@@ -103,11 +104,18 @@ class FABBottomAppBarState extends State<FABBottomAppBar> {
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Icon(item.iconData, color: color, size: widget.iconSize),
-                Text(
-                  item.text,
-                  style: TextStyle(color: color),
-                )
+                Container(
+                  margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
+                  padding: EdgeInsets.fromLTRB(3, 10, 3, 10),
+                  decoration: BoxDecoration(
+                      color: _selectedIndex == index
+                          ? Color.fromARGB(255, 214, 249, 255)
+                          : Colors.transparent,
+                      borderRadius: BorderRadius.circular(30)),
+                  alignment: Alignment.center,
+                  child:
+                      Icon(item.iconData, color: color, size: widget.iconSize),
+                ),
               ],
             ),
           ),
