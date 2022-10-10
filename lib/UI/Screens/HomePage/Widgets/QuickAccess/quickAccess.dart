@@ -1,3 +1,5 @@
+import 'package:excelapp/UI/Screens/HomePage/Widgets/QuickAccess/contactUsModal.dart';
+import 'package:excelapp/UI/Screens/HomePage/Widgets/QuickAccess/reachUsModal.dart';
 import 'package:excelapp/UI/Themes/profile_themes.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/container.dart';
@@ -22,15 +24,18 @@ class QuickAccessBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-        quickAccessButton(FontAwesomeIcons.qrcode, "Scan QR"),
-        quickAccessButton(Icons.phone_outlined, "Contact Us"),
-        quickAccessButton(Icons.location_on_outlined, "Reach Us"),
-        quickAccessButton(Icons.notifications_none_outlined, "Updates"),
+        // quickAccessButton(FontAwesomeIcons.qrcode, "Scan QR", ContactUsModal()),
+        quickAccessButton(context, Icons.phone_outlined, "Contact Us",
+            ContactUsModal(context)),
+        quickAccessButton(
+            context, Icons.location_on_outlined, "Reach Us", ReachUsModal()),
+        // quickAccessButton(Icons.notifications_none_outlined, "Updates"),
       ]),
     );
   }
 
-  Widget quickAccessButton(IconData iconName, String buttonName) {
+  Widget quickAccessButton(BuildContext context, IconData iconName,
+      String buttonName, Widget modalSheet) {
     return Container(
         //decoration: BoxDecoration(color: Colors.brown),
         margin: EdgeInsets.fromLTRB(0, 5, 0, 5),
@@ -39,7 +44,18 @@ class QuickAccessBar extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             OutlinedButton(
-              onPressed: () {},
+              onPressed: () {
+                showModalBottomSheet(
+                    useRootNavigator: true,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(20),
+                            topRight: Radius.circular(20))),
+                    constraints: BoxConstraints(
+                        minWidth: MediaQuery.of(context).size.width),
+                    context: context,
+                    builder: (context) => modalSheet);
+              },
               child: FaIcon(
                 iconName,
                 color: primaryColor,
