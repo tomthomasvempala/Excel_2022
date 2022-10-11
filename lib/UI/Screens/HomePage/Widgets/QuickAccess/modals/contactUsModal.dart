@@ -3,9 +3,20 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 Widget ContactUsModal(context) {
   return Container(
-      height: MediaQuery.of(context).size.height * 0.6,
-      margin: EdgeInsets.fromLTRB(0, 40, 0, 0),
+      // margin: EdgeInsets.fromLTRB(0, 40, 0, 40),
       child: Column(
+    children: [
+      SizedBox(height: 10),
+      Divider(
+        indent: 140,
+        endIndent: 140,
+        thickness: 5,
+        color: Color.fromARGB(163, 141, 151, 153),
+      ),
+      SizedBox(
+        height: 30,
+      ),
+      Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
@@ -227,6 +238,11 @@ Widget ContactUsModal(context) {
                   ),
                 ]),
           ),
+          SizedBox(
+            height: 40,
+          )
         ],
-      ));
+      ),
+    ],
+  ));
 }

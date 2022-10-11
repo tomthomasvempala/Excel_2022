@@ -1,5 +1,5 @@
-import 'package:excelapp/UI/Screens/HomePage/Widgets/QuickAccess/contactUsModal.dart';
-import 'package:excelapp/UI/Screens/HomePage/Widgets/QuickAccess/reachUsModal.dart';
+import 'package:excelapp/UI/Screens/HomePage/Widgets/QuickAccess/modals/contactUsModal.dart';
+import 'package:excelapp/UI/Screens/HomePage/Widgets/QuickAccess/modals/reachUsModal.dart';
 import 'package:excelapp/UI/Themes/profile_themes.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/container.dart';
@@ -24,12 +24,13 @@ class QuickAccessBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-        // quickAccessButton(FontAwesomeIcons.qrcode, "Scan QR", ContactUsModal()),
+        quickAccessButton(context, FontAwesomeIcons.qrcode, "Scan QR", null),
         quickAccessButton(context, Icons.phone_outlined, "Contact Us",
             ContactUsModal(context)),
+        quickAccessButton(context, Icons.location_on_outlined, "Reach Us",
+            ReachUsModal(context)),
         quickAccessButton(
-            context, Icons.location_on_outlined, "Reach Us", ReachUsModal()),
-        // quickAccessButton(Icons.notifications_none_outlined, "Updates"),
+            context, Icons.notifications_none_outlined, "Updates", null),
       ]),
     );
   }
@@ -45,16 +46,21 @@ class QuickAccessBar extends StatelessWidget {
           children: [
             OutlinedButton(
               onPressed: () {
-                showModalBottomSheet(
-                    useRootNavigator: true,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(20),
-                            topRight: Radius.circular(20))),
-                    constraints: BoxConstraints(
-                        minWidth: MediaQuery.of(context).size.width),
-                    context: context,
-                    builder: (context) => modalSheet);
+                (modalSheet != null)
+                    ? showModalBottomSheet<dynamic>(
+                        isScrollControlled: true,
+                        useRootNavigator: true,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(40),
+                                topRight: Radius.circular(40))),
+                        constraints: BoxConstraints(
+                          minWidth: MediaQuery.of(context).size.width,
+                        ),
+                        context: context,
+                        builder: (context) =>
+                            Wrap(children: <Widget>[modalSheet]))
+                    : ("");
               },
               child: FaIcon(
                 iconName,
