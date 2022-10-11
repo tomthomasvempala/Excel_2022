@@ -73,7 +73,7 @@ Widget ContactUsModal(context) {
                     width: MediaQuery.of(context).size.width * 0.4,
                     height: 60,
                     child: Padding(
-                      padding: EdgeInsets.fromLTRB(18, 0, 10, 0),
+                      padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.start,
