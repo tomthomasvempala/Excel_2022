@@ -44,7 +44,7 @@ class _HomePageState extends State<HomePage> {
               Discover(),
               LatestNewsSection(),
               // Categories(),
-              SocialIcons(),
+              // SocialIcons(),
               SizedBox(height: MediaQuery.of(context).size.height / 6)
             ],
           ),
