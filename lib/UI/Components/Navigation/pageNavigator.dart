@@ -1,3 +1,4 @@
+import 'package:excelapp/UI/Screens/EventLists/eventsList.dart';
 import 'package:excelapp/UI/Screens/Favourites/favourites.dart';
 import 'package:flutter/material.dart';
 import 'package:excelapp/UI/Screens/HomePage/homePage.dart';
@@ -15,7 +16,7 @@ class NavigatingPage extends StatelessWidget {
         return HomePage();
         break;
       case 1:
-        return Center();
+        return EventsList('CS Tech');
         break;
       case 2:
         return Schedule();
