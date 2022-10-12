@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:url_launcher/url_launcher.dart';
+
+final Uri _url = Uri.parse("geo:10.0283637,76.3263237?q=Government Model Engineering College");
 
 Widget ReachUsModal(context) {
   return Container(
@@ -42,30 +45,30 @@ Widget ReachUsModal(context) {
                 SizedBox(
                   height: 20,
                 ),
-                Container(
-                  width: 320,
-                  height: 50,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(50),
-                    color: Color(0xff0E99E8),
-                  ),
-                  alignment: Alignment.center,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'View on Google Maps',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontFamily: "mulish",
-                            fontWeight: FontWeight.w700,
-                            fontSize: 17),
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Icon(Icons.arrow_forward, color: Colors.white)
-                    ],
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40))),
+                  onPressed: _launchUrl,
+                  child: Container(
+                    width: 320,
+                    height: 50,
+                    alignment: Alignment.center,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'View on Google Maps',
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontFamily: "mulish",
+                              fontWeight: FontWeight.w700,
+                              fontSize: 17),
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Icon(Icons.arrow_forward, color: Colors.white)
+                      ],
+                    ),
                   ),
                 )
               ],
@@ -75,4 +78,10 @@ Widget ReachUsModal(context) {
       ),
     ],
   ));
+}
+
+Future<void> _launchUrl() async {
+  if (!await launchUrl(_url)) {
+    throw 'Could not launch $_url';
+  }
 }
