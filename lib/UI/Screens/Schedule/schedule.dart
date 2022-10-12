@@ -16,10 +16,11 @@ class _ScheduleState extends State<Schedule> {
 
   fetchfromNet() async {
     var dataFromNet = await fetchAndStoreScheduleFromNet();
-    if (!dataLoaded || dataFromNet != "error") {
-      estream.add(dataFromNet);
-      dataLoaded = true;
-    }
+    estream.add({"day1":[],"day2":[],"day3":[]});
+    // if (!dataLoaded || dataFromNet != "error") {
+    //   estream.add(dataFromNet);
+    //   dataLoaded = true;
+    // }
   }
 
   initialisePage() async {

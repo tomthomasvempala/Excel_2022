@@ -35,6 +35,8 @@ class _EventsListState extends State<EventsList> {
 
     // Fetch from net & update
     var result2 = await EventsAPI.fetchAndStoreEventListFromNet(endpoint);
+    Event ev = Event(category: 'CS Tech',name: 'Algorithms',eventType: 'Offline',datetime: '1665312848');
+    result2=<Event>[ev];
     if (result2 == "error" && result1 == null) {
       estream.add("error");
       return;

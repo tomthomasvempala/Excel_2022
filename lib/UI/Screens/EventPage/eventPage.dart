@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:excelapp/Models/event_details.dart';
 import 'package:excelapp/Services/API/events_api.dart';
 import 'package:excelapp/UI/Components/Appbar/darkAppbar.dart';
 import 'package:excelapp/UI/Components/LoadingUI/loadingAnimation.dart';
@@ -26,18 +27,22 @@ class _EventPageState extends State<EventPage> {
   }
 
   void fetchEventDetails(int id) async {
-    var result1;
-    result1 = await EventsAPI.fetchEventDetailsFromStorage(id);
-    if (result1 != null) estream.add(result1);
-    // Fetch from net & update
-    var result2 = await EventsAPI.fetchAndStoreEventDetailsFromNet(id);
-    if (result2 == "error" && result1 == null) {
-      estream.add("error");
-      return;
-    }
-    if (result2 == "error") return;
-    print("$id fetched, added to DB & updated in UI");
-    estream.add(result2);
+    EventDetails event = new EventDetails(id: 1000,name:"Wave Cloning",categoryId: 1,category: "Competition",eventTypeId: 1,eventType: "CS Tech",about: "This is an event",format: "This is the format for the competition",rules: "There are so many rules for the event",venue: "SDPK Hall",datetime: "1665557616");
+    estream.add(event);
+    return;
+    //commented for hard coded data to be passed
+    // var result1;
+    // result1 = await EventsAPI.fetchEventDetailsFromStorage(id);
+    // if (result1 != null) estream.add(result1);
+    // // Fetch from net & update
+    // var result2 = await EventsAPI.fetchAndStoreEventDetailsFromNet(id);
+    // if (result2 == "error" && result1 == null) {
+    //   estream.add("error");
+    //   return;
+    // }
+    // if (result2 == "error") return;
+    // print("$id fetched, added to DB & updated in UI");
+    // estream.add(result2);
   }
 
   @override
