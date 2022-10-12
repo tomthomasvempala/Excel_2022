@@ -30,7 +30,7 @@ class _HomePageState extends State<HomePage> {
             children: <Widget>[
               // Stories(),
               Container(
-                height: 430,
+                padding: EdgeInsets.all(0),
                 color: Colors.white,
                 child: Column(
                   children: [
