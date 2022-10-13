@@ -51,50 +51,90 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: darkAppbar(),
+      //appBar: darkAppbar(),
+      backgroundColor: Color.fromRGBO(237, 245, 246, 1),
       body: Container(
-        decoration: BoxDecoration(
-          color: primaryColor,
-          image: DecorationImage(
-            image: AssetImage('assets/BG 2.jpg'),
-            fit: BoxFit.cover,
-          ),
-        ),
         child: Center(
           child: SingleChildScrollView(
-            child: Column(
-              children: <Widget>[
-                Container(
-                  height: MediaQuery.of(context).size.height / 6,
-                  child: Image(
-                    image: AssetImage("assets/excel logo.png"),
-                    fit: BoxFit.contain,
-                  ),
-                ),
-                SizedBox(height: 40),
-                Text(
-                  "Excel 2020  |  Accounts",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 20,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-                SizedBox(height: 100),
-                ButtonTheme(
-                  minWidth: MediaQuery.of(context).size.width / 2,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.white,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(6),
-                      ),
+            child: Container(
+              width: 327,
+              height: 542,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(24),
+                  color: Colors.white,
+                  border: Border.all(
+                    width: 1.2,
+                    color: Color.fromRGBO(228, 237, 239, 1.0), //E4EDEF;
+                  )),
+              padding: EdgeInsets.symmetric(horizontal: 45),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  Container(
+                    //height: 197, //MediaQuery.of(context).size.height / 6,
+                    child: Image(
+                      image: AssetImage("assets/excellogo.png"),
+                      fit: BoxFit.contain,
                     ),
-                    child: Text("Login", style: TextStyle(color: primaryColor)),
-                    onPressed: () => authentication(context),
                   ),
-                ),
-              ],
+                  SizedBox(height: 4),
+                  Text(
+                    "Excel Accounts",
+                    style: TextStyle(
+                      color: secondaryColor,
+                      fontSize: 20,
+                      fontWeight: FontWeight.w800,
+                      fontFamily: pfontFamily,
+                    ),
+                  ),
+                  SizedBox(height: 8),
+                  Container(
+                    //width: 228,
+                    child: Text(
+                      "Manage everything Excel using Excel accounts. Connect your google account to proceed",
+                      style: TextStyle(
+                        color: lightTextColor,
+                        fontSize: 14,
+                        fontWeight: FontWeight.w400,
+                        fontFamily: pfontFamily,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                  SizedBox(height: 20),
+                  ButtonTheme(
+                    //minWidth: MediaQuery.of(context).size.width / 2,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        padding: EdgeInsets.fromLTRB(32, 15, 32, 15),
+                        backgroundColor: primaryColor,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(40),
+                        ),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          CircleAvatar(
+                            radius: 10,
+                            backgroundColor: Colors.white,
+                          ),
+                          Text(
+                            "Continue with Google",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontFamily: pfontFamily,
+                                fontWeight: FontWeight.w700,
+                                fontSize: 14),
+                          ),
+                        ],
+                      ),
+                      onPressed: () => authentication(context),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
