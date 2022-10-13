@@ -122,7 +122,6 @@ class _EventsCardListState extends State<EventsCardList>
                 borderRadius: BorderRadius.circular(50),
                 color: Color.fromARGB(255, 14, 152, 232)),
           ),
-          SizedBox(height: 7),
           Expanded(
             child: TabBarView(controller: _tabController, children: [
               AllEvents(),

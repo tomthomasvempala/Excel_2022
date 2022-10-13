@@ -15,7 +15,7 @@ class ExplorePage extends StatefulWidget {
 class _ExplorePageState extends State<ExplorePage>
     with SingleTickerProviderStateMixin {
   TabController _tabcontroller;
-
+  TextEditingController txtQuery = new TextEditingController();
   @override
   void initState() {
     super.initState();
@@ -33,6 +33,7 @@ class _ExplorePageState extends State<ExplorePage>
           child: Column(
             children: [
               TextField(
+                controller: txtQuery,
                 style: TextStyle(
                   fontFamily: "mulish",
                   fontSize: 14,

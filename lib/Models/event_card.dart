@@ -7,6 +7,7 @@ class Event {
   String eventType;
   String category;
   String datetime;
+  bool isCompetition;
 
   Event(
       {this.id,
@@ -14,7 +15,8 @@ class Event {
       this.icon,
       this.eventType,
       this.category,
-      this.datetime});
+      this.datetime,
+      this.isCompetition});
 
   Event.fromJson(json) {
     id = json['id'];
@@ -23,6 +25,7 @@ class Event {
     eventType = json['eventType'];
     category = json['category'];
     datetime = json['datetime'];
+    isCompetition = json['isCompetition'];
   }
 
   Map<String, dynamic> toJson() {
@@ -33,6 +36,7 @@ class Event {
     data['eventType'] = this.eventType;
     data['category'] = this.category;
     data['datetime'] = this.datetime;
+    data['isCompetition'] = this.isCompetition;
     return data;
   }
 }
