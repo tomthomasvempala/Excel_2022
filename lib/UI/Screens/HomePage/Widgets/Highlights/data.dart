@@ -16,9 +16,5 @@ List<Highlights> highlightsData = [
   Highlights(
       id: 4,
       name: 'Excel 2022',
-      image: 'https://soe.cusat.ac.in/images/techfest10.jpg'),
-  Highlights(
-      id: 5,
-      name: 'Ibeto 2022',
-      image: 'https://media.istockphoto.com/photos/hand-holding-light-bulb-and-business-digital-marketing-innovation-picture-id1127257350?k=20&m=1127257350&s=612x612&w=0&h=s0zCX95yDfUUotfNY_Rx55oU68CXtwnR_rNLtT5kd6g='),
+      image: 'https://soe.cusat.ac.in/images/techfest10.jpg')
 ];

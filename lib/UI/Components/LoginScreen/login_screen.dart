@@ -6,6 +6,7 @@ import 'package:excelapp/UI/Components/LoadingUI/alertDialog.dart';
 import 'package:excelapp/UI/Screens/ProfilePage/profile_main.dart';
 import 'package:excelapp/UI/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -116,10 +117,11 @@ class _LoginScreenState extends State<LoginScreen> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          CircleAvatar(
-                            radius: 10,
-                            backgroundColor: Colors.white,
-                          ),
+                          FaIcon(FontAwesomeIcons.google,size: 18,),
+                          // CircleAvatar(
+                          //   radius: 10,
+                          //   backgroundColor: Colors.white,
+                          // ),
                           Text(
                             "Continue with Google",
                             style: TextStyle(
