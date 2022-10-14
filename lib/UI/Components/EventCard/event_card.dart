@@ -62,7 +62,7 @@ class EventCard extends StatelessWidget {
                         SizedBox(
                           width: MediaQuery.of(context).size.width * 0.46,
                           child: Text(
-                            'Lorem ipsum dolor sit amet, conse ctetur adi piscing elit.',
+                            event.desc,
                             style: TextStyle(
                                 color: Color.fromARGB(255, 119, 133, 133),
                                 fontWeight: FontWeight.w500,
@@ -112,7 +112,7 @@ class EventCard extends StatelessWidget {
                     child: Column(
                       children: [
                         Text(
-                          'Nov',
+                          event.date.substring(3, 6),
                           style: TextStyle(
                               color: Color.fromARGB(255, 7, 131, 131),
                               fontWeight: FontWeight.w800,
@@ -120,7 +120,7 @@ class EventCard extends StatelessWidget {
                               fontSize: 11),
                         ),
                         Text(
-                          '20',
+                          event.date.substring(0, 2),
                           style: TextStyle(
                               color: Color.fromARGB(255, 18, 221, 197),
                               fontWeight: FontWeight.w800,
