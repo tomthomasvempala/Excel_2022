@@ -1,17 +1,14 @@
-import 'package:excelapp/UI/Screens/ExplorePage/Widgets/Competitions/allCompetitions.dart';
-import 'package:excelapp/UI/Screens/ExplorePage/Widgets/Competitions/cstechCompetitions.dart';
-import 'package:excelapp/UI/Screens/ExplorePage/Widgets/Competitions/gentechCompetitions.dart';
-import 'package:excelapp/UI/Screens/ExplorePage/Widgets/Competitions/nontechCompetitions.dart';
+import 'package:excelapp/UI/Screens/ExplorePage/Widgets/Events/allEvents.dart';
 import 'package:flutter/material.dart';
 
-class CompetitionsCardList extends StatefulWidget {
-  const CompetitionsCardList({Key key}) : super(key: key);
+class EventsCardList extends StatefulWidget {
+  const EventsCardList({Key key}) : super(key: key);
 
   @override
-  State<CompetitionsCardList> createState() => _CompetitionsCardListState();
+  State<EventsCardList> createState() => _EventsCardListState();
 }
 
-class _CompetitionsCardListState extends State<CompetitionsCardList>
+class _EventsCardListState extends State<EventsCardList>
     with SingleTickerProviderStateMixin {
   TabController _tabController;
   List<Widget> tabs = [
@@ -45,7 +42,7 @@ class _CompetitionsCardListState extends State<CompetitionsCardList>
           child: Align(
             alignment: Alignment.center,
             child: Text(
-              "CS-Tech",
+              "Workshops",
               style: TextStyle(
                   fontFamily: "mulish",
                   fontSize: 11,
@@ -65,7 +62,7 @@ class _CompetitionsCardListState extends State<CompetitionsCardList>
           child: Align(
             alignment: Alignment.center,
             child: Text(
-              "Gen-Tech",
+              "Talks",
               style: TextStyle(
                   fontFamily: "mulish",
                   fontSize: 11,
@@ -83,7 +80,7 @@ class _CompetitionsCardListState extends State<CompetitionsCardList>
           child: Align(
             alignment: Alignment.center,
             child: Text(
-              "Non-Tech",
+              "General",
               style: TextStyle(
                 fontFamily: "mulish",
                 fontSize: 11,
@@ -122,13 +119,13 @@ class _CompetitionsCardListState extends State<CompetitionsCardList>
                 borderRadius: BorderRadius.circular(50),
                 color: Color.fromARGB(255, 14, 152, 232)),
           ),
-          SizedBox(height: 7),
-          Expanded(
+          SizedBox(height: 10),
+          Flexible(
             child: TabBarView(controller: _tabController, children: [
-              AllCompetitions(),
-              CSTechCompetitions(),
-              GenTechCompetitions(),
-              NonTechCompetitions(),
+              AllEvents(category: "all"),
+              AllEvents(category: "workshops"),
+              AllEvents(category: "talks"),
+              AllEvents(category: "general"),
             ]),
           ),
         ],

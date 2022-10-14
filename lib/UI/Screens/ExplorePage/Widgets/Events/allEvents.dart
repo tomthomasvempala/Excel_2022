@@ -1,23 +1,38 @@
 import 'dart:async';
-
 import 'package:excelapp/Models/event_card.dart';
-import 'package:excelapp/UI/Components/EventCard/event_card.dart';
+import 'package:excelapp/UI/Screens/ExplorePage/Widgets/cardBody.dart';
 import 'package:excelapp/UI/Screens/ExplorePage/Widgets/data.dart';
 import 'package:excelapp/UI/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
-import 'package:excelapp/UI/Screens/ExplorePage/Widgets/eventCardBody.dart';
 
 class AllEvents extends StatefulWidget {
   @override
   State<AllEvents> createState() => _AllEventsState();
+  final String category;
+  const AllEvents({Key key, this.category}) : super(key: key);
 }
 
 class _AllEventsState extends State<AllEvents> {
   StreamController<dynamic> estream;
+  List<Event> events;
+  filerbyCategory() {
+    if (widget.category == 'all') {
+      events = CompetitionsData.where((i) => i.isCompetition == false).toList();
+    }
+    if (widget.category == 'workshops') {
+      events =
+          CompetitionsData.where((i) => i.category == "Workshops").toList();
+    }
+    if (widget.category == 'talks') {
+      events = CompetitionsData.where((i) => i.category == "Talks").toList();
+    }
+    if (widget.category == 'general') {
+      events = CompetitionsData.where((i) => i.category == "General").toList();
+    }
+  }
+
   bool dataLoaded = false;
-  List<Event> events =
-      CompetitionsData.where((i) => i.isCompetition == false).toList();
   fetchfromNet() async {
     // var dataFromNet = await fetchAndStoreEventsFromNet();
     // if (!dataLoaded || dataFromNet != "error") {
@@ -25,6 +40,7 @@ class _AllEventsState extends State<AllEvents> {
     estream.add(events);
     dataLoaded = true;
   }
+
   // }
 
   // initialisePage() async {
@@ -40,6 +56,7 @@ class _AllEventsState extends State<AllEvents> {
   void initState() {
     estream = StreamController<dynamic>();
     // initialisePage();
+    filerbyCategory();
     fetchfromNet();
     super.initState();
   }
@@ -83,7 +100,7 @@ class _AllEventsState extends State<AllEvents> {
                   );
                 print(snapshot.data);
                 if (snapshot.hasData)
-                  return EventCardBody(eventsMap: snapshot.data);
+                  return CardBody(eventsMap: snapshot.data);
                 else {
                   return Container(
                     child: Shimmer.fromColors(

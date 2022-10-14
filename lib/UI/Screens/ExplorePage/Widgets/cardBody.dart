@@ -3,9 +3,9 @@ import 'package:excelapp/UI/Components/EventCard/event_card.dart';
 import 'package:excelapp/UI/Screens/ExplorePage/Widgets/data.dart';
 import 'package:flutter/material.dart';
 
-class CompetitionsCardBody extends StatelessWidget {
+class CardBody extends StatelessWidget {
   final List<Event> eventsMap;
-  CompetitionsCardBody({Key key, @required this.eventsMap}) : super(key: key);
+  CardBody({Key key, @required this.eventsMap}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,8 +18,9 @@ class CompetitionsCardBody extends StatelessWidget {
           style: TextStyle(color: Colors.black54),
         )),
       );
-    return Expanded(
+    return Flexible(
       child: ListView.builder(
+        padding: EdgeInsets.fromLTRB(0, 0, 0, 100),
         shrinkWrap: true,
         itemCount: eventsMap.length,
         itemBuilder: (context, index) {

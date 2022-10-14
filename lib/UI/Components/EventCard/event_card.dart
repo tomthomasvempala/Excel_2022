@@ -14,6 +14,7 @@ class EventCard extends StatelessWidget {
     return Column(
       children: [
         Container(
+          margin: EdgeInsets.symmetric(horizontal: 15, vertical: 0),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(30),
             color: Colors.white,
