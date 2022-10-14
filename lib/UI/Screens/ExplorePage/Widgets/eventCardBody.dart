@@ -22,7 +22,6 @@ class EventCardBody extends StatelessWidget {
       );
     return Expanded(
       child: ListView.builder(
-        shrinkWrap: true,
         itemCount: eventsMap.length,
         itemBuilder: (context, index) {
           return EventCard(eventsMap[index]);
