@@ -47,7 +47,7 @@ class _SplashscreenState extends State<Splashscreen> {
             child: Hero(
               tag: 'logo',
               child: Image.asset(
-                'assets/excel logo.png',
+                'assets/excellogo.png',
               ),
             ),
           ),

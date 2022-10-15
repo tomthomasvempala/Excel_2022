@@ -63,7 +63,6 @@ class _AllEventsState extends State<AllEvents> {
 
   @override
   Widget build(BuildContext context) {
-    print("rebuilt events "+widget.category);
     filerbyCategory();
     return (Container(
       child: Column(
