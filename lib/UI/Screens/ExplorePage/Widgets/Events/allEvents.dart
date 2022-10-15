@@ -30,6 +30,7 @@ class _AllEventsState extends State<AllEvents> {
     if (widget.category == 'general') {
       events = CompetitionsData.where((i) => i.category == "General").toList();
     }
+    estream.add(events);
   }
 
   bool dataLoaded = false;
@@ -56,13 +57,14 @@ class _AllEventsState extends State<AllEvents> {
   void initState() {
     estream = StreamController<dynamic>();
     // initialisePage();
-    filerbyCategory();
     fetchfromNet();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+    print("rebuilt events "+widget.category);
+    filerbyCategory();
     return (Container(
       child: Column(
         children: [
