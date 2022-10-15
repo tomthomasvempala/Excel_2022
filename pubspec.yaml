@@ -58,6 +58,7 @@ flutter:
   - assets/icons/
   - assets/devs/
   - assets/discover/
+  - assets/events/
   - assets/sampleposter.png
   - assets/MapsicleMap.png
   # - assets/campusAmbassador/refer.png
