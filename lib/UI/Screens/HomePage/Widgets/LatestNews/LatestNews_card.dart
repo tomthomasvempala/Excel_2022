@@ -25,23 +25,23 @@ class LastestNewsCard extends StatelessWidget {
                       Image(
                         image: NetworkImage(news.image),
                       ),
-                      Padding(
-                        padding: EdgeInsets.all(15),
-                        child: Container(
-                          width: 40,
-                          height: 40,
-                          child: FloatingActionButton(
-                            heroTag: 'btn1',
-                            elevation: 0,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(60),
-                            ),
-                            child: FaIcon(Icons.bookmark_outline_rounded),
-                            foregroundColor: Colors.white,
-                            backgroundColor: Color.fromARGB(155, 251, 255, 255),
-                          ),
-                        ),
-                      ),
+                      // Padding(
+                      //   padding: EdgeInsets.all(15),
+                      //   child: Container(
+                      //     width: 40,
+                      //     height: 40,
+                      //     child: FloatingActionButton(
+                      //       heroTag: 'btn1',
+                      //       elevation: 0,
+                      //       shape: RoundedRectangleBorder(
+                      //         borderRadius: BorderRadius.circular(60),
+                      //       ),
+                      //       child: FaIcon(Icons.bookmark_outline_rounded),
+                      //       foregroundColor: Colors.white,
+                      //       backgroundColor: Color.fromARGB(155, 251, 255, 255),
+                      //     ),
+                      //   ),
+                      // ),
                     ],
                   )),
               SizedBox(

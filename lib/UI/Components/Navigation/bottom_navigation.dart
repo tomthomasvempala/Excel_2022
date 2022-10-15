@@ -14,9 +14,9 @@ Map<TabItem, int> tabName = {
 };
 
 class BottomNavigation extends StatelessWidget {
-  BottomNavigation({this.currentTab, this.onSelectTab});
-  final TabItem currentTab;
-  final ValueChanged<TabItem> onSelectTab;
+  BottomNavigation({this.selectedIndex, this.onSelect});
+  final int selectedIndex;
+  final Function(int) onSelect;
 
   @override
   Widget build(BuildContext context) {
@@ -25,9 +25,7 @@ class BottomNavigation extends StatelessWidget {
       color: Colors.grey,
       selectedColor: primaryColor,
       notchedShape: CircularNotchedRectangle(),
-      onTabSelected: (index) => onSelectTab(
-        TabItem.values[index],
-      ),
+      onTabSelected: onSelect,
       items: [
         FABBottomAppBarItem(iconData: FontAwesomeIcons.house, text: ''),
         FABBottomAppBarItem(iconData: FontAwesomeIcons.compass, text: ''),

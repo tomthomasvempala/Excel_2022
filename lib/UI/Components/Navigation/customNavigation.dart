@@ -1,4 +1,8 @@
+import 'package:excelapp/UI/Screens/ExplorePage/explorePage.dart';
 import 'package:excelapp/UI/Screens/HomePage/Widgets/aboutExcel.dart';
+import 'package:excelapp/UI/Screens/HomePage/homePage.dart';
+import 'package:excelapp/UI/Screens/ProfilePage/profile_main.dart';
+import 'package:excelapp/UI/Screens/Schedule/schedule.dart';
 import 'package:excelapp/UI/constants.dart';
 import 'package:flutter/material.dart';
 import './bottom_navigation.dart';
@@ -19,6 +23,7 @@ class CustomNavigator extends StatefulWidget {
 }
 
 class CustomNavigatorState extends State<CustomNavigator> {
+  int selectedTab;
   TabItem _currentTab = TabItem.page1;
   Map<TabItem, GlobalKey<NavigatorState>> _navigatorKeys = {
     TabItem.page1: GlobalKey<NavigatorState>(),
@@ -31,6 +36,7 @@ class CustomNavigatorState extends State<CustomNavigator> {
 
   @protected
   void initState() {
+    selectedTab=0;
     hideBottomNav = () {
       setState(() {
         bottonNavHidden = true;
@@ -73,18 +79,34 @@ class CustomNavigatorState extends State<CustomNavigator> {
       },
       child: Scaffold(
         extendBody: true,
-        body: Stack(children: <Widget>[
-          _buildOffstageNavigator(TabItem.page1),
-          _buildOffstageNavigator(TabItem.page2),
-          _buildOffstageNavigator(TabItem.page3),
-          _buildOffstageNavigator(TabItem.page4),
-        ]),
+        body: 
+        IndexedStack(
+          index: selectedTab,
+          children: [
+            HomePage(),
+            ExplorePage(),
+            Schedule(),
+            CheckUserLoggedIn()
+        ],
+        
+        ),
+        // Stack(children: <Widget>[
+        //   _buildOffstageNavigator(TabItem.page1),
+        //   _buildOffstageNavigator(TabItem.page2),
+        //   _buildOffstageNavigator(TabItem.page3),
+        //   _buildOffstageNavigator(TabItem.page4),
+        // ]),
         bottomNavigationBar: Visibility(
           maintainState: true,
           visible: bottonNavHidden ? false : true,
           child: BottomNavigation(
-            currentTab: _currentTab,
-            onSelectTab: _selectTab,
+            selectedIndex: selectedTab,
+            onSelect: (i){
+              selectedTab=i;
+              setState(() {
+                
+              });
+            },
           ),
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,

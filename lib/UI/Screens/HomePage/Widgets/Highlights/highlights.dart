@@ -89,7 +89,7 @@ class _HighlightsSectionState extends State<HighlightsSection> {
                     child: Shimmer.fromColors(
                       child: Container(
                         color: Colors.white,
-                        height: MediaQuery.of(context).size.height / 4,
+                        height: MediaQuery.of(context).size.width * .9 * (3 / 5.7),
                         margin: EdgeInsets.symmetric(horizontal: 15),
                       ),
                       baseColor: Colors.grey[300],

@@ -72,20 +72,17 @@ class EventPageBody extends StatelessWidget {
                               // height: 100,
                               width: deviceWidth / 1.910,
 
-                              child: Hero(
-                                tag: 'EventName',
-                                child: Text(
-                                  eventDetails.name,
-                                  textAlign: TextAlign.justify,
-                                  maxLines: 3,
-                                  style: TextStyle(
-                                    overflow: TextOverflow.ellipsis,
-                                    decoration: TextDecoration.none,
-                                    fontFamily: pfontFamily,
-                                    fontSize: 32.0,
-                                    fontWeight: FontWeight.w900,
-                                    color: textColor,
-                                  ),
+                              child: Text(
+                                eventDetails.name,
+                                textAlign: TextAlign.justify,
+                                maxLines: 3,
+                                style: TextStyle(
+                                  overflow: TextOverflow.ellipsis,
+                                  decoration: TextDecoration.none,
+                                  fontFamily: pfontFamily,
+                                  fontSize: 32.0,
+                                  fontWeight: FontWeight.w900,
+                                  color: textColor,
                                 ),
                               ),
                             ),
