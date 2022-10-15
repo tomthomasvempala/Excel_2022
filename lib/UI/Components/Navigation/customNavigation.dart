@@ -113,10 +113,19 @@ Widget _buildFab(BuildContext context, bottonNavHidden) {
       child: FloatingActionButton(
         backgroundColor: primaryColor,
         onPressed: () {
-          showDialog(
+          showModalBottomSheet(
+            isScrollControlled: true,
+            useRootNavigator: true,
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(40),
+                    topRight: Radius.circular(40))),
+            constraints: BoxConstraints(
+              minWidth: MediaQuery.of(context).size.width,
+            ),
             context: context,
             builder: (BuildContext context) {
-              return AboutExcelPopUp();
+              return Wrap(children: <Widget>[AboutExcelPopUp()]);
             },
           );
         },

@@ -6,15 +6,13 @@ Widget ContactUsModal(context) {
       // margin: EdgeInsets.fromLTRB(0, 40, 0, 40),
       child: Column(
     children: [
-      SizedBox(height: 10),
-      Divider(
-        indent: 140,
-        endIndent: 140,
-        thickness: 5,
-        color: Color.fromARGB(163, 141, 151, 153),
+      SizedBox(height: 8),
+      Image.asset(
+        "assets/icons/divider.png",
+        width: 340,
       ),
       SizedBox(
-        height: 30,
+        height: 20,
       ),
       Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -25,8 +23,8 @@ Widget ContactUsModal(context) {
                 "Stay In Touch",
                 style: TextStyle(
                     fontFamily: "mulish",
-                    fontSize: 18,
-                    fontWeight: FontWeight.w900),
+                    fontSize: 16,
+                    fontWeight: FontWeight.w800),
               )),
           Padding(
             padding: EdgeInsets.all(20),
@@ -36,19 +34,20 @@ Widget ContactUsModal(context) {
                   Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(50),
-                      color: Color.fromARGB(141, 189, 199, 201),
+                      color: Color.fromARGB(255, 228, 237, 239),
                     ),
                     width: MediaQuery.of(context).size.width * 0.4,
                     height: 60,
                     child: Padding(
-                      padding: EdgeInsets.fromLTRB(18, 0, 10, 0),
+                      padding: EdgeInsets.fromLTRB(20, 0, 10, 0),
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          Icon(
-                            Icons.phone_outlined,
-                            color: Color.fromARGB(195, 14, 152, 232),
+                          Image.asset(
+                            "assets/icons/call.png",
+                            width: 20,
+                            height: 20,
                           ),
                           SizedBox(
                             width: 9,
@@ -57,9 +56,9 @@ Widget ContactUsModal(context) {
                             "Call Us",
                             style: TextStyle(
                                 fontFamily: "mulish",
-                                fontSize: 15,
-                                color: Color.fromARGB(204, 61, 71, 71),
-                                fontWeight: FontWeight.w800),
+                                fontSize: 14,
+                                color: Color.fromARGB(255, 61, 71, 71),
+                                fontWeight: FontWeight.w700),
                           ),
                         ],
                       ),
@@ -68,19 +67,20 @@ Widget ContactUsModal(context) {
                   Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(50),
-                      color: Color.fromARGB(177, 189, 199, 201),
+                      color: Color.fromARGB(255, 228, 237, 239),
                     ),
                     width: MediaQuery.of(context).size.width * 0.4,
                     height: 60,
                     child: Padding(
-                      padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
+                      padding: EdgeInsets.fromLTRB(15, 0, 10, 0),
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          Icon(
-                            Icons.web,
-                            color: Color.fromARGB(195, 14, 152, 232),
+                          Image.asset(
+                            "assets/icons/website.png",
+                            width: 20,
+                            height: 20,
                           ),
                           SizedBox(
                             width: 9,
@@ -89,9 +89,9 @@ Widget ContactUsModal(context) {
                             "Visit Website",
                             style: TextStyle(
                                 fontFamily: "mulish",
-                                fontSize: 15,
-                                color: Color.fromARGB(204, 61, 71, 71),
-                                fontWeight: FontWeight.w800),
+                                fontSize: 14,
+                                color: Color.fromARGB(255, 61, 71, 71),
+                                fontWeight: FontWeight.w700),
                           ),
                         ],
                       ),
@@ -105,8 +105,8 @@ Widget ContactUsModal(context) {
                 "Our Socials",
                 style: TextStyle(
                     fontFamily: "mulish",
-                    fontSize: 18,
-                    fontWeight: FontWeight.w900),
+                    fontSize: 16,
+                    fontWeight: FontWeight.w800),
               )),
           Padding(
             padding: EdgeInsets.fromLTRB(20, 20, 20, 0),
@@ -116,7 +116,7 @@ Widget ContactUsModal(context) {
                   Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(50),
-                      color: Color.fromARGB(141, 189, 199, 201),
+                      color: Color.fromARGB(255, 228, 237, 239),
                     ),
                     width: MediaQuery.of(context).size.width * 0.4,
                     height: 60,
@@ -126,17 +126,21 @@ Widget ContactUsModal(context) {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          FaIcon(FontAwesomeIcons.instagram),
+                          Image.asset(
+                            "assets/icons/insta.png",
+                            width: 30,
+                            height: 30,
+                          ),
                           SizedBox(
-                            width: 10,
+                            width: 5,
                           ),
                           Text(
                             "Instagram",
                             style: TextStyle(
                                 fontFamily: "mulish",
-                                fontSize: 15,
-                                color: Color.fromARGB(204, 61, 71, 71),
-                                fontWeight: FontWeight.w800),
+                                fontSize: 14,
+                                color: Color.fromARGB(255, 61, 71, 71),
+                                fontWeight: FontWeight.w700),
                           ),
                         ],
                       ),
@@ -145,7 +149,7 @@ Widget ContactUsModal(context) {
                   Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(50),
-                      color: Color.fromARGB(177, 189, 199, 201),
+                      color: Color.fromARGB(255, 228, 237, 239),
                     ),
                     width: MediaQuery.of(context).size.width * 0.4,
                     height: 60,
@@ -155,17 +159,21 @@ Widget ContactUsModal(context) {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          FaIcon(FontAwesomeIcons.facebook),
+                          Image.asset(
+                            "assets/icons/facebook.png",
+                            width: 30,
+                            height: 30,
+                          ),
                           SizedBox(
-                            width: 10,
+                            width: 5,
                           ),
                           Text(
                             "Facebook",
                             style: TextStyle(
                                 fontFamily: "mulish",
-                                fontSize: 15,
-                                color: Color.fromARGB(204, 61, 71, 71),
-                                fontWeight: FontWeight.w800),
+                                fontSize: 14,
+                                color: Color.fromARGB(255, 61, 71, 71),
+                                fontWeight: FontWeight.w700),
                           ),
                         ],
                       ),
@@ -181,7 +189,7 @@ Widget ContactUsModal(context) {
                   Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(50),
-                      color: Color.fromARGB(141, 189, 199, 201),
+                      color: Color.fromARGB(255, 228, 237, 239),
                     ),
                     width: MediaQuery.of(context).size.width * 0.4,
                     height: 60,
@@ -191,17 +199,21 @@ Widget ContactUsModal(context) {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          FaIcon(FontAwesomeIcons.linkedin),
+                          Image.asset(
+                            "assets/icons/linkedin.png",
+                            width: 30,
+                            height: 30,
+                          ),
                           SizedBox(
-                            width: 10,
+                            width: 7,
                           ),
                           Text(
                             "Linkedin",
                             style: TextStyle(
                                 fontFamily: "mulish",
-                                fontSize: 15,
-                                color: Color.fromARGB(204, 61, 71, 71),
-                                fontWeight: FontWeight.w800),
+                                fontSize: 14,
+                                color: Color.fromARGB(255, 61, 71, 71),
+                                fontWeight: FontWeight.w700),
                           ),
                         ],
                       ),
@@ -210,7 +222,7 @@ Widget ContactUsModal(context) {
                   Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(50),
-                      color: Color.fromARGB(177, 189, 199, 201),
+                      color: Color.fromARGB(255, 228, 237, 239),
                     ),
                     width: MediaQuery.of(context).size.width * 0.4,
                     height: 60,
@@ -220,17 +232,21 @@ Widget ContactUsModal(context) {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          FaIcon(FontAwesomeIcons.twitter),
+                          Image.asset(
+                            "assets/icons/twitter.png",
+                            width: 30,
+                            height: 30,
+                          ),
                           SizedBox(
-                            width: 10,
+                            width: 7,
                           ),
                           Text(
                             "Twitter",
                             style: TextStyle(
                                 fontFamily: "mulish",
-                                fontSize: 15,
-                                color: Color.fromARGB(204, 61, 71, 71),
-                                fontWeight: FontWeight.w800),
+                                fontSize: 14,
+                                color: Color.fromARGB(255, 61, 71, 71),
+                                fontWeight: FontWeight.w700),
                           ),
                         ],
                       ),

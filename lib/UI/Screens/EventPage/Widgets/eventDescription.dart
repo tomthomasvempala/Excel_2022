@@ -27,7 +27,7 @@ Widget getEventDetails(
             Padding(
               padding: const EdgeInsets.fromLTRB(8, 8, 8, 8),
               child: detailBox(
-                  Icons.alarm,
+                  Icons.access_time_outlined,
                   "Time",
                   DateFormat('hh:mm a')
                       .format(DateTime.parse(eventDetails.datetime.toString()))

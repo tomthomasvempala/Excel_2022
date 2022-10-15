@@ -17,10 +17,10 @@ class EventPageBody extends StatelessWidget {
   Widget build(BuildContext context) {
     Widget registerButton;
 
-    if (eventDetails.needRegistration == 0 && eventDetails.button == null)
-      registerButton = SizedBox();
-    else
-      registerButton = RegisterButton(eventDetails: eventDetails);
+//     if (eventDetails.needRegistration == 0 && eventDetails.button == null)
+//       registerButton = SizedBox();
+//     else
+//       registerButton = RegisterButton(eventDetails: eventDetails);
 
     double deviceHeight = MediaQuery.of(context).size.height;
     double deviceWidth = MediaQuery.of(context).size.width;
