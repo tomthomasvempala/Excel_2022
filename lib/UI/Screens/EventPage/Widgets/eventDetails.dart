@@ -25,16 +25,13 @@ class _MoreEventDetailsState extends State<MoreEventDetails> {
     return DefaultTabController(
       length: 4,
       child: new Scaffold(
-        body: new NestedScrollView(
-          headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
-            return <Widget>[
-              new SliverAppBar(
+        appBar: AppBar(
                 toolbarHeight: 10,
                 leading: SizedBox(),
                 backgroundColor: Color(0xFFEDF5F6),
-                floating: true,
-                pinned: true,
-                snap: true,
+                // floating: true,
+                // pinned: true,
+                // snap: true,
                 bottom: new TabBar(
                   indicatorSize: TabBarIndicatorSize.tab,
                   indicatorWeight: 2,
@@ -62,8 +59,6 @@ class _MoreEventDetailsState extends State<MoreEventDetails> {
                   ],
                 ),
               ),
-            ];
-          },
           body: new TabBarView(
             children: [
               showEventDetails(1, boxPadding),
@@ -73,8 +68,7 @@ class _MoreEventDetailsState extends State<MoreEventDetails> {
             ],
           ),
         ),
-      ),
-    );
+      )
     ;
   }
 

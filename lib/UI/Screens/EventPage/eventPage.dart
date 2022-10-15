@@ -29,15 +29,15 @@ class _EventPageState extends State<EventPage> {
   void fetchEventDetails(int id) async {
     EventDetails event = new EventDetails(
         id: 1000,
-        name: "Wave Cloning",
+        name: "Waves Cloning",
         icon: "assets/events/eventLogo.png",
         categoryId: 1,
         category: "Competition",
         eventTypeId: 1,
         eventType: "CS Tech",
-        about: "This is an event",
+        about: "This is an event. There are so many rules for the event. There are so many rules for the event. There are so many rules for the event. There are so many rules for the event. There are so many rules for the event. There are so many rules for the event. There are so many rules for the event. There are so many rules for the event. There are so many rules for the event. There are so many rules for the event. There are so many rules for the event. There are so many rules for the event. There are so many rules for the event. There are so many rules for the event. There are so many rules for the event. There are so many rules for the event. There are so many rules for the event. There are so many rules for the event. There are so many rules for the event. There are so many rules for the event. There are so many rules for the event. There are so many rules for the event. There are so many rules for the event. There are so many rules for the event. There are so many rules for the event. There are so many rules for the event. There are so many rules for the event. There are so many rules for the event. ",
         format: "This is the format for the competition",
-        rules: "There are so many rules for the event",
+        rules: "There are so many rules for the event. ",
         venue: "SDPK Hall",
         datetime: "1665557616",
         teamSize: 5);
