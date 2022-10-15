@@ -1,4 +1,5 @@
 import 'package:excelapp/UI/Screens/ExplorePage/Widgets/Competitions/allCompetitions.dart';
+import 'package:excelapp/UI/Screens/ExplorePage/Widgets/Components/tabs.dart';
 import 'package:flutter/material.dart';
 
 class CompetitionsCardList extends StatefulWidget {
@@ -10,123 +11,43 @@ class CompetitionsCardList extends StatefulWidget {
 
 class _CompetitionsCardListState extends State<CompetitionsCardList>
     with SingleTickerProviderStateMixin {
-  TabController _tabController;
-  List<Widget> tabs = [
-    Tab(
-      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(50),
-        ),
-        child: Padding(
-          padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
-          child: Align(
-            alignment: Alignment.center,
-            child: Text(
-              "All",
-              style: TextStyle(
-                  fontFamily: "mulish",
-                  fontSize: 11,
-                  fontWeight: FontWeight.w700),
-            ),
-          ),
-        ),
-      ),
-    ),
-    Tab(
-      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(50),
-        ),
-        child: Padding(
-          padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
-          child: Align(
-            alignment: Alignment.center,
-            child: Text(
-              "CS-Tech",
-              style: TextStyle(
-                  fontFamily: "mulish",
-                  fontSize: 11,
-                  fontWeight: FontWeight.w700),
-            ),
-          ),
-        ),
-      ),
-    ),
-    Tab(
-      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(50),
-        ),
-        child: Padding(
-          padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
-          child: Align(
-            alignment: Alignment.center,
-            child: Text(
-              "Gen-Tech",
-              style: TextStyle(
-                  fontFamily: "mulish",
-                  fontSize: 11,
-                  fontWeight: FontWeight.w700),
-            ),
-          ),
-        ),
-      ),
-    ),
-    Tab(
-      child: Container(
-        decoration: BoxDecoration(borderRadius: BorderRadius.circular(50)),
-        child: Padding(
-          padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
-          child: Align(
-            alignment: Alignment.center,
-            child: Text(
-              "Non-Tech",
-              style: TextStyle(
-                fontFamily: "mulish",
-                fontSize: 11,
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-          ),
-        ),
-      ),
-    ),
-  ];
+  String selectedCategory;
+  List<String> tabs = ["All", "CS-Tech", "Gen-Tech", "Non-Tech"];
 
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(
-      length: tabs.length,
-      initialIndex: 0,
-      vsync: this,
-    );
+    selectedCategory = "all";
   }
 
   @override
   Widget build(BuildContext context) {
+    print(selectedCategory);
     return Container(
+      alignment: Alignment.topCenter,
       child: Column(
         children: [
           SizedBox(height: 7),
-          TabBar(
-            tabs: tabs,
-            controller: _tabController,
-            isScrollable: true,
-            unselectedLabelColor: Color.fromARGB(255, 61, 71, 71),
-            indicator: BoxDecoration(
-                borderRadius: BorderRadius.circular(50),
-                color: Color.fromARGB(255, 14, 152, 232)),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: tabs
+                    .map((tabItem) => FilterTab(
+                          isSelected: selectedCategory == tabItem.toLowerCase(),
+                          text: tabItem,
+                          onPressed: () {
+                            setState(() {
+                              selectedCategory = tabItem.toLowerCase();
+                            });
+                          },
+                        ))
+                    .toList()),
           ),
           SizedBox(height: 10),
           Flexible(
-            child: TabBarView(controller: _tabController, children: [
-              AllCompetitions(category: "all"),
-              AllCompetitions(category: "cs"),
-              AllCompetitions(category: "gen"),
-              AllCompetitions(category: "non"),
-            ]),
-          ),
+            child: AllCompetitions(category: selectedCategory),
+          )
         ],
       ),
     );

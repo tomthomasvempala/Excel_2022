@@ -100,6 +100,7 @@ class _ExplorePageState extends State<ExplorePage>
               Flexible(
                 child: TabBarView(
                     controller: _tabcontroller,
+                    physics: BouncingScrollPhysics(),
                     children: const [CompetitionsCardList(), EventsCardList()]),
               ),
             ],
