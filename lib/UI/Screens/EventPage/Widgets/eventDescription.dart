@@ -1,81 +1,115 @@
-// import 'package:excelapp/Models/event_card.dart';
-// import 'package:flutter/material.dart';
-// import 'package:excelapp/Models/event_details.dart';
-// import 'package:excelapp/UI/constants.dart';
+import 'package:excelapp/Models/event_card.dart';
+import 'package:flutter/material.dart';
+import 'package:excelapp/Models/event_details.dart';
+import 'package:excelapp/UI/constants.dart';
+import 'package:intl/intl.dart';
 
-// Widget getEventDetails({EventDetails eventDetails, bool detailed}) {
-//   return Hero(
-//     tag: 'EventDescription',
-//     child: Padding(
-//       padding: EdgeInsets.only(left: 50, top: 10),
-//       child: Column(
-//         mainAxisAlignment: MainAxisAlignment.start,
-//         children: <Widget>[
-//           // Date and Time
-//           detailRow(
-//               Icons.data_usage,
-//               DateTimeConversion.dateTimeToString(
-//                   eventDetails.datetime.toString())),
-//           SizedBox(height: 7.0),
-//           // Entry fee
-//           detailed
-//               ? detailRow(
-//                   Icons.monetization_on,
-//                   (eventDetails.entryFee == null || eventDetails.entryFee == 0)
-//                       ? "No entry fee"
-//                       : "Entree fee: Rs " + eventDetails.entryFee.toString())
-//               : SizedBox(),
+Widget getEventDetails(
+    {EventDetails eventDetails, bool detailed, double height, double width}) {
+  return Hero(
+    tag: 'EventDescription',
+    child: Column(
+      children: <Widget>[
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Padding(
+              padding: const EdgeInsets.fromLTRB(8, 8, 8, 8),
+              child: detailBox(
+                  Icons.calendar_month,
+                  "Date",
+                  DateFormat.MMMd()
+                      .format(DateTime.parse(eventDetails.datetime.toString()))
+                      .toString(),
+                  height,
+                  width),
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(8, 8, 8, 8),
+              child: detailBox(
+                  Icons.access_time_outlined,
+                  "Time",
+                  DateFormat('hh:mm a')
+                      .format(DateTime.parse(eventDetails.datetime.toString()))
+                      .toString(),
+                  height,
+                  width),
+            )
+          ],
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Padding(
+              padding: const EdgeInsets.fromLTRB(8, 8, 8, 0),
+              child: detailBox(
+                  Icons.pin_drop, "Venue", eventDetails.venue, height, width),
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(8, 8, 8, 0),
+              child: detailBox(Icons.person, "Team Size",
+                  eventDetails.teamSize.toString(), height, width),
+            ),
+          ],
+        ),
+      ],
+    ),
+  );
+}
 
-//           SizedBox(height: detailed ? 7.0 : 0),
-//           // Prize money
-//           detailed
-//               ? detailRow(
-//                   Icons.attach_money,
-//                   "Prize pool: " +
-//                       (eventDetails.prizeMoney == null
-//                           ? "N.A"
-//                           : "Rs " + eventDetails.prizeMoney.toString()))
-//               : SizedBox(),
-//           SizedBox(height: detailed ? 7.0 : 0),
-//           // Team or not
-//           detailRow(
-//               Icons.people_outline,
-//               eventDetails.isTeam == 1
-//                   ? "Team size: " +
-//                       (eventDetails.teamSize ?? "Not Specified").toString()
-//                   : 'Individual Event'),
-//           SizedBox(height: 7.0),
-//           // Venue
-//           detailRow(Icons.location_on, eventDetails.venue.toString()),
+Widget detailBox(
+    IconData icon, String title, String data, double height, double width) {
+  return Container(
+    // height: 66,
+    // width: 155,
+    height: height,
+    width: width,
 
-//           SizedBox(height: detailed ? 7 : 12),
-//         ],
-//       ),
-//     ),
-//   );
-// }
-
-// Widget detailRow(IconData icon, String text) {
-//   return Row(
-//     mainAxisAlignment: MainAxisAlignment.start,
-//     children: <Widget>[
-//       Icon(
-//         icon,
-//         size: 20.0,
-//         color: Colors.white,
-//       ),
-//       SizedBox(width: 10.0),
-//       Expanded(
-//         child: Text(
-//           text,
-//           style: TextStyle(
-//             color: Colors.white,
-//             fontSize: 14.5,
-//             fontFamily: pfontFamily,
-//             fontWeight: FontWeight.w500,
-//           ),
-//         ),
-//       )
-//     ],
-//   );
-// }
+    decoration: BoxDecoration(
+        color: Color(0xFFFBFFFF), borderRadius: BorderRadius.circular(24)),
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: <Widget>[
+        Padding(
+          padding: EdgeInsets.fromLTRB(7.7, 5.23, 0, 0),
+          child: Icon(
+            icon,
+            size: 20.0,
+            color: Color(0xFF0E99E8),
+          ),
+        ),
+        Expanded(
+            child: Padding(
+          padding: const EdgeInsets.fromLTRB(11, 0, 0, 0),
+          child: Align(
+            alignment: Alignment.centerLeft,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  title,
+                  style: TextStyle(
+                    color: Color(0xFF778585),
+                    fontSize: 11,
+                    fontFamily: pfontFamily,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+                Text(
+                  data,
+                  style: TextStyle(
+                    color: Color(0xFF3D4747),
+                    fontSize: 14,
+                    fontFamily: pfontFamily,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ))
+      ],
+    ),
+  );
+}
