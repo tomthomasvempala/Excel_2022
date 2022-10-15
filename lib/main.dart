@@ -21,6 +21,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Excel 2022',
       theme: ThemeData(
+        fontFamily: 'mulish',
         primarySwatch: Colors.blue,
         appBarTheme: AppBarTheme(brightness: Brightness.light),
       ),
