@@ -53,12 +53,12 @@ class ScheduleEvent extends StatelessWidget {
         Expanded(
           child: InkWell(
             onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => EventPage(eventSchedule.id),
-                ),
-              );
+              // Navigator.push(
+              //   context,
+              //   MaterialPageRoute(
+              //     builder: (context) => EventPage(eventSchedule.id),
+              //   ),
+              // );
             },
             child: Container(
               margin: EdgeInsets.fromLTRB(0, 5, 0, 5),
@@ -76,12 +76,12 @@ class ScheduleEvent extends StatelessWidget {
                   children: <Widget>[
                     Text(eventSchedule.round ?? ""),
                     SizedBox(height: 3),
-                    Text(
-                      ScheduleDateTimeConversion.dateTimeToString(
-                            eventSchedule.datetime,
-                          ) ??
-                          "",
-                    ),
+                    // Text(
+                    //   ScheduleDateTimeConversion.dateTimeToString(
+                    //         eventSchedule.datetime,
+                    //       ) ??
+                    //       "",
+                    // ),
                   ],
                 ),
               ),

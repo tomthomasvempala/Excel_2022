@@ -1,28 +1,29 @@
-import 'package:intl/intl.dart';
-
 class Event {
   int id;
   String name;
   String icon;
-  String eventType;
+  String desc;
   String category;
-  String datetime;
+  String date;
+  bool isCompetition;
 
   Event(
       {this.id,
       this.name,
       this.icon,
-      this.eventType,
+      this.desc,
       this.category,
-      this.datetime});
+      this.date,
+      this.isCompetition});
 
   Event.fromJson(json) {
     id = json['id'];
     name = json['name'];
     icon = json['icon'];
-    eventType = json['eventType'];
+    desc = json['desc'];
     category = json['category'];
-    datetime = json['datetime'];
+    date = json['date'];
+    isCompetition = json['isCompetition'];
   }
 
   Map<String, dynamic> toJson() {
@@ -30,19 +31,20 @@ class Event {
     data['id'] = this.id;
     data['name'] = this.name;
     data['icon'] = this.icon;
-    data['eventType'] = this.eventType;
+    data['eventType'] = this.desc;
     data['category'] = this.category;
-    data['datetime'] = this.datetime;
+    data['date'] = this.date;
+    data['isCompetition'] = this.isCompetition;
     return data;
   }
 }
 
-class DateTimeConversion {
-  static String dateTimeToString(String dateTime) {
-    DateTime dateObject = DateTime.parse(dateTime);
-    String result = DateFormat('dd MMM yyyy').format(dateObject) +
-        ' | ' +
-        DateFormat.jm().format(dateObject);
-    return result;
-  }
-}
+// class DateTimeConversion {
+//   static String dateTimeToString(String dateTime) {
+//     DateTime dateObject = DateTime.parse(dateTime);
+//     String result = DateFormat('dd MMM yyyy').format(dateObject) +
+//         ' | ' +
+//         DateFormat.jm().format(dateObject);
+//     return result;
+//   }
+// }
