@@ -20,12 +20,13 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromRGBO(237, 245, 246, 1),
+      // backgroundColor: Color.fromRGBO(237, 245, 246, 1),
       // appBar: homeAppBar(context),
       // drawer: CustomDrawer(),
       body: Container(
         child: SingleChildScrollView(
-          physics: BouncingScrollPhysics(),
+          scrollDirection: Axis.vertical,
+          physics: ClampingScrollPhysics(),
           child: Column(
             children: <Widget>[
               // Stories(),
@@ -45,7 +46,6 @@ class _HomePageState extends State<HomePage> {
               LatestNewsSection(),
               // Categories(),
               // SocialIcons(),
-              SizedBox(height: MediaQuery.of(context).size.height / 6)
             ],
           ),
         ),
