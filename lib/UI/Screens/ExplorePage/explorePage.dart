@@ -63,6 +63,7 @@ class _ExplorePageState extends State<ExplorePage>
                         child: TabBar(
                           indicatorColor: Color.fromARGB(255, 14, 152, 232),
                           controller: _tabcontroller,
+                          indicatorPadding: EdgeInsets.fromLTRB(0, 0, 0, 0),
                           labelColor: Color.fromARGB(255, 14, 152, 232),
                           labelStyle: TextStyle(
                             decorationColor: Color.fromARGB(255, 14, 152, 232),

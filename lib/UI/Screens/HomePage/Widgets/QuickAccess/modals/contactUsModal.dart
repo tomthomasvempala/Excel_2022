@@ -1,5 +1,7 @@
+import 'package:excelapp/UI/Screens/HomePage/Widgets/socialIcons.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 Widget ContactUsModal(context) {
   return Container(
@@ -31,69 +33,79 @@ Widget ContactUsModal(context) {
             child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(50),
-                      color: Color.fromARGB(255, 228, 237, 239),
-                    ),
-                    width: MediaQuery.of(context).size.width * 0.4,
-                    height: 60,
-                    child: Padding(
-                      padding: EdgeInsets.fromLTRB(20, 0, 10, 0),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Image.asset(
-                            "assets/icons/call.png",
-                            width: 20,
-                            height: 20,
-                          ),
-                          SizedBox(
-                            width: 9,
-                          ),
-                          Text(
-                            "Call Us",
-                            style: TextStyle(
-                                fontFamily: "mulish",
-                                fontSize: 14,
-                                color: Color.fromARGB(255, 61, 71, 71),
-                                fontWeight: FontWeight.w700),
-                          ),
-                        ],
+                  InkWell(
+                    onTap: () {
+                      launch('tel:9188500270');
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(50),
+                        color: Color.fromARGB(255, 228, 237, 239),
+                      ),
+                      width: MediaQuery.of(context).size.width * 0.4,
+                      height: 60,
+                      child: Padding(
+                        padding: EdgeInsets.fromLTRB(20, 0, 10, 0),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Image.asset(
+                              "assets/icons/call.png",
+                              width: 20,
+                              height: 20,
+                            ),
+                            SizedBox(
+                              width: 9,
+                            ),
+                            Text(
+                              "Call Us",
+                              style: TextStyle(
+                                  fontFamily: "mulish",
+                                  fontSize: 14,
+                                  color: Color.fromARGB(255, 61, 71, 71),
+                                  fontWeight: FontWeight.w700),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
-                  Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(50),
-                      color: Color.fromARGB(255, 228, 237, 239),
-                    ),
-                    width: MediaQuery.of(context).size.width * 0.4,
-                    height: 60,
-                    child: Padding(
-                      padding: EdgeInsets.fromLTRB(15, 0, 10, 0),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Image.asset(
-                            "assets/icons/website.png",
-                            width: 20,
-                            height: 20,
-                          ),
-                          SizedBox(
-                            width: 9,
-                          ),
-                          Text(
-                            "Visit Website",
-                            style: TextStyle(
-                                fontFamily: "mulish",
-                                fontSize: 14,
-                                color: Color.fromARGB(255, 61, 71, 71),
-                                fontWeight: FontWeight.w700),
-                          ),
-                        ],
+                  InkWell(
+                    onTap: () {
+                      launchURL("https://excelmec.org");
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(50),
+                        color: Color.fromARGB(255, 228, 237, 239),
+                      ),
+                      width: MediaQuery.of(context).size.width * 0.4,
+                      height: 60,
+                      child: Padding(
+                        padding: EdgeInsets.fromLTRB(15, 0, 10, 0),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Image.asset(
+                              "assets/icons/website.png",
+                              width: 20,
+                              height: 20,
+                            ),
+                            SizedBox(
+                              width: 9,
+                            ),
+                            Text(
+                              "Visit Website",
+                              style: TextStyle(
+                                  fontFamily: "mulish",
+                                  fontSize: 14,
+                                  color: Color.fromARGB(255, 61, 71, 71),
+                                  fontWeight: FontWeight.w700),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
@@ -113,69 +125,79 @@ Widget ContactUsModal(context) {
             child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(50),
-                      color: Color.fromARGB(255, 228, 237, 239),
-                    ),
-                    width: MediaQuery.of(context).size.width * 0.4,
-                    height: 60,
-                    child: Padding(
-                      padding: EdgeInsets.fromLTRB(18, 0, 10, 0),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Image.asset(
-                            "assets/icons/insta.png",
-                            width: 30,
-                            height: 30,
-                          ),
-                          SizedBox(
-                            width: 5,
-                          ),
-                          Text(
-                            "Instagram",
-                            style: TextStyle(
-                                fontFamily: "mulish",
-                                fontSize: 14,
-                                color: Color.fromARGB(255, 61, 71, 71),
-                                fontWeight: FontWeight.w700),
-                          ),
-                        ],
+                  InkWell(
+                    onTap: () {
+                      launchURL('https://www.instagram.com/excelmec/');
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(50),
+                        color: Color.fromARGB(255, 228, 237, 239),
+                      ),
+                      width: MediaQuery.of(context).size.width * 0.4,
+                      height: 60,
+                      child: Padding(
+                        padding: EdgeInsets.fromLTRB(18, 0, 10, 0),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Image.asset(
+                              "assets/icons/insta.png",
+                              width: 30,
+                              height: 30,
+                            ),
+                            SizedBox(
+                              width: 5,
+                            ),
+                            Text(
+                              "Instagram",
+                              style: TextStyle(
+                                  fontFamily: "mulish",
+                                  fontSize: 14,
+                                  color: Color.fromARGB(255, 61, 71, 71),
+                                  fontWeight: FontWeight.w700),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
-                  Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(50),
-                      color: Color.fromARGB(255, 228, 237, 239),
-                    ),
-                    width: MediaQuery.of(context).size.width * 0.4,
-                    height: 60,
-                    child: Padding(
-                      padding: EdgeInsets.fromLTRB(18, 0, 10, 0),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Image.asset(
-                            "assets/icons/facebook.png",
-                            width: 30,
-                            height: 30,
-                          ),
-                          SizedBox(
-                            width: 5,
-                          ),
-                          Text(
-                            "Facebook",
-                            style: TextStyle(
-                                fontFamily: "mulish",
-                                fontSize: 14,
-                                color: Color.fromARGB(255, 61, 71, 71),
-                                fontWeight: FontWeight.w700),
-                          ),
-                        ],
+                  InkWell(
+                    onTap: () {
+                      launchURL('https://www.facebook.com/excelmec/');
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(50),
+                        color: Color.fromARGB(255, 228, 237, 239),
+                      ),
+                      width: MediaQuery.of(context).size.width * 0.4,
+                      height: 60,
+                      child: Padding(
+                        padding: EdgeInsets.fromLTRB(18, 0, 10, 0),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Image.asset(
+                              "assets/icons/facebook.png",
+                              width: 30,
+                              height: 30,
+                            ),
+                            SizedBox(
+                              width: 5,
+                            ),
+                            Text(
+                              "Facebook",
+                              style: TextStyle(
+                                  fontFamily: "mulish",
+                                  fontSize: 14,
+                                  color: Color.fromARGB(255, 61, 71, 71),
+                                  fontWeight: FontWeight.w700),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
@@ -186,69 +208,79 @@ Widget ContactUsModal(context) {
             child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(50),
-                      color: Color.fromARGB(255, 228, 237, 239),
-                    ),
-                    width: MediaQuery.of(context).size.width * 0.4,
-                    height: 60,
-                    child: Padding(
-                      padding: EdgeInsets.fromLTRB(18, 0, 10, 0),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Image.asset(
-                            "assets/icons/linkedin.png",
-                            width: 30,
-                            height: 30,
-                          ),
-                          SizedBox(
-                            width: 7,
-                          ),
-                          Text(
-                            "Linkedin",
-                            style: TextStyle(
-                                fontFamily: "mulish",
-                                fontSize: 14,
-                                color: Color.fromARGB(255, 61, 71, 71),
-                                fontWeight: FontWeight.w700),
-                          ),
-                        ],
+                  InkWell(
+                    onTap: () {
+                      launchURL('https://www.linkedin.com/company/excelmec/');
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(50),
+                        color: Color.fromARGB(255, 228, 237, 239),
+                      ),
+                      width: MediaQuery.of(context).size.width * 0.4,
+                      height: 60,
+                      child: Padding(
+                        padding: EdgeInsets.fromLTRB(18, 0, 10, 0),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Image.asset(
+                              "assets/icons/linkedin.png",
+                              width: 30,
+                              height: 30,
+                            ),
+                            SizedBox(
+                              width: 7,
+                            ),
+                            Text(
+                              "Linkedin",
+                              style: TextStyle(
+                                  fontFamily: "mulish",
+                                  fontSize: 14,
+                                  color: Color.fromARGB(255, 61, 71, 71),
+                                  fontWeight: FontWeight.w700),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
-                  Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(50),
-                      color: Color.fromARGB(255, 228, 237, 239),
-                    ),
-                    width: MediaQuery.of(context).size.width * 0.4,
-                    height: 60,
-                    child: Padding(
-                      padding: EdgeInsets.fromLTRB(18, 0, 10, 0),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Image.asset(
-                            "assets/icons/twitter.png",
-                            width: 30,
-                            height: 30,
-                          ),
-                          SizedBox(
-                            width: 7,
-                          ),
-                          Text(
-                            "Twitter",
-                            style: TextStyle(
-                                fontFamily: "mulish",
-                                fontSize: 14,
-                                color: Color.fromARGB(255, 61, 71, 71),
-                                fontWeight: FontWeight.w700),
-                          ),
-                        ],
+                  InkWell(
+                    onTap: () {
+                      launchURL('https://twitter.com/excelmec/');
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(50),
+                        color: Color.fromARGB(255, 228, 237, 239),
+                      ),
+                      width: MediaQuery.of(context).size.width * 0.4,
+                      height: 60,
+                      child: Padding(
+                        padding: EdgeInsets.fromLTRB(18, 0, 10, 0),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Image.asset(
+                              "assets/icons/twitter.png",
+                              width: 30,
+                              height: 30,
+                            ),
+                            SizedBox(
+                              width: 7,
+                            ),
+                            Text(
+                              "Twitter",
+                              style: TextStyle(
+                                  fontFamily: "mulish",
+                                  fontSize: 14,
+                                  color: Color.fromARGB(255, 61, 71, 71),
+                                  fontWeight: FontWeight.w700),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),

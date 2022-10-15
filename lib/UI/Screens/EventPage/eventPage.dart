@@ -35,7 +35,8 @@ class _EventPageState extends State<EventPage> {
         category: "Competition",
         eventTypeId: 1,
         eventType: "CS Tech",
-        about: "This is an event. There are so many rules for the event. There are so many rules for the event. There are so many rules for the event. There are so many rules for the event. There are so many rules for the event. There are so many rules for the event. There are so many rules for the event. There are so many rules for the event. There are so many rules for the event. There are so many rules for the event. There are so many rules for the event. There are so many rules for the event. There are so many rules for the event. There are so many rules for the event. There are so many rules for the event. There are so many rules for the event. There are so many rules for the event. There are so many rules for the event. There are so many rules for the event. There are so many rules for the event. There are so many rules for the event. There are so many rules for the event. There are so many rules for the event. There are so many rules for the event. There are so many rules for the event. There are so many rules for the event. There are so many rules for the event. There are so many rules for the event. ",
+        about:
+            "This is an event. There are so many rules for the event. There are so many rules for the event. There are so many rules for the event. There are so many rules for the event. There are so many rules for the event. There are so many rules for the event. There are so many rules for the event. There are so many rules for the event. There are so many rules for the event. There are so many rules for the event. There are so many rules for the event. There are so many rules for the event. There are so many rules for the event. There are so many rules for the event. There are so many rules for the event. There are so many rules for the event. There are so many rules for the event. There are so many rules for the event. There are so many rules for the event. There are so many rules for the event. There are so many rules for the event. There are so many rules for the event. There are so many rules for the event. There are so many rules for the event. There are so many rules for the event. There are so many rules for the event. There are so many rules for the event. There are so many rules for the event. ",
         format: "This is the format for the competition",
         rules: "There are so many rules for the event. ",
         venue: "SDPK Hall",
@@ -61,7 +62,6 @@ class _EventPageState extends State<EventPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: darkAppbar(),
       body: StreamBuilder(
         stream: estream.stream,
         builder: (context, snapshot) {

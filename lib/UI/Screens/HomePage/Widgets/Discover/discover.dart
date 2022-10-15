@@ -51,10 +51,6 @@ class Discover extends StatelessWidget {
               children: [
                 InkWell(
                     onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => EventPage(123)));
                       //Talks
                     },
                     child: DiscoverButtons(

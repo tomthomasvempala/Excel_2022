@@ -27,18 +27,20 @@ Widget ReachUsModal(context) {
                 "Reach Us",
                 style: TextStyle(
                     fontFamily: "mulish",
-                    fontSize: 18,
-                    fontWeight: FontWeight.w900),
+                    fontSize: 16,
+                    fontWeight: FontWeight.w800),
               )),
           Padding(
             padding: EdgeInsets.fromLTRB(30, 20, 30, 20),
             child: Column(
               children: [
                 ClipRRect(
-                  borderRadius: BorderRadius.circular(30),
+                  borderRadius: BorderRadius.circular(24),
                   child: Image.asset(
                     "assets/MapsicleMap.png",
-                    fit: BoxFit.contain,
+                    width: 320,
+                    height: 266,
+                    fit: BoxFit.cover,
                   ),
                 ),
                 SizedBox(

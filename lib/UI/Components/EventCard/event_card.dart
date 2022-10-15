@@ -82,14 +82,25 @@ class EventCard extends StatelessWidget {
                                 ),
                                 child: Padding(
                                     padding: EdgeInsets.fromLTRB(16, 6, 16, 6),
-                                    child: Text(
-                                      'Register',
-                                      style: TextStyle(
-                                          color:
-                                              Color.fromARGB(255, 14, 152, 232),
-                                          fontWeight: FontWeight.w700,
-                                          fontFamily: "mulish",
-                                          fontSize: 11),
+                                    child: InkWell(
+                                      onTap: () {
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    EventPage(123)));
+                                      },
+                                      child: Container(
+                                        child: Text(
+                                          'Register',
+                                          style: TextStyle(
+                                              color: Color.fromARGB(
+                                                  255, 14, 152, 232),
+                                              fontWeight: FontWeight.w700,
+                                              fontFamily: "mulish",
+                                              fontSize: 11),
+                                        ),
+                                      ),
                                     ))),
                             SizedBox(width: 10),
                             FaIcon(FontAwesomeIcons.heart,
