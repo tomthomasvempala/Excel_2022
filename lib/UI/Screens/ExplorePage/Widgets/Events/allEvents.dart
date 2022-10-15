@@ -15,6 +15,7 @@ class AllEvents extends StatefulWidget {
 
 class _AllEventsState extends State<AllEvents> {
   StreamController<dynamic> estream;
+  bool dataLoaded = false;
   List<Event> events;
   filerbyCategory() {
     if (widget.category == 'all') {
@@ -33,7 +34,6 @@ class _AllEventsState extends State<AllEvents> {
     estream.add(events);
   }
 
-  bool dataLoaded = false;
   fetchfromNet() async {
     // var dataFromNet = await fetchAndStoreEventsFromNet();
     // if (!dataLoaded || dataFromNet != "error") {

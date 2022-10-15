@@ -12,9 +12,7 @@ class EventsCardList extends StatefulWidget {
 class _EventsCardListState extends State<EventsCardList>
     with SingleTickerProviderStateMixin {
   String selectedCategory;
-  List<String> tabs = [
-    "All","Workshops","Talks","General"
-  ];
+  List<String> tabs = ["All", "Workshops", "Talks", "General"];
 
   @override
   void initState() {
@@ -33,14 +31,18 @@ class _EventsCardListState extends State<EventsCardList>
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8.0),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: 
-              tabs.map((tabItem) => FilterTab(isSelected: selectedCategory==tabItem.toLowerCase(),text: tabItem,onPressed: (){
-                setState(() {
-                  selectedCategory=tabItem.toLowerCase();
-                });
-              },)).toList()
-            ),
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: tabs
+                    .map((tabItem) => FilterTab(
+                          isSelected: selectedCategory == tabItem.toLowerCase(),
+                          text: tabItem,
+                          onPressed: () {
+                            setState(() {
+                              selectedCategory = tabItem.toLowerCase();
+                            });
+                          },
+                        ))
+                    .toList()),
           ),
           SizedBox(height: 10),
           Flexible(

@@ -105,14 +105,17 @@ class _LatestNewsSectionState extends State<LatestNewsSection> {
                         style: TextStyle(color: Colors.black54),
                       )),
                     );
-                  return ListView.builder(
-                    padding: EdgeInsets.fromLTRB(0, 0, 0, 100),
-                    shrinkWrap: true,
-                    itemCount: snapshot.data.length,
-                    itemBuilder: (context, index) {
-                      return LastestNewsCard(snapshot.data[index]);
-                    },
-                  );
+                  return Column(children: [
+                    ListView.builder(
+                        scrollDirection: Axis.vertical,
+                        physics: ScrollPhysics(),
+                        padding: EdgeInsets.fromLTRB(0, 0, 0, 100),
+                        shrinkWrap: true,
+                        itemCount: snapshot.data.length,
+                        itemBuilder: (context, index) {
+                          return LastestNewsCard(snapshot.data[index]);
+                        }),
+                  ]);
                 } else {
                   return Container(
                     child: Shimmer.fromColors(
