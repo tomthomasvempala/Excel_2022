@@ -1,9 +1,11 @@
+import 'package:excelapp/Models/latest_news.dart';
 import 'package:excelapp/UI/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class LastestNewsCard extends StatelessWidget {
-  
+  final News news;
+  LastestNewsCard(this.news);
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -21,7 +23,7 @@ class LastestNewsCard extends StatelessWidget {
                     alignment: Alignment.topRight,
                     children: [
                       Image(
-                        image: AssetImage('assets/sampleposter.png'),
+                        image: NetworkImage(news.image),
                       ),
                       Padding(
                         padding: EdgeInsets.all(15),
@@ -48,7 +50,7 @@ class LastestNewsCard extends StatelessWidget {
               Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
-                    "Excel 2022",
+                    news.title,
                     style: headingStyle,
                     textAlign: TextAlign.left,
                   )),
@@ -56,7 +58,7 @@ class LastestNewsCard extends StatelessWidget {
                 height: 8,
               ),
               Text(
-                "It's time to finally launch the journey we've all planned together! Excel 2022 is here with new stuf..",
+                news.desc,
                 textAlign: TextAlign.left,
                 style: pStyle,
               ),
@@ -67,7 +69,7 @@ class LastestNewsCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    "Register Now",
+                    news.button,
                     style: TextStyle(
                         color: primaryColor,
                         fontSize: 12,
@@ -78,7 +80,7 @@ class LastestNewsCard extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        "26th July",
+                        news.date,
                         style: TextStyle(
                             color: Color(0xff778585),
                             fontSize: 10,
@@ -101,7 +103,7 @@ class LastestNewsCard extends StatelessWidget {
                         width: 5,
                       ),
                       Text(
-                        "5:30 PM",
+                        news.time,
                         style: TextStyle(
                             color: Color(0xff778585),
                             fontSize: 10,

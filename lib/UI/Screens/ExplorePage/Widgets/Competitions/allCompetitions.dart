@@ -24,18 +24,19 @@ class _AllCompetitionsState extends State<AllCompetitions> {
       competitions =
           CompetitionsData.where((i) => i.isCompetition == true).toList();
     }
-    if (widget.category == 'cs') {
+    if (widget.category == 'cs-tech') {
       competitions =
           CompetitionsData.where((i) => i.category == "CS-Tech").toList();
     }
-    if (widget.category == 'gen') {
+    if (widget.category == 'gen-tech') {
       competitions =
           CompetitionsData.where((i) => i.category == "Gen-Tech").toList();
     }
-    if (widget.category == 'non') {
+    if (widget.category == 'non-tech') {
       competitions =
           CompetitionsData.where((i) => i.category == "Non-Tech").toList();
     }
+    estream.add(competitions);
   }
 
   fetchfromNet() async {
@@ -60,13 +61,13 @@ class _AllCompetitionsState extends State<AllCompetitions> {
   void initState() {
     estream = StreamController<dynamic>();
     // initialisePage();
-    filerbyCategory();
     fetchfromNet();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+    filerbyCategory();
     return (Container(
       child: Column(
         children: [

@@ -25,6 +25,7 @@ class _HomePageState extends State<HomePage> {
       // drawer: CustomDrawer(),
       body: Container(
         child: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
           physics: BouncingScrollPhysics(),
           child: Column(
             children: <Widget>[
@@ -45,7 +46,6 @@ class _HomePageState extends State<HomePage> {
               LatestNewsSection(),
               // Categories(),
               // SocialIcons(),
-              SizedBox(height: MediaQuery.of(context).size.height / 6)
             ],
           ),
         ),

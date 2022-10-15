@@ -20,6 +20,7 @@ class CardBody extends StatelessWidget {
       );
     return Flexible(
       child: ListView.builder(
+        physics: BouncingScrollPhysics(),
         padding: EdgeInsets.fromLTRB(0, 0, 0, 100),
         shrinkWrap: true,
         itemCount: eventsMap.length,
