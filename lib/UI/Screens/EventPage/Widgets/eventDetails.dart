@@ -23,16 +23,12 @@ class _MoreEventDetailsState extends State<MoreEventDetails> {
     var boxPadding = EdgeInsets.fromLTRB(deviceWidth / 12,
         deviceHeight / 52.312, deviceWidth / 12, deviceHeight / 52.312);
     return DefaultTabController(
+      initialIndex: 0,
       length: 4,
-      child: new Scaffold(
-        appBar: AppBar(
-          toolbarHeight: 10,
-          leading: SizedBox(),
-          backgroundColor: Color(0xFFEDF5F6),
-          // floating: true,
-          // pinned: true,
-          // snap: true,
-          bottom: new TabBar(
+      child: 
+      Column(
+        children: [
+          TabBar(
             indicatorSize: TabBarIndicatorSize.tab,
             indicatorWeight: 2,
             indicatorColor: primaryColor,
@@ -58,16 +54,31 @@ class _MoreEventDetailsState extends State<MoreEventDetails> {
               ),
             ],
           ),
-        ),
-        body: new TabBarView(
-          children: [
-            showEventDetails(1, boxPadding),
-            showEventDetails(2, boxPadding),
-            showEventDetails(3, boxPadding),
-            showEventDetails(4, boxPadding),
-          ],
-        ),
+          
+          Expanded(
+            child: TabBarView(
+            children: [
+              showEventDetails(1, boxPadding),
+              showEventDetails(2, boxPadding),
+              showEventDetails(3, boxPadding),
+              showEventDetails(4, boxPadding),
+            ],
+                  ),
+          ),
+        ],
       ),
+      // new Scaffold(
+      //   appBar: AppBar(
+      //     toolbarHeight: 10,
+      //     leading: SizedBox(),
+      //     backgroundColor: Color(0xFFEDF5F6),
+      //     // floating: true,
+      //     // pinned: true,
+      //     // snap: true,
+      //     bottom: new 
+      //   ),
+      //   body: new 
+      // ),
     );
   }
 
@@ -82,11 +93,18 @@ class _MoreEventDetailsState extends State<MoreEventDetails> {
       content = widget.eventDetails.rules;
     else if (pageNumber == 4) content = widget.eventDetails.about;
 
-    return Padding(
-        padding: padding,
-        child: Text(
-          content,
-          style: TextStyle(fontFamily: pfontFamily, fontSize: 14),
-        ));
+    return Container(
+      decoration: BoxDecoration(
+        color: Color(0xffe4edef)
+      ),
+      child: SingleChildScrollView(
+        child: Padding(
+            padding: padding,
+            child: Text(
+              content,
+              style: TextStyle(fontFamily: pfontFamily, fontSize: 14),
+            )),
+      ),
+    );
   }
 }

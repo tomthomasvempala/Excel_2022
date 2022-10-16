@@ -44,7 +44,7 @@ class _HighlightsSectionState extends State<HighlightsSection> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
+      padding: EdgeInsets.fromLTRB(0, 20, 0, 10),
       child: Container(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

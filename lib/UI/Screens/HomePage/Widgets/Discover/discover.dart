@@ -35,7 +35,7 @@ class Discover extends StatelessWidget {
                 Text(
                   "our prime events",
                   style: TextStyle(
-                      color: Color(0xff778585),
+                      color: Color.fromARGB(255, 102, 146, 156),
                       fontWeight: FontWeight.w600,
                       fontSize: 11,
                       fontFamily: pfontFamily),

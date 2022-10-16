@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         fontFamily: 'mulish',
         primarySwatch: Colors.blue,
-        appBarTheme: AppBarTheme(brightness: Brightness.light),
+        appBarTheme: AppBarTheme(brightness: Brightness.light,backgroundColor: Color(0xffe4edef)),
       ),
       home: Splashscreen(),
     );
