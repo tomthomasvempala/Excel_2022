@@ -12,6 +12,7 @@ class SchedulePage extends StatelessWidget {
       length: 4,
       child: new Scaffold(
         body: new NestedScrollView(
+          physics: BouncingScrollPhysics(),
           headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
             return <Widget>[
               new SliverAppBar(
@@ -20,7 +21,10 @@ class SchedulePage extends StatelessWidget {
                     padding: const EdgeInsets.fromLTRB(0, 25, 0, 25),
                     child: Text(
                       "Event Schedule",
-                      style: TextStyle(color: Color(0xff1C1F20), fontWeight: FontWeight.w800, fontSize: 20),
+                      style: TextStyle(
+                          color: Color(0xff1C1F20),
+                          fontWeight: FontWeight.w800,
+                          fontSize: 20),
                     ),
                   ),
                 ),
@@ -29,21 +33,14 @@ class SchedulePage extends StatelessWidget {
                 pinned: true,
                 snap: true,
                 bottom: new TabBar(
+                  padding: EdgeInsets.fromLTRB(5, 0, 5, 0),
                   indicatorSize: TabBarIndicatorSize.tab,
                   indicatorWeight: 3,
                   indicatorColor: Color(0xff0E99E8),
                   labelColor: Color(0xff0E99E8),
                   unselectedLabelColor: Color(0xff778585),
                   tabs: [
-                    Tab(
-                      child: Column(
-                        children: [
-                          SizedBox(height: 5,),
-                          Text('Oct-Nov', style: TextStyle(fontSize: 9, fontWeight: FontWeight.w400),),
-                          SizedBox(width: 70, child: Text('Pre-Events', style: TextStyle(fontSize: 12.5, fontWeight: FontWeight.w800),))
-                        ],
-                      ),
-                    ),
+                    dayTab('Oct-Nov', 'Pre Events'),
                     dayTab('Nov 3', 'Day 1'),
                     dayTab('Nov 4', 'Day 2'),
                     dayTab('Nov 5', 'Day 3'),
@@ -55,6 +52,7 @@ class SchedulePage extends StatelessWidget {
           body: Container(
             color: Color(0xffECF4F5),
             child: new TabBarView(
+              physics: BouncingScrollPhysics(),
               children: [
                 schedule(0),
                 schedule(1),
@@ -71,10 +69,22 @@ class SchedulePage extends StatelessWidget {
   Widget dayTab(date, day) {
     return Tab(
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          SizedBox(height: 5,),
-          Text(date, style: TextStyle(fontSize: 9, fontWeight: FontWeight.w400),),
-          Text(day, style: TextStyle(fontSize: 12.5, fontWeight: FontWeight.w800),)
+          SizedBox(
+            height: 5,
+          ),
+          Text(
+            date,
+            style: TextStyle(fontSize: 10, fontWeight: FontWeight.w600),
+          ),
+          Text(
+            day,
+            style: TextStyle(fontSize: 12, fontWeight: FontWeight.w800),
+          ),
+          SizedBox(
+            height: 2,
+          ),
         ],
       ),
     );
@@ -82,13 +92,17 @@ class SchedulePage extends StatelessWidget {
 
   Widget schedule(dayNumber) {
     List<ScheduleModel> day0 = scheduleData["day0"];
-    day0.sort((a, b) => DateTime.parse(a.datetime).compareTo(DateTime.parse(b.datetime)));
+    day0.sort((a, b) =>
+        DateTime.parse(a.datetime).compareTo(DateTime.parse(b.datetime)));
     List<ScheduleModel> day1 = scheduleData["day1"];
-    day1.sort((a, b) => DateTime.parse(a.datetime).compareTo(DateTime.parse(b.datetime)));
+    day1.sort((a, b) =>
+        DateTime.parse(a.datetime).compareTo(DateTime.parse(b.datetime)));
     List<ScheduleModel> day2 = scheduleData["day2"];
-    day2.sort((a, b) => DateTime.parse(a.datetime).compareTo(DateTime.parse(b.datetime)));
+    day2.sort((a, b) =>
+        DateTime.parse(a.datetime).compareTo(DateTime.parse(b.datetime)));
     List<ScheduleModel> day3 = scheduleData["day3"];
-    day3.sort((a, b) => DateTime.parse(a.datetime).compareTo(DateTime.parse(b.datetime)));
+    day3.sort((a, b) =>
+        DateTime.parse(a.datetime).compareTo(DateTime.parse(b.datetime)));
     Widget returnWidget;
     if (dayNumber == 0)
       returnWidget = TimeTableList(day0);
@@ -98,6 +112,7 @@ class SchedulePage extends StatelessWidget {
       returnWidget = TimeTableList(day2);
     else if (dayNumber == 3) returnWidget = TimeTableList(day3);
     return SingleChildScrollView(
+      physics: BouncingScrollPhysics(),
       scrollDirection: Axis.vertical,
       child: returnWidget,
     );
