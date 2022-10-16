@@ -65,7 +65,7 @@ class ScheduleEvent extends StatelessWidget {
                     child: Text(
                       (prevDateTime==eventSchedule.datetime) ? "" : DateFormat('hh:mma').format(DateTime.parse(eventSchedule.datetime)).toLowerCase(),
                       textAlign: TextAlign.right,
-                      style: TextStyle(fontWeight: FontWeight.w600, fontSize: 14),
+                      style: TextStyle(fontWeight: FontWeight.w600, fontSize: 14,color: ExcelTheme.textGrey),
                     )
                 ),
               ],
@@ -108,7 +108,7 @@ class ScheduleEvent extends StatelessWidget {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(eventSchedule.name ?? "", style: TextStyle(fontWeight: FontWeight.w800, fontSize: 14, color: ExcelTheme.textGrey),),
+                              Text(eventSchedule.name ?? "", style: TextStyle(fontWeight: FontWeight.w800, fontSize: 14),),
                               SizedBox(height: 8,),
                               Text("View Event", style: TextStyle(fontSize: 11, color: Color(0xff0E99E8), fontWeight: FontWeight.w600),),
                             ],
