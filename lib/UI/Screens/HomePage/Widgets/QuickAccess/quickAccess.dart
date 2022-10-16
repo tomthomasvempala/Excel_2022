@@ -30,7 +30,7 @@ class QuickAccessBar extends StatelessWidget {
         quickAccessButton(context, Icons.location_on_outlined, "Reach Us",
             ReachUsModal(context)),
         quickAccessButton(
-            context, Icons.notifications_none_outlined, "Updates", null),
+            context, Icons.notifications_none_outlined, "Notifs", null),
       ]),
     );
   }

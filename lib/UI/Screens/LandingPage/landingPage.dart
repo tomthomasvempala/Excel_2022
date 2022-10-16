@@ -16,35 +16,37 @@ class _LandingPageState extends State<LandingPage> {
   @override
   Widget build(BuildContext context) {
     return IntroductionScreen(
-      globalBackgroundColor: Colors.white,
+      globalBackgroundColor: Color.fromARGB(255, 219, 228, 231),
       key: introKey,
       pages: [
         PageViewModel(
-          bodyWidget: introPage(),
+          bodyWidget: introPage(context),
           title: "",
         ),
         PageViewModel(
           decoration: PageDecoration(
               // contentPadding: EdgeInsets.symmetric(horizontal: 0)
               ),
-          bodyWidget: page(
-              "Our Motto",
-              "Inspire  |  Innovate  |  Engineer\n\nInnovation drives the modern day world. Excel has been inspiring youth to innovate and bring out the best engineers in them !",
-              "assets/introScreen/page2.png",
-              context),
+          bodyWidget: introPage(context),
+          // bodyWidget: page(
+          //     "Our Motto",
+          //     "Inspire  |  Innovate  |  Engineer\n\nInnovation drives the modern day world. Excel has been inspiring youth to innovate and bring out the best engineers in them !",
+          //     "assets/introScreen/page2.png",
+          //     context),
           title: "",
         ),
-        PageViewModel(
-          decoration: PageDecoration(
-              // contentPadding: EdgeInsets.symmetric(horizontal: 0)
-              ),
-          bodyWidget: page(
-              "Come Join Us",
-              "Certain events wake us, nurture us and revitalize us. But how often do these events come? Either you wait for those moments or you create them. Sometimes life offers you a chance to take yourself to the next level. All you have to do is to seize them.",
-              "assets/introScreen/page3.png",
-              context),
-          title: "",
-        ),
+        // PageViewModel(
+        //   decoration: PageDecoration(
+        //       // contentPadding: EdgeInsets.symmetric(horizontal: 0)
+        //       ),
+        //   bodyWidget: introPage(context),
+        //   // bodyWidget: page(
+        //   //     "Come Join Us",
+        //   //     "Certain events wake us, nurture us and revitalize us. But how often do these events come? Either you wait for those moments or you create them. Sometimes life offers you a chance to take yourself to the next level. All you have to do is to seize them.",
+        //   //     "assets/introScreen/page3.png",
+        //   //     context),
+        //   title: "",
+        // ),
         PageViewModel(
           decoration: PageDecoration(
               // contentPadding: EdgeInsets.symmetric(horizontal: 0)
@@ -55,20 +57,26 @@ class _LandingPageState extends State<LandingPage> {
       ],
       onDone: () => onIntroEnd(context),
       showSkipButton: true,
-      // skipFlex: 0,
-      nextFlex: 0,
+      //skipFlex: 0,
+      nextFlex: 1,
       skip: Text('Skip',
-          style: TextStyle(fontWeight: FontWeight.w600, color: primaryColor)),
-      next: Icon(Icons.arrow_forward, color: primaryColor),
+          style: TextStyle(
+              fontWeight: FontWeight.w600,
+              color: Color(
+                0xff3D4747,
+              ),
+              fontFamily: "mulish",
+              fontSize: 16)),
+      next: Icon(Icons.arrow_forward, color: Color(0xff014F60)),
       done: Text(''),
       dotsDecorator: DotsDecorator(
-        activeColor: primaryColor,
-        size: Size(10.0, 10.0),
-        color: Color(0xFFBDBDBD),
-        activeSize: Size(22.0, 10.0),
+        activeColor: Color(0xff3D4747),
+        size: Size(8.0, 8.0),
+        color: Color(0xFFB3C1C5),
+        // activeSize: Size(22.0, 10.0),
         activeShape: RoundedRectangleBorder(
           borderRadius: BorderRadius.all(
-            Radius.circular(25.0),
+            Radius.circular(50.0),
           ),
         ),
       ),

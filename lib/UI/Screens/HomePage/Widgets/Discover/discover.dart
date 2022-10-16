@@ -1,4 +1,5 @@
 import 'package:excelapp/UI/Screens/EventPage/eventPage.dart';
+import 'package:excelapp/UI/Screens/ExplorePage/explorePage.dart';
 import 'package:excelapp/UI/Screens/HomePage/Widgets/Discover/button.dart';
 import 'package:excelapp/UI/Screens/HomePage/Widgets/Discover/buttonData.dart';
 import 'package:flutter/material.dart';
@@ -51,11 +52,14 @@ class Discover extends StatelessWidget {
               children: [
                 InkWell(
                     onTap: () {
+                      //Talks
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => EventPage(123)));
-                      //Talks
+                              builder: (context) => ExplorePage(
+                                    selectedPage: 1,
+                                    selectedCategory: "talks",
+                                  )));
                     },
                     child: DiscoverButtons(
                       data: DiscoverButtonData[0],
@@ -64,6 +68,13 @@ class Discover extends StatelessWidget {
                 InkWell(
                     onTap: () {
                       //Workshop
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ExplorePage(
+                                    selectedPage: 1,
+                                    selectedCategory: "workshops",
+                                  )));
                     },
                     child: DiscoverButtons(
                       data: DiscoverButtonData[1],
@@ -82,6 +93,11 @@ class Discover extends StatelessWidget {
               InkWell(
                   onTap: () {
                     //Competitions
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                ExplorePage(selectedPage: 0)));
                   },
                   child: DiscoverButtons(
                     data: DiscoverButtonData[2],
@@ -90,6 +106,11 @@ class Discover extends StatelessWidget {
               InkWell(
                   onTap: () {
                     //other
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                ExplorePage(selectedPage: 1)));
                   },
                   child: DiscoverButtons(
                     data: DiscoverButtonData[3],
