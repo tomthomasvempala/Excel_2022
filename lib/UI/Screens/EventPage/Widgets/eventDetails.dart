@@ -25,22 +25,10 @@ class _MoreEventDetailsState extends State<MoreEventDetails> {
     return DefaultTabController(
       initialIndex: 0,
       length: 4,
-<<<<<<< HEAD
       child: 
       Column(
         children: [
           TabBar(
-=======
-      child: new Scaffold(
-        appBar: AppBar(
-          toolbarHeight: 10,
-          leading: SizedBox(),
-          backgroundColor: Color(0xFFEDF5F6),
-          // floating: true,
-          // pinned: true,
-          // snap: true,
-          bottom: new TabBar(
->>>>>>> f8fe05aef3dddf16b261d61e053572e33540c06c
             indicatorSize: TabBarIndicatorSize.tab,
             indicatorWeight: 2,
             indicatorColor: primaryColor,
@@ -54,7 +42,6 @@ class _MoreEventDetailsState extends State<MoreEventDetails> {
             tabs: [
               Tab(
                 text: 'About',
-<<<<<<< HEAD
               ),
               Tab(
                 text: 'Format',
@@ -75,22 +62,9 @@ class _MoreEventDetailsState extends State<MoreEventDetails> {
               showEventDetails(2, boxPadding),
               showEventDetails(3, boxPadding),
               showEventDetails(4, boxPadding),
-=======
-              ),
-              Tab(
-                text: 'Format',
-              ),
-              Tab(
-                text: 'Rules',
-              ),
-              Tab(
-                text: 'Contact',
-              ),
->>>>>>> f8fe05aef3dddf16b261d61e053572e33540c06c
             ],
                   ),
           ),
-<<<<<<< HEAD
         ],
       ),
       // new Scaffold(
@@ -105,19 +79,6 @@ class _MoreEventDetailsState extends State<MoreEventDetails> {
       //   ),
       //   body: new 
       // ),
-=======
-        ),
-        body: new TabBarView(
-          physics: BouncingScrollPhysics(),
-          children: [
-            showEventDetails(1, boxPadding),
-            showEventDetails(2, boxPadding),
-            showEventDetails(3, boxPadding),
-            showEventDetails(4, boxPadding),
-          ],
-        ),
-      ),
->>>>>>> f8fe05aef3dddf16b261d61e053572e33540c06c
     );
   }
 
@@ -129,7 +90,6 @@ class _MoreEventDetailsState extends State<MoreEventDetails> {
     else if (pageNumber == 2)
       content = widget.eventDetails.format;
     else if (pageNumber == 3)
-<<<<<<< HEAD
       content = widget.eventDetails.rules;
     else if (pageNumber == 4) content = widget.eventDetails.about;
 
@@ -145,21 +105,6 @@ class _MoreEventDetailsState extends State<MoreEventDetails> {
               style: TextStyle(fontFamily: pfontFamily, fontSize: 14),
             )),
       ),
-=======
-      returnWidget = Padding(
-          padding: padding,
-          child: Text(widget.eventDetails.rules,
-              style: TextStyle(fontFamily: pfontFamily, fontSize: 14)));
-    else if (pageNumber == 4)
-      returnWidget = Padding(
-          padding: padding,
-          child: Text(widget.eventDetails.about,
-              style: TextStyle(fontFamily: pfontFamily, fontSize: 14)));
-    return SingleChildScrollView(
-      physics: BouncingScrollPhysics(),
-      scrollDirection: Axis.vertical,
-      child: returnWidget,
->>>>>>> f8fe05aef3dddf16b261d61e053572e33540c06c
     );
   }
 }
