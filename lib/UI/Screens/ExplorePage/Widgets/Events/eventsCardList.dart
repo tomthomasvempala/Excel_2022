@@ -3,10 +3,10 @@ import 'package:excelapp/UI/Screens/ExplorePage/Widgets/Events/allEvents.dart';
 import 'package:flutter/material.dart';
 
 class EventsCardList extends StatefulWidget {
-  const EventsCardList({Key key}) : super(key: key);
-
   @override
   State<EventsCardList> createState() => _EventsCardListState();
+  final String selectedTab;
+  const EventsCardList({Key key, this.selectedTab}) : super(key: key);
 }
 
 class _EventsCardListState extends State<EventsCardList>
@@ -17,7 +17,7 @@ class _EventsCardListState extends State<EventsCardList>
   @override
   void initState() {
     super.initState();
-    selectedCategory = "all";
+    selectedCategory = widget.selectedTab ?? "all";
   }
 
   @override
