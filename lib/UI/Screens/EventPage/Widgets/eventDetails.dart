@@ -25,45 +25,51 @@ class _MoreEventDetailsState extends State<MoreEventDetails> {
     return DefaultTabController(
       initialIndex: 0,
       length: 4,
-      child: Column(
-        children: [
-          TabBar(
-            indicatorSize: TabBarIndicatorSize.tab,
-            indicatorWeight: 2,
-            indicatorColor: primaryColor,
-            // labelColor: Color(0xFF3D4747),
-            labelColor: primaryColor,
-            unselectedLabelColor: Color(0xFF3D4747),
-            labelStyle: TextStyle(
-                fontSize: 14,
-                fontFamily: pfontFamily,
-                fontWeight: FontWeight.bold),
-            tabs: [
-              Tab(
-                text: 'About',
-              ),
-              Tab(
-                text: 'Format',
-              ),
-              Tab(
-                text: 'Rules',
-              ),
-              Tab(
-                text: 'Contact',
-              ),
-            ],
-          ),
-          Expanded(
-            child: TabBarView(
-              children: [
-                showEventDetails(1, boxPadding),
-                showEventDetails(2, boxPadding),
-                showEventDetails(3, boxPadding),
-                showEventDetails(4, boxPadding),
+      child: Container(
+        color: Color(0xffECF4F5),
+        child: Column(
+          children: [
+            SizedBox(height: 15),
+            TabBar(
+              padding: EdgeInsets.fromLTRB(7, 0, 7, 0),
+              indicatorSize: TabBarIndicatorSize.tab,
+              indicatorWeight: 3,
+              indicatorColor: primaryColor,
+              // labelColor: Color(0xFF3D4747),
+              labelColor: primaryColor,
+              unselectedLabelColor: Color(0xFF3D4747),
+              labelStyle: TextStyle(
+                  fontSize: 14,
+                  fontFamily: pfontFamily,
+                  fontWeight: FontWeight.bold),
+              tabs: [
+                Tab(
+                  text: 'About',
+                ),
+                Tab(
+                  text: 'Format',
+                ),
+                Tab(
+                  text: 'Rules',
+                ),
+                Tab(
+                  text: 'Contact',
+                ),
               ],
             ),
-          ),
-        ],
+            Expanded(
+              child: TabBarView(
+                physics: BouncingScrollPhysics(),
+                children: [
+                  showEventDetails(1, boxPadding),
+                  showEventDetails(2, boxPadding),
+                  showEventDetails(3, boxPadding),
+                  showEventDetails(4, boxPadding),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
       // new Scaffold(
       //   appBar: AppBar(
@@ -92,13 +98,18 @@ class _MoreEventDetailsState extends State<MoreEventDetails> {
     else if (pageNumber == 4) content = widget.eventDetails.about;
 
     return Container(
-      decoration: BoxDecoration(color: Color(0xffe4edef)),
+      decoration: BoxDecoration(color: Colors.white),
       child: SingleChildScrollView(
+        physics: BouncingScrollPhysics(),
         child: Padding(
             padding: padding,
             child: Text(
               content,
-              style: TextStyle(fontFamily: pfontFamily, fontSize: 14),
+              style: TextStyle(
+                  fontFamily: pfontFamily,
+                  fontSize: 14,
+                  height: 1.5,
+                  color: Color(0xff3D4747)),
             )),
       ),
     );

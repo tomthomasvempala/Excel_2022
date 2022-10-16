@@ -8,51 +8,56 @@ Widget getEventDetails(
     {EventDetails eventDetails, bool detailed, double height, double width}) {
   return Hero(
     tag: 'EventDescription',
-    child: Column(
-      children: <Widget>[
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Padding(
-              padding: const EdgeInsets.fromLTRB(8, 8, 8, 8),
-              child: detailBox(
-                  Icons.calendar_month,
-                  "Date",
-                  DateFormat.MMMd()
-                      .format(DateTime.parse(eventDetails.datetime.toString()))
-                      .toString(),
-                  height,
-                  width),
-            ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(8, 8, 8, 8),
-              child: detailBox(
-                  Icons.access_time_outlined,
-                  "Time",
-                  DateFormat('hh:mm a')
-                      .format(DateTime.parse(eventDetails.datetime.toString()))
-                      .toString(),
-                  height,
-                  width),
-            )
-          ],
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Padding(
-              padding: const EdgeInsets.fromLTRB(8, 8, 8, 0),
-              child: detailBox(
-                  Icons.pin_drop, "Venue", eventDetails.venue, height, width),
-            ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(8, 8, 8, 0),
-              child: detailBox(Icons.person, "Team Size",
-                  eventDetails.teamSize.toString(), height, width),
-            ),
-          ],
-        ),
-      ],
+    child: Container(
+      color: Color(0xffECF4F5),
+      child: Column(
+        children: <Widget>[
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Padding(
+                padding: const EdgeInsets.fromLTRB(8, 8, 8, 8),
+                child: detailBox(
+                    Icons.calendar_month,
+                    "Date",
+                    DateFormat.MMMd()
+                        .format(
+                            DateTime.parse(eventDetails.datetime.toString()))
+                        .toString(),
+                    height,
+                    width),
+              ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(8, 8, 8, 8),
+                child: detailBox(
+                    Icons.access_time_outlined,
+                    "Time",
+                    DateFormat('hh:mm a')
+                        .format(
+                            DateTime.parse(eventDetails.datetime.toString()))
+                        .toString(),
+                    height,
+                    width),
+              )
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Padding(
+                padding: const EdgeInsets.fromLTRB(8, 8, 8, 0),
+                child: detailBox(
+                    Icons.pin_drop, "Venue", eventDetails.venue, height, width),
+              ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(8, 8, 8, 0),
+                child: detailBox(Icons.person, "Team Size",
+                    eventDetails.teamSize.toString(), height, width),
+              ),
+            ],
+          ),
+        ],
+      ),
     ),
   );
 }
@@ -71,7 +76,7 @@ Widget detailBox(
       mainAxisAlignment: MainAxisAlignment.start,
       children: <Widget>[
         Padding(
-          padding: EdgeInsets.fromLTRB(7.7, 5.23, 0, 0),
+          padding: EdgeInsets.fromLTRB(15, 5.23, 0, 0),
           child: Icon(
             icon,
             size: 20.0,
@@ -96,6 +101,7 @@ Widget detailBox(
                     fontWeight: FontWeight.w500,
                   ),
                 ),
+                SizedBox(height: 5),
                 Text(
                   data,
                   style: TextStyle(
