@@ -32,6 +32,7 @@ class ExcelTheme {
   static var aevaBlue = Color.fromRGBO(30, 212, 237, 1);
   static var aevaCyan = Color.fromRGBO(28, 249, 201, 1);
   static var aevaDark = Color.fromRGBO(16, 65, 100, 1);
+  static var textGrey = Color(0xff778585);
   static double imageHeight = 160;
   static var headingStyle = TextStyle(
     fontWeight: FontWeight.w600,

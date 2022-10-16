@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:excelapp/Models/schedule_model.dart';
+import 'package:excelapp/UI/Themes/profile_themes.dart';
 import 'package:intl/intl.dart';
 import 'package:excelapp/UI/Screens/EventPage/eventPage.dart';
 import 'package:excelapp/UI/constants.dart';
@@ -49,75 +50,78 @@ class ScheduleEvent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(25, 20, 25, 0),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: <Widget>[
-          Column(
-            children: [
-              SizedBox(height: 20,),
-              Container(
-                width: 70,
-                  child: Text(
-                    (prevDateTime==eventSchedule.datetime) ? "" : DateFormat('hh:mma').format(DateTime.parse(eventSchedule.datetime)).toLowerCase(),
-                    textAlign: TextAlign.right,
-                    style: TextStyle(fontWeight: FontWeight.w600, fontSize: 14),
-                  )
-              ),
-            ],
-          ),
-          //lineAndDot(lineNumber, eventLength),
-          SizedBox(width: 15,),
-          Expanded(
-            child: InkWell(
-              onTap: () {
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(
-                //     builder: (context) => EventPage(eventSchedule.id),
-                //   ),
-                // );
-
-              },
-              radius: 30,
-              borderRadius: BorderRadius.circular(30),
-              child: Container(
-                padding: EdgeInsets.all(17),
-                decoration: BoxDecoration(borderRadius: BorderRadius.circular(30), color: Color(0xffFBFFFF),),
-                margin: EdgeInsets.fromLTRB(0, 5, 0, 5),
-                child: Row(
-                  children: [
-                    Container(
-                      width: 50,
-                      height: 50,
-                      decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(18)),color: Color(0xff0E99E8),),
-                      padding: EdgeInsets.all(10),
-                      child: CachedNetworkImage(
-                        imageUrl: eventSchedule.icon,
+    return Container(
+      child: Padding(
+        padding: (prevDateTime!=eventSchedule.datetime)? EdgeInsets.fromLTRB(25, 15, 25, 0):EdgeInsets.fromLTRB(25, 5, 25, 0),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            Column(
+              children: [
+                SizedBox(height: 20,),
+                Container(
+                  width: 70,
+                    child: Text(
+                      (prevDateTime==eventSchedule.datetime) ? "" : DateFormat('hh:mma').format(DateTime.parse(eventSchedule.datetime)).toLowerCase(),
+                      textAlign: TextAlign.right,
+                      style: TextStyle(fontWeight: FontWeight.w600, fontSize: 14),
+                    )
+                ),
+              ],
+            ),
+            //lineAndDot(lineNumber, eventLength),
+            SizedBox(width: 15,),
+            Expanded(
+              child: InkWell(
+                onTap: () {
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(
+                  //     builder: (context) => EventPage(eventSchedule.id),
+                  //   ),
+                  // );
+    
+                },
+                radius: 30,
+                borderRadius: BorderRadius.circular(30),
+                child: Container(
+                  padding: EdgeInsets.all(17),
+                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(30), color: Color(0xffFBFFFF),border: Border.all(color: ExcelTheme.aevaDark.withOpacity(0.1))),
+                  margin: EdgeInsets.fromLTRB(0, 5, 0, 5),
+                  child: Row(
+                    children: [
+                      Container(
                         width: 50,
                         height: 50,
-                      ),
-                    ),
-                    SizedBox(width: 12,),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        SizedBox(
-                            width: 140,
-                            child: Text(eventSchedule.name ?? "", style: TextStyle(fontWeight: FontWeight.w800, fontSize: 14, color: Color(0xff1C1F20)),)
+                        decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(18)),color: Color(0xff0E99E8),),
+                        padding: EdgeInsets.all(10),
+                        child: CachedNetworkImage(
+                          imageUrl: eventSchedule.icon,
+                          width: 50,
+                          height: 50,
                         ),
-                        SizedBox(height: 8,),
-                        Text("View Event", style: TextStyle(fontSize: 11, color: Color(0xff0E99E8), fontWeight: FontWeight.w600),),
-                      ],
-                    )
-                  ],
-                )
+                      ),
+                      SizedBox(width: 12,),
+                      Expanded(
+                        child: Container(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(eventSchedule.name ?? "", style: TextStyle(fontWeight: FontWeight.w800, fontSize: 14, color: ExcelTheme.textGrey),),
+                              SizedBox(height: 8,),
+                              Text("View Event", style: TextStyle(fontSize: 11, color: Color(0xff0E99E8), fontWeight: FontWeight.w600),),
+                            ],
+                          ),
+                        ),
+                      )
+                    ],
+                  )
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
