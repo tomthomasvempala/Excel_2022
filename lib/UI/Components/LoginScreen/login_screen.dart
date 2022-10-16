@@ -2,6 +2,7 @@ import 'package:excelapp/Accounts/account_services.dart';
 import 'package:excelapp/Accounts/auth_service.dart';
 import 'package:excelapp/Services/API/favourites_api.dart';
 import 'package:excelapp/UI/Components/Appbar/darkAppbar.dart';
+import 'package:excelapp/UI/Components/CreateAccountModal/createAccountModal.dart';
 import 'package:excelapp/UI/Components/LoadingUI/alertDialog.dart';
 import 'package:excelapp/UI/Screens/ProfilePage/profile_main.dart';
 import 'package:excelapp/UI/constants.dart';
@@ -133,6 +134,9 @@ class _LoginScreenState extends State<LoginScreen> {
                         ],
                       ),
                       onPressed: () => authentication(context),
+                      onLongPress: (){
+                        showCreateAccountModal(context);
+                      },
                     ),
                   ),
                 ],
