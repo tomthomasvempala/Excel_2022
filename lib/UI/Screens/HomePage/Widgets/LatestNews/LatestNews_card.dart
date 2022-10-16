@@ -25,6 +25,9 @@ class LastestNewsCard extends StatelessWidget {
                       Image(
                         image: NetworkImage(news.image),
                       ),
+                      //commented due to some tag error
+                      //
+                      //
                       // Padding(
                       //   padding: EdgeInsets.all(15),
                       //   child: Container(

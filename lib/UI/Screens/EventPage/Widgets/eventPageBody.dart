@@ -27,116 +27,108 @@ class EventPageBody extends StatelessWidget {
     Color textColor = Color(0xFF1C1F20);
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Stack(
-        fit: StackFit.expand,
-        children: <Widget>[
-          //Background Image
-          Container(
-            height: deviceHeight,
-            width: deviceWidth,
-            color: Color(0xFFEDF5F6),
-          ),
+      body: 
           // Event Info
-          Container(
-            // height: deviceHeight,
-            // width: deviceWidth,
-            child: Column(
-              children: <Widget>[
-                // Top Area
-                SafeArea(
-                  bottom: false,
-                  child: Container(),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Container(
-                      // height: 200,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          IconButton(
-                            icon: new Icon(Icons.arrow_back),
-                            iconSize: 30.0,
-                            color: Color(0xFF1C1F20),
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                          ),
-                          Align(
-                            alignment: Alignment.topLeft,
-                            child: Container(
-                              padding: EdgeInsets.fromLTRB(deviceWidth / 11.636,
-                                  deviceHeight / 83.7, 0, deviceHeight / 83.7),
-
-                              // height: 100,
-                              width: deviceWidth / 1.910,
-
-                              child: Text(
-                                eventDetails.name,
-                                textAlign: TextAlign.justify,
-                                maxLines: 3,
-                                style: TextStyle(
-                                  overflow: TextOverflow.ellipsis,
-                                  decoration: TextDecoration.none,
-                                  fontFamily: pfontFamily,
-                                  fontSize: 32.0,
-                                  fontWeight: FontWeight.w900,
-                                  color: textColor,
+          SingleChildScrollView(
+            child: Container(
+              // height: deviceHeight,
+              // width: deviceWidth,
+              child: Column(
+                children: <Widget>[
+                  // Top Area
+                  SafeArea(
+                    bottom: false,
+                    child: Container(),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Container(
+                        // height: 200,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            IconButton(
+                              icon: new Icon(Icons.arrow_back),
+                              iconSize: 30.0,
+                              color: Color(0xFF1C1F20),
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                            ),
+                            Align(
+                              alignment: Alignment.topLeft,
+                              child: Container(
+                                padding: EdgeInsets.fromLTRB(deviceWidth / 11.636,
+                                    deviceHeight / 83.7, 0, deviceHeight / 83.7),
+          
+                                // height: 100,
+                                width: deviceWidth / 1.910,
+          
+                                child: Text(
+                                  eventDetails.name,
+                                  textAlign: TextAlign.justify,
+                                  maxLines: 3,
+                                  style: TextStyle(
+                                    overflow: TextOverflow.ellipsis,
+                                    decoration: TextDecoration.none,
+                                    fontFamily: pfontFamily,
+                                    fontSize: 32.0,
+                                    fontWeight: FontWeight.w900,
+                                    color: textColor,
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.fromLTRB(0, 0, 24, 0),
-                      child: Container(
-                        // height: 69,
-                        height: deviceHeight / 12.13,
-                        child: Card(
-                          child: Container(
-                            // child: CachedNetworkImage(
-                            //   imageUrl: eventDetails.icon,
-                            //   placeholder: (context, str) =>
-                            //       CircularProgressIndicator(),
-                            // ),
-                            child: Image.asset(eventDetails
-                                .icon), //delete when backed is integrated and use above code
-                          ),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(25),
+                      Padding(
+                        padding: EdgeInsets.fromLTRB(0, 0, 24, 0),
+                        child: Container(
+                          // height: 69,
+                          height: deviceHeight / 12.13,
+                          child: Card(
+                            child: Container(
+                              // child: CachedNetworkImage(
+                              //   imageUrl: eventDetails.icon,
+                              //   placeholder: (context, str) =>
+                              //       CircularProgressIndicator(),
+                              // ),
+                              child: Image.asset(eventDetails
+                                  .icon), //delete when backed is integrated and use above code
+                            ),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(25),
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                  ],
-                ),
-
-                //Event Details
-
-                getEventDetails(
-                    eventDetails: eventDetails,
-                    detailed: true,
-                    height: deviceHeight / 12.681,
-                    width: deviceWidth / 2.477),
-
-                Container(
-                  // height: 406,
-                  height: deviceHeight / 2.061,
-
-                  child: MoreEventDetails(
-                    eventDetails: eventDetails,
+                    ],
                   ),
-                ),
-
-                // For Hero Widget
-              ],
+          
+                  //Event Details
+          
+                  getEventDetails(
+                      eventDetails: eventDetails,
+                      detailed: true,
+                      height: deviceHeight / 12.681,
+                      width: deviceWidth / 2.477),
+          
+                  Container(
+                    // height: 406,
+                    // height: deviceHeight / 0.3,
+          
+                    child: MoreEventDetails(
+                      eventDetails: eventDetails,
+                    ),
+                  ),
+          
+                  // For Hero Widget
+                ],
+              ),
             ),
           ),
-        ],
-      ),
     );
   }
 }
