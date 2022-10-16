@@ -164,7 +164,7 @@ class EventPageBody extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                'Register for \$200',
+                                'Register for  ₹ 200',
                                 style: TextStyle(
                                     color: Colors.white,
                                     fontFamily: "mulish",
