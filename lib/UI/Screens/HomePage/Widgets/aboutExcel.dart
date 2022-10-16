@@ -1,3 +1,5 @@
+import 'package:excelapp/UI/Screens/HomePage/Widgets/Drawer/DevCredits/devCredits.dart';
+import 'package:excelapp/UI/Screens/HomePage/Widgets/socialIcons.dart';
 import 'package:excelapp/UI/constants.dart';
 import 'package:flutter/material.dart';
 
@@ -77,29 +79,35 @@ class AboutExcelPopUp extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Center(
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(40),
-                      color: Color.fromARGB(255, 14, 152, 232),
-                    ),
-                    height: 50,
-                    alignment: Alignment.center,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          'View Website',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontFamily: "mulish",
-                              fontWeight: FontWeight.w700,
-                              fontSize: 14),
-                        ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Icon(Icons.arrow_forward, size: 19, color: Colors.white)
-                      ],
+                  child: InkWell(
+                    onTap: () {
+                      launchURL('https://www.excelmec.org/');
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(40),
+                        color: Color.fromARGB(255, 14, 152, 232),
+                      ),
+                      height: 50,
+                      alignment: Alignment.center,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            'View Website',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontFamily: "mulish",
+                                fontWeight: FontWeight.w700,
+                                fontSize: 14),
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Icon(Icons.arrow_forward,
+                              size: 19, color: Colors.white)
+                        ],
+                      ),
                     ),
                   ),
                 ),
@@ -107,33 +115,44 @@ class AboutExcelPopUp extends StatelessWidget {
                   height: 10,
                 ),
                 Center(
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(40),
-                      color: Color.fromARGB(255, 228, 237, 239),
-                    ),
-                    height: 50,
-                    alignment: Alignment.center,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          'Developer Credits',
-                          style: TextStyle(
-                              color: Color.fromARGB(255, 61, 71, 71),
-                              fontFamily: "mulish",
-                              fontWeight: FontWeight.w700,
-                              fontSize: 14),
-                        ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Icon(
-                          Icons.arrow_forward,
-                          size: 19,
-                          color: Color.fromARGB(255, 61, 71, 71),
-                        )
-                      ],
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.pop(context);
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return DevCredits();
+                        },
+                      );
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(40),
+                        color: Color.fromARGB(255, 228, 237, 239),
+                      ),
+                      height: 50,
+                      alignment: Alignment.center,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            'Developer Credits',
+                            style: TextStyle(
+                                color: Color.fromARGB(255, 61, 71, 71),
+                                fontFamily: "mulish",
+                                fontWeight: FontWeight.w700,
+                                fontSize: 14),
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Icon(
+                            Icons.arrow_forward,
+                            size: 19,
+                            color: Color.fromARGB(255, 61, 71, 71),
+                          )
+                        ],
+                      ),
                     ),
                   ),
                 ),

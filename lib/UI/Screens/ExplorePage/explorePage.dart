@@ -6,10 +6,12 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
 class ExplorePage extends StatefulWidget {
-  const ExplorePage({Key key}) : super(key: key);
-
   @override
   State<ExplorePage> createState() => _ExplorePageState();
+  final int selectedPage;
+  final String selectedCategory;
+  const ExplorePage({Key key, this.selectedPage, this.selectedCategory})
+      : super(key: key);
 }
 
 class _ExplorePageState extends State<ExplorePage>
@@ -19,7 +21,8 @@ class _ExplorePageState extends State<ExplorePage>
   @override
   void initState() {
     super.initState();
-    _tabcontroller = TabController(length: 2, vsync: this);
+    _tabcontroller = TabController(
+        length: 2, vsync: this, initialIndex: widget.selectedPage ?? 0);
   }
 
   @override
@@ -63,6 +66,7 @@ class _ExplorePageState extends State<ExplorePage>
                         child: TabBar(
                           indicatorColor: Color.fromARGB(255, 14, 152, 232),
                           controller: _tabcontroller,
+                          indicatorPadding: EdgeInsets.fromLTRB(0, 0, 0, 0),
                           labelColor: Color.fromARGB(255, 14, 152, 232),
                           labelStyle: TextStyle(
                             decorationColor: Color.fromARGB(255, 14, 152, 232),
@@ -101,7 +105,11 @@ class _ExplorePageState extends State<ExplorePage>
                 child: TabBarView(
                     controller: _tabcontroller,
                     physics: BouncingScrollPhysics(),
-                    children: const [CompetitionsCardList(), EventsCardList()]),
+                    children: [
+                      CompetitionsCardList(),
+                      EventsCardList(
+                          selectedTab: widget.selectedCategory ?? "all")
+                    ]),
               ),
             ],
           ),

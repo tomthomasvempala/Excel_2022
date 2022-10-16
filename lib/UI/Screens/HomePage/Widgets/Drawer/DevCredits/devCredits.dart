@@ -74,7 +74,7 @@ class DevCreditsState extends State<DevCredits>
                 ),
                 SizedBox(height: 20),
                 Image.asset(
-                  "assets/divider.png",
+                  "assets/divider_design.png",
                   width: MediaQuery.of(context).size.width / 2,
                 ),
                 SizedBox(height: 10),

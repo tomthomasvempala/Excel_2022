@@ -26,50 +26,50 @@ class _MoreEventDetailsState extends State<MoreEventDetails> {
       length: 4,
       child: new Scaffold(
         appBar: AppBar(
-                toolbarHeight: 10,
-                leading: SizedBox(),
-                backgroundColor: Color(0xFFEDF5F6),
-                // floating: true,
-                // pinned: true,
-                // snap: true,
-                bottom: new TabBar(
-                  indicatorSize: TabBarIndicatorSize.tab,
-                  indicatorWeight: 2,
-                  indicatorColor: primaryColor,
-                  // labelColor: Color(0xFF3D4747),
-                  labelColor: primaryColor,
-                  unselectedLabelColor: Color(0xFF3D4747),
-                  labelStyle: TextStyle(
-                      fontSize: 14,
-                      fontFamily: pfontFamily,
-                      fontWeight: FontWeight.bold),
-                  tabs: [
-                    Tab(
-                      text: 'About',
-                    ),
-                    Tab(
-                      text: 'Format',
-                    ),
-                    Tab(
-                      text: 'Rules',
-                    ),
-                    Tab(
-                      text: 'Contact',
-                    ),
-                  ],
-                ),
+          toolbarHeight: 10,
+          leading: SizedBox(),
+          backgroundColor: Color(0xFFEDF5F6),
+          // floating: true,
+          // pinned: true,
+          // snap: true,
+          bottom: new TabBar(
+            indicatorSize: TabBarIndicatorSize.tab,
+            indicatorWeight: 2,
+            indicatorColor: primaryColor,
+            // labelColor: Color(0xFF3D4747),
+            labelColor: primaryColor,
+            unselectedLabelColor: Color(0xFF3D4747),
+            labelStyle: TextStyle(
+                fontSize: 14,
+                fontFamily: pfontFamily,
+                fontWeight: FontWeight.bold),
+            tabs: [
+              Tab(
+                text: 'About',
               ),
-          body: new TabBarView(
-            children: [
-              showEventDetails(1, boxPadding),
-              showEventDetails(2, boxPadding),
-              showEventDetails(3, boxPadding),
-              showEventDetails(4, boxPadding),
+              Tab(
+                text: 'Format',
+              ),
+              Tab(
+                text: 'Rules',
+              ),
+              Tab(
+                text: 'Contact',
+              ),
             ],
           ),
         ),
-      )
-    ;
+        body: new TabBarView(
+          physics: BouncingScrollPhysics(),
+          children: [
+            showEventDetails(1, boxPadding),
+            showEventDetails(2, boxPadding),
+            showEventDetails(3, boxPadding),
+            showEventDetails(4, boxPadding),
+          ],
+        ),
+      ),
+    );
   }
 
   Widget showEventDetails(pageNumber, padding) {
@@ -97,6 +97,7 @@ class _MoreEventDetailsState extends State<MoreEventDetails> {
           child: Text(widget.eventDetails.about,
               style: TextStyle(fontFamily: pfontFamily, fontSize: 14)));
     return SingleChildScrollView(
+      physics: BouncingScrollPhysics(),
       scrollDirection: Axis.vertical,
       child: returnWidget,
     );
