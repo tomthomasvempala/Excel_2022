@@ -19,7 +19,8 @@ class TimeTableList extends StatelessWidget {
       children: <Widget>[Padding(padding: EdgeInsets.all(8))] +
           List.generate(
             eventDetails.length,
-            (i) => ScheduleEvent(eventDetails[i], i, eventDetails.length, (i>0)?eventDetails[i-1].datetime: ""),
+            (i) => ScheduleEvent(eventDetails[i], i, eventDetails.length,
+                (i > 0) ? eventDetails[i - 1].datetime : ""),
           ) +
           [
             eventDetails.isEmpty
@@ -46,32 +47,45 @@ class ScheduleEvent extends StatelessWidget {
   final int eventLength;
   final String prevDateTime;
 
-  ScheduleEvent(this.eventSchedule, this.lineNumber, this.eventLength, this.prevDateTime);
+  ScheduleEvent(
+      this.eventSchedule, this.lineNumber, this.eventLength, this.prevDateTime);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       child: Padding(
-        padding: (prevDateTime!=eventSchedule.datetime)? EdgeInsets.fromLTRB(25, 15, 25, 0):EdgeInsets.fromLTRB(25, 5, 25, 0),
+        padding: (prevDateTime != eventSchedule.datetime)
+            ? EdgeInsets.fromLTRB(25, 15, 25, 0)
+            : EdgeInsets.fromLTRB(25, 5, 25, 0),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             Column(
               children: [
-                SizedBox(height: 20,),
-                Container(
-                  width: 70,
-                    child: Text(
-                      (prevDateTime==eventSchedule.datetime) ? "" : DateFormat('hh:mma').format(DateTime.parse(eventSchedule.datetime)).toLowerCase(),
-                      textAlign: TextAlign.right,
-                      style: TextStyle(fontWeight: FontWeight.w600, fontSize: 14,color: ExcelTheme.textGrey),
-                    )
+                SizedBox(
+                  height: 20,
                 ),
+                Container(
+                    width: 70,
+                    child: Text(
+                      (prevDateTime == eventSchedule.datetime)
+                          ? ""
+                          : DateFormat('hh:mma')
+                              .format(DateTime.parse(eventSchedule.datetime))
+                              .toLowerCase(),
+                      textAlign: TextAlign.right,
+                      style: TextStyle(
+                          fontWeight: FontWeight.w600,
+                          fontSize: 14,
+                          color: ExcelTheme.textGrey),
+                    )),
               ],
             ),
             //lineAndDot(lineNumber, eventLength),
-            SizedBox(width: 15,),
+            SizedBox(
+              width: 15,
+            ),
             Expanded(
               child: InkWell(
                 onTap: () {
@@ -81,43 +95,72 @@ class ScheduleEvent extends StatelessWidget {
                   //     builder: (context) => EventPage(eventSchedule.id),
                   //   ),
                   // );
-    
                 },
                 radius: 30,
                 borderRadius: BorderRadius.circular(30),
                 child: Container(
-                  padding: EdgeInsets.all(17),
-                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(30), color: Color(0xffFBFFFF),border: Border.all(color: ExcelTheme.aevaDark.withOpacity(0.1))),
-                  margin: EdgeInsets.fromLTRB(0, 5, 0, 5),
-                  child: Row(
-                    children: [
-                      Container(
-                        width: 50,
-                        height: 50,
-                        decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(18)),color: Color(0xff0E99E8),),
-                        padding: EdgeInsets.all(10),
-                        child: CachedNetworkImage(
-                          imageUrl: eventSchedule.icon,
+                    padding: EdgeInsets.all(17),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(30),
+                        color: Color(0xffFBFFFF),
+                        border: Border.all(
+                            color: ExcelTheme.aevaDark.withOpacity(0.1))),
+                    margin: EdgeInsets.fromLTRB(0, 5, 0, 5),
+                    child: Row(
+                      children: [
+                        Container(
                           width: 50,
                           height: 50,
-                        ),
-                      ),
-                      SizedBox(width: 12,),
-                      Expanded(
-                        child: Container(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(eventSchedule.name ?? "", style: TextStyle(fontWeight: FontWeight.w800, fontSize: 14),),
-                              SizedBox(height: 8,),
-                              Text("View Event", style: TextStyle(fontSize: 11, color: Color(0xff0E99E8), fontWeight: FontWeight.w600),),
-                            ],
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.all(Radius.circular(18)),
+                            color: Color(0xff0E99E8),
+                          ),
+                          padding: EdgeInsets.all(10),
+                          child: CachedNetworkImage(
+                            imageUrl: eventSchedule.icon,
+                            width: 50,
+                            height: 50,
                           ),
                         ),
-                      )
-                    ],
-                  )
-                ),
+                        SizedBox(
+                          width: 12,
+                        ),
+                        Expanded(
+                          child: Container(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  eventSchedule.name ?? "",
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.w800,
+                                      fontSize: 14),
+                                ),
+                                SizedBox(
+                                  height: 8,
+                                ),
+                                InkWell(
+                                  onTap: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                EventPage(123)));
+                                  },
+                                  child: Text(
+                                    "View Event",
+                                    style: TextStyle(
+                                        fontSize: 11,
+                                        color: Color(0xff0E99E8),
+                                        fontWeight: FontWeight.w600),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        )
+                      ],
+                    )),
               ),
             ),
           ],
