@@ -84,21 +84,18 @@ class EventPageBody extends StatelessWidget {
                     ),
                     Padding(
                       padding: EdgeInsets.fromLTRB(0, 0, 24, 0),
-                      child: Container(
-                        // height: 69,
-                        height: deviceHeight / 12.13,
-                        child: Card(
-                          child: Container(
-                            // child: CachedNetworkImage(
-                            //   imageUrl: eventDetails.icon,
-                            //   placeholder: (context, str) =>
-                            //       CircularProgressIndicator(),
-                            // ),
-                            child: Image.asset(eventDetails
-                                .icon), //delete when backed is integrated and use above code
-                          ),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(25),
+                      child: Hero(
+                        tag: 'eventIcon1',
+                        child: Container(
+                          height: deviceHeight / 12.13,
+                          child: Card(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(25),
+                            ),
+                            child: Container(
+                              child: Image.asset(eventDetails
+                                  .icon),
+                            ),
                           ),
                         ),
                       ),

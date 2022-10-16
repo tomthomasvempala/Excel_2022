@@ -26,18 +26,21 @@ class EventCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Row(children: [
-                  Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(21),
-                      color: Color.fromARGB(255, 14, 152, 232),
-                    ),
-                    child: Padding(
-                      padding: EdgeInsets.all(12.25),
-                      child: ClipRRect(
-                        child: Image.network(
-                          event.icon,
-                          width: 31.5,
-                          height: 31.5,
+                  Hero(
+                    tag: 'eventIcon${event.id}',
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(21),
+                        color: Color.fromARGB(255, 14, 152, 232),
+                      ),
+                      child: Padding(
+                        padding: EdgeInsets.all(12.25),
+                        child: ClipRRect(
+                          child: Image.network(
+                            event.icon,
+                            width: 31.5,
+                            height: 31.5,
+                          ),
                         ),
                       ),
                     ),
