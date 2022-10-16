@@ -21,6 +21,7 @@ class BottomNavigation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FABBottomAppBar(
+      
       centerItemText: '',
       color: Colors.grey,
       selectedColor: primaryColor,

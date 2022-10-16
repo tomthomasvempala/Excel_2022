@@ -31,17 +31,17 @@ dependencies:
   font_awesome_flutter: ^10.2.1
   image_picker: ^0.8.6
   fluttertoast: ^8.0.9
+  flutter_launcher_icons: ^0.10.0
 
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_launcher_icons: ^0.10.0
 
 flutter_icons:
   android: "launcher_icon"
   ios: true
-  image_path: "assets/icon.png"
+  image_path: "assets/excellogo.png"
 
 flutter:
 
