@@ -35,7 +35,15 @@ class SchedulePage extends StatelessWidget {
                   labelColor: Color(0xff0E99E8),
                   unselectedLabelColor: Color(0xff778585),
                   tabs: [
-                    dayTab('Oct-Nov', 'Pre-Events'),
+                    Tab(
+                      child: Column(
+                        children: [
+                          SizedBox(height: 5,),
+                          Text('Oct-Nov', style: TextStyle(fontSize: 9, fontWeight: FontWeight.w400),),
+                          SizedBox(width: 70, child: Text('Pre-Events', style: TextStyle(fontSize: 12.5, fontWeight: FontWeight.w800),))
+                        ],
+                      ),
+                    ),
                     dayTab('Nov 3', 'Day 1'),
                     dayTab('Nov 4', 'Day 2'),
                     dayTab('Nov 5', 'Day 3'),
