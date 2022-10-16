@@ -25,8 +25,7 @@ class _MoreEventDetailsState extends State<MoreEventDetails> {
     return DefaultTabController(
       initialIndex: 0,
       length: 4,
-      child: 
-      Column(
+      child: Column(
         children: [
           TabBar(
             indicatorSize: TabBarIndicatorSize.tab,
@@ -54,16 +53,15 @@ class _MoreEventDetailsState extends State<MoreEventDetails> {
               ),
             ],
           ),
-          
           Expanded(
             child: TabBarView(
-            children: [
-              showEventDetails(1, boxPadding),
-              showEventDetails(2, boxPadding),
-              showEventDetails(3, boxPadding),
-              showEventDetails(4, boxPadding),
-            ],
-                  ),
+              children: [
+                showEventDetails(1, boxPadding),
+                showEventDetails(2, boxPadding),
+                showEventDetails(3, boxPadding),
+                showEventDetails(4, boxPadding),
+              ],
+            ),
           ),
         ],
       ),
@@ -75,9 +73,9 @@ class _MoreEventDetailsState extends State<MoreEventDetails> {
       //     // floating: true,
       //     // pinned: true,
       //     // snap: true,
-      //     bottom: new 
+      //     bottom: new
       //   ),
-      //   body: new 
+      //   body: new
       // ),
     );
   }
@@ -94,9 +92,7 @@ class _MoreEventDetailsState extends State<MoreEventDetails> {
     else if (pageNumber == 4) content = widget.eventDetails.about;
 
     return Container(
-      decoration: BoxDecoration(
-        color: Color(0xffe4edef)
-      ),
+      decoration: BoxDecoration(color: Color(0xffe4edef)),
       child: SingleChildScrollView(
         child: Padding(
             padding: padding,
