@@ -133,10 +133,10 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                         ],
                       ),
-                      onPressed: () => authentication(context),
+                      onPressed: () =>authentication(context),
                       onLongPress: (){
                         showCreateAccountModal(context);
-                      },
+                     },
                     ),
                   ),
                 ],
