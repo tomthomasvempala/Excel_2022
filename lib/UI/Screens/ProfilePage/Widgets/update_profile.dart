@@ -11,8 +11,8 @@ import 'package:flutter/services.dart';
 // import 'package:searchable_dropdown/searchable_dropdown.dart';
 
 class UpdateProfile extends StatefulWidget {
-  final User user;
-  UpdateProfile(this.user);
+  //final User user;
+  //UpdateProfile(this.user);
   @override
   _UpdateProfileState createState() => _UpdateProfileState();
 }
@@ -29,6 +29,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
   int _institutionId;
   String _institutionName;
   String _gender;
+  String _emailId;
   List<String> _categories = <String>['College', 'School', 'Other'];
   List<String> _genders = <String>['Male', 'Female', 'Other'];
   String notInListOptionName = "NOT IN THIS LIST";
@@ -42,26 +43,26 @@ class _UpdateProfileState extends State<UpdateProfile> {
   @override
   void initState() {
     super.initState();
-    initialiseUserDetails(widget.user);
+    //initialiseUserDetails(widget.user);
   }
 
   // Initialize form fields
-  initialiseUserDetails(User user) async {
+  initialiseUserDetails() async {
     // _id = user.id;
-    _name = user.name;
-    _mobile = user.mobileNumber;
+    _name = "Tom Thomas Vempala";//user.name;
+    _mobile = "9876533210";//user.mobileNumber;
     // _category = user.category != "Not Registered" ? user.category : "college";
-    _institutionId = user.institutionId;
-    _institutionName = user.institutionName;
-    _gender = user.gender;
-    _categoryId = user.categoryId;
-    if (_categoryId == 1 || _categoryId == 0) {
-      await getInstitutions(loading: false);
-      _institutionName = await getInstitutionName(_institutionId);
-      setState(() {
-        _institutionName = _institutionName;
-      });
-    }
+    _institutionId = 916 ;//user.institutionId;
+    _institutionName = "Govt Model ";//user.institutionName;
+    _gender = "Male";//user.gender;
+    _categoryId = 1;//user.categoryId;
+    // if (_categoryId == 1 || _categoryId == 0) {
+    //   await getInstitutions(loading: false);
+    //   _institutionName = await getInstitutionName(_institutionId);
+    //   setState(() {
+    //     _institutionName = _institutionName;
+    //   });
+    // }
   }
 
   // Fetch institutions based on category
