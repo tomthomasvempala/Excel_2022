@@ -13,7 +13,7 @@ import 'package:excelapp/UI/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:excelapp/Services/API/registration_api.dart';
 import 'package:excelapp/UI/Screens/ProfilePage/Registration/registration.dart';
-import 'package:excelapp/UI/Screens/ProfilePage/edit_profile.dart';
+
 
 import '../../Components/EventCard/event_card.dart';
 import '../../../Models/event_card.dart';
@@ -39,24 +39,28 @@ class _ProfilePageState extends State<ProfilePage>
     Event(
       name: "Issue!",
       desc: "Lorem ipsum dolor sit amet, conse ctetur adi piscing elit.",
-      date: "Nov 03"
+      date: "Nov 03",
+      icon: 'https://s3-alpha-sig.figma.com/img/7d9c/626b/3dfe5b455ef28a98e9e328f0bcbd60c1?Expires=1666569600&Signature=NjSfOFoIssgx5KWF0HLRzILg7RTYA0F3wG-jE7rayNtNKGRdRkk10h3cCKN~cx~XmUW7c1d0ESNaSsO8i-ax62nSkkODdjFrMd~D4IDj7nWDTsAC8i5TjdOfs9ShDWBOFDISYktj04Bkp4UuaXtzq9UfRf2nDHqOlMHm4L1VbDTtAVEZnUveLw~cFVcta8ZYcnrXfvx6vkOz1gjVE8rbjPiIV2Q9shETqzQKQYnae8olBt12YcEbnVqAvGdltFmvcfsLPAKkXMtmc9TzqT6EzEghY1yuNPITWCZwM7MkU8QdP8dI4dfzFW4iPKaGVe8POLaJgx7QDFPZhpVKaqGCFQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA',
     ),
     Event(
         name: "Issue!",
         desc: "Lorem ipsum dolor sit amet, conse ctetur adi piscing elit.",
-        date: "Nov 03"
+        date: "Nov 03",
+      icon: 'https://s3-alpha-sig.figma.com/img/7d9c/626b/3dfe5b455ef28a98e9e328f0bcbd60c1?Expires=1666569600&Signature=NjSfOFoIssgx5KWF0HLRzILg7RTYA0F3wG-jE7rayNtNKGRdRkk10h3cCKN~cx~XmUW7c1d0ESNaSsO8i-ax62nSkkODdjFrMd~D4IDj7nWDTsAC8i5TjdOfs9ShDWBOFDISYktj04Bkp4UuaXtzq9UfRf2nDHqOlMHm4L1VbDTtAVEZnUveLw~cFVcta8ZYcnrXfvx6vkOz1gjVE8rbjPiIV2Q9shETqzQKQYnae8olBt12YcEbnVqAvGdltFmvcfsLPAKkXMtmc9TzqT6EzEghY1yuNPITWCZwM7MkU8QdP8dI4dfzFW4iPKaGVe8POLaJgx7QDFPZhpVKaqGCFQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA',
     )
   ];
   List favoriteEvents = [
     Event(
         name: "Issue!",
         desc: "Lorem ipsum dolor sit amet, conse ctetur adi piscing elit.",
-        date: "Nov 03"
+        date: "Nov 03",
+      icon: 'https://s3-alpha-sig.figma.com/img/7d9c/626b/3dfe5b455ef28a98e9e328f0bcbd60c1?Expires=1666569600&Signature=NjSfOFoIssgx5KWF0HLRzILg7RTYA0F3wG-jE7rayNtNKGRdRkk10h3cCKN~cx~XmUW7c1d0ESNaSsO8i-ax62nSkkODdjFrMd~D4IDj7nWDTsAC8i5TjdOfs9ShDWBOFDISYktj04Bkp4UuaXtzq9UfRf2nDHqOlMHm4L1VbDTtAVEZnUveLw~cFVcta8ZYcnrXfvx6vkOz1gjVE8rbjPiIV2Q9shETqzQKQYnae8olBt12YcEbnVqAvGdltFmvcfsLPAKkXMtmc9TzqT6EzEghY1yuNPITWCZwM7MkU8QdP8dI4dfzFW4iPKaGVe8POLaJgx7QDFPZhpVKaqGCFQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA',
     ),
     Event(
         name: "Issue!",
         desc: "Lorem ipsum dolor sit amet, conse ctetur adi piscing elit.",
-        date: "Nov 03"
+        date: "Nov 03",
+      icon: 'https://s3-alpha-sig.figma.com/img/7d9c/626b/3dfe5b455ef28a98e9e328f0bcbd60c1?Expires=1666569600&Signature=NjSfOFoIssgx5KWF0HLRzILg7RTYA0F3wG-jE7rayNtNKGRdRkk10h3cCKN~cx~XmUW7c1d0ESNaSsO8i-ax62nSkkODdjFrMd~D4IDj7nWDTsAC8i5TjdOfs9ShDWBOFDISYktj04Bkp4UuaXtzq9UfRf2nDHqOlMHm4L1VbDTtAVEZnUveLw~cFVcta8ZYcnrXfvx6vkOz1gjVE8rbjPiIV2Q9shETqzQKQYnae8olBt12YcEbnVqAvGdltFmvcfsLPAKkXMtmc9TzqT6EzEghY1yuNPITWCZwM7MkU8QdP8dI4dfzFW4iPKaGVe8POLaJgx7QDFPZhpVKaqGCFQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA',
     )
   ];
 
@@ -64,12 +68,14 @@ class _ProfilePageState extends State<ProfilePage>
     Event(
         name: "Issue!",
         desc: "Lorem ipsum dolor sit amet, conse ctetur adi piscing elit.",
-        date: "Nov 03"
+        date: "Nov 03",
+        icon: 'https://s3-alpha-sig.figma.com/img/7d9c/626b/3dfe5b455ef28a98e9e328f0bcbd60c1?Expires=1666569600&Signature=NjSfOFoIssgx5KWF0HLRzILg7RTYA0F3wG-jE7rayNtNKGRdRkk10h3cCKN~cx~XmUW7c1d0ESNaSsO8i-ax62nSkkODdjFrMd~D4IDj7nWDTsAC8i5TjdOfs9ShDWBOFDISYktj04Bkp4UuaXtzq9UfRf2nDHqOlMHm4L1VbDTtAVEZnUveLw~cFVcta8ZYcnrXfvx6vkOz1gjVE8rbjPiIV2Q9shETqzQKQYnae8olBt12YcEbnVqAvGdltFmvcfsLPAKkXMtmc9TzqT6EzEghY1yuNPITWCZwM7MkU8QdP8dI4dfzFW4iPKaGVe8POLaJgx7QDFPZhpVKaqGCFQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA',
     ),
     Event(
         name: "Issue!",
         desc: "Lorem ipsum dolor sit amet, conse ctetur adi piscing elit.",
-        date: "Nov 03"
+        date: "Nov 03",
+      icon: 'https://s3-alpha-sig.figma.com/img/7d9c/626b/3dfe5b455ef28a98e9e328f0bcbd60c1?Expires=1666569600&Signature=NjSfOFoIssgx5KWF0HLRzILg7RTYA0F3wG-jE7rayNtNKGRdRkk10h3cCKN~cx~XmUW7c1d0ESNaSsO8i-ax62nSkkODdjFrMd~D4IDj7nWDTsAC8i5TjdOfs9ShDWBOFDISYktj04Bkp4UuaXtzq9UfRf2nDHqOlMHm4L1VbDTtAVEZnUveLw~cFVcta8ZYcnrXfvx6vkOz1gjVE8rbjPiIV2Q9shETqzQKQYnae8olBt12YcEbnVqAvGdltFmvcfsLPAKkXMtmc9TzqT6EzEghY1yuNPITWCZwM7MkU8QdP8dI4dfzFW4iPKaGVe8POLaJgx7QDFPZhpVKaqGCFQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA',
     )
   ];
 
@@ -159,6 +165,7 @@ class _ProfilePageState extends State<ProfilePage>
                       children: [
                         CircleAvatar(
                           radius: 42.5,
+                          backgroundImage: AssetImage("assets/Tom ser.jpg"),
                         ),
                         ElevatedButton(
                           style: ElevatedButton.styleFrom(
@@ -257,14 +264,17 @@ class _ProfilePageState extends State<ProfilePage>
                 ),
               ),
               Expanded(
-                child: TabBarView(
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(0,15,0,0),
+                  child: TabBarView(
 
-                  controller: tabController,
-                  children: [
-                    Registered(),
-                    Favorites(),
-                    SavedNews(),
-                  ],
+                    controller: tabController,
+                    children: [
+                      Registered(),
+                      Favorites(),
+                      SavedNews(),
+                    ],
+                  ),
                 ),
               ),
             ],
@@ -313,18 +323,13 @@ class _ProfilePageState extends State<ProfilePage>
             borderRadius: BorderRadius.circular(40),
           ),
         ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              "Show QR Code",
-              style: TextStyle(
-                  color: Colors.white,
-                  fontFamily: pfontFamily,
-                  fontWeight: FontWeight.w700,
-                  fontSize: 11),
-            ),
-          ],
+        child: Text(
+          "Show QR Code",
+          style: TextStyle(
+              color: Colors.white,
+              fontFamily: pfontFamily,
+              fontWeight: FontWeight.w700,
+              fontSize: 11),
         ),
         onPressed: () {},
       ),
@@ -343,18 +348,13 @@ class _ProfilePageState extends State<ProfilePage>
           ),
 
         ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              "Edit Profile",
-              style: TextStyle(
-                  color: Colors.black,
-                  fontFamily: pfontFamily,
-                  fontWeight: FontWeight.w700,
-                  fontSize: 11),
-            ),
-          ],
+        child: Text(
+          "Edit Profile",
+          style: TextStyle(
+              color: Colors.black,
+              fontFamily: pfontFamily,
+              fontWeight: FontWeight.w700,
+              fontSize: 11),
         ),
         onPressed: () {
           Navigator.push(context, MaterialPageRoute(builder: (context){return UpdateProfile();}));
