@@ -43,9 +43,11 @@ class _CheckUserLoggedInState extends State<CheckUserLoggedIn> {
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           if (snapshot.hasData) {
             if (snapshot.data == 'login') {
+              return ProfilePage();
               return LoginScreen();
             } else {
-              return ProfilePage(snapshot.data, isProfileUpdated);
+              return ProfilePage();
+              //return ProfilePage();
             }
           } else {
             return LoadingAnimation();
