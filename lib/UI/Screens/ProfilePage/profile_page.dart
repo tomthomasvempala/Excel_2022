@@ -40,13 +40,13 @@ class _ProfilePageState extends State<ProfilePage>
       name: "Issue!",
       desc: "Lorem ipsum dolor sit amet, conse ctetur adi piscing elit.",
       date: "Nov 03",
-      icon: 'https://s3-alpha-sig.figma.com/img/7d9c/626b/3dfe5b455ef28a98e9e328f0bcbd60c1?Expires=1666569600&Signature=NjSfOFoIssgx5KWF0HLRzILg7RTYA0F3wG-jE7rayNtNKGRdRkk10h3cCKN~cx~XmUW7c1d0ESNaSsO8i-ax62nSkkODdjFrMd~D4IDj7nWDTsAC8i5TjdOfs9ShDWBOFDISYktj04Bkp4UuaXtzq9UfRf2nDHqOlMHm4L1VbDTtAVEZnUveLw~cFVcta8ZYcnrXfvx6vkOz1gjVE8rbjPiIV2Q9shETqzQKQYnae8olBt12YcEbnVqAvGdltFmvcfsLPAKkXMtmc9TzqT6EzEghY1yuNPITWCZwM7MkU8QdP8dI4dfzFW4iPKaGVe8POLaJgx7QDFPZhpVKaqGCFQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA',
+      icon: 'https://lh3.googleusercontent.com/u/0/drive-viewer/AFDK6gP3FNEz9-xW8xi_kZbWIUttbFoQqfnPk3eO74LqnnSWiauhn13FG4lZisLh09HKgAG6GsvqimyRU2eVapzdthT0PJHlEQ=w1920-h892',
     ),
     Event(
         name: "Issue!",
         desc: "Lorem ipsum dolor sit amet, conse ctetur adi piscing elit.",
         date: "Nov 03",
-      icon: 'https://s3-alpha-sig.figma.com/img/7d9c/626b/3dfe5b455ef28a98e9e328f0bcbd60c1?Expires=1666569600&Signature=NjSfOFoIssgx5KWF0HLRzILg7RTYA0F3wG-jE7rayNtNKGRdRkk10h3cCKN~cx~XmUW7c1d0ESNaSsO8i-ax62nSkkODdjFrMd~D4IDj7nWDTsAC8i5TjdOfs9ShDWBOFDISYktj04Bkp4UuaXtzq9UfRf2nDHqOlMHm4L1VbDTtAVEZnUveLw~cFVcta8ZYcnrXfvx6vkOz1gjVE8rbjPiIV2Q9shETqzQKQYnae8olBt12YcEbnVqAvGdltFmvcfsLPAKkXMtmc9TzqT6EzEghY1yuNPITWCZwM7MkU8QdP8dI4dfzFW4iPKaGVe8POLaJgx7QDFPZhpVKaqGCFQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA',
+      icon: 'https://lh3.googleusercontent.com/u/0/drive-viewer/AFDK6gP3FNEz9-xW8xi_kZbWIUttbFoQqfnPk3eO74LqnnSWiauhn13FG4lZisLh09HKgAG6GsvqimyRU2eVapzdthT0PJHlEQ=w1920-h892',
     )
   ];
   List favoriteEvents = [
@@ -54,13 +54,13 @@ class _ProfilePageState extends State<ProfilePage>
         name: "Issue!",
         desc: "Lorem ipsum dolor sit amet, conse ctetur adi piscing elit.",
         date: "Nov 03",
-      icon: 'https://s3-alpha-sig.figma.com/img/7d9c/626b/3dfe5b455ef28a98e9e328f0bcbd60c1?Expires=1666569600&Signature=NjSfOFoIssgx5KWF0HLRzILg7RTYA0F3wG-jE7rayNtNKGRdRkk10h3cCKN~cx~XmUW7c1d0ESNaSsO8i-ax62nSkkODdjFrMd~D4IDj7nWDTsAC8i5TjdOfs9ShDWBOFDISYktj04Bkp4UuaXtzq9UfRf2nDHqOlMHm4L1VbDTtAVEZnUveLw~cFVcta8ZYcnrXfvx6vkOz1gjVE8rbjPiIV2Q9shETqzQKQYnae8olBt12YcEbnVqAvGdltFmvcfsLPAKkXMtmc9TzqT6EzEghY1yuNPITWCZwM7MkU8QdP8dI4dfzFW4iPKaGVe8POLaJgx7QDFPZhpVKaqGCFQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA',
+      icon: 'https://lh3.googleusercontent.com/u/0/drive-viewer/AFDK6gP3FNEz9-xW8xi_kZbWIUttbFoQqfnPk3eO74LqnnSWiauhn13FG4lZisLh09HKgAG6GsvqimyRU2eVapzdthT0PJHlEQ=w1920-h892',
     ),
     Event(
         name: "Issue!",
         desc: "Lorem ipsum dolor sit amet, conse ctetur adi piscing elit.",
         date: "Nov 03",
-      icon: 'https://s3-alpha-sig.figma.com/img/7d9c/626b/3dfe5b455ef28a98e9e328f0bcbd60c1?Expires=1666569600&Signature=NjSfOFoIssgx5KWF0HLRzILg7RTYA0F3wG-jE7rayNtNKGRdRkk10h3cCKN~cx~XmUW7c1d0ESNaSsO8i-ax62nSkkODdjFrMd~D4IDj7nWDTsAC8i5TjdOfs9ShDWBOFDISYktj04Bkp4UuaXtzq9UfRf2nDHqOlMHm4L1VbDTtAVEZnUveLw~cFVcta8ZYcnrXfvx6vkOz1gjVE8rbjPiIV2Q9shETqzQKQYnae8olBt12YcEbnVqAvGdltFmvcfsLPAKkXMtmc9TzqT6EzEghY1yuNPITWCZwM7MkU8QdP8dI4dfzFW4iPKaGVe8POLaJgx7QDFPZhpVKaqGCFQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA',
+      icon: 'https://lh3.googleusercontent.com/u/0/drive-viewer/AFDK6gP3FNEz9-xW8xi_kZbWIUttbFoQqfnPk3eO74LqnnSWiauhn13FG4lZisLh09HKgAG6GsvqimyRU2eVapzdthT0PJHlEQ=w1920-h892',
     )
   ];
 
@@ -69,13 +69,13 @@ class _ProfilePageState extends State<ProfilePage>
         name: "Issue!",
         desc: "Lorem ipsum dolor sit amet, conse ctetur adi piscing elit.",
         date: "Nov 03",
-        icon: 'https://s3-alpha-sig.figma.com/img/7d9c/626b/3dfe5b455ef28a98e9e328f0bcbd60c1?Expires=1666569600&Signature=NjSfOFoIssgx5KWF0HLRzILg7RTYA0F3wG-jE7rayNtNKGRdRkk10h3cCKN~cx~XmUW7c1d0ESNaSsO8i-ax62nSkkODdjFrMd~D4IDj7nWDTsAC8i5TjdOfs9ShDWBOFDISYktj04Bkp4UuaXtzq9UfRf2nDHqOlMHm4L1VbDTtAVEZnUveLw~cFVcta8ZYcnrXfvx6vkOz1gjVE8rbjPiIV2Q9shETqzQKQYnae8olBt12YcEbnVqAvGdltFmvcfsLPAKkXMtmc9TzqT6EzEghY1yuNPITWCZwM7MkU8QdP8dI4dfzFW4iPKaGVe8POLaJgx7QDFPZhpVKaqGCFQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA',
+        icon: 'https://lh3.googleusercontent.com/u/0/drive-viewer/AFDK6gP3FNEz9-xW8xi_kZbWIUttbFoQqfnPk3eO74LqnnSWiauhn13FG4lZisLh09HKgAG6GsvqimyRU2eVapzdthT0PJHlEQ=w1920-h892',
     ),
     Event(
         name: "Issue!",
         desc: "Lorem ipsum dolor sit amet, conse ctetur adi piscing elit.",
         date: "Nov 03",
-      icon: 'https://s3-alpha-sig.figma.com/img/7d9c/626b/3dfe5b455ef28a98e9e328f0bcbd60c1?Expires=1666569600&Signature=NjSfOFoIssgx5KWF0HLRzILg7RTYA0F3wG-jE7rayNtNKGRdRkk10h3cCKN~cx~XmUW7c1d0ESNaSsO8i-ax62nSkkODdjFrMd~D4IDj7nWDTsAC8i5TjdOfs9ShDWBOFDISYktj04Bkp4UuaXtzq9UfRf2nDHqOlMHm4L1VbDTtAVEZnUveLw~cFVcta8ZYcnrXfvx6vkOz1gjVE8rbjPiIV2Q9shETqzQKQYnae8olBt12YcEbnVqAvGdltFmvcfsLPAKkXMtmc9TzqT6EzEghY1yuNPITWCZwM7MkU8QdP8dI4dfzFW4iPKaGVe8POLaJgx7QDFPZhpVKaqGCFQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA',
+      icon: 'https://lh3.googleusercontent.com/u/0/drive-viewer/AFDK6gP3FNEz9-xW8xi_kZbWIUttbFoQqfnPk3eO74LqnnSWiauhn13FG4lZisLh09HKgAG6GsvqimyRU2eVapzdthT0PJHlEQ=w1920-h892',
     )
   ];
 
@@ -287,6 +287,7 @@ class _ProfilePageState extends State<ProfilePage>
   Widget Registered() {
     return ListView.builder(
         physics: BouncingScrollPhysics(),
+        itemCount: registeredEvents.length,
         shrinkWrap: true,
         itemBuilder: (_,index){
           return EventCard(registeredEvents[index]);
