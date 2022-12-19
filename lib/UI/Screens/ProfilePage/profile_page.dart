@@ -14,7 +14,6 @@ import 'package:flutter/material.dart';
 import 'package:excelapp/Services/API/registration_api.dart';
 import 'package:excelapp/UI/Screens/ProfilePage/Registration/registration.dart';
 
-
 import '../../Components/EventCard/event_card.dart';
 import '../../../Models/event_card.dart';
 
@@ -40,42 +39,48 @@ class _ProfilePageState extends State<ProfilePage>
       name: "Issue!",
       desc: "Lorem ipsum dolor sit amet, conse ctetur adi piscing elit.",
       date: "Nov 03",
-      icon: 'https://lh3.googleusercontent.com/u/0/drive-viewer/AFDK6gP3FNEz9-xW8xi_kZbWIUttbFoQqfnPk3eO74LqnnSWiauhn13FG4lZisLh09HKgAG6GsvqimyRU2eVapzdthT0PJHlEQ=w1920-h892',
+      icon:
+          'https://lh3.googleusercontent.com/u/0/drive-viewer/AFDK6gP3FNEz9-xW8xi_kZbWIUttbFoQqfnPk3eO74LqnnSWiauhn13FG4lZisLh09HKgAG6GsvqimyRU2eVapzdthT0PJHlEQ=w1920-h892',
     ),
     Event(
-        name: "Issue!",
-        desc: "Lorem ipsum dolor sit amet, conse ctetur adi piscing elit.",
-        date: "Nov 03",
-      icon: 'https://lh3.googleusercontent.com/u/0/drive-viewer/AFDK6gP3FNEz9-xW8xi_kZbWIUttbFoQqfnPk3eO74LqnnSWiauhn13FG4lZisLh09HKgAG6GsvqimyRU2eVapzdthT0PJHlEQ=w1920-h892',
+      name: "Issue!",
+      desc: "Lorem ipsum dolor sit amet, conse ctetur adi piscing elit.",
+      date: "Nov 03",
+      icon:
+          'https://lh3.googleusercontent.com/u/0/drive-viewer/AFDK6gP3FNEz9-xW8xi_kZbWIUttbFoQqfnPk3eO74LqnnSWiauhn13FG4lZisLh09HKgAG6GsvqimyRU2eVapzdthT0PJHlEQ=w1920-h892',
     )
   ];
   List favoriteEvents = [
     Event(
-        name: "Issue!",
-        desc: "Lorem ipsum dolor sit amet, conse ctetur adi piscing elit.",
-        date: "Nov 03",
-      icon: 'https://lh3.googleusercontent.com/u/0/drive-viewer/AFDK6gP3FNEz9-xW8xi_kZbWIUttbFoQqfnPk3eO74LqnnSWiauhn13FG4lZisLh09HKgAG6GsvqimyRU2eVapzdthT0PJHlEQ=w1920-h892',
+      name: "Issue!",
+      desc: "Lorem ipsum dolor sit amet, conse ctetur adi piscing elit.",
+      date: "Nov 03",
+      icon:
+          'https://lh3.googleusercontent.com/u/0/drive-viewer/AFDK6gP3FNEz9-xW8xi_kZbWIUttbFoQqfnPk3eO74LqnnSWiauhn13FG4lZisLh09HKgAG6GsvqimyRU2eVapzdthT0PJHlEQ=w1920-h892',
     ),
     Event(
-        name: "Issue!",
-        desc: "Lorem ipsum dolor sit amet, conse ctetur adi piscing elit.",
-        date: "Nov 03",
-      icon: 'https://lh3.googleusercontent.com/u/0/drive-viewer/AFDK6gP3FNEz9-xW8xi_kZbWIUttbFoQqfnPk3eO74LqnnSWiauhn13FG4lZisLh09HKgAG6GsvqimyRU2eVapzdthT0PJHlEQ=w1920-h892',
+      name: "Issue!",
+      desc: "Lorem ipsum dolor sit amet, conse ctetur adi piscing elit.",
+      date: "Nov 03",
+      icon:
+          'https://lh3.googleusercontent.com/u/0/drive-viewer/AFDK6gP3FNEz9-xW8xi_kZbWIUttbFoQqfnPk3eO74LqnnSWiauhn13FG4lZisLh09HKgAG6GsvqimyRU2eVapzdthT0PJHlEQ=w1920-h892',
     )
   ];
 
   List savedNews = [
     Event(
-        name: "Issue!",
-        desc: "Lorem ipsum dolor sit amet, conse ctetur adi piscing elit.",
-        date: "Nov 03",
-        icon: 'https://lh3.googleusercontent.com/u/0/drive-viewer/AFDK6gP3FNEz9-xW8xi_kZbWIUttbFoQqfnPk3eO74LqnnSWiauhn13FG4lZisLh09HKgAG6GsvqimyRU2eVapzdthT0PJHlEQ=w1920-h892',
+      name: "Issue!",
+      desc: "Lorem ipsum dolor sit amet, conse ctetur adi piscing elit.",
+      date: "Nov 03",
+      icon:
+          'https://lh3.googleusercontent.com/u/0/drive-viewer/AFDK6gP3FNEz9-xW8xi_kZbWIUttbFoQqfnPk3eO74LqnnSWiauhn13FG4lZisLh09HKgAG6GsvqimyRU2eVapzdthT0PJHlEQ=w1920-h892',
     ),
     Event(
-        name: "Issue!",
-        desc: "Lorem ipsum dolor sit amet, conse ctetur adi piscing elit.",
-        date: "Nov 03",
-      icon: 'https://lh3.googleusercontent.com/u/0/drive-viewer/AFDK6gP3FNEz9-xW8xi_kZbWIUttbFoQqfnPk3eO74LqnnSWiauhn13FG4lZisLh09HKgAG6GsvqimyRU2eVapzdthT0PJHlEQ=w1920-h892',
+      name: "Issue!",
+      desc: "Lorem ipsum dolor sit amet, conse ctetur adi piscing elit.",
+      date: "Nov 03",
+      icon:
+          'https://lh3.googleusercontent.com/u/0/drive-viewer/AFDK6gP3FNEz9-xW8xi_kZbWIUttbFoQqfnPk3eO74LqnnSWiauhn13FG4lZisLh09HKgAG6GsvqimyRU2eVapzdthT0PJHlEQ=w1920-h892',
     )
   ];
 
@@ -169,11 +174,15 @@ class _ProfilePageState extends State<ProfilePage>
                         ),
                         ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                              padding: EdgeInsets.all(10),
-                              backgroundColor: Color(0xd0fcd1cc),
-                              shape: CircleBorder(
-                                eccentricity: 0,
-                              )),
+                            padding: EdgeInsets.all(10),
+                            backgroundColor: Color(0xd0fcd1cc),
+                            shape: CircleBorder(
+                              side: BorderSide(
+                                color: Color(0xd0fcd1cc),
+                                width: 2,
+                              ),
+                            ),
+                          ),
                           child: Icon(
                             Icons.logout,
                             size: 25,
@@ -226,48 +235,47 @@ class _ProfilePageState extends State<ProfilePage>
                           decorationColor: Color.fromARGB(255, 14, 152, 232),
                         ),
                         unselectedLabelColor:
-                        Color.fromARGB(235, 119, 133, 133),
+                            Color.fromARGB(235, 119, 133, 133),
                         controller: tabController,
                         tabs: [
-                      Tab(
-                        child: Text(
-                          "Registered",
-                          style: TextStyle(
-                            fontFamily: "mulish",
-                            fontSize: 14,
-                            fontWeight: FontWeight.w800,
+                          Tab(
+                            child: Text(
+                              "Registered",
+                              style: TextStyle(
+                                fontFamily: "mulish",
+                                fontSize: 14,
+                                fontWeight: FontWeight.w800,
+                              ),
+                            ),
                           ),
-                        ),
-                      ),
-                      Tab(
-                        child: Text(
-                          "Favorites",
-                          style: TextStyle(
-                            fontFamily: "mulish",
-                            fontSize: 14,
-                            fontWeight: FontWeight.w800,
+                          Tab(
+                            child: Text(
+                              "Favorites",
+                              style: TextStyle(
+                                fontFamily: "mulish",
+                                fontSize: 14,
+                                fontWeight: FontWeight.w800,
+                              ),
+                            ),
                           ),
-                        ),
-                      ),
-                      Tab(
-                        child: Text(
-                          "Saved News",
-                          style: TextStyle(
-                            fontFamily: "mulish",
-                            fontSize: 14,
-                            fontWeight: FontWeight.w800,
+                          Tab(
+                            child: Text(
+                              "Saved News",
+                              style: TextStyle(
+                                fontFamily: "mulish",
+                                fontSize: 14,
+                                fontWeight: FontWeight.w800,
+                              ),
+                            ),
                           ),
-                        ),
-                      ),
-                    ]),
+                        ]),
                   ],
                 ),
               ),
               Expanded(
                 child: Padding(
-                  padding: const EdgeInsets.fromLTRB(0,15,0,0),
+                  padding: const EdgeInsets.fromLTRB(0, 15, 0, 0),
                   child: TabBarView(
-
                     controller: tabController,
                     children: [
                       Registered(),
@@ -289,30 +297,29 @@ class _ProfilePageState extends State<ProfilePage>
         physics: BouncingScrollPhysics(),
         itemCount: registeredEvents.length,
         shrinkWrap: true,
-        itemBuilder: (_,index){
+        itemBuilder: (_, index) {
           return EventCard(registeredEvents[index]);
-        }
-        );
+        });
   }
+
   Widget Favorites() {
     return ListView.builder(
         physics: BouncingScrollPhysics(),
         shrinkWrap: true,
-        itemBuilder: (_,index){
+        itemBuilder: (_, index) {
           return EventCard(favoriteEvents[index]);
-        }
-    );
+        });
   }
 
   Widget SavedNews() {
     return ListView.builder(
         physics: BouncingScrollPhysics(),
         shrinkWrap: true,
-        itemBuilder: (_,index){
+        itemBuilder: (_, index) {
           return EventCard(savedNews[index]);
-        }
-    );
+        });
   }
+
   Widget showQRButton(BuildContext context) {
     return ButtonTheme(
       //minWidth: MediaQuery.of(context).size.width / 2,
@@ -347,7 +354,6 @@ class _ProfilePageState extends State<ProfilePage>
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(40),
           ),
-
         ),
         child: Text(
           "Edit Profile",
@@ -358,7 +364,9 @@ class _ProfilePageState extends State<ProfilePage>
               fontSize: 11),
         ),
         onPressed: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context){return UpdateProfile();}));
+          Navigator.push(context, MaterialPageRoute(builder: (context) {
+            return UpdateProfile();
+          }));
         },
       ),
     );

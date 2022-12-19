@@ -231,48 +231,53 @@ class _UpdateProfileState extends State<UpdateProfile> {
                   SizedBox(height: 30),
                   Center(
                       child: Container(
-                        //padding: EdgeInsets.symmetric(horizontal: 10),
-                        width: 140,
-                        height: 110,
-                        //color: Colors.yellow,
-                        child: Stack(
-                    children: [
+                    //padding: EdgeInsets.symmetric(horizontal: 10),
+                    width: 140,
+                    height: 110,
+                    //color: Colors.yellow,
+                    child: Stack(
+                      children: [
                         Positioned(
                           top: 0,
-                          left:10,
+                          left: 10,
                           child: CircleAvatar(
-                            radius:56,
+                            radius: 56,
                             backgroundColor: Colors.white38,
                             child: CircleAvatar(
                               radius: 53,
                               backgroundImage: AssetImage("assets/Tom ser.jpg"),
-                                   ),
+                            ),
                           ),
                         ),
                         Positioned(
-                            //alignment: Alignment.topRight,
+                          //alignment: Alignment.topRight,
                           top: 0,
-                            right: 0,
-                            child: Padding(
-                              padding: const EdgeInsets.all(0.0),
-                              child: ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                    padding: EdgeInsets.all(10),
-                                    backgroundColor: primaryColor,
-                                    shape: CircleBorder(
-                                      eccentricity: 0,
-                                    )),
-                                child: Icon(
-                                  Icons.camera_alt_outlined,
-                                  size: 18,
-                                  color: Colors.white,
+                          right: 0,
+                          child: Padding(
+                            padding: const EdgeInsets.all(0.0),
+                            child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                padding: EdgeInsets.all(10),
+                                backgroundColor: primaryColor,
+                                shape: CircleBorder(
+                                  side: BorderSide(
+                                    color: primaryColor,
+                                    width: 2,
+                                  ),
                                 ),
-                                onPressed: () {},
                               ),
-                            ),),
-                    ],
-                  ),
-                      )),
+                              child: Icon(
+                                Icons.camera_alt_outlined,
+                                size: 18,
+                                color: Colors.white,
+                              ),
+                              onPressed: () {},
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  )),
                   SizedBox(height: 30),
                   // Name
                   TextFormField(
@@ -290,10 +295,10 @@ class _UpdateProfileState extends State<UpdateProfile> {
                       return null;
                     },
                     decoration: InputDecoration(
-                     border: OutlineInputBorder(
-                       borderSide: BorderSide(color: primaryColor),
-                       borderRadius: BorderRadius.circular(20),
-                     ),
+                      border: OutlineInputBorder(
+                        borderSide: BorderSide(color: primaryColor),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
                       enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(color: secondaryColor),
                         borderRadius: BorderRadius.circular(20),
@@ -342,9 +347,9 @@ class _UpdateProfileState extends State<UpdateProfile> {
                   // Select Gender
 
                   Padding(
-                    padding: const EdgeInsets.fromLTRB(40,0,0,0),
+                    padding: const EdgeInsets.fromLTRB(40, 0, 0, 0),
                     child: Container(
-                      width: MediaQuery.of(context).size.width/2,
+                      width: MediaQuery.of(context).size.width / 2,
                       child: DropdownButtonFormField(
                           icon: Icon(Icons.keyboard_arrow_down),
                           decoration: InputDecoration(
@@ -373,7 +378,8 @@ class _UpdateProfileState extends State<UpdateProfile> {
                               ),
                             );
                           }).toList(),
-                          hint:Text(_gender ?? "Select Gender",style: TextStyle(color: Colors.black)),
+                          hint: Text(_gender ?? "Select Gender",
+                              style: TextStyle(color: Colors.black)),
                           onChanged: (value) {
                             setState(() {
                               _gender = value;
@@ -397,7 +403,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
 
                   //   ),
                   // ),
-                  SizedBox(height:30),
+                  SizedBox(height: 30),
                   // Mobile Number
                   TextFormField(
                     initialValue: _mobile ?? "",
@@ -441,9 +447,10 @@ class _UpdateProfileState extends State<UpdateProfile> {
                     initialValue: _emailId ?? "",
                     keyboardType: TextInputType.emailAddress,
                     inputFormatters: [
-                      FilteringTextInputFormatter.allow(RegExp(  r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]"
-                      r"{0,253}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]"
-                      r"{0,253}[a-zA-Z0-9])?)*$"))
+                      FilteringTextInputFormatter.allow(RegExp(
+                          r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]"
+                          r"{0,253}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]"
+                          r"{0,253}[a-zA-Z0-9])?)*$"))
                     ],
                     style: TextStyle(fontFamily: pfontFamily, fontSize: 15),
                     onSaved: (String value) {
@@ -480,7 +487,9 @@ class _UpdateProfileState extends State<UpdateProfile> {
                       contentPadding: EdgeInsets.all(16),
                     ),
                   ),
-                  SizedBox(height: 30,),
+                  SizedBox(
+                    height: 30,
+                  ),
                   TextFormField(
                     initialValue: _institutionName,
                     style: TextStyle(fontFamily: pfontFamily, fontSize: 15),
@@ -496,7 +505,6 @@ class _UpdateProfileState extends State<UpdateProfile> {
                       return null;
                     },
                     decoration: InputDecoration(
-
                       border: OutlineInputBorder(
                         borderSide: BorderSide(color: primaryColor),
                         borderRadius: BorderRadius.circular(20),
@@ -514,51 +522,52 @@ class _UpdateProfileState extends State<UpdateProfile> {
                   SizedBox(height: 20),
                   // Select Category
                   Padding(
-                    padding: EdgeInsets.fromLTRB(40,0,0,0),
-                    child:
-                      Container(
-
-                        width: MediaQuery.of(context).size.width/2,
-                        child: DropdownButtonFormField(
-                            decoration: InputDecoration(
-
-                              border: OutlineInputBorder(
-                                borderSide: BorderSide(color: primaryColor),
-                                borderRadius: BorderRadius.circular(20),
-                              ),
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: secondaryColor),
-                                borderRadius: BorderRadius.circular(20),
-                              ),
-                              labelText: "Institute Type",
-                              contentPadding: EdgeInsets.all(16),
+                    padding: EdgeInsets.fromLTRB(40, 0, 0, 0),
+                    child: Container(
+                      width: MediaQuery.of(context).size.width / 2,
+                      child: DropdownButtonFormField(
+                          decoration: InputDecoration(
+                            border: OutlineInputBorder(
+                              borderSide: BorderSide(color: primaryColor),
+                              borderRadius: BorderRadius.circular(20),
                             ),
-                                //border: OutlineInputBorder()),
-                            items: _categories.map<DropdownMenuItem<String>>((val) {
-                              return DropdownMenuItem<String>(
-                                value: val,
-                                child: Text(
-                                  val,
-                                  style: TextStyle(
-                                    color:Colors.black,
-                                    fontSize: 14,
-                                  ),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: secondaryColor),
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            labelText: "Institute Type",
+                            contentPadding: EdgeInsets.all(16),
+                          ),
+                          //border: OutlineInputBorder()),
+                          items:
+                              _categories.map<DropdownMenuItem<String>>((val) {
+                            return DropdownMenuItem<String>(
+                              value: val,
+                              child: Text(
+                                val,
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 14,
                                 ),
-                              );
-                            }).toList(),
-                            hint: Text(_categories[_categoryId] ?? "Select Gender",style: TextStyle(color: Colors.black),),
-                            onChanged: (value) {
-                              setState(() {
-                                _categoryId = value;
-                                // measureList.add(measure);
-                              });
-                            },
-                            onSaved: (value) {
-                              setState(() {
-                                _categoryId = value;
-                              });
-                            }),
-                      ),
+                              ),
+                            );
+                          }).toList(),
+                          hint: Text(
+                            _categories[_categoryId] ?? "Select Gender",
+                            style: TextStyle(color: Colors.black),
+                          ),
+                          onChanged: (value) {
+                            setState(() {
+                              _categoryId = value;
+                              // measureList.add(measure);
+                            });
+                          },
+                          onSaved: (value) {
+                            setState(() {
+                              _categoryId = value;
+                            });
+                          }),
+                    ),
                   ),
                   //SizedBox(height: 30),
                   // Select Institution
@@ -663,24 +672,24 @@ class _UpdateProfileState extends State<UpdateProfile> {
         ),
         onPressed: () {
           print("Saved");
-            // _formKey.currentState.save();
-            // _formKey.currentState.validate()
-            //     ? submitForm().then((value) {
-            //   if (value == "Submitted") {
-            //     Navigator.pushAndRemoveUntil(
-            //       context,
-            //       MaterialPageRoute(
-            //         builder: (context) => CheckUserLoggedIn(),
-            //       ),
-            //           (Route<dynamic> route) => false,
-            //     );
-            //   } else {
-            //     ScaffoldMessenger.of(context)
-            //         .showSnackBar(snackBar(value));
-            //   }
-            // }).catchError((e) => print(e))
-            //     : print("Not valid");
-            //
+          // _formKey.currentState.save();
+          // _formKey.currentState.validate()
+          //     ? submitForm().then((value) {
+          //   if (value == "Submitted") {
+          //     Navigator.pushAndRemoveUntil(
+          //       context,
+          //       MaterialPageRoute(
+          //         builder: (context) => CheckUserLoggedIn(),
+          //       ),
+          //           (Route<dynamic> route) => false,
+          //     );
+          //   } else {
+          //     ScaffoldMessenger.of(context)
+          //         .showSnackBar(snackBar(value));
+          //   }
+          // }).catchError((e) => print(e))
+          //     : print("Not valid");
+          //
         },
       ),
     );
