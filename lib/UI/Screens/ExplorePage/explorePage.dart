@@ -1,9 +1,11 @@
+import 'package:excelapp/UI/Components/Navigation/provider.dart';
 import 'package:excelapp/UI/Screens/ExplorePage/Widgets/Competitions/competitionsCardList.dart';
 import 'package:excelapp/UI/Screens/ExplorePage/Widgets/Events/eventsCardList.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:provider/provider.dart';
 
 class ExplorePage extends StatefulWidget {
   @override
@@ -26,13 +28,14 @@ class _ExplorePageState extends State<ExplorePage>
         length: 2, vsync: this, initialIndex: widget.selectedPage ?? 0);
   }
 
-  void dispose(){
-    super.dispose();
-    print("This is disposed");
+  void didChangeDependencies(){
+    super.didChangeDependencies();
   }
 
   @override
   Widget build(BuildContext context) {
+    final _myNavIndex = Provider.of<MyNavigationIndex>(context);
+    _tabcontroller.index= _myNavIndex.getExplorePageNumber;
     return Scaffold(
       backgroundColor: Color.fromRGBO(237, 245, 246, 1),
       body: Padding(
@@ -114,7 +117,7 @@ class _ExplorePageState extends State<ExplorePage>
                     children: [
                       CompetitionsCardList(),
                       EventsCardList(
-                          selectedTab: widget.selectedCategory ?? "all")
+                          selectedTab: _myNavIndex.getExplorerCategory)
                     ]),
               ),
             ],

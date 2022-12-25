@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../provider.dart';
 
 class FABBottomAppBarItem {
   FABBottomAppBarItem({this.iconData, this.text});
@@ -46,11 +49,16 @@ class FABBottomAppBarState extends State<FABBottomAppBar> {
 
   @override
   Widget build(BuildContext context) {
+    
+  final myNavIndex = Provider.of<MyNavigationIndex>(context);
+  _selectedIndex=myNavIndex.getIndex;
     List<Widget> items = List.generate(widget.items.length, (int index) {
       return _buildTabItem(
         item: widget.items[index],
         index: index,
-        onPressed: _updateIndex,
+        onPressed: (i){
+          myNavIndex.setIndex = i;
+        },
       );
     });
     items.insert(items.length >> 1, _buildMiddleTabItem());

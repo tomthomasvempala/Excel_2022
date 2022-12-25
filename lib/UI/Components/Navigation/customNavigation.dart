@@ -1,3 +1,4 @@
+import 'package:excelapp/UI/Components/Navigation/provider.dart';
 import 'package:excelapp/UI/Screens/ExplorePage/explorePage.dart';
 import 'package:excelapp/UI/Screens/HomePage/Widgets/aboutExcel.dart';
 import 'package:excelapp/UI/Screens/HomePage/homePage.dart';
@@ -5,6 +6,7 @@ import 'package:excelapp/UI/Screens/ProfilePage/profile_main.dart';
 import 'package:excelapp/UI/Screens/Schedule/schedule.dart';
 import 'package:excelapp/UI/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import './bottom_navigation.dart';
 import './tab_navigator.dart';
 import './BottomNavigationBarWidget/layout.dart';
@@ -60,14 +62,14 @@ class CustomNavigatorState extends State<CustomNavigator> {
     }
   }
 
+
   @override
   Widget build(BuildContext context) {
+    final _myNavIndex = Provider.of<MyNavigationIndex>(context);
     return WillPopScope(
       onWillPop: () async {
-        if(selectedTab!=0){
-          setState(() {
-            selectedTab=0;
-          });
+        if(_myNavIndex.getIndex!=0){
+          _myNavIndex.setIndex=0;
           return false;
         }
         return true;
@@ -86,45 +88,46 @@ class CustomNavigatorState extends State<CustomNavigator> {
         // return isFirstRouteInCurrentTab;
       },
       child: Scaffold(
-        extendBody: true,
-        body: 
-        IndexedStack(
-          index: selectedTab,
-          children: [
-            HomePage(navToExplore:(i,str){
-              selectedTab=1;
-              setState(() {
-                explorePage = ExplorePage(key: Key(str),selectedCategory: str,selectedPage: i,);
-                
-              });
-            }),
-            explorePage,
-            Schedule(),
-            CheckUserLoggedIn()
-        ],
-        
-        ),
-        // Stack(children: <Widget>[
-        //   _buildOffstageNavigator(TabItem.page1),
-        //   _buildOffstageNavigator(TabItem.page2),
-        //   _buildOffstageNavigator(TabItem.page3),
-        //   _buildOffstageNavigator(TabItem.page4),
-        // ]),
-        bottomNavigationBar: Visibility(
-          maintainState: true,
-          visible: bottonNavHidden ? false : true,
-          child: BottomNavigation(
-            selectedIndex: selectedTab,
-            onSelect: (i){
-              selectedTab=i;
-              setState(() {
-              });
-            },
+          extendBody: true,
+          body: 
+          IndexedStack(
+            index: _myNavIndex.getIndex,
+            children: [
+              HomePage(navToExplore:(i,str){
+                selectedTab=1;
+                setState(() {
+                  explorePage = ExplorePage(key: Key(str),selectedCategory: str,selectedPage: i,);
+                  
+                });
+              }),
+              explorePage,
+              Schedule(),
+              CheckUserLoggedIn()
+          ],
+          
           ),
+          // Stack(children: <Widget>[
+          //   _buildOffstageNavigator(TabItem.page1),
+          //   _buildOffstageNavigator(TabItem.page2),
+          //   _buildOffstageNavigator(TabItem.page3),
+          //   _buildOffstageNavigator(TabItem.page4),
+          // ]),
+          bottomNavigationBar: Visibility(
+            maintainState: true,
+            visible: bottonNavHidden ? false : true,
+            child: BottomNavigation(
+              selectedIndex: selectedTab,
+              onSelect: (i){
+                _myNavIndex.setIndex = i;
+                // selectedTab=i;
+                // setState(() {
+                // });
+              },
+            ),
+          ),
+          floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+          floatingActionButton: _buildFab(context, bottonNavHidden),
         ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-        floatingActionButton: _buildFab(context, bottonNavHidden),
-      ),
     );
   }
 

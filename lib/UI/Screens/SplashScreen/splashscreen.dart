@@ -1,7 +1,9 @@
+import 'package:excelapp/UI/Components/Navigation/provider.dart';
 import 'package:excelapp/UI/Screens/LandingPage/landingPage.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:excelapp/UI/Components/Navigation/customNavigation.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Splashscreen extends StatefulWidget {
@@ -22,7 +24,8 @@ class _SplashscreenState extends State<Splashscreen> {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (context) => CustomNavigator(),
+          builder: (context) => 
+          ChangeNotifierProvider(create: (context)=> MyNavigationIndex(),child: CustomNavigator(),)
         ),
       );
   }

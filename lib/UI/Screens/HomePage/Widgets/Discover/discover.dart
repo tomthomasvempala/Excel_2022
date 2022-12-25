@@ -7,7 +7,9 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
 
+import '../../../../Components/Navigation/provider.dart';
 import '../../../../constants.dart';
 
 class Discover extends StatelessWidget {
@@ -16,6 +18,7 @@ class Discover extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
+  final myNavIndex = Provider.of<MyNavigationIndex>(context);
     return Container(
       margin: EdgeInsets.all(16),
       child: Column(
@@ -53,7 +56,7 @@ class Discover extends StatelessWidget {
                 InkWell(
                     onTap: () {
                       //Talks
-                      navToExplore(1,'talks');
+                      myNavIndex.setIndextoExplore(1, 'talks');
                       // Navigator.push(
                       //     context,
                       //     MaterialPageRoute(
@@ -69,7 +72,8 @@ class Discover extends StatelessWidget {
                 InkWell(
                     onTap: () {
                       //Workshop
-                      navToExplore(1,'workshops');
+                      myNavIndex.setIndextoExplore(1, 'workshops');
+                      // navToExplore(1,'workshops');
                       // Navigator.push(
                       //     context,
                       //     MaterialPageRoute(
@@ -96,7 +100,7 @@ class Discover extends StatelessWidget {
                   onTap: () {
                     //Competitions
                     
-                      navToExplore(0,'competitons');
+                      myNavIndex.setIndextoExplore(0, 'all');
                     // Navigator.push(
                     //     context,
                     //     MaterialPageRoute(
@@ -111,7 +115,7 @@ class Discover extends StatelessWidget {
                   onTap: () {
                     //other
                     
-                      navToExplore(1,null);
+                      myNavIndex.setIndextoExplore(1, 'all');
                     // Navigator.push(
                     //     context,
                     //     MaterialPageRoute(

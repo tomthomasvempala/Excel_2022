@@ -1,6 +1,8 @@
+import 'package:excelapp/UI/Components/Navigation/provider.dart';
 import 'package:excelapp/UI/Screens/ExplorePage/Widgets/Components/tabs.dart';
 import 'package:excelapp/UI/Screens/ExplorePage/Widgets/Events/allEvents.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class EventsCardList extends StatefulWidget {
   @override
@@ -17,12 +19,13 @@ class _EventsCardListState extends State<EventsCardList>
   @override
   void initState() {
     super.initState();
-    selectedCategory = widget.selectedTab ?? "all";
+    // selectedCategory = widget.selectedTab ?? "all";
   }
 
   @override
   Widget build(BuildContext context) {
-    print(selectedCategory);
+    final _myNavIndex = Provider.of<MyNavigationIndex>(context);
+    selectedCategory = _myNavIndex.getExplorerCategory;
     return Container(
       alignment: Alignment.topCenter,
       child: Column(
