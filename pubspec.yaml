@@ -32,6 +32,7 @@ dependencies:
   image_picker: ^0.8.6
   fluttertoast: ^8.1.1
   flutter_launcher_icons: ^0.10.0
+  provider:
 
 
 dev_dependencies:

@@ -11,8 +11,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../../../constants.dart';
 
 class Discover extends StatelessWidget {
-  const Discover({Key key}) : super(key: key);
-
+  const Discover({Key key,this.navToExplore}) : super(key: key);
+  final Function(int,String) navToExplore;
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -53,13 +53,14 @@ class Discover extends StatelessWidget {
                 InkWell(
                     onTap: () {
                       //Talks
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => ExplorePage(
-                                    selectedPage: 1,
-                                    selectedCategory: "talks",
-                                  )));
+                      navToExplore(1,'talks');
+                      // Navigator.push(
+                      //     context,
+                      //     MaterialPageRoute(
+                      //         builder: (context) => ExplorePage(
+                      //               selectedPage: 1,
+                      //               selectedCategory: "talks",
+                      //             )));
                     },
                     child: DiscoverButtons(
                       data: DiscoverButtonData[0],
@@ -68,13 +69,14 @@ class Discover extends StatelessWidget {
                 InkWell(
                     onTap: () {
                       //Workshop
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => ExplorePage(
-                                    selectedPage: 1,
-                                    selectedCategory: "workshops",
-                                  )));
+                      navToExplore(1,'workshops');
+                      // Navigator.push(
+                      //     context,
+                      //     MaterialPageRoute(
+                      //         builder: (context) => ExplorePage(
+                      //               selectedPage: 1,
+                      //               selectedCategory: "workshops",
+                      //             )));
                     },
                     child: DiscoverButtons(
                       data: DiscoverButtonData[1],
@@ -93,11 +95,13 @@ class Discover extends StatelessWidget {
               InkWell(
                   onTap: () {
                     //Competitions
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) =>
-                                ExplorePage(selectedPage: 0)));
+                    
+                      navToExplore(0,'competitons');
+                    // Navigator.push(
+                    //     context,
+                    //     MaterialPageRoute(
+                    //         builder: (context) =>
+                    //             ExplorePage(selectedPage: 0)));
                   },
                   child: DiscoverButtons(
                     data: DiscoverButtonData[2],
@@ -106,11 +110,13 @@ class Discover extends StatelessWidget {
               InkWell(
                   onTap: () {
                     //other
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) =>
-                                ExplorePage(selectedPage: 1)));
+                    
+                      navToExplore(1,null);
+                    // Navigator.push(
+                    //     context,
+                    //     MaterialPageRoute(
+                    //         builder: (context) =>
+                    //             ExplorePage(selectedPage: 1)));
                   },
                   child: DiscoverButtons(
                     data: DiscoverButtonData[3],

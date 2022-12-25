@@ -21,8 +21,14 @@ class _ExplorePageState extends State<ExplorePage>
   @override
   void initState() {
     super.initState();
+    print("Explore object is created with ${widget.selectedCategory}" );
     _tabcontroller = TabController(
         length: 2, vsync: this, initialIndex: widget.selectedPage ?? 0);
+  }
+
+  void dispose(){
+    super.dispose();
+    print("This is disposed");
   }
 
   @override

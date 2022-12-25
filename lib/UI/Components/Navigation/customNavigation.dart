@@ -33,7 +33,8 @@ class CustomNavigatorState extends State<CustomNavigator> {
   };
 
   bool bottonNavHidden = false;
-
+  // ExplorePage explorePage = ExplorePage(key: Key('A'), selectedPage: 1,selectedCategory: 'talks',);
+  ExplorePage explorePage = ExplorePage(key: Key('A'),);
   @protected
   void initState() {
     selectedTab=0;
@@ -63,19 +64,26 @@ class CustomNavigatorState extends State<CustomNavigator> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async {
-        final isFirstRouteInCurrentTab =
-            !await _navigatorKeys[_currentTab].currentState.maybePop();
-        if (isFirstRouteInCurrentTab) {
-          // if not on the 'main' tab
-          if (_currentTab != TabItem.page1) {
-            // select 'main' tab
-            _selectTab(TabItem.page1);
-            // back button handled by app
-            return false;
-          }
+        if(selectedTab!=0){
+          setState(() {
+            selectedTab=0;
+          });
+          return false;
         }
-        // let system handle back button if we're on the first route
-        return isFirstRouteInCurrentTab;
+        return true;
+        // final isFirstRouteInCurrentTab =
+        //     !await _navigatorKeys[_currentTab].currentState.maybePop();
+        // if (isFirstRouteInCurrentTab) {
+        //   // if not on the 'main' tab
+        //   if (_currentTab != TabItem.page1) {
+        //     // select 'main' tab
+        //     _selectTab(TabItem.page1);
+        //     // back button handled by app
+        //     return false;
+        //   }
+        // }
+        // // let system handle back button if we're on the first route
+        // return isFirstRouteInCurrentTab;
       },
       child: Scaffold(
         extendBody: true,
@@ -83,8 +91,14 @@ class CustomNavigatorState extends State<CustomNavigator> {
         IndexedStack(
           index: selectedTab,
           children: [
-            HomePage(),
-            ExplorePage(),
+            HomePage(navToExplore:(i,str){
+              selectedTab=1;
+              setState(() {
+                explorePage = ExplorePage(key: Key(str),selectedCategory: str,selectedPage: i,);
+                
+              });
+            }),
+            explorePage,
             Schedule(),
             CheckUserLoggedIn()
         ],
@@ -104,7 +118,6 @@ class CustomNavigatorState extends State<CustomNavigator> {
             onSelect: (i){
               selectedTab=i;
               setState(() {
-                
               });
             },
           ),
