@@ -93,13 +93,7 @@ class CustomNavigatorState extends State<CustomNavigator> {
           IndexedStack(
             index: _myNavIndex.getIndex,
             children: [
-              HomePage(navToExplore:(i,str){
-                selectedTab=1;
-                setState(() {
-                  explorePage = ExplorePage(key: Key(str),selectedCategory: str,selectedPage: i,);
-                  
-                });
-              }),
+              HomePage(),
               explorePage,
               Schedule(),
               CheckUserLoggedIn()

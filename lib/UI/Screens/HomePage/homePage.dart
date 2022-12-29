@@ -12,8 +12,6 @@ import 'package:excelapp/UI/Screens/HomePage/Widgets/Drawer/drawer.dart';
 import 'package:excelapp/UI/Screens/HomePage/Widgets/LatestNews/latestNews.dart';
 
 class HomePage extends StatefulWidget {
-  Null Function(int,String) navToExplore;
-  HomePage({this.navToExplore});
   @override
   _HomePageState createState() => _HomePageState();
 }
@@ -44,7 +42,7 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
 
-              Discover(navToExplore: widget.navToExplore),
+              Discover(),
               LatestNewsSection(),
               // Categories(),
               // SocialIcons(),

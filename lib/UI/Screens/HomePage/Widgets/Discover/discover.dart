@@ -13,8 +13,7 @@ import '../../../../Components/Navigation/provider.dart';
 import '../../../../constants.dart';
 
 class Discover extends StatelessWidget {
-  const Discover({Key key,this.navToExplore}) : super(key: key);
-  final Function(int,String) navToExplore;
+  const Discover({Key key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -57,13 +56,6 @@ class Discover extends StatelessWidget {
                     onTap: () {
                       //Talks
                       myNavIndex.setIndextoExplore(1, 'talks');
-                      // Navigator.push(
-                      //     context,
-                      //     MaterialPageRoute(
-                      //         builder: (context) => ExplorePage(
-                      //               selectedPage: 1,
-                      //               selectedCategory: "talks",
-                      //             )));
                     },
                     child: DiscoverButtons(
                       data: DiscoverButtonData[0],
@@ -73,14 +65,6 @@ class Discover extends StatelessWidget {
                     onTap: () {
                       //Workshop
                       myNavIndex.setIndextoExplore(1, 'workshops');
-                      // navToExplore(1,'workshops');
-                      // Navigator.push(
-                      //     context,
-                      //     MaterialPageRoute(
-                      //         builder: (context) => ExplorePage(
-                      //               selectedPage: 1,
-                      //               selectedCategory: "workshops",
-                      //             )));
                     },
                     child: DiscoverButtons(
                       data: DiscoverButtonData[1],
@@ -101,11 +85,6 @@ class Discover extends StatelessWidget {
                     //Competitions
                     
                       myNavIndex.setIndextoExplore(0, 'all');
-                    // Navigator.push(
-                    //     context,
-                    //     MaterialPageRoute(
-                    //         builder: (context) =>
-                    //             ExplorePage(selectedPage: 0)));
                   },
                   child: DiscoverButtons(
                     data: DiscoverButtonData[2],
@@ -116,11 +95,6 @@ class Discover extends StatelessWidget {
                     //other
                     
                       myNavIndex.setIndextoExplore(1, 'all');
-                    // Navigator.push(
-                    //     context,
-                    //     MaterialPageRoute(
-                    //         builder: (context) =>
-                    //             ExplorePage(selectedPage: 1)));
                   },
                   child: DiscoverButtons(
                     data: DiscoverButtonData[3],
