@@ -20,5 +20,9 @@ class MyNavigationIndex with ChangeNotifier{
     _index = 1;
     notifyListeners();
   }
+
+  void setJustCategory(String category){
+    _exploreCategory = category;
+  }
 }
 

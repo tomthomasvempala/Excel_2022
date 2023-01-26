@@ -26,6 +26,7 @@ class _EventsCardListState extends State<EventsCardList>
   Widget build(BuildContext context) {
     final _myNavIndex = Provider.of<MyNavigationIndex>(context);
     selectedCategory = _myNavIndex.getExplorerCategory;
+    print("I want this " + _myNavIndex.getExplorerCategory);
     return Container(
       alignment: Alignment.topCenter,
       child: Column(
@@ -41,7 +42,8 @@ class _EventsCardListState extends State<EventsCardList>
                           text: tabItem,
                           onPressed: () {
                             setState(() {
-                              selectedCategory = tabItem.toLowerCase();
+                              _myNavIndex
+                                  .setJustCategory(tabItem.toLowerCase());
                             });
                           },
                         ))
