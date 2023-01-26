@@ -93,7 +93,7 @@ class EventCard extends StatelessWidget {
                                             context,
                                             MaterialPageRoute(
                                                 builder: (context) =>
-                                                    EventPage(123)));
+                                                    EventPage(event.id)));
                                       },
                                       child: Container(
                                         child: Text(

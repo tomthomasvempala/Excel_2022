@@ -103,7 +103,10 @@ class EventPageBody extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(25),
                               ),
                               child: Container(
-                                child: Image.asset(eventDetails.icon),
+                                child: Image.asset(
+                                  "assets/events/eventLogo.png"
+                                  // eventDetails.icon
+                                  ),
                               ),
                             ),
                           ),

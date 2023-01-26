@@ -59,7 +59,7 @@ class EventsAPI {
   static fetchAndStoreEventDetailsFromNet(int id) async {
     print("- Event list $id network fetch");
     try {
-      var response = await getAuthorisedData(APIConfig.baseUrl + '/events/$id');
+      var response = await http.get(Uri.parse(APIConfig.baseUrl + 'events/$id'));
 
       Map<String, dynamic> responseData = json.decode(response.body);
       responseData["eventHead1"] = json.encode(responseData["eventHead1"]);

@@ -27,36 +27,39 @@ class _EventPageState extends State<EventPage> {
   }
 
   void fetchEventDetails(int id) async {
-    EventDetails event = new EventDetails(
-        id: 1000,
-        name: "Waves Cloning",
-        icon: "assets/events/eventLogo.png",
-        categoryId: 1,
-        category: "Competition",
-        eventTypeId: 1,
-        eventType: "CS Tech",
-        about:
-            "Lorem ipsum dolor sit amet, consectetur adipis cing elit. Netus platea quis malesuada purus. Gravida ac nunc in accumsan diam. Venenatis eu gravida ullamcorper eu non sed vitae nec.\n\nRisus, iaculis nisi ut gravida convallis adipiscing maecenas volutpat. Gravida ac nunc in accum san diam. Venenatis eu gravida ullamcorper eu non sed vitae nec. ",
-        format: "This is the format for the competition",
-        rules: "There are so many rules for the event. ",
-        venue: "SDPK Hall",
-        datetime: "1665557616",
-        teamSize: 5);
-    estream.add(event);
-    return;
+    // EventDetails event = new EventDetails(
+    //     id: 1000,
+    //     name: "Waves Cloning",
+    //     icon: "assets/events/eventLogo.png",
+    //     categoryId: 1,
+    //     category: "Competition",
+    //     eventTypeId: 1,
+    //     eventType: "CS Tech",
+    //     about:
+    //         "Lorem ipsum dolor sit amet, consectetur adipis cing elit. Netus platea quis malesuada purus. Gravida ac nunc in accumsan diam. Venenatis eu gravida ullamcorper eu non sed vitae nec.\n\nRisus, iaculis nisi ut gravida convallis adipiscing maecenas volutpat. Gravida ac nunc in accum san diam. Venenatis eu gravida ullamcorper eu non sed vitae nec. ",
+    //     format: "This is the format for the competition",
+    //     rules: "There are so many rules for the event. ",
+    //     venue: "SDPK Hall",
+    //     datetime: "1665557616",
+    //     teamSize: 5);
+    // estream.add(event);
+    
     //commented for hard coded data to be passed
-    // var result1;
-    // result1 = await EventsAPI.fetchEventDetailsFromStorage(id);
-    // if (result1 != null) estream.add(result1);
+    var result1;
+    result1 = await EventsAPI.fetchEventDetailsFromStorage(id);
+    print("My id is ");
+    print(id);
+    if (result1 != null) estream.add(result1);
     // // Fetch from net & update
-    // var result2 = await EventsAPI.fetchAndStoreEventDetailsFromNet(id);
-    // if (result2 == "error" && result1 == null) {
-    //   estream.add("error");
-    //   return;
-    // }
-    // if (result2 == "error") return;
-    // print("$id fetched, added to DB & updated in UI");
-    // estream.add(result2);
+    var result2 = await EventsAPI.fetchAndStoreEventDetailsFromNet(id);
+    if (result2 == "error" && result1 == null) {
+      estream.add("error");
+      return;
+    }
+    if (result2 == "error") return;
+    print("$id fetched, added to DB & updated in UI");
+    estream.add(result2);
+    return;
   }
 
   @override

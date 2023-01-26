@@ -90,12 +90,12 @@ class _MoreEventDetailsState extends State<MoreEventDetails> {
     String content;
 
     if (pageNumber == 1)
-      content = widget.eventDetails.about;
+      content = widget.eventDetails.about??"This is event is about an event. Please consult Ashish for more content in dummy data in the backend.";
     else if (pageNumber == 2)
-      content = widget.eventDetails.format;
+      content = widget.eventDetails.format??"Format of the event is like this. Tada !";
     else if (pageNumber == 3)
-      content = widget.eventDetails.rules;
-    else if (pageNumber == 4) content = widget.eventDetails.about;
+      content = widget.eventDetails.rules??"The only rule is that there are no rules.";
+    else if (pageNumber == 4) content = widget.eventDetails.rules??"Please consult Ashish for more content in dummy data in the backend";
 
     return Container(
       decoration: BoxDecoration(color: Colors.white),
