@@ -38,7 +38,8 @@ class EventCard extends StatelessWidget {
                         child: ClipRRect(
                           //Change this to Image.network when image server is up
                           child: Image.asset(
-                            event.icon,
+                            "assets/events/eventLogo.png",
+                            //event.icon,
                             width: 31.5,
                             height: 31.5,
                           ),
@@ -53,7 +54,7 @@ class EventCard extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          event.name,
+                          event.name??"Event",
                           style: TextStyle(
                               color: Color.fromARGB(255, 28, 31, 32),
                               fontWeight: FontWeight.w800,
@@ -66,7 +67,7 @@ class EventCard extends StatelessWidget {
                         SizedBox(
                           width: MediaQuery.of(context).size.width * 0.46,
                           child: Text(
-                            event.desc,
+                            event.desc??"Event Description",
                             style: TextStyle(
                                 color: Color.fromARGB(255, 119, 133, 133),
                                 fontWeight: FontWeight.w500,

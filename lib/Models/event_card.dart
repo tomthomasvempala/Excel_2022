@@ -22,7 +22,7 @@ class Event {
     icon = json['icon'];
     desc = json['desc'];
     category = json['category'];
-    date = json['date'];
+    date = json['datetime'];
     isCompetition = json['isCompetition'];
   }
 
@@ -33,7 +33,7 @@ class Event {
     data['icon'] = this.icon;
     data['eventType'] = this.desc;
     data['category'] = this.category;
-    data['date'] = this.date;
+    data['datetime'] = this.date;
     data['isCompetition'] = this.isCompetition;
     return data;
   }

@@ -1,11 +1,13 @@
 import 'dart:async';
 
 import 'package:excelapp/Models/event_card.dart';
+import 'package:excelapp/Providers/eventsAndCompetitonsProvider.dart';
 import 'package:excelapp/UI/Components/EventCard/event_card.dart';
 import 'package:excelapp/UI/Screens/ExplorePage/Widgets/cardBody.dart';
 import 'package:excelapp/UI/Screens/ExplorePage/Widgets/data.dart';
 import 'package:excelapp/UI/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
 
 class AllCompetitions extends StatefulWidget {
@@ -67,58 +69,12 @@ class _AllCompetitionsState extends State<AllCompetitions> {
 
   @override
   Widget build(BuildContext context) {
+    final _myProvider = Provider.of<EventsAndCompetitionsProvider>(context,listen: false);
     filerbyCategory();
     return (Container(
       child: Column(
         children: [
-          StreamBuilder(
-              stream: estream.stream,
-              builder: (context, snapshot) {
-                if (snapshot.data == "error")
-                  return Container(
-                    color: Color(0xffeeeeee),
-                    margin: EdgeInsets.symmetric(horizontal: 20),
-                    padding: EdgeInsets.symmetric(vertical: 40, horizontal: 20),
-                    child: Center(
-                      child: Column(
-                        children: <Widget>[
-                          Text("Failed to fetch Event"),
-                          SizedBox(height: 20),
-                          ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: primaryColor,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(18.0),
-                              ),
-                            ),
-                            onPressed: () {
-                              fetchfromNet();
-                            },
-                            child: Text(
-                              "Retry",
-                              style: TextStyle(color: Colors.white),
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                  );
-                if (snapshot.hasData)
-                  return CardBody(eventsMap: snapshot.data);
-                else {
-                  return Container(
-                    child: Shimmer.fromColors(
-                      child: Container(
-                        color: Colors.white,
-                        height: MediaQuery.of(context).size.height / 4,
-                        margin: EdgeInsets.symmetric(horizontal: 15),
-                      ),
-                      baseColor: Colors.grey[300],
-                      highlightColor: Colors.grey[100],
-                    ),
-                  );
-                }
-              }),
+           CardBody(eventsMap: _myProvider.dataList)
         ],
       ),
     ));

@@ -11,6 +11,7 @@ import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
 
 import '../../../Models/event_card.dart';
+import '../../../Providers/eventsAndCompetitonsProvider.dart';
 import '../../../Services/API/events_api.dart';
 import '../../constants.dart';
 
@@ -45,11 +46,13 @@ class _ExplorePageState extends State<ExplorePage>
   }
 
   fetchfromNet() async {
-    var dataFromNet = await EventsAPI.fetchAndStoreEventsandCompetitionsFromNet();
+    var dataFromNet =
+        await EventsAPI.fetchAndStoreEventsandCompetitionsFromNet();
     if (!dataLoaded || dataFromNet != "error") {
-    print('Events And Competitions:');
-    print(dataFromNet);
-    estream.add(dataFromNet);}
+      print('Events And Competitions:');
+      print(dataFromNet);
+      estream.add(dataFromNet);
+    }
     // estream.add(competitions);
     dataLoaded = true;
   }
@@ -134,62 +137,65 @@ class _ExplorePageState extends State<ExplorePage>
               ),
               Flexible(
                 child: StreamBuilder<dynamic>(
-                  stream: estream.stream,
-                  builder: (context, snapshot) {
-                    if (snapshot.data == "error")
-                  return Container(
-                    color: Color(0xffeeeeee),
-                    margin: EdgeInsets.symmetric(horizontal: 20),
-                    padding: EdgeInsets.symmetric(vertical: 40, horizontal: 20),
-                    child: Center(
-                      child: Column(
-                        children: <Widget>[
-                          Text("Failed to fetch Event"),
-                          SizedBox(height: 20),
-                          ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: primaryColor,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(18.0),
-                              ),
+                    stream: estream.stream,
+                    builder: (context, snapshot) {
+                      if (snapshot.data == "error")
+                        return Container(
+                          color: Color(0xffeeeeee),
+                          margin: EdgeInsets.symmetric(horizontal: 20),
+                          padding: EdgeInsets.symmetric(
+                              vertical: 40, horizontal: 20),
+                          child: Center(
+                            child: Column(
+                              children: <Widget>[
+                                Text("Failed to fetch Event"),
+                                SizedBox(height: 20),
+                                ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: primaryColor,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(18.0),
+                                    ),
+                                  ),
+                                  onPressed: () {
+                                    fetchfromNet();
+                                  },
+                                  child: Text(
+                                    "Retry",
+                                    style: TextStyle(color: Colors.white),
+                                  ),
+                                )
+                              ],
                             ),
-                            onPressed: () {
-                              fetchfromNet();
-                            },
-                            child: Text(
-                              "Retry",
-                              style: TextStyle(color: Colors.white),
+                          ),
+                        );
+                      if (snapshot.hasData) {
+                        return ChangeNotifierProvider(
+                            create: (context) =>
+                                EventsAndCompetitionsProvider(snapshot.data),
+                            child: TabBarView(
+                                controller: _tabcontroller,
+                                physics: BouncingScrollPhysics(),
+                                children: [
+                                  CompetitionsCardList(),
+                                  EventsCardList(
+                                      selectedTab:
+                                          _myNavIndex.getExplorerCategory)
+                                ]));
+                      } else {
+                        return Container(
+                          child: Shimmer.fromColors(
+                            child: Container(
+                              color: Colors.white,
+                              height: MediaQuery.of(context).size.height / 4,
+                              margin: EdgeInsets.symmetric(horizontal: 15),
                             ),
-                          )
-                        ],
-                      ),
-                    ),
-                  );
-                  if (snapshot.hasData)
-                  return TabBarView(
-                        controller: _tabcontroller,
-                        physics: BouncingScrollPhysics(),
-                        children: [
-                          CompetitionsCardList(),
-                          EventsCardList(
-                              selectedTab: _myNavIndex.getExplorerCategory)
-                        ]);
-                else {
-                  return Container(
-                    child: Shimmer.fromColors(
-                      child: Container(
-                        color: Colors.white,
-                        height: MediaQuery.of(context).size.height / 4,
-                        margin: EdgeInsets.symmetric(horizontal: 15),
-                      ),
-                      baseColor: Colors.grey[300],
-                      highlightColor: Colors.grey[100],
-                    ),
-                  );
-                }
-                    
-                  }
-                ),
+                            baseColor: Colors.grey[300],
+                            highlightColor: Colors.grey[100],
+                          ),
+                        );
+                      }
+                    }),
               ),
             ],
           ),
