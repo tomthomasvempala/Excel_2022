@@ -39,15 +39,13 @@ class _ProfilePageState extends State<ProfilePage>
       name: "Issue!",
       desc: "Lorem ipsum dolor sit amet, conse ctetur adi piscing elit.",
       date: "Nov 03",
-      icon:
-          'https://lh3.googleusercontent.com/u/0/drive-viewer/AFDK6gP3FNEz9-xW8xi_kZbWIUttbFoQqfnPk3eO74LqnnSWiauhn13FG4lZisLh09HKgAG6GsvqimyRU2eVapzdthT0PJHlEQ=w1920-h892',
+      icon: 'assets/icons/even_sample.png',
     ),
     Event(
       name: "Issue!",
       desc: "Lorem ipsum dolor sit amet, conse ctetur adi piscing elit.",
       date: "Nov 03",
-      icon:
-          'https://lh3.googleusercontent.com/u/0/drive-viewer/AFDK6gP3FNEz9-xW8xi_kZbWIUttbFoQqfnPk3eO74LqnnSWiauhn13FG4lZisLh09HKgAG6GsvqimyRU2eVapzdthT0PJHlEQ=w1920-h892',
+      icon: 'assets/icons/even_sample.png',
     )
   ];
   List favoriteEvents = [
@@ -55,15 +53,13 @@ class _ProfilePageState extends State<ProfilePage>
       name: "Issue!",
       desc: "Lorem ipsum dolor sit amet, conse ctetur adi piscing elit.",
       date: "Nov 03",
-      icon:
-          'https://lh3.googleusercontent.com/u/0/drive-viewer/AFDK6gP3FNEz9-xW8xi_kZbWIUttbFoQqfnPk3eO74LqnnSWiauhn13FG4lZisLh09HKgAG6GsvqimyRU2eVapzdthT0PJHlEQ=w1920-h892',
+      icon: 'assets/icons/even_sample.png',
     ),
     Event(
       name: "Issue!",
       desc: "Lorem ipsum dolor sit amet, conse ctetur adi piscing elit.",
       date: "Nov 03",
-      icon:
-          'https://lh3.googleusercontent.com/u/0/drive-viewer/AFDK6gP3FNEz9-xW8xi_kZbWIUttbFoQqfnPk3eO74LqnnSWiauhn13FG4lZisLh09HKgAG6GsvqimyRU2eVapzdthT0PJHlEQ=w1920-h892',
+      icon: 'assets/icons/even_sample.png',
     )
   ];
 
@@ -72,15 +68,13 @@ class _ProfilePageState extends State<ProfilePage>
       name: "Issue!",
       desc: "Lorem ipsum dolor sit amet, conse ctetur adi piscing elit.",
       date: "Nov 03",
-      icon:
-          'https://lh3.googleusercontent.com/u/0/drive-viewer/AFDK6gP3FNEz9-xW8xi_kZbWIUttbFoQqfnPk3eO74LqnnSWiauhn13FG4lZisLh09HKgAG6GsvqimyRU2eVapzdthT0PJHlEQ=w1920-h892',
+      icon: 'assets/icons/even_sample.png',
     ),
     Event(
       name: "Issue!",
       desc: "Lorem ipsum dolor sit amet, conse ctetur adi piscing elit.",
       date: "Nov 03",
-      icon:
-          'https://lh3.googleusercontent.com/u/0/drive-viewer/AFDK6gP3FNEz9-xW8xi_kZbWIUttbFoQqfnPk3eO74LqnnSWiauhn13FG4lZisLh09HKgAG6GsvqimyRU2eVapzdthT0PJHlEQ=w1920-h892',
+      icon: 'assets/icons/even_sample.png',
     )
   ];
 
@@ -306,6 +300,7 @@ class _ProfilePageState extends State<ProfilePage>
     return ListView.builder(
         physics: BouncingScrollPhysics(),
         shrinkWrap: true,
+        itemCount: favoriteEvents.length,
         itemBuilder: (_, index) {
           return EventCard(favoriteEvents[index]);
         });
@@ -315,6 +310,8 @@ class _ProfilePageState extends State<ProfilePage>
     return ListView.builder(
         physics: BouncingScrollPhysics(),
         shrinkWrap: true,
+        
+        itemCount: savedNews.length,
         itemBuilder: (_, index) {
           return EventCard(savedNews[index]);
         });

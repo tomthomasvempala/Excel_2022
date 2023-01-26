@@ -36,7 +36,8 @@ class EventCard extends StatelessWidget {
                       child: Padding(
                         padding: EdgeInsets.all(12.25),
                         child: ClipRRect(
-                          child: Image.network(
+                          //Change this to Image.network when image server is up
+                          child: Image.asset(
                             event.icon,
                             width: 31.5,
                             height: 31.5,
