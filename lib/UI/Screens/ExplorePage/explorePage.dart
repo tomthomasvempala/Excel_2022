@@ -8,9 +8,11 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:provider/provider.dart';
+import 'package:shimmer/shimmer.dart';
 
 import '../../../Models/event_card.dart';
 import '../../../Services/API/events_api.dart';
+import '../../constants.dart';
 
 class ExplorePage extends StatefulWidget {
   @override
@@ -30,6 +32,7 @@ class _ExplorePageState extends State<ExplorePage>
   List<Event> competitionsAndEvents;
   @override
   void initState() {
+    estream = StreamController<dynamic>();
     super.initState();
     print("Explore object is created with ${widget.selectedCategory}");
     fetchfromNet();
@@ -130,14 +133,63 @@ class _ExplorePageState extends State<ExplorePage>
                 ),
               ),
               Flexible(
-                child: TabBarView(
-                    controller: _tabcontroller,
-                    physics: BouncingScrollPhysics(),
-                    children: [
-                      CompetitionsCardList(),
-                      EventsCardList(
-                          selectedTab: _myNavIndex.getExplorerCategory)
-                    ]),
+                child: StreamBuilder<dynamic>(
+                  stream: estream.stream,
+                  builder: (context, snapshot) {
+                    if (snapshot.data == "error")
+                  return Container(
+                    color: Color(0xffeeeeee),
+                    margin: EdgeInsets.symmetric(horizontal: 20),
+                    padding: EdgeInsets.symmetric(vertical: 40, horizontal: 20),
+                    child: Center(
+                      child: Column(
+                        children: <Widget>[
+                          Text("Failed to fetch Event"),
+                          SizedBox(height: 20),
+                          ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: primaryColor,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(18.0),
+                              ),
+                            ),
+                            onPressed: () {
+                              fetchfromNet();
+                            },
+                            child: Text(
+                              "Retry",
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  );
+                  if (snapshot.hasData)
+                  return TabBarView(
+                        controller: _tabcontroller,
+                        physics: BouncingScrollPhysics(),
+                        children: [
+                          CompetitionsCardList(),
+                          EventsCardList(
+                              selectedTab: _myNavIndex.getExplorerCategory)
+                        ]);
+                else {
+                  return Container(
+                    child: Shimmer.fromColors(
+                      child: Container(
+                        color: Colors.white,
+                        height: MediaQuery.of(context).size.height / 4,
+                        margin: EdgeInsets.symmetric(horizontal: 15),
+                      ),
+                      baseColor: Colors.grey[300],
+                      highlightColor: Colors.grey[100],
+                    ),
+                  );
+                }
+                    
+                  }
+                ),
               ),
             ],
           ),

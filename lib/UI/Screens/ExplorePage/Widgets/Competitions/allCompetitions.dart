@@ -103,7 +103,6 @@ class _AllCompetitionsState extends State<AllCompetitions> {
                       ),
                     ),
                   );
-                print(snapshot.data);
                 if (snapshot.hasData)
                   return CardBody(eventsMap: snapshot.data);
                 else {
