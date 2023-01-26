@@ -7,6 +7,8 @@ import 'package:excelapp/Services/Database/hive_operations.dart';
 import 'package:http/http.dart' as http;
 
 class EventsAPI {
+
+
   static fetchEventListFromStorage(String endpoint) async {
     print("- Event list $endpoint Storage fetch");
     var eventListData =
@@ -23,6 +25,21 @@ class EventsAPI {
       List responseData = json.decode(response.body);
       await HiveDB.storeData(
           valueName: "eventlist-$endpoint", value: responseData);
+      return responseData.map<Event>((event) => Event.fromJson(event)).toList();
+    } catch (e) {
+      print("Error $e");
+      return ("error");
+    }
+  }
+
+   static fetchAndStoreEventsandCompetitionsFromNet() async {
+    print("- Event and Compe list network fetch");
+    try {
+      var response =
+          await http.get(Uri.parse(APIConfig.baseUrl + 'events'));
+      List responseData = json.decode(response.body);
+      await HiveDB.storeData(
+          valueName: "eventAndCompelist", value: responseData);
       return responseData.map<Event>((event) => Event.fromJson(event)).toList();
     } catch (e) {
       print("Error $e");

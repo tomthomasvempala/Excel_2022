@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:excelapp/UI/Components/Navigation/provider.dart';
 import 'package:excelapp/UI/Screens/ExplorePage/Widgets/Competitions/competitionsCardList.dart';
 import 'package:excelapp/UI/Screens/ExplorePage/Widgets/Events/eventsCardList.dart';
@@ -6,6 +8,9 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:provider/provider.dart';
+
+import '../../../Models/event_card.dart';
+import '../../../Services/API/events_api.dart';
 
 class ExplorePage extends StatefulWidget {
   @override
@@ -20,22 +25,36 @@ class _ExplorePageState extends State<ExplorePage>
     with SingleTickerProviderStateMixin {
   TabController _tabcontroller;
   TextEditingController txtQuery = new TextEditingController();
+  StreamController<dynamic> estream;
+  bool dataLoaded = false;
+  List<Event> competitionsAndEvents;
   @override
   void initState() {
     super.initState();
-    print("Explore object is created with ${widget.selectedCategory}" );
+    print("Explore object is created with ${widget.selectedCategory}");
+    fetchfromNet();
     _tabcontroller = TabController(
         length: 2, vsync: this, initialIndex: widget.selectedPage ?? 0);
   }
 
-  void didChangeDependencies(){
+  void didChangeDependencies() {
     super.didChangeDependencies();
+  }
+
+  fetchfromNet() async {
+    var dataFromNet = await EventsAPI.fetchAndStoreEventsandCompetitionsFromNet();
+    if (!dataLoaded || dataFromNet != "error") {
+    print('Events And Competitions:');
+    print(dataFromNet);
+    estream.add(dataFromNet);}
+    // estream.add(competitions);
+    dataLoaded = true;
   }
 
   @override
   Widget build(BuildContext context) {
     final _myNavIndex = Provider.of<MyNavigationIndex>(context);
-    _tabcontroller.index= _myNavIndex.getExplorePageNumber;
+    _tabcontroller.index = _myNavIndex.getExplorePageNumber;
     return Scaffold(
       backgroundColor: Color.fromRGBO(237, 245, 246, 1),
       body: Padding(
