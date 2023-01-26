@@ -4,7 +4,7 @@ import 'package:excelapp/Models/event_card.dart';
 import 'package:excelapp/Providers/eventsAndCompetitonsProvider.dart';
 import 'package:excelapp/UI/Components/EventCard/event_card.dart';
 import 'package:excelapp/UI/Screens/ExplorePage/Widgets/cardBody.dart';
-import 'package:excelapp/UI/Screens/ExplorePage/Widgets/data.dart';
+// import 'package:excelapp/UI/Screens/ExplorePage/Widgets/data.dart';
 import 'package:excelapp/UI/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -21,6 +21,7 @@ class _AllCompetitionsState extends State<AllCompetitions> {
   StreamController<dynamic> estream;
   bool dataLoaded = false;
   List<Event> competitions;
+  List<Event> CompetitionsData;
   filerbyCategory() {
     if (widget.category == 'all') {
       competitions =
@@ -28,26 +29,25 @@ class _AllCompetitionsState extends State<AllCompetitions> {
     }
     if (widget.category == 'cs-tech') {
       competitions =
-          CompetitionsData.where((i) => i.category == "CS-Tech").toList();
+          CompetitionsData.where((i) => i.category == "cs_tech").toList();
     }
     if (widget.category == 'gen-tech') {
       competitions =
-          CompetitionsData.where((i) => i.category == "Gen-Tech").toList();
+          CompetitionsData.where((i) => i.category == "general_tech").toList();
     }
     if (widget.category == 'non-tech') {
       competitions =
-          CompetitionsData.where((i) => i.category == "Non-Tech").toList();
+          CompetitionsData.where((i) => i.category == "non_tech").toList();
     }
-    estream.add(competitions);
   }
 
-  fetchfromNet() async {
-    // var dataFromNet = await fetchAndStoreEventsFromNet();
-    // if (!dataLoaded || dataFromNet != "error") {
-    //estream.add(dataFromNet);
-    estream.add(competitions);
-    dataLoaded = true;
-  }
+  // fetchfromNet() async {
+  //   // var dataFromNet = await fetchAndStoreEventsFromNet();
+  //   // if (!dataLoaded || dataFromNet != "error") {
+  //   //estream.add(dataFromNet);
+
+  //   dataLoaded = true;
+  // }
   // }
 
   // initialisePage() async {
@@ -63,19 +63,19 @@ class _AllCompetitionsState extends State<AllCompetitions> {
   void initState() {
     estream = StreamController<dynamic>();
     // initialisePage();
-    fetchfromNet();
+    final _myProvider =
+        Provider.of<EventsAndCompetitionsProvider>(context, listen: false);
+    CompetitionsData = _myProvider.dataList.where((element) => element.isCompetition).toList();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    final _myProvider = Provider.of<EventsAndCompetitionsProvider>(context,listen: false);
     filerbyCategory();
+
     return (Container(
       child: Column(
-        children: [
-           CardBody(eventsMap: _myProvider.dataList)
-        ],
+        children: [CardBody(eventsMap: competitions)],
       ),
     ));
   }

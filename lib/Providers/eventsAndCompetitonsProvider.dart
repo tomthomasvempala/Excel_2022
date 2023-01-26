@@ -6,7 +6,7 @@ class EventsAndCompetitionsProvider with ChangeNotifier{
 
   List<Event> _dataList;
 
-  get dataList => _dataList;
+  List<Event> get dataList => _dataList;
 
   EventsAndCompetitionsProvider(List<Event> data){
     _dataList=data;
@@ -16,4 +16,5 @@ class EventsAndCompetitionsProvider with ChangeNotifier{
     _dataList = data;
     notifyListeners();
   }
+
 }

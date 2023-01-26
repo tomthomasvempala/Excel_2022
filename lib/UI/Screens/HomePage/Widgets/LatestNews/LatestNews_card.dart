@@ -22,9 +22,9 @@ class LastestNewsCard extends StatelessWidget {
                       Stack(
                     alignment: Alignment.topRight,
                     children: [
-                      Image(
-                        image: NetworkImage(news.image),
-                      ),
+                      // Image(
+                      //   image: NetworkImage(news.image),
+                      // ),
                       //commented due to some tag error
                       //
                       //
