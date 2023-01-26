@@ -9,7 +9,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 
-import '../../../../Components/Navigation/provider.dart';
+import '../../../../../Providers/navigationProvider.dart';
 import '../../../../constants.dart';
 
 class Discover extends StatelessWidget {

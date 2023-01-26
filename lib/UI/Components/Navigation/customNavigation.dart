@@ -1,4 +1,4 @@
-import 'package:excelapp/UI/Components/Navigation/provider.dart';
+import 'package:excelapp/Providers/navigationProvider.dart';
 import 'package:excelapp/UI/Screens/ExplorePage/explorePage.dart';
 import 'package:excelapp/UI/Screens/HomePage/Widgets/aboutExcel.dart';
 import 'package:excelapp/UI/Screens/HomePage/homePage.dart';

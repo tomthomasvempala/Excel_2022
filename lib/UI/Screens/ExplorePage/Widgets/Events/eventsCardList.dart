@@ -1,4 +1,4 @@
-import 'package:excelapp/UI/Components/Navigation/provider.dart';
+import 'package:excelapp/Providers/navigationProvider.dart';
 import 'package:excelapp/UI/Screens/ExplorePage/Widgets/Components/tabs.dart';
 import 'package:excelapp/UI/Screens/ExplorePage/Widgets/Events/allEvents.dart';
 import 'package:flutter/material.dart';

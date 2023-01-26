@@ -1,4 +1,4 @@
-import 'package:excelapp/UI/Components/Navigation/provider.dart';
+import 'package:excelapp/Providers/navigationProvider.dart';
 import 'package:excelapp/UI/Screens/LandingPage/landingPage.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
