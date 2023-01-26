@@ -1,10 +1,8 @@
-import 'dart:async';
 import 'package:excelapp/Models/event_card.dart';
 import 'package:excelapp/UI/Screens/ExplorePage/Widgets/cardBody.dart';
-import 'package:excelapp/UI/Screens/ExplorePage/Widgets/data.dart';
-import 'package:excelapp/UI/constants.dart';
 import 'package:flutter/material.dart';
-import 'package:shimmer/shimmer.dart';
+import 'package:provider/provider.dart';
+import '../../../../../Providers/eventsAndCompetitonsProvider.dart';
 
 class AllEvents extends StatefulWidget {
   @override
@@ -14,31 +12,29 @@ class AllEvents extends StatefulWidget {
 }
 
 class _AllEventsState extends State<AllEvents> {
-  StreamController<dynamic> estream;
   bool dataLoaded = false;
   List<Event> events;
+  List<Event> EventsData;
   filerbyCategory() {
     if (widget.category == 'all') {
-      events = CompetitionsData.where((i) => i.isCompetition == false).toList();
+      events = EventsData.where((i) => i.isCompetition == false).toList();
     }
     if (widget.category == 'workshops') {
       events =
-          CompetitionsData.where((i) => i.category == "Workshops").toList();
+          EventsData.where((i) => i.eventType == "workshop").toList();
     }
     if (widget.category == 'talks') {
-      events = CompetitionsData.where((i) => i.category == "Talks").toList();
+      events = EventsData.where((i) => i.category == "talks").toList();
     }
     if (widget.category == 'general') {
-      events = CompetitionsData.where((i) => i.category == "General").toList();
+      events = EventsData.where((i) => i.category == "general").toList();
     }
-    estream.add(events);
   }
 
   fetchfromNet() async {
     // var dataFromNet = await fetchAndStoreEventsFromNet();
     // if (!dataLoaded || dataFromNet != "error") {
     //estream.add(dataFromNet);
-    estream.add(events);
     dataLoaded = true;
   }
 
@@ -55,9 +51,9 @@ class _AllEventsState extends State<AllEvents> {
 
   @override
   void initState() {
-    estream = StreamController<dynamic>();
-    // initialisePage();
-    fetchfromNet();
+       final _myProvider =
+        Provider.of<EventsAndCompetitionsProvider>(context, listen: false);
+    EventsData = _myProvider.dataList.where((element) => !element.isCompetition).toList();
     super.initState();
   }
 
@@ -66,56 +62,7 @@ class _AllEventsState extends State<AllEvents> {
     filerbyCategory();
     return (Container(
       child: Column(
-        children: [
-          StreamBuilder(
-              stream: estream.stream,
-              builder: (context, snapshot) {
-                if (snapshot.data == "error")
-                  return Container(
-                    color: Color(0xffeeeeee),
-                    margin: EdgeInsets.symmetric(horizontal: 20),
-                    padding: EdgeInsets.symmetric(vertical: 40, horizontal: 20),
-                    child: Center(
-                      child: Column(
-                        children: <Widget>[
-                          Text("Failed to fetch Event"),
-                          SizedBox(height: 20),
-                          ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: primaryColor,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(18.0),
-                              ),
-                            ),
-                            onPressed: () {
-                              fetchfromNet();
-                            },
-                            child: Text(
-                              "Retry",
-                              style: TextStyle(color: Colors.white),
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                  );
-                print(snapshot.data);
-                if (snapshot.hasData)
-                  return CardBody(eventsMap: snapshot.data);
-                else {
-                  return Container(
-                    child: Shimmer.fromColors(
-                      child: Container(
-                        color: Colors.white,
-                        height: MediaQuery.of(context).size.height / 4,
-                        margin: EdgeInsets.symmetric(horizontal: 15),
-                      ),
-                      baseColor: Colors.grey[300],
-                      highlightColor: Colors.grey[100],
-                    ),
-                  );
-                }
-              }),
+        children: [CardBody(eventsMap: events)
         ],
       ),
     ));

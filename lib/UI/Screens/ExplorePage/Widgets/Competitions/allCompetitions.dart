@@ -2,13 +2,9 @@ import 'dart:async';
 
 import 'package:excelapp/Models/event_card.dart';
 import 'package:excelapp/Providers/eventsAndCompetitonsProvider.dart';
-import 'package:excelapp/UI/Components/EventCard/event_card.dart';
 import 'package:excelapp/UI/Screens/ExplorePage/Widgets/cardBody.dart';
-// import 'package:excelapp/UI/Screens/ExplorePage/Widgets/data.dart';
-import 'package:excelapp/UI/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shimmer/shimmer.dart';
 
 class AllCompetitions extends StatefulWidget {
   @override
@@ -41,28 +37,8 @@ class _AllCompetitionsState extends State<AllCompetitions> {
     }
   }
 
-  // fetchfromNet() async {
-  //   // var dataFromNet = await fetchAndStoreEventsFromNet();
-  //   // if (!dataLoaded || dataFromNet != "error") {
-  //   //estream.add(dataFromNet);
-
-  //   dataLoaded = true;
-  // }
-  // }
-
-  // initialisePage() async {
-  //   var datafromStorage = await fetchHighlightsFromStorage();
-  //   if (datafromStorage != null) {
-  //     estream.add(datafromStorage);
-  //     dataLoaded = true;
-  //   }
-  //   await fetchfromNet();
-  // }
-
   @override
   void initState() {
-    estream = StreamController<dynamic>();
-    // initialisePage();
     final _myProvider =
         Provider.of<EventsAndCompetitionsProvider>(context, listen: false);
     CompetitionsData = _myProvider.dataList.where((element) => element.isCompetition).toList();
