@@ -31,24 +31,6 @@ class _AllEventsState extends State<AllEvents> {
     }
   }
 
-  fetchfromNet() async {
-    // var dataFromNet = await fetchAndStoreEventsFromNet();
-    // if (!dataLoaded || dataFromNet != "error") {
-    //estream.add(dataFromNet);
-    dataLoaded = true;
-  }
-
-  // }
-
-  // initialisePage() async {
-  //   var datafromStorage = await fetchHighlightsFromStorage();
-  //   if (datafromStorage != null) {
-  //     estream.add(datafromStorage);
-  //     dataLoaded = true;
-  //   }
-  //   await fetchfromNet();
-  // }
-
   @override
   void initState() {
        final _myProvider =

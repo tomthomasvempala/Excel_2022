@@ -14,7 +14,6 @@ class AllCompetitions extends StatefulWidget {
 }
 
 class _AllCompetitionsState extends State<AllCompetitions> {
-  StreamController<dynamic> estream;
   bool dataLoaded = false;
   List<Event> competitions;
   List<Event> CompetitionsData;
