@@ -11,11 +11,15 @@ class AuthService {
     String accessToken;
     // Get access token from Google
     try {
-      GoogleSignIn googleSignIn = GoogleSignIn(scopes: ['email']);
+      GoogleSignIn googleSignIn = GoogleSignIn(
+          scopes: ['email'], serverClientId: AccountConfig.newClientId);
       await googleSignIn.signOut();
       GoogleSignInAccount accountInfo = await googleSignIn.signIn();
-      GoogleSignInAuthentication googleKeys = await accountInfo.authentication;
-      accessToken = googleKeys.accessToken;
+      if (accountInfo != null) {
+        GoogleSignInAuthentication googleKeys =
+            await accountInfo.authentication;
+        accessToken = googleKeys.accessToken;
+      }
     } catch (err) {
       print("Error: $err");
     }
@@ -26,15 +30,14 @@ class AuthService {
 
     // Send access token to backend -- Recieve jwt
     try {
-      print(AccountConfig.url + 'auth/login/');
+      print(AccountConfig.newUrl + 'Auth/login/');
       Map<String, String> token = {"accessToken": accessToken};
-      var response = await http.post(Uri.parse(
-        AccountConfig.url + 'auth/login/'),
+      print(json.encode(token));
+      var response = await http.post(
+        Uri.parse(AccountConfig.newUrl + 'Auth/login/'),
         headers: {"Content-Type": "application/json"},
         body: json.encode(token),
       );
-      print(json.encode(token));
-      print(response.statusCode);
       print(response.body);
       final Map<String, dynamic> responseData = json.decode(response.body);
       // Store JWT token locally
@@ -44,12 +47,12 @@ class AuthService {
       print("\nRefresh Token : $refreshToken");
       prefs.setString('jwt', jwt);
       prefs.setString('refreshToken', refreshToken);
-
-      // User has logged in
       prefs.setBool('isLogged', true);
     } catch (e) {
+      print('In catch');
       print("Error: $e");
     }
+    print("Returning success");
     return 'success';
   }
 

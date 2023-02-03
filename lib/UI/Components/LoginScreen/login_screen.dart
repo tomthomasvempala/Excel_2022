@@ -38,7 +38,8 @@ class _LoginScreenState extends State<LoginScreen> {
       // Fetch User details and Update local database - User table
       await AccountServices.fetchUserDetails();
       // Refresh fvourites
-      FavouritesStatus.instance.favouritesStatus = 3;
+      print("In if after success");
+      // FavouritesStatus.instance.favouritesStatus = 3;
       Navigator.of(context, rootNavigator: true).pop();
     } else {
       print("Authentication went wrong");

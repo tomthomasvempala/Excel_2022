@@ -18,9 +18,9 @@ import '../../Components/EventCard/event_card.dart';
 import '../../../Models/event_card.dart';
 
 class ProfilePage extends StatefulWidget {
-  // final User user;
-  //  final bool isProfileUpdated;
-  //  ProfilePage(this.user, this.isProfileUpdated);
+  final User user;
+   final bool isProfileUpdated;
+   ProfilePage(this.user, this.isProfileUpdated);
   @override
   _ProfilePageState createState() => _ProfilePageState();
 }
@@ -81,10 +81,10 @@ class _ProfilePageState extends State<ProfilePage>
   void initState() {
     super.initState();
     tabController = TabController(length: 3, vsync: this);
-    //   _user = widget.user;
-    //   _isProfileUpdated = widget.isProfileUpdated;
-    //   authService = AuthService();
-    //   RegistrationAPI.fetchRegisteredEvents();
+      _user = widget.user;
+      _isProfileUpdated = widget.isProfileUpdated;
+      authService = AuthService();
+      // RegistrationAPI.fetchRegisteredEvents();
   }
 
   logoutUser() async {
@@ -124,6 +124,7 @@ class _ProfilePageState extends State<ProfilePage>
               onPressed: () {
                 // Logout
                 logoutUser();
+                print("Logout pressed");
                 Navigator.pop(context);
               },
             ),
@@ -182,7 +183,9 @@ class _ProfilePageState extends State<ProfilePage>
                             size: 25,
                             color: Color(0xffFD7B69),
                           ),
-                          onPressed: () {},
+                          onPressed: () {
+                            logOutConfirmation();
+                          },
                         ),
                       ],
                     ),
@@ -310,7 +313,6 @@ class _ProfilePageState extends State<ProfilePage>
     return ListView.builder(
         physics: BouncingScrollPhysics(),
         shrinkWrap: true,
-        
         itemCount: savedNews.length,
         itemBuilder: (_, index) {
           return EventCard(savedNews[index]);
