@@ -24,14 +24,13 @@ class EventDetails {
   String eventStatus;
   int numberOfRounds;
   int currentRound;
-  int needRegistration;
+  bool needRegistration;
   int registrationOpen;
   String registrationEndDate;
   String button;
   String registrationLink;
   String rounds;
   String registration;
-
   EventDetails({
     this.id,
     this.name,
@@ -65,6 +64,7 @@ class EventDetails {
     this.registrationLink,
     this.rounds,
     this.registration,
+
   });
 
   EventDetails.fromJson(data) {
@@ -88,19 +88,12 @@ class EventDetails {
     eventHead2Id = data['eventHead2Id'];
     eventHead2 = data['eventHead2'];
     isTeam = (data['isTeam'] == true || data['isTeam'] == 1) ? 1 : 0;
-    teamSize = data['teamSize'];
+    teamSize = data['teamSize']??1;
     eventStatusId = data['eventStatusId'];
     eventStatus = data['eventStatus'];
     numberOfRounds = data['numberOfRounds'];
     currentRound = data['currentRound'];
-    needRegistration =
-        (data['needRegistration'] == true || data['needRegistration'] == 1)
-            ? 1
-            : 0;
-    needRegistration =
-        (data['needRegistration'] == true || data['needRegistration'] == 1)
-            ? 1
-            : 0;
+    needRegistration = data['needRegistration'];
     registrationOpen =
         (data['registrationOpen'] == true || data['registrationOpen'] == 1)
             ? 1
