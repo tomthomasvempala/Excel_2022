@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:excelapp/Accounts/account_services.dart';
 import 'package:excelapp/Models/user_model.dart';
 import 'package:excelapp/UI/Components/AlertDialog/alertDialog.dart';
@@ -11,8 +13,8 @@ import 'package:flutter/services.dart';
 // import 'package:searchable_dropdown/searchable_dropdown.dart';
 
 class UpdateProfile extends StatefulWidget {
-  //final User user;
-  //UpdateProfile(this.user);
+  final User user;
+  UpdateProfile(this.user);
 
   @override
   _UpdateProfileState createState() => _UpdateProfileState();
@@ -23,11 +25,10 @@ class _UpdateProfileState extends State<UpdateProfile> {
 
   // Form Fields
   final _formKey = GlobalKey<FormState>();
-
-  // int _id;
-  String _firstName;
-  String _lastName;
-  String _mobile;
+//int _id;
+  String _name;
+  String _picture;
+  String _mobileNumber;
   int _categoryId;
   int _institutionId;
   String _institutionName;
@@ -46,29 +47,31 @@ class _UpdateProfileState extends State<UpdateProfile> {
   @override
   void initState() {
     super.initState();
-    //initialiseUserDetails(widget.user);
-    initialiseUserDetails();
+    initialiseUserDetails(widget.user);
+    //initialiseUserDetails();
   }
 
   // Initialize form fields
-  initialiseUserDetails() async {
-    // _id = user.id;
-    _firstName = "Tom"; //user.name;
-    _lastName = "Thomas Vempala";
-    _mobile = "9876533210"; //user.mobileNumber;
-    // _category = user.category != "Not Registered" ? user.category : "college";
-    _institutionId = 916; //user.institutionId;
-    _institutionName = "Govt Model "; //user.institutionName;
-    _gender = "Male"; //user.gender;
-    _emailId = "vempala@gmail.com";
-    _categoryId = 1; //user.categoryId;
-    // if (_categoryId == 1 || _categoryId == 0) {
-    //   await getInstitutions(loading: false);
-    //   _institutionName = await getInstitutionName(_institutionId);
-    //   setState(() {
-    //     _institutionName = _institutionName;
-    //   });
-    // }
+  initialiseUserDetails(
+    User user,
+  ) async {
+    //_id = user.id;
+    _name = user.name;
+    _mobileNumber = user.mobileNumber;
+    _picture = user.picture;
+    //_category = user.category != "Not Registered" ? user.category : "college";
+    _institutionId = user.institutionId;
+    _institutionName = user.institutionName;
+    _gender = user.gender;
+    _emailId = user.email;
+    _categoryId = user.categoryId;
+    if (_categoryId == 1 || _categoryId == 0) {
+      await getInstitutions(loading: false);
+      _institutionName = await getInstitutionName(_institutionId);
+      setState(() {
+        _institutionName = _institutionName;
+      });
+    }
   }
 
   // Fetch institutions based on category
@@ -76,9 +79,9 @@ class _UpdateProfileState extends State<UpdateProfile> {
     await Future.delayed(Duration(microseconds: 1));
     String category;
     if (_categoryId == 0)
-      category = "College";
+      category = "college";
     else if (_categoryId == 1)
-      category = "School";
+      category = "school";
     else
       category = "Other";
     final loadingDialog = alertBox("Fetching Institutions");
@@ -122,41 +125,41 @@ class _UpdateProfileState extends State<UpdateProfile> {
       return "Gender not selected";
     }
 
-    // get institutionId only if category is school or college & not in list
-    if (_categoryId != 2 && _institutionName != notInListOptionName) {
-      _institutionId = await getInstitutionId(_institutionName);
-    }
-    // Set institution if to 0 if its custom entered
-    if (_institutionName == notInListOptionName) {
-      _institutionId = 0;
-    }
-    if (_institutionId == null && _categoryId != 2) {
-      Navigator.of(context, rootNavigator: true).pop();
-      return "One or more fields are invalid!";
-    }
-    if (_categoryId != 2 && _institutionName == null) {
-      Navigator.of(context, rootNavigator: true).pop();
-      return "Select institution";
-    }
-    if (_customInstitutionName == notInListOptionName) {
-      Navigator.of(context, rootNavigator: true).pop();
-      return "Enter institution name";
-    }
-    if (_institutionName == null && _categoryId != 2) {
-      Navigator.of(context, rootNavigator: true).pop();
-      return "Choose institution name";
-    }
+    // // get institutionId only if category is school or college & not in list
+    // if (_categoryId != 2 && _institutionName != notInListOptionName) {
+    //   _institutionId = await getInstitutionId(_institutionName);
+    // }
+    // // Set institution if to 0 if its custom entered
+    // if (_institutionName == notInListOptionName) {
+    //   _institutionId = 0;
+    // }
+    // if (_institutionId == null && _categoryId != 2) {
+    //   Navigator.of(context, rootNavigator: true).pop();
+    //   return "One or more fields are invalid!";
+    // }
+    // if (_categoryId != 2 && _institutionName == null) {
+    //   Navigator.of(context, rootNavigator: true).pop();
+    //   return "Select institution";
+    // }
+    // if (_customInstitutionName == notInListOptionName) {
+    //   Navigator.of(context, rootNavigator: true).pop();
+    //   return "Enter institution name";
+    // }
+    // if (_institutionName == null && _categoryId != 2) {
+    //   Navigator.of(context, rootNavigator: true).pop();
+    //   return "Choose institution name";
+    // }
 
-    String finalInstitutionName = (_institutionName == notInListOptionName)
-        ? _customInstitutionName
-        : _institutionName;
+    // String finalInstitutionName = (_institutionName == notInListOptionName)
+    //     ? _customInstitutionName
+    //     : _institutionName;
     Map<String, dynamic> userInfo = {
-      "name": _firstName,
+      "name": _name,
       "institutionId": _institutionId,
-      "institutionName": finalInstitutionName,
+      "institutionName": _institutionName,
       "gender": _gender,
-      "mobileNumber": _mobile,
-      "categoryId": _categoryId.toString()
+      "mobileNumber": _mobileNumber.toString(),
+      // "categoryId": _categoryId.toString()
     };
     print(userInfo);
     var res = await AccountServices.updateProfile(userInfo);
@@ -245,7 +248,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
                             backgroundColor: Colors.white38,
                             child: CircleAvatar(
                               radius: 53,
-                              backgroundImage: AssetImage("assets/Tom ser.jpg"),
+                              backgroundImage: NetworkImage(_picture),
                             ),
                           ),
                         ),
@@ -281,16 +284,21 @@ class _UpdateProfileState extends State<UpdateProfile> {
                   SizedBox(height: 30),
                   // Name
                   TextFormField(
-                    initialValue: _firstName,
+                    initialValue: _name,
                     style: TextStyle(fontFamily: pfontFamily, fontSize: 15),
                     onSaved: (String value) {
                       setState(() {
-                        _firstName = value.trim();
+                        _name = value.trim();
+                      });
+                    },
+                    onChanged: (String value) {
+                      setState(() {
+                        _name = value.trim();
                       });
                     },
                     validator: (value) {
                       if (value.isEmpty) {
-                        return "Please enter your name";
+                        return "Please enter your Name";
                       }
                       return null;
                     },
@@ -303,47 +311,47 @@ class _UpdateProfileState extends State<UpdateProfile> {
                         borderSide: BorderSide(color: secondaryColor),
                         borderRadius: BorderRadius.circular(20),
                       ),
-                      labelText: "First Name",
+                      labelText: "Name",
                       icon: Icon(Icons.person),
                       contentPadding: EdgeInsets.all(16),
                     ),
                   ),
                   SizedBox(height: 20),
                   //second name
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(40, 0, 0, 0),
-                    child: TextFormField(
-                      initialValue: _lastName,
-                      style: TextStyle(fontFamily: pfontFamily, fontSize: 15),
-                      onSaved: (String value) {
-                        setState(() {
-                          _lastName = value.trim();
-                        });
-                      },
-                      validator: (value) {
-                        if (value.isEmpty) {
-                          return "Please enter your name";
-                        }
-                        return null;
-                      },
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide(color: primaryColor),
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: secondaryColor),
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        labelText: "Last Name",
-                        //icon: Icon(Icons.person),
-                        contentPadding: EdgeInsets.all(16),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 30,
-                  ),
+                  // Padding(
+                  //   padding: const EdgeInsets.fromLTRB(40, 0, 0, 0),
+                  //   child: TextFormField(
+                  //     initialValue: _lastName,
+                  //     style: TextStyle(fontFamily: pfontFamily, fontSize: 15),
+                  //     onSaved: (String value) {
+                  //       setState(() {
+                  //         _lastName = value.trim();
+                  //       });
+                  //     },
+                  //     validator: (value) {
+                  //       if (value.isEmpty) {
+                  //         return "Please enter your name";
+                  //       }
+                  //       return null;
+                  //     },
+                  //     decoration: InputDecoration(
+                  //       border: OutlineInputBorder(
+                  //         borderSide: BorderSide(color: primaryColor),
+                  //         borderRadius: BorderRadius.circular(20),
+                  //       ),
+                  //       enabledBorder: OutlineInputBorder(
+                  //         borderSide: BorderSide(color: secondaryColor),
+                  //         borderRadius: BorderRadius.circular(20),
+                  //       ),
+                  //       labelText: "Last Name",
+                  //       //icon: Icon(Icons.person),
+                  //       contentPadding: EdgeInsets.all(16),
+                  //     ),
+                  //   ),
+                  // ),
+                  // SizedBox(
+                  //   height: 30,
+                  // ),
                   // Select Gender
 
                   Padding(
@@ -406,7 +414,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
                   SizedBox(height: 30),
                   // Mobile Number
                   TextFormField(
-                    initialValue: _mobile ?? "",
+                    initialValue: (_mobileNumber == null) ? "" : _mobileNumber,
                     keyboardType: TextInputType.number,
                     inputFormatters: [
                       FilteringTextInputFormatter.allow(RegExp("[0-9]"))
@@ -414,7 +422,12 @@ class _UpdateProfileState extends State<UpdateProfile> {
                     style: TextStyle(fontFamily: pfontFamily, fontSize: 15),
                     onSaved: (String value) {
                       setState(() {
-                        _mobile = value;
+                        _mobileNumber = value;
+                      });
+                    },
+                    onChanged: (value) {
+                      setState(() {
+                        _mobileNumber = value;
                       });
                     },
                     validator: (value) {
@@ -672,24 +685,22 @@ class _UpdateProfileState extends State<UpdateProfile> {
         ),
         onPressed: () {
           print("Saved");
-          // _formKey.currentState.save();
-          // _formKey.currentState.validate()
-          //     ? submitForm().then((value) {
-          //   if (value == "Submitted") {
-          //     Navigator.pushAndRemoveUntil(
-          //       context,
-          //       MaterialPageRoute(
-          //         builder: (context) => CheckUserLoggedIn(),
-          //       ),
-          //           (Route<dynamic> route) => false,
-          //     );
-          //   } else {
-          //     ScaffoldMessenger.of(context)
-          //         .showSnackBar(snackBar(value));
-          //   }
-          // }).catchError((e) => print(e))
-          //     : print("Not valid");
-          //
+          _formKey.currentState.validate()
+              ? submitForm().then((value) {
+                  if (value == "Submitted") {
+                    Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => CheckUserLoggedIn(),
+                      ),
+                      (Route<dynamic> route) => false,
+                    );
+                  } else {
+                    _formKey.currentState.save();
+                    ScaffoldMessenger.of(context).showSnackBar(snackBar(value));
+                  }
+                }).catchError((e) => print(e))
+              : print("Not valid");
         },
       ),
     );

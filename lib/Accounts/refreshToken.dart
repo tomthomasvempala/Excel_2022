@@ -9,7 +9,7 @@ Future<String> refreshToken() async {
   String refreshToken = prefs.getString('refreshToken');
   // Refreshing Token
   var refreshResponse = await http.post(Uri.parse(
-    AccountConfig.url + "Auth/refresh"),
+    AccountConfig.newUrl + "Auth/refresh"),
     headers: {
       "Content-Type": "application/json",
       "Accept": "application/json",
