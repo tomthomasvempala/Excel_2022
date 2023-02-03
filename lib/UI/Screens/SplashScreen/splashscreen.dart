@@ -15,18 +15,18 @@ class _SplashscreenState extends State<Splashscreen> {
   leavePage(context) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     bool firstTime = prefs.getBool('firstTime');
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+          builder: (context) => ChangeNotifierProvider(
+                create: (context) => MyNavigationIndex(),
+                child: CustomNavigator(),
+              )),
+    );
     if (firstTime == null || firstTime == true)
-      Navigator.pushReplacement(
+      Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => LandingPage()),
-      );
-    else
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-          builder: (context) => 
-          ChangeNotifierProvider(create: (context)=> MyNavigationIndex(),child: CustomNavigator(),)
-        ),
       );
   }
 

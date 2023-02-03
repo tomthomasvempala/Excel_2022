@@ -87,7 +87,5 @@ class _LandingPageState extends State<LandingPage> {
 void onIntroEnd(context) async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
   await prefs.setBool('firstTime', false);
-  Navigator.of(context).pushReplacement(
-    MaterialPageRoute(builder: (_) => CustomNavigator()),
-  );
+  Navigator.of(context).pop();
 }
