@@ -17,10 +17,13 @@ class _CheckUserLoggedInState extends State<CheckUserLoggedIn> {
 
   Future<dynamic> checkUser() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
+    print("In check user");
     if (prefs.getBool('isLogged') == false ||
         prefs.getBool('isLogged') == null) {
+      print(prefs.getBool('isLogged'));
       return 'login';
     } else {
+      print('In else of check user');
       // Fetch user details from database
       isProfileUpdated = prefs.getBool('isProfileUpdated') ?? false;
       var user = await HiveDB.retrieveData(valueName: "user");
@@ -43,11 +46,9 @@ class _CheckUserLoggedInState extends State<CheckUserLoggedIn> {
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           if (snapshot.hasData) {
             if (snapshot.data == 'login') {
-              return ProfilePage();
               return LoginScreen();
             } else {
-              return ProfilePage();
-              //return ProfilePage();
+              return ProfilePage(snapshot.data, isProfileUpdated);
             }
           } else {
             return LoadingAnimation();
