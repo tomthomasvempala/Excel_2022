@@ -19,8 +19,8 @@ import '../../../Models/event_card.dart';
 
 class ProfilePage extends StatefulWidget {
   final User user;
-   final bool isProfileUpdated;
-   ProfilePage(this.user, this.isProfileUpdated);
+  final bool isProfileUpdated;
+  ProfilePage(this.user, this.isProfileUpdated);
   @override
   _ProfilePageState createState() => _ProfilePageState();
 }
@@ -81,10 +81,10 @@ class _ProfilePageState extends State<ProfilePage>
   void initState() {
     super.initState();
     tabController = TabController(length: 3, vsync: this);
-      _user = widget.user;
-      _isProfileUpdated = widget.isProfileUpdated;
-      authService = AuthService();
-      // RegistrationAPI.fetchRegisteredEvents();
+    _user = widget.user;
+    _isProfileUpdated = widget.isProfileUpdated;
+    authService = AuthService();
+    // RegistrationAPI.fetchRegisteredEvents();
   }
 
   logoutUser() async {
@@ -165,7 +165,7 @@ class _ProfilePageState extends State<ProfilePage>
                       children: [
                         CircleAvatar(
                           radius: 42.5,
-                          backgroundImage: AssetImage("assets/Tom ser.jpg"),
+                          backgroundImage: NetworkImage(_user.picture),
                         ),
                         ElevatedButton(
                           style: ElevatedButton.styleFrom(
@@ -193,7 +193,7 @@ class _ProfilePageState extends State<ProfilePage>
                       height: 10,
                     ),
                     Text(
-                      "Tom Thomas Vempala",
+                      _user.name,
                       style: TextStyle(
                         fontFamily: pfontFamily,
                         fontSize: 20,
@@ -204,7 +204,9 @@ class _ProfilePageState extends State<ProfilePage>
                       height: 4,
                     ),
                     Text(
-                      "Govt. Model Engineering College, Thrikkakara",
+                      _user.institutionName
+                          .toString()
+                          .replaceAll("null", "No Institution Name"),
                       style: TextStyle(
                         fontFamily: pfontFamily,
                         fontSize: 11,
@@ -364,7 +366,7 @@ class _ProfilePageState extends State<ProfilePage>
         ),
         onPressed: () {
           Navigator.push(context, MaterialPageRoute(builder: (context) {
-            return UpdateProfile();
+            return UpdateProfile(_user);
           }));
         },
       ),

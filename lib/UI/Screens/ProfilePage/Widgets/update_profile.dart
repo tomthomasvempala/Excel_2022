@@ -11,8 +11,8 @@ import 'package:flutter/services.dart';
 // import 'package:searchable_dropdown/searchable_dropdown.dart';
 
 class UpdateProfile extends StatefulWidget {
-  //final User user;
-  //UpdateProfile(this.user);
+  final User user;
+  UpdateProfile(this.user);
 
   @override
   _UpdateProfileState createState() => _UpdateProfileState();
@@ -23,8 +23,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
 
   // Form Fields
   final _formKey = GlobalKey<FormState>();
-
-  // int _id;
+//int _id;
   String _firstName;
   String _lastName;
   String _mobile;
@@ -46,29 +45,31 @@ class _UpdateProfileState extends State<UpdateProfile> {
   @override
   void initState() {
     super.initState();
-    //initialiseUserDetails(widget.user);
-    initialiseUserDetails();
+    initialiseUserDetails(widget.user);
+    //initialiseUserDetails();
   }
 
   // Initialize form fields
-  initialiseUserDetails() async {
-    // _id = user.id;
-    _firstName = "Tom"; //user.name;
+  initialiseUserDetails(
+    User user,
+  ) async {
+    //_id = user.id;
+    _firstName = user.name;
     _lastName = "Thomas Vempala";
-    _mobile = "9876533210"; //user.mobileNumber;
-    // _category = user.category != "Not Registered" ? user.category : "college";
-    _institutionId = 916; //user.institutionId;
-    _institutionName = "Govt Model "; //user.institutionName;
-    _gender = "Male"; //user.gender;
-    _emailId = "vempala@gmail.com";
-    _categoryId = 1; //user.categoryId;
-    // if (_categoryId == 1 || _categoryId == 0) {
-    //   await getInstitutions(loading: false);
-    //   _institutionName = await getInstitutionName(_institutionId);
-    //   setState(() {
-    //     _institutionName = _institutionName;
-    //   });
-    // }
+    _mobile = user.mobileNumber;
+    //_category = user.category != "Not Registered" ? user.category : "college";
+    _institutionId = user.institutionId;
+    _institutionName = user.institutionName;
+    _gender = user.gender;
+    _emailId = user.email;
+    _categoryId = user.categoryId;
+    if (_categoryId == 1 || _categoryId == 0) {
+      await getInstitutions(loading: false);
+      _institutionName = await getInstitutionName(_institutionId);
+      setState(() {
+        _institutionName = _institutionName;
+      });
+    }
   }
 
   // Fetch institutions based on category
@@ -672,24 +673,24 @@ class _UpdateProfileState extends State<UpdateProfile> {
         ),
         onPressed: () {
           print("Saved");
-          // _formKey.currentState.save();
-          // _formKey.currentState.validate()
-          //     ? submitForm().then((value) {
-          //   if (value == "Submitted") {
-          //     Navigator.pushAndRemoveUntil(
-          //       context,
-          //       MaterialPageRoute(
-          //         builder: (context) => CheckUserLoggedIn(),
-          //       ),
-          //           (Route<dynamic> route) => false,
-          //     );
-          //   } else {
-          //     ScaffoldMessenger.of(context)
-          //         .showSnackBar(snackBar(value));
-          //   }
-          // }).catchError((e) => print(e))
-          //     : print("Not valid");
-          //
+          _formKey.currentState.save();
+          _formKey.currentState.validate()
+              ? submitForm().then((value) {
+            if (value == "Submitted") {
+              Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => CheckUserLoggedIn(),
+                ),
+                    (Route<dynamic> route) => false,
+              );
+            } else {
+              ScaffoldMessenger.of(context)
+                  .showSnackBar(snackBar(value));
+            }
+          }).catchError((e) => print(e))
+              : print("Not valid");
+          
         },
       ),
     );

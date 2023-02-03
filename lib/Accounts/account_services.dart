@@ -71,7 +71,7 @@ class AccountServices {
     try {
       print("fetching institutions");
       var response = await getAuthorisedData(
-        AccountConfig.url + 'institution/$category/list',
+        AccountConfig.newUrl+ 'institution/$category/list',
       );
       List<dynamic> responseData = json.decode(response.body);
       // print(responseData);
@@ -91,7 +91,7 @@ class AccountServices {
 
     try {
       var response = await postAuthorisedData(
-        url: AccountConfig.url + 'profile/update',
+        url: AccountConfig.newUrl + 'profile/update',
         body: json.encode(userInfo),
       );
       if (response.statusCode != 200 && response.statusCode != 422)
@@ -108,7 +108,7 @@ class AccountServices {
     try {
       print("fetching user details");
       var response = await http.get(
-        Uri.parse(AccountConfig.url + 'profile'),
+        Uri.parse(AccountConfig.newUrl + 'profile'),
         headers: AccountConfig.getHeader(jwt),
       );
       Map<String, dynamic> responseData = json.decode(response.body);
