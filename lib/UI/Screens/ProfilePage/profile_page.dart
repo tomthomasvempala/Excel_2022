@@ -1,7 +1,9 @@
+import 'package:excelapp/Accounts/account_services.dart';
 import 'package:excelapp/Accounts/auth_service.dart';
 import 'package:excelapp/Models/user_model.dart';
 import 'package:excelapp/UI/Components/Appbar/appbar.dart';
 import 'package:excelapp/UI/Components/LoadingUI/alertDialog.dart';
+import 'package:excelapp/UI/Components/LoadingUI/loadingAnimation.dart';
 
 // import 'package:excelapp/UI/Screens/ProfilePage/Widgets/referal.dart';
 import 'package:excelapp/UI/Screens/ProfilePage/Widgets/qr_code.dart';
@@ -13,6 +15,7 @@ import 'package:excelapp/UI/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:excelapp/Services/API/registration_api.dart';
 import 'package:excelapp/UI/Screens/ProfilePage/Registration/registration.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../Components/EventCard/event_card.dart';
 import '../../../Models/event_card.dart';
@@ -78,13 +81,28 @@ class _ProfilePageState extends State<ProfilePage>
     )
   ];
 
+  var userDetails;
+
   void initState() {
     super.initState();
     tabController = TabController(length: 3, vsync: this);
     _user = widget.user;
+    userDetails = viewUserProfile();
     _isProfileUpdated = widget.isProfileUpdated;
     authService = AuthService();
     // RegistrationAPI.fetchRegisteredEvents();
+  }
+
+  Future<dynamic> viewUserProfile() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    if (prefs.getBool('isProfileUpdated') == false ||
+        prefs.getBool('isProfileUpdated') == null) {
+      return "Not Updated";
+    } else {
+      User user = await AccountServices.viewProfile();
+      if (user == null) return "error";
+      return user;
+    }
   }
 
   logoutUser() async {
@@ -149,144 +167,166 @@ class _ProfilePageState extends State<ProfilePage>
     return SafeArea(
       child: Scaffold(
         backgroundColor: Color(0xDBE4E7),
-        body: Container(
-          child: Column(
-            children: [
-              Container(
-                width: MediaQuery.of(context).size.width * 100,
-                padding: EdgeInsets.fromLTRB(22, 20, 22, 0),
-                color: Colors.white,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.start,
+        body: FutureBuilder(
+            future: userDetails,
+            builder: (BuildContext context, AsyncSnapshot snapshot) {
+              print(snapshot.data);
+              if (snapshot.hasData) {
+                if (snapshot.data == "Not Updated") {
+                  return Center(child: Text("Profile not updated"));
+                }
+
+                if (snapshot.data == "error") {
+                  return Center(child: Text("An error occured, Try again"));
+                } else {
+                  return Container(
+                    child: Column(
                       children: [
-                        CircleAvatar(
-                          radius: 42.5,
-                          backgroundImage: NetworkImage(_user.picture),
-                        ),
-                        ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            padding: EdgeInsets.all(10),
-                            backgroundColor: Color(0xd0fcd1cc),
-                            shape: CircleBorder(
-                              side: BorderSide(
-                                color: Color(0xd0fcd1cc),
-                                width: 2,
+                        Container(
+                          width: MediaQuery.of(context).size.width * 100,
+                          padding: EdgeInsets.fromLTRB(22, 20, 22, 0),
+                          color: Colors.white,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  CircleAvatar(
+                                    radius: 42.5,
+                                    backgroundImage:
+                                        NetworkImage(snapshot.data.picture),
+                                  ),
+                                  ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                      padding: EdgeInsets.all(10),
+                                      backgroundColor: Color(0xd0fcd1cc),
+                                      shape: CircleBorder(
+                                        side: BorderSide(
+                                          color: Color(0xd0fcd1cc),
+                                          width: 2,
+                                        ),
+                                      ),
+                                    ),
+                                    child: Icon(
+                                      Icons.logout,
+                                      size: 25,
+                                      color: Color(0xffFD7B69),
+                                    ),
+                                    onPressed: () {
+                                      logOutConfirmation();
+                                    },
+                                  ),
+                                ],
                               ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Text(
+                                snapshot.data.name,
+                                style: TextStyle(
+                                  fontFamily: pfontFamily,
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w800,
+                                ),
+                              ),
+                              SizedBox(
+                                height: 4,
+                              ),
+                              Text(
+                                snapshot.data.institutionName
+                                    .toString()
+                                    .replaceAll("null", "No Institution Name"),
+                                style: TextStyle(
+                                  fontFamily: pfontFamily,
+                                  fontSize: 11,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                              SizedBox(
+                                height: 12,
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  showQRButton(context),
+                                  SizedBox(
+                                    width: 12,
+                                  ),
+                                  editProfileButton(context),
+                                ],
+                              ),
+                              TabBar(
+                                  indicatorColor:
+                                      Color.fromARGB(255, 14, 152, 232),
+                                  indicatorPadding:
+                                      EdgeInsets.fromLTRB(0, 0, 0, 0),
+                                  labelColor: Color.fromARGB(255, 14, 152, 232),
+                                  labelStyle: TextStyle(
+                                    decorationColor:
+                                        Color.fromARGB(255, 14, 152, 232),
+                                  ),
+                                  unselectedLabelColor:
+                                      Color.fromARGB(235, 119, 133, 133),
+                                  controller: tabController,
+                                  tabs: [
+                                    Tab(
+                                      child: Text(
+                                        "Registered",
+                                        style: TextStyle(
+                                          fontFamily: "mulish",
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w800,
+                                        ),
+                                      ),
+                                    ),
+                                    Tab(
+                                      child: Text(
+                                        "Favorites",
+                                        style: TextStyle(
+                                          fontFamily: "mulish",
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w800,
+                                        ),
+                                      ),
+                                    ),
+                                    Tab(
+                                      child: Text(
+                                        "Saved News",
+                                        style: TextStyle(
+                                          fontFamily: "mulish",
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w800,
+                                        ),
+                                      ),
+                                    ),
+                                  ]),
+                            ],
+                          ),
+                        ),
+                        Expanded(
+                          child: Padding(
+                            padding: const EdgeInsets.fromLTRB(0, 15, 0, 0),
+                            child: TabBarView(
+                              controller: tabController,
+                              children: [
+                                Registered(),
+                                Favorites(),
+                                SavedNews(),
+                              ],
                             ),
                           ),
-                          child: Icon(
-                            Icons.logout,
-                            size: 25,
-                            color: Color(0xffFD7B69),
-                          ),
-                          onPressed: () {
-                            logOutConfirmation();
-                          },
                         ),
                       ],
                     ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Text(
-                      _user.name,
-                      style: TextStyle(
-                        fontFamily: pfontFamily,
-                        fontSize: 20,
-                        fontWeight: FontWeight.w800,
-                      ),
-                    ),
-                    SizedBox(
-                      height: 4,
-                    ),
-                    Text(
-                      _user.institutionName
-                          .toString()
-                          .replaceAll("null", "No Institution Name"),
-                      style: TextStyle(
-                        fontFamily: pfontFamily,
-                        fontSize: 11,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                    SizedBox(
-                      height: 12,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        showQRButton(context),
-                        SizedBox(
-                          width: 12,
-                        ),
-                        editProfileButton(context),
-                      ],
-                    ),
-                    TabBar(
-                        indicatorColor: Color.fromARGB(255, 14, 152, 232),
-                        indicatorPadding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                        labelColor: Color.fromARGB(255, 14, 152, 232),
-                        labelStyle: TextStyle(
-                          decorationColor: Color.fromARGB(255, 14, 152, 232),
-                        ),
-                        unselectedLabelColor:
-                            Color.fromARGB(235, 119, 133, 133),
-                        controller: tabController,
-                        tabs: [
-                          Tab(
-                            child: Text(
-                              "Registered",
-                              style: TextStyle(
-                                fontFamily: "mulish",
-                                fontSize: 14,
-                                fontWeight: FontWeight.w800,
-                              ),
-                            ),
-                          ),
-                          Tab(
-                            child: Text(
-                              "Favorites",
-                              style: TextStyle(
-                                fontFamily: "mulish",
-                                fontSize: 14,
-                                fontWeight: FontWeight.w800,
-                              ),
-                            ),
-                          ),
-                          Tab(
-                            child: Text(
-                              "Saved News",
-                              style: TextStyle(
-                                fontFamily: "mulish",
-                                fontSize: 14,
-                                fontWeight: FontWeight.w800,
-                              ),
-                            ),
-                          ),
-                        ]),
-                  ],
-                ),
-              ),
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 15, 0, 0),
-                  child: TabBarView(
-                    controller: tabController,
-                    children: [
-                      Registered(),
-                      Favorites(),
-                      SavedNews(),
-                    ],
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
+                  );
+                }
+              } else {
+                return LoadingAnimation();
+              }
+            }),
       ),
     );
   }

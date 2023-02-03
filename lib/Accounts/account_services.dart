@@ -51,7 +51,7 @@ class AccountServices {
     try {
       print("fetching user details");
       var response =
-          await getAuthorisedData(AccountConfig.url + 'profile/view');
+          await getAuthorisedData(AccountConfig.newUrl + 'profile/view');
       if (response.statusCode != 200) return null;
       Map<String, dynamic> responseData = json.decode(response.body);
       user = User.fromJson(responseData);
