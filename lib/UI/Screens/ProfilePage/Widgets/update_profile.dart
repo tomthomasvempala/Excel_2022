@@ -10,6 +10,8 @@ import 'package:excelapp/UI/Screens/ProfilePage/profile_main.dart';
 import 'package:excelapp/UI/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:searchable_paginated_dropdown/searchable_paginated_dropdown.dart';
+
 // import 'package:searchable_dropdown/searchable_dropdown.dart';
 
 class UpdateProfile extends StatefulWidget {
@@ -21,7 +23,8 @@ class UpdateProfile extends StatefulWidget {
 }
 
 class _UpdateProfileState extends State<UpdateProfile> {
-  List<Institution> institutions = [];
+  List<Institution> collegeInstitutions = [];
+  List<Institution> schoolInstitutions = [];
 
   // Form Fields
   final _formKey = GlobalKey<FormState>();
@@ -34,7 +37,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
   String _institutionName;
   String _gender;
   String _emailId;
-  List<String> _categories = <String>['College', 'School', 'Other'];
+  List<String> _categories = <String>['College', 'School'];
   List<String> _genders = <String>['Male', 'Female', 'Other'];
   String notInListOptionName = "NOT IN THIS LIST";
   String _customInstitutionName = "";
@@ -68,14 +71,133 @@ class _UpdateProfileState extends State<UpdateProfile> {
     if (_categoryId == 1 || _categoryId == 0) {
       await getInstitutions(loading: false);
       _institutionName = await getInstitutionName(_institutionId);
+      print("Institution Name: $_institutionName");
       setState(() {
         _institutionName = _institutionName;
       });
     }
   }
 
+  backConfirmation() {
+    showModalBottomSheet(
+      useRootNavigator: true,
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(40), topRight: Radius.circular(40))),
+      constraints: BoxConstraints(
+        minWidth: MediaQuery.of(context).size.width,
+        maxHeight: 230,
+      ),
+      context: context,
+      builder: (BuildContext bc) {
+        return Container(
+            child: Column(
+          children: [
+            SizedBox(height: 8),
+            Image.asset(
+              "assets/icons/divider.png",
+              width: 340,
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Padding(
+                  padding: EdgeInsets.fromLTRB(30, 0, 0, 0),
+                  child: Text(
+                    "Abandon Changes ?",
+                    style: TextStyle(
+                        fontFamily: "mulish",
+                        fontSize: 20,
+                        fontWeight: FontWeight.w800),
+                  )),
+              SizedBox(
+                height: 20,
+              ),
+              Padding(
+                padding: EdgeInsets.fromLTRB(30, 0, 0, 0),
+                child: Text(
+                  'The changes made aren’t saved. Are you sure you want to discard all changes?',
+                  style: TextStyle(
+                      fontFamily: "mulish",
+                      fontSize: 14,
+                      fontWeight: FontWeight.w400),
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Padding(
+                padding: EdgeInsets.fromLTRB(30, 0, 30, 0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    InkWell(
+                      onTap: () {
+                        Navigator.pushAndRemoveUntil(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => CheckUserLoggedIn()),
+                            (route) => false);
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(50),
+                          color: Color.fromARGB(255, 239, 112, 95),
+                        ),
+                        width: MediaQuery.of(context).size.width * 0.4,
+                        height: 60,
+                        child: Center(
+                          child: Text(
+                            "Discard",
+                            style: TextStyle(
+                                fontFamily: "mulish",
+                                fontSize: 14,
+                                color: Color.fromARGB(255, 251, 255, 255),
+                                fontWeight: FontWeight.w700),
+                          ),
+                        ),
+                      ),
+                    ),
+                    InkWell(
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(50),
+                          color: Color.fromARGB(255, 228, 237, 239),
+                          border: Border.all(
+                            color: Color.fromARGB(255, 211, 225, 228),
+                          ),
+                        ),
+                        width: MediaQuery.of(context).size.width * 0.4,
+                        height: 60,
+                        child: Center(
+                          child: Text(
+                            "Cancel",
+                            style: TextStyle(
+                                fontFamily: "mulish",
+                                fontSize: 14,
+                                color: Color.fromARGB(255, 61, 71, 71),
+                                fontWeight: FontWeight.w700),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              )
+            ])
+          ],
+        ));
+      },
+    );
+  }
+
   // Fetch institutions based on category
   getInstitutions({loading = true}) async {
+    print("Fetching Institutions for category: $_categoryId");
     await Future.delayed(Duration(microseconds: 1));
     String category;
     if (_categoryId == 0)
@@ -98,8 +220,9 @@ class _UpdateProfileState extends State<UpdateProfile> {
           Institution(id: 0, name: notInListOptionName);
       res.insert(0, notInListOption);
       setState(() {
-        institutions.clear();
-        institutions.addAll(res);
+        if (_categoryId == 0)
+          collegeInstitutions = res;
+        else if (_categoryId == 1) schoolInstitutions = res;
       });
       if (loading) Navigator.of(context, rootNavigator: true).pop();
     } catch (_) {
@@ -126,40 +249,43 @@ class _UpdateProfileState extends State<UpdateProfile> {
     }
 
     // // get institutionId only if category is school or college & not in list
-    // if (_categoryId != 2 && _institutionName != notInListOptionName) {
-    //   _institutionId = await getInstitutionId(_institutionName);
-    // }
-    // // Set institution if to 0 if its custom entered
-    // if (_institutionName == notInListOptionName) {
-    //   _institutionId = 0;
-    // }
-    // if (_institutionId == null && _categoryId != 2) {
-    //   Navigator.of(context, rootNavigator: true).pop();
-    //   return "One or more fields are invalid!";
-    // }
-    // if (_categoryId != 2 && _institutionName == null) {
-    //   Navigator.of(context, rootNavigator: true).pop();
-    //   return "Select institution";
-    // }
-    // if (_customInstitutionName == notInListOptionName) {
-    //   Navigator.of(context, rootNavigator: true).pop();
-    //   return "Enter institution name";
-    // }
-    // if (_institutionName == null && _categoryId != 2) {
-    //   Navigator.of(context, rootNavigator: true).pop();
-    //   return "Choose institution name";
-    // }
+    if (_categoryId != 2 && _institutionName != notInListOptionName) {
+      _institutionId = await getInstitutionId(_institutionName);
+    }
+    // Set institution if to 0 if its custom entered
+    if (_institutionName == notInListOptionName) {
+      _institutionId = 0;
+    }
+    if (_institutionId == null && _categoryId != 2) {
+      Navigator.of(context, rootNavigator: true).pop();
+      return "One or more fields are invalid!";
+    }
+    if (_categoryId != 2 && _institutionName == null) {
+      Navigator.of(context, rootNavigator: true).pop();
+      return "Select institution";
+    }
+    if (_customInstitutionName == notInListOptionName) {
+      Navigator.of(context, rootNavigator: true).pop();
+      return "Enter institution name";
+    }
+    if (_institutionName == null && _categoryId != 2) {
+      Navigator.of(context, rootNavigator: true).pop();
+      return "Choose institution name";
+    }
 
-    // String finalInstitutionName = (_institutionName == notInListOptionName)
-    //     ? _customInstitutionName
-    //     : _institutionName;
+    String finalInstitutionName = (_institutionName == notInListOptionName)
+        ? _customInstitutionName
+        : _institutionName;
+
+    print("Institution Name: $finalInstitutionName");
+
     Map<String, dynamic> userInfo = {
       "name": _name,
       "institutionId": _institutionId,
-      "institutionName": _institutionName,
+      "institutionName": finalInstitutionName,
       "gender": _gender,
       "mobileNumber": _mobileNumber.toString(),
-      // "categoryId": _categoryId.toString()
+      "categoryId": _categoryId.toString()
     };
     print(userInfo);
     var res = await AccountServices.updateProfile(userInfo);
@@ -174,22 +300,36 @@ class _UpdateProfileState extends State<UpdateProfile> {
   // Method to get institution Id
   Future<int> getInstitutionId(String institutionName) async {
     int id = -1;
-    institutions.forEach((e) {
-      if (institutionName == e.name) {
-        id = e.id;
-      }
-    });
+    if (_categoryId == 0)
+      collegeInstitutions.forEach((e) {
+        if (institutionName == e.name) {
+          id = e.id;
+        }
+      });
+    else if (_categoryId == 1)
+      schoolInstitutions.forEach((e) {
+        if (institutionName == e.name) {
+          id = e.id;
+        }
+      });
     return id;
   }
 
   // Method to get institution name
   Future<String> getInstitutionName(int institutionId) async {
     String name;
-    institutions.forEach((e) {
-      if (institutionId == e.id) {
-        name = e.name;
-      }
-    });
+    if (_categoryId == 0)
+      collegeInstitutions.forEach((e) {
+        if (institutionId == e.id) {
+          name = e.name;
+        }
+      });
+    else if (_categoryId == 1)
+      schoolInstitutions.forEach((e) {
+        if (institutionId == e.id) {
+          name = e.name;
+        }
+      });
     return name;
   }
 
@@ -205,7 +345,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
           icon: Icon(Icons.arrow_back),
           color: secondaryColor,
           onPressed: () {
-            Navigator.pop(context);
+            backConfirmation();
           },
         ),
         titleTextStyle: TextStyle(
@@ -361,10 +501,6 @@ class _UpdateProfileState extends State<UpdateProfile> {
                       child: DropdownButtonFormField(
                           icon: Icon(Icons.keyboard_arrow_down),
                           decoration: InputDecoration(
-                            border: OutlineInputBorder(
-                              borderSide: BorderSide(color: primaryColor),
-                              borderRadius: BorderRadius.circular(20),
-                            ),
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(color: secondaryColor),
                               borderRadius: BorderRadius.circular(20),
@@ -503,34 +639,6 @@ class _UpdateProfileState extends State<UpdateProfile> {
                   SizedBox(
                     height: 30,
                   ),
-                  TextFormField(
-                    initialValue: _institutionName,
-                    style: TextStyle(fontFamily: pfontFamily, fontSize: 15),
-                    onSaved: (String value) {
-                      setState(() {
-                        _institutionName = value.trim();
-                      });
-                    },
-                    validator: (value) {
-                      if (value.isEmpty) {
-                        return "Please enter your Institute Name";
-                      }
-                      return null;
-                    },
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                        borderSide: BorderSide(color: primaryColor),
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: secondaryColor),
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      labelText: "Institute Name",
-                      icon: Icon(Icons.location_on_outlined),
-                      contentPadding: EdgeInsets.all(16),
-                    ),
-                  ),
 
                   SizedBox(height: 20),
                   // Select Category
@@ -566,90 +674,157 @@ class _UpdateProfileState extends State<UpdateProfile> {
                             );
                           }).toList(),
                           hint: Text(
-                            _categories[_categoryId] ?? "Select Gender",
+                            _categories[_categoryId] ?? "Select Category",
                             style: TextStyle(color: Colors.black),
                           ),
                           onChanged: (value) {
                             setState(() {
-                              _categoryId = value;
-                              // measureList.add(measure);
+                              _categoryId = _categories.indexOf(value);
+
+                              //measureList.add(measure);
                             });
+                            getInstitutions();
                           },
                           onSaved: (value) {
                             setState(() {
-                              _categoryId = value;
+                              _categoryId = _categories.indexOf(value);
                             });
                           }),
                     ),
                   ),
-                  //SizedBox(height: 30),
+                  SizedBox(height: 30),
                   // Select Institution
 
-                  // (_categoryId != null &&
-                  //         _categoryId != 2 &&
-                  //         institutions.isNotEmpty)
-                  //     ? Container(
-                  //         margin: EdgeInsets.symmetric(horizontal: 5),
-                  //         decoration: BoxDecoration(
-                  //           border: Border.all(color: Colors.black12),
-                  //           borderRadius: BorderRadius.circular(3),
-                  //         ),
-                  //       //   child: SearchableDropdown.single(
-                  //       //     underline: Center(),
-                  //       //     readOnly: _categoryId == null || _categoryId == 2,
-                  //       //     items: institutions
-                  //       //         .map<DropdownMenuItem<String>>((val) {
-                  //       //       return DropdownMenuItem<String>(
-                  //       //         value: val.name,
-                  //       //         child: Text(
-                  //       //           val.name.toString(),
-                  //       //           style: TextStyle(
-                  //       //             color: Colors.black87,
-                  //       //             fontSize: 14,
-                  //       //           ),
-                  //       //         ),
-                  //       //       );
-                  //       //     }).toList(),
-                  //       //     displayClearIcon: false,
-                  //       //     hint: _institutionName ?? 'Select Institution',
-                  //       //     style: TextStyle(fontSize: 14),
-                  //       //     icon: Icon(Icons.keyboard_arrow_down),
-                  //       //     searchHint: 'Enter Institution Name',
-                  //       //     onChanged: (value) {
-                  //       //       setState(() {
-                  //       //         _institutionName = value;
-                  //       //       });
-                  //       //     },
-                  //       //     isExpanded: true,
-                  //       //   ),
-                  //       )
-                  //     : Center(),
-                  //
-                  // (_institutionName == notInListOptionName && _categoryId != 2)
-                  //     ? Padding(
-                  //         padding: const EdgeInsets.only(top: 15.0),
-                  //         child: TextFormField(
-                  //           style: TextStyle(
-                  //               fontFamily: pfontFamily, fontSize: 15),
-                  //           onSaved: (String value) {
-                  //             setState(() {
-                  //               _customInstitutionName = value;
-                  //             });
-                  //           },
-                  //           validator: (value) {
-                  //             if (value.isEmpty) {
-                  //               return "Enter institution name";
-                  //             }
-                  //             return null;
-                  //           },
-                  //           decoration: InputDecoration(
-                  //             labelText: "Institution Name",
-                  //             icon: Icon(Icons.school),
-                  //             contentPadding: EdgeInsets.zero,
-                  //           ),
-                  //         ),
-                  //       )
-                  //     : Center(),
+                  (_categoryId != null &&
+                          _categoryId != 2 &&
+                          ((_categoryId == 0)
+                              ? (collegeInstitutions.length > 0)
+                              : (schoolInstitutions.length > 0)))
+                      ? Container(
+                          margin: EdgeInsets.symmetric(horizontal: 5),
+                          decoration: BoxDecoration(
+                            border: Border.all(color: Colors.black12),
+                            borderRadius: BorderRadius.circular(3),
+                          ),
+                          // child: SearchableDropdown.single(
+                          //   underline: Center(),
+                          //   readOnly: _categoryId == null || _categoryId == 2,
+                          //   items: institutions
+                          //       .map<DropdownMenuItem<String>>((val) {
+                          //     return DropdownMenuItem<String>(
+                          //       value: val.name,
+                          //       child: Text(
+                          //         val.name.toString(),
+                          //         style: TextStyle(
+                          //           color: Colors.black87,
+                          //           fontSize: 14,
+                          //         ),
+                          //       ),
+                          //     );
+                          //   }).toList(),
+                          //   displayClearIcon: false,
+                          //   hint: _institutionName ?? 'Select Institution',
+                          //   style: TextStyle(fontSize: 14),
+                          //   icon: Icon(Icons.keyboard_arrow_down),
+                          //   searchHint: 'Enter Institution Name',
+                          //   onChanged: (value) {
+                          //     setState(() {
+                          //       _institutionName = value;
+                          //     });
+                          //   },
+                          //   isExpanded: true,
+                          // ),
+                          child: SearchableDropdown(
+                            hintText:
+                                Text(_institutionName ?? 'Select Institution'),
+                            searchHintText: 'Enter Institution Name',
+                            items: (_categoryId == 0)
+                                ? collegeInstitutions
+                                    .map<SearchableDropdownMenuItem<String>>(
+                                        (val) {
+                                    return SearchableDropdownMenuItem<String>(
+                                      value: val.id.toString(),
+                                      label: val.name,
+                                      child: Text(
+                                        val.name.toString(),
+                                        style: TextStyle(
+                                          color: Colors.black87,
+                                          fontSize: 14,
+                                        ),
+                                      ),
+                                    );
+                                  }).toList()
+                                : schoolInstitutions
+                                    .map<SearchableDropdownMenuItem<String>>(
+                                        (val) {
+                                    return SearchableDropdownMenuItem<String>(
+                                      value: val.id.toString(),
+                                      label: val.name,
+                                      child: Text(
+                                        val.name.toString(),
+                                        style: TextStyle(
+                                          color: Colors.black87,
+                                          fontSize: 14,
+                                        ),
+                                      ),
+                                    );
+                                  }).toList(),
+                            onChanged: (value) {
+                              print(int.parse(value));
+                              setState(() {
+                                _institutionId = int.parse(value);
+                                _institutionName = (_categoryId == 0)
+                                    ? collegeInstitutions
+                                        .firstWhere((element) =>
+                                            element.id == _institutionId)
+                                        .name
+                                    : schoolInstitutions
+                                        .firstWhere((element) =>
+                                            element.id == _institutionId)
+                                        .name;
+                              });
+                            },
+                          ))
+                      : Center(),
+
+                  (_institutionName == notInListOptionName && _categoryId != 2)
+                      ? Padding(
+                          padding: const EdgeInsets.only(top: 15.0),
+                          child: TextFormField(
+                            style: TextStyle(
+                                fontFamily: pfontFamily, fontSize: 15),
+                            onSaved: (String value) {
+                              setState(() {
+                                _customInstitutionName = value.trim();
+                              });
+                            },
+                            onChanged: (String value) {
+                              setState(() {
+                                _customInstitutionName = value.trim();
+                              });
+                            },
+                            validator: (value) {
+                              if (value.isEmpty) {
+                                return "Please enter your Institute Name";
+                              }
+                              return null;
+                            },
+                            decoration: InputDecoration(
+                              border: OutlineInputBorder(
+                                borderSide: BorderSide(color: primaryColor),
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(color: secondaryColor),
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              labelText: "Institute Name",
+                              icon: Icon(Icons.location_on_outlined),
+                              contentPadding: EdgeInsets.all(16),
+                            ),
+                          ),
+                        )
+                      : Center(),
 
                   SizedBox(height: _categoryId != null ? 25 : 90),
                   // Submit button
@@ -696,7 +871,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
                       (Route<dynamic> route) => false,
                     );
                   } else {
-                    _formKey.currentState.save();
+                    // _formKey.currentState.save();
                     ScaffoldMessenger.of(context).showSnackBar(snackBar(value));
                   }
                 }).catchError((e) => print(e))
