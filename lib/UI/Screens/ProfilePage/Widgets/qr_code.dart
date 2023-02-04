@@ -1,12 +1,15 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:excelapp/Models/user_model.dart';
 import 'package:excelapp/UI/Screens/ProfilePage/Widgets/updateImage.dart';
 import 'package:excelapp/UI/Themes/profile_themes.dart';
 import 'package:excelapp/UI/constants.dart';
 import 'package:flutter/material.dart';
 
 class QrCode extends StatelessWidget {
-  // final String imageUrl, qrUrl, name;
-  // QrCode(this.imageUrl, this.qrUrl, this.name);
+  final String qrCodeUrl, name, institutionName, gender, mobileNumber, email;
+  final int id;
+  QrCode(this.qrCodeUrl, this.name, this.institutionName, this.id, this.gender,
+      this.mobileNumber, this.email);
 
   @override
   Widget build(BuildContext context) {
@@ -82,7 +85,9 @@ class QrCode extends StatelessWidget {
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           color: secondaryColor,
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pop(context);
+          },
         ),
         titleTextStyle: TextStyle(
           color: secondaryColor,
@@ -113,7 +118,7 @@ class QrCode extends StatelessWidget {
                       height: 5,
                     ),
                     Text(
-                      'Tom Thomas Vempala',
+                      name,
                       style: TextStyle(
                         color: Color.fromARGB(255, 28, 31, 32),
                         fontWeight: FontWeight.w700,
@@ -124,7 +129,7 @@ class QrCode extends StatelessWidget {
                       height: 10,
                     ),
                     Text(
-                      'Excel ID : 123456',
+                      'Excel ID : ${id.toString()}',
                       style: TextStyle(
                           fontFamily: pfontFamily,
                           fontSize: 14,
@@ -175,7 +180,7 @@ class QrCode extends StatelessWidget {
                           ),
                           SizedBox(height: 5),
                           Text(
-                            'Male',
+                            gender,
                             style: TextStyle(
                               color: Color(0xFF3D4747),
                               fontSize: 14,
@@ -227,7 +232,7 @@ class QrCode extends StatelessWidget {
                           ),
                           SizedBox(height: 5),
                           Text(
-                            '9876543210',
+                            mobileNumber,
                             style: TextStyle(
                               color: Color(0xFF3D4747),
                               fontSize: 14,
@@ -280,7 +285,7 @@ class QrCode extends StatelessWidget {
                         ),
                         SizedBox(height: 5),
                         Text(
-                          'vempala@gmail.com',
+                          email,
                           style: TextStyle(
                             color: Color(0xFF3D4747),
                             fontSize: 14,
@@ -317,7 +322,7 @@ class QrCode extends StatelessWidget {
                 ),
                 Expanded(
                     child: Padding(
-                  padding: const EdgeInsets.fromLTRB(11, 0, 7, 0),
+                  padding: const EdgeInsets.fromLTRB(11, 0, 11, 0),
                   child: Align(
                     alignment: Alignment.centerLeft,
                     child: Column(
@@ -335,7 +340,7 @@ class QrCode extends StatelessWidget {
                         ),
                         SizedBox(height: 5),
                         Text(
-                          'Govt. Model Engineering College , Cochin',
+                          institutionName,
                           style: TextStyle(
                             color: Color(0xFF3D4747),
                             fontSize: 14,

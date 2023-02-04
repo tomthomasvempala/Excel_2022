@@ -335,7 +335,7 @@ class _ProfilePageState extends State<ProfilePage>
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
-                                  showQRButton(context),
+                                  showQRButton(context, snapshot.data),
                                   SizedBox(
                                     width: 12,
                                   ),
@@ -446,7 +446,7 @@ class _ProfilePageState extends State<ProfilePage>
         });
   }
 
-  Widget showQRButton(BuildContext context) {
+  Widget showQRButton(BuildContext context, User user) {
     return ButtonTheme(
       //minWidth: MediaQuery.of(context).size.width / 2,
       child: TextButton(
@@ -467,7 +467,17 @@ class _ProfilePageState extends State<ProfilePage>
         ),
         onPressed: () {
           Navigator.push(
-              context, MaterialPageRoute(builder: (context) => QrCode()));
+              context,
+              MaterialPageRoute(
+                  builder: (context) => QrCode(
+                        user.qrCodeUrl,
+                        user.name,
+                        user.institutionName,
+                        user.id,
+                        user.gender,
+                        user.mobileNumber,
+                        user.email,
+                      )));
         },
       ),
     );
