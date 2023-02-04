@@ -179,6 +179,8 @@ class _ProfilePageState extends State<ProfilePage>
                 if (snapshot.data == "error") {
                   return Center(child: Text("An error occured, Try again"));
                 } else {
+                  print(snapshot.data.institutionId.toString());
+
                   return Container(
                     child: Column(
                       children: [
