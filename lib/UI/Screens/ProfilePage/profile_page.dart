@@ -123,43 +123,120 @@ class _ProfilePageState extends State<ProfilePage>
   }
 
   logOutConfirmation() async {
-    await showDialog(
+    await showModalBottomSheet(
+      useRootNavigator: true,
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(40), topRight: Radius.circular(40))),
+      constraints: BoxConstraints(
+        minWidth: MediaQuery.of(context).size.width,
+        maxHeight: 230,
+      ),
       context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text(
-            'Do you want to Logout ?',
-            style: TextStyle(fontSize: 16, color: primaryColor),
-          ),
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-          actions: <Widget>[
-            TextButton(
-              child: Text(
-                "Yes",
-                style: TextStyle(fontSize: 14.5, color: primaryColor),
-              ),
-              onPressed: () {
-                // Logout
-                logoutUser();
-                print("Logout pressed");
-                Navigator.pop(context);
-              },
+      builder: (BuildContext bc) {
+        return Container(
+            child: Column(
+          children: [
+            SizedBox(height: 8),
+            Image.asset(
+              "assets/icons/divider.png",
+              width: 340,
             ),
-            TextButton(
-              child: Text(
-                "Cancel",
-                style: TextStyle(fontSize: 14.5, color: primaryColor),
-              ),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
+            SizedBox(
+              height: 20,
             ),
+            Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Padding(
+                  padding: EdgeInsets.fromLTRB(30, 0, 0, 0),
+                  child: Text(
+                    "Confirm Log Out",
+                    style: TextStyle(
+                        fontFamily: "mulish",
+                        fontSize: 20,
+                        fontWeight: FontWeight.w800),
+                  )),
+              SizedBox(
+                height: 20,
+              ),
+              Padding(
+                padding: EdgeInsets.fromLTRB(30, 0, 0, 0),
+                child: Text(
+                  'Are you sure you want to log out?',
+                  style: TextStyle(
+                      fontFamily: "mulish",
+                      fontSize: 14,
+                      fontWeight: FontWeight.w400),
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Padding(
+                padding: EdgeInsets.fromLTRB(30, 0, 30, 0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    InkWell(
+                      onTap: () {
+                        logoutUser();
+                        print("Logout pressed");
+                        Navigator.pop(context);
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(50),
+                          color: Color.fromARGB(255, 239, 112, 95),
+                        ),
+                        width: MediaQuery.of(context).size.width * 0.4,
+                        height: 60,
+                        child: Center(
+                          child: Text(
+                            "Log Out",
+                            style: TextStyle(
+                                fontFamily: "mulish",
+                                fontSize: 14,
+                                color: Color.fromARGB(255, 251, 255, 255),
+                                fontWeight: FontWeight.w700),
+                          ),
+                        ),
+                      ),
+                    ),
+                    InkWell(
+                      onTap: () {
+                        Navigator.of(context).pop();
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(50),
+                          color: Color.fromARGB(255, 228, 237, 239),
+                          border: Border.all(
+                            color: Color.fromARGB(255, 211, 225, 228),
+                          ),
+                        ),
+                        width: MediaQuery.of(context).size.width * 0.4,
+                        height: 60,
+                        child: Center(
+                          child: Text(
+                            "Cancel",
+                            style: TextStyle(
+                                fontFamily: "mulish",
+                                fontSize: 14,
+                                color: Color.fromARGB(255, 61, 71, 71),
+                                fontWeight: FontWeight.w700),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              )
+            ])
           ],
-        );
+        ));
       },
     );
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -273,6 +350,7 @@ class _ProfilePageState extends State<ProfilePage>
                                   unselectedLabelColor:
                                       Color.fromARGB(235, 119, 133, 133),
                                   controller: tabController,
+                                  
                                   tabs: [
                                     Tab(
                                       child: Text(
@@ -309,10 +387,12 @@ class _ProfilePageState extends State<ProfilePage>
                           ),
                         ),
                         Expanded(
+                          
                           child: Padding(
                             padding: const EdgeInsets.fromLTRB(0, 15, 0, 0),
                             child: TabBarView(
                               controller: tabController,
+                              physics: BouncingScrollPhysics(),
                               children: [
                                 Registered(),
                                 Favorites(),

@@ -78,6 +78,123 @@ class _UpdateProfileState extends State<UpdateProfile> {
     }
   }
 
+  backConfirmation() {
+    showModalBottomSheet(
+      useRootNavigator: true,
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(40), topRight: Radius.circular(40))),
+      constraints: BoxConstraints(
+        minWidth: MediaQuery.of(context).size.width,
+        maxHeight: 230,
+      ),
+      context: context,
+      builder: (BuildContext bc) {
+        return Container(
+            child: Column(
+          children: [
+            SizedBox(height: 8),
+            Image.asset(
+              "assets/icons/divider.png",
+              width: 340,
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Padding(
+                  padding: EdgeInsets.fromLTRB(30, 0, 0, 0),
+                  child: Text(
+                    "Abandon Changes ?",
+                    style: TextStyle(
+                        fontFamily: "mulish",
+                        fontSize: 20,
+                        fontWeight: FontWeight.w800),
+                  )),
+              SizedBox(
+                height: 20,
+              ),
+              Padding(
+                padding: EdgeInsets.fromLTRB(30, 0, 0, 0),
+                child: Text(
+                  'The changes made aren’t saved. Are you sure you want to discard all changes?',
+                  style: TextStyle(
+                      fontFamily: "mulish",
+                      fontSize: 14,
+                      fontWeight: FontWeight.w400),
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Padding(
+                padding: EdgeInsets.fromLTRB(30, 0, 30, 0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    InkWell(
+                      onTap: () {
+                        Navigator.pushAndRemoveUntil(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => CheckUserLoggedIn()),
+                            (route) => false);
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(50),
+                          color: Color.fromARGB(255, 239, 112, 95),
+                        ),
+                        width: MediaQuery.of(context).size.width * 0.4,
+                        height: 60,
+                        child: Center(
+                          child: Text(
+                            "Discard",
+                            style: TextStyle(
+                                fontFamily: "mulish",
+                                fontSize: 14,
+                                color: Color.fromARGB(255, 251, 255, 255),
+                                fontWeight: FontWeight.w700),
+                          ),
+                        ),
+                      ),
+                    ),
+                    InkWell(
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(50),
+                          color: Color.fromARGB(255, 228, 237, 239),
+                          border: Border.all(
+                            color: Color.fromARGB(255, 211, 225, 228),
+                          ),
+                        ),
+                        width: MediaQuery.of(context).size.width * 0.4,
+                        height: 60,
+                        child: Center(
+                          child: Text(
+                            "Cancel",
+                            style: TextStyle(
+                                fontFamily: "mulish",
+                                fontSize: 14,
+                                color: Color.fromARGB(255, 61, 71, 71),
+                                fontWeight: FontWeight.w700),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              )
+            ])
+          ],
+        ));
+      },
+    );
+  }
+
   // Fetch institutions based on category
   getInstitutions({loading = true}) async {
     print("Fetching Institutions for category: $_categoryId");
@@ -228,7 +345,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
           icon: Icon(Icons.arrow_back),
           color: secondaryColor,
           onPressed: () {
-            Navigator.pop(context);
+            backConfirmation();
           },
         ),
         titleTextStyle: TextStyle(
