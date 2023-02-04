@@ -47,6 +47,18 @@ class EventsAPI {
     }
   }
 
+  static fetchAndStoreEventsandCompetitionsFromStorage() async {
+    print("- Event and Compe list network fetch");
+    try {
+      var response =  await HiveDB.retrieveData(
+          valueName: "eventAndCompelist");
+      return response.map<Event>((event) => Event.fromJson(event)).toList();
+    } catch (e) {
+      print("Error $e");
+      return ("error");
+    }
+  }
+
   static fetchEventDetailsFromStorage(int id) async {
     print("- Event Details: $id Storage fetch");
     var eventDetailsData =

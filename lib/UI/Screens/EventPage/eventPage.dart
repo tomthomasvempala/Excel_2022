@@ -87,14 +87,7 @@ class _EventPageState extends State<EventPage> {
               fit: StackFit.expand,
               children: <Widget>[
                 //Background Image
-                getBackgroundImage(
-                  [
-                    Color.fromRGBO(0, 0, 0, 0),
-                    Color.fromRGBO(23, 18, 41, .8),
-                    Color.fromRGBO(0, 0, 0, .8)
-                  ],
-                ),
-                LoadingAnimation(color: Colors.white)
+                LoadingAnimation()
               ],
             );
           }

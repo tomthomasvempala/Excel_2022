@@ -37,6 +37,7 @@ class _ExplorePageState extends State<ExplorePage>
     estream = StreamController<dynamic>();
     super.initState();
     print("Explore object is created with ${widget.selectedCategory}");
+    fetchfromStorage();
     fetchfromNet();
     _tabcontroller = TabController(
         length: 2, vsync: this, initialIndex: widget.selectedPage ?? 0);
@@ -50,9 +51,17 @@ class _ExplorePageState extends State<ExplorePage>
     var dataFromNet =
         await EventsAPI.fetchAndStoreEventsandCompetitionsFromNet();
     if (!dataLoaded || dataFromNet != "error") {
-      print('Events And Competitions:');
-      print(dataFromNet);
-      estream.add(dataFromNet);
+      estream.add(dataFromNet??"error");
+    }
+    // estream.add(competitions);
+    dataLoaded = true;
+  }
+
+  fetchfromStorage() async {
+    var dataFromStorage =
+        await EventsAPI.fetchAndStoreEventsandCompetitionsFromStorage();
+    if (!dataLoaded || dataFromStorage != "error") {
+      estream.add(dataFromStorage??"error");
     }
     // estream.add(competitions);
     dataLoaded = true;
