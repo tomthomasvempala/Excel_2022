@@ -343,7 +343,7 @@ class _ProfilePageState extends State<ProfilePage>
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
-                                  showQRButton(context),
+                                  showQRButton(context, snapshot.data),
                                   SizedBox(
                                     width: 12,
                                   ),
@@ -454,7 +454,7 @@ class _ProfilePageState extends State<ProfilePage>
         });
   }
 
-  Widget showQRButton(BuildContext context) {
+  Widget showQRButton(BuildContext context, User user) {
     return ButtonTheme(
       //minWidth: MediaQuery.of(context).size.width / 2,
       child: TextButton(
@@ -473,7 +473,26 @@ class _ProfilePageState extends State<ProfilePage>
               fontWeight: FontWeight.w700,
               fontSize: 11),
         ),
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => QrCode(
+                        ((user.qrCodeUrl != null) ? (user.qrCodeUrl) : ("")),
+                        user.name,
+                        ((user.institutionName != null)
+                            ? (user.institutionName)
+                            : ("Not Entered")),
+                        user.id,
+                        ((user.gender != null)
+                            ? (user.gender)
+                            : ("Not Entered")),
+                        ((user.mobileNumber != null)
+                            ? (user.mobileNumber)
+                            : ("Not Entered")),
+                        user.email,
+                      )));
+        },
       ),
     );
   }
