@@ -12,8 +12,7 @@ class AuthService {
     // Get access token from Google
     try {
       GoogleSignIn googleSignIn = GoogleSignIn(scopes: [
-        'email',
-        'https://www.googleapis.com/auth/contacts.readonly'
+        'email'
       ]);
       await googleSignIn.signOut();
       GoogleSignInAccount accountInfo = await googleSignIn.signIn();
