@@ -42,44 +42,50 @@ class _ProfilePageState extends State<ProfilePage>
 
   List registeredEvents = [
     Event(
+      id: 5,
       name: "Issue!",
       desc: "Lorem ipsum dolor sit amet, conse ctetur adi piscing elit.",
-      date: "Nov 03",
+      date: "2023-03-04T00:00:00",
       icon: 'assets/icons/even_sample.png',
     ),
     Event(
+      id: 5,
       name: "Issue!",
       desc: "Lorem ipsum dolor sit amet, conse ctetur adi piscing elit.",
-      date: "Nov 03",
+      date: "2023-03-04T00:00:00",
       icon: 'assets/icons/even_sample.png',
     )
   ];
   List favoriteEvents = [
     Event(
+      id: 5,
       name: "Issue!",
       desc: "Lorem ipsum dolor sit amet, conse ctetur adi piscing elit.",
-      date: "Nov 03",
+      date: "2023-03-04T00:00:00",
       icon: 'assets/icons/even_sample.png',
     ),
     Event(
+      id: 5,
       name: "Issue!",
       desc: "Lorem ipsum dolor sit amet, conse ctetur adi piscing elit.",
-      date: "Nov 03",
+      date: "2023-03-04T00:00:00",
       icon: 'assets/icons/even_sample.png',
     )
   ];
 
   List savedNews = [
     Event(
+      id: 5,
       name: "Issue!",
       desc: "Lorem ipsum dolor sit amet, conse ctetur adi piscing elit.",
-      date: "Nov 03",
+      date: "2023-03-04T00:00:00",
       icon: 'assets/icons/even_sample.png',
     ),
     Event(
       name: "Issue!",
+      id: 5,
       desc: "Lorem ipsum dolor sit amet, conse ctetur adi piscing elit.",
-      date: "Nov 03",
+      date: "2023-03-04T00:00:00",
       icon: 'assets/icons/even_sample.png',
     )
   ];
@@ -245,7 +251,6 @@ class _ProfilePageState extends State<ProfilePage>
     );
   }
 
-
   @override
   Widget build(BuildContext context) {
     // print(widget.user.referrerAmbassadorId);
@@ -358,14 +363,13 @@ class _ProfilePageState extends State<ProfilePage>
                                   unselectedLabelColor:
                                       Color.fromARGB(235, 119, 133, 133),
                                   controller: tabController,
-                                  
                                   tabs: [
                                     Tab(
                                       child: Text(
                                         "Registered",
                                         style: TextStyle(
                                           fontFamily: "mulish",
-                                          fontSize: 14,
+                                          fontSize: 13,
                                           fontWeight: FontWeight.w800,
                                         ),
                                       ),
@@ -375,7 +379,7 @@ class _ProfilePageState extends State<ProfilePage>
                                         "Favorites",
                                         style: TextStyle(
                                           fontFamily: "mulish",
-                                          fontSize: 14,
+                                          fontSize: 13,
                                           fontWeight: FontWeight.w800,
                                         ),
                                       ),
@@ -385,7 +389,7 @@ class _ProfilePageState extends State<ProfilePage>
                                         "Saved News",
                                         style: TextStyle(
                                           fontFamily: "mulish",
-                                          fontSize: 14,
+                                          fontSize: 13,
                                           fontWeight: FontWeight.w800,
                                         ),
                                       ),
@@ -395,7 +399,6 @@ class _ProfilePageState extends State<ProfilePage>
                           ),
                         ),
                         Expanded(
-                          
                           child: Padding(
                             padding: const EdgeInsets.fromLTRB(0, 15, 0, 0),
                             child: TabBarView(

@@ -24,10 +24,10 @@ class _AllEventsState extends State<AllEvents> {
           EventsData.where((i) => i.eventType == "workshop").toList();
     }
     if (widget.category == 'talks') {
-      events = EventsData.where((i) => i.category == "talks").toList();
+      events = EventsData.where((i) => i.eventType == "talk").toList();
     }
     if (widget.category == 'general') {
-      events = EventsData.where((i) => i.category == "general").toList();
+      events = EventsData.where((i) => i.eventType == "general").toList();
     }
   }
 
