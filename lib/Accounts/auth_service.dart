@@ -11,8 +11,9 @@ class AuthService {
     String accessToken;
     // Get access token from Google
     try {
-      GoogleSignIn googleSignIn = GoogleSignIn(
-          scopes: ['email'], serverClientId: AccountConfig.newClientId);
+      GoogleSignIn googleSignIn = GoogleSignIn(scopes: [
+        'email'
+      ]);
       await googleSignIn.signOut();
       GoogleSignInAccount accountInfo = await googleSignIn.signIn();
       if (accountInfo != null) {

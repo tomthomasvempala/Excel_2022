@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "347228001421",
+    "project_id": "excel-2022-376709",
+    "storage_bucket": "excel-2022-376709.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:347228001421:android:bfd06b4718462b15cfbec4",
+        "android_client_info": {
+          "package_name": "com.example.excel2022"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "347228001421-u27ghprpsqocf51b8g8ot71qta0inhgq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.excel2022",
+            "certificate_hash": "4517452e92e625a547cd172624e0b7bb1fe0ef49"
+          }
+        },
+        {
+          "client_id": "347228001421-55mai2nan2sc43o29qbn3aa3jbofi6ih.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDd4ST7th48MaSLR4DI3mQmvYg0yiyKNF4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "347228001421-55mai2nan2sc43o29qbn3aa3jbofi6ih.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
