@@ -10,7 +10,10 @@ import 'package:excelapp/UI/Screens/ProfilePage/profile_main.dart';
 import 'package:excelapp/UI/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 import 'package:searchable_paginated_dropdown/searchable_paginated_dropdown.dart';
+
+import '../../../../Providers/navigationProvider.dart';
 
 // import 'package:searchable_dropdown/searchable_dropdown.dart';
 
@@ -134,11 +137,13 @@ class _UpdateProfileState extends State<UpdateProfile> {
                   children: [
                     InkWell(
                       onTap: () {
-                        Navigator.pushAndRemoveUntil(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => CheckUserLoggedIn()),
-                            (route) => false);
+                        int count = 0;
+                        Navigator.of(context).popUntil((_) => count++ >= 2);
+                        // Navigator.pushAndRemoveUntil(
+                        //     context,
+                        //     MaterialPageRoute(
+                        //         builder: (context) => CheckUserLoggedIn()),
+                        //     (route) => false);
                       },
                       child: Container(
                         decoration: BoxDecoration(
@@ -863,13 +868,18 @@ class _UpdateProfileState extends State<UpdateProfile> {
           _formKey.currentState.validate()
               ? submitForm().then((value) {
                   if (value == "Submitted") {
-                    Navigator.pushAndRemoveUntil(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => CheckUserLoggedIn(),
-                      ),
-                      (Route<dynamic> route) => false,
-                    );
+                    // Navigator.pushAndRemoveUntil(
+                    //   context,
+                    //   MaterialPageRoute(
+                    //     builder: (context) => CheckUserLoggedIn(),
+                    //   ),
+                    //   (Route<dynamic> route) => false,
+                    // );
+
+                    Navigator.pop(context);
+                    final myProvider =
+                        Provider.of<MyNavigationIndex>(context, listen: false);
+                    myProvider.setIndex = 3;
                   } else {
                     // _formKey.currentState.save();
                     ScaffoldMessenger.of(context).showSnackBar(snackBar(value));

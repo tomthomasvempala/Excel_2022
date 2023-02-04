@@ -1,9 +1,11 @@
 import 'package:excelapp/Models/user_model.dart';
+import 'package:excelapp/Providers/loginStatusProvider.dart';
 import 'package:excelapp/Services/Database/hive_operations.dart';
 import 'package:excelapp/UI/Components/LoadingUI/loadingAnimation.dart';
 import 'package:excelapp/UI/Components/LoginScreen/login_screen.dart';
 import 'package:excelapp/UI/Screens/ProfilePage/profile_page.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class CheckUserLoggedIn extends StatefulWidget {
@@ -32,17 +34,34 @@ class _CheckUserLoggedInState extends State<CheckUserLoggedIn> {
     }
   }
 
+  bool isInit;
   @override
   void initState() {
-    userData = checkUser();
+    isInit = true;
     super.initState();
+  }
+
+  void didChangeDependencies() async {
+    if (isInit) {
+      isInit = false;
+      final loginStatus = Provider.of<LoginStatus>(context);
+      await checkUser().then((value) {
+        loginStatus.setData(value);
+      });
+    }
+    // final loginStatus = Provider.of<LoginStatus>(context);
+    // loginStatus.setDataFuture(checkUser());
+    super.didChangeDependencies();
+
+    // userData = checkUser();
   }
 
   @override
   Widget build(BuildContext context) {
+    final loginStatus = Provider.of<LoginStatus>(context);
     return Material(
-      child: FutureBuilder(
-        future: userData,
+      child: StreamBuilder(
+        stream: loginStatus.data.stream,
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           if (snapshot.hasData) {
             if (snapshot.data == 'login') {

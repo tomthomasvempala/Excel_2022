@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:excelapp/UI/Screens/SplashScreen/splashscreen.dart';
+import 'package:provider/provider.dart';
 
-void main() {
+void main() {Provider.debugCheckInvalidValueType = null;
   runApp(MyApp());
 }
 

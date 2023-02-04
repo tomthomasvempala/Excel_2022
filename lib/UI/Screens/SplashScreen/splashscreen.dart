@@ -1,3 +1,4 @@
+import 'package:excelapp/Providers/loginStatusProvider.dart';
 import 'package:excelapp/Providers/navigationProvider.dart';
 import 'package:excelapp/UI/Screens/LandingPage/landingPage.dart';
 import 'package:flutter/material.dart';
@@ -18,8 +19,11 @@ class _SplashscreenState extends State<Splashscreen> {
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(
-          builder: (context) => ChangeNotifierProvider(
-                create: (context) => MyNavigationIndex(),
+          builder: (context) => MultiProvider(
+                providers: [
+                  ChangeNotifierProvider<MyNavigationIndex>(create: (c)=>MyNavigationIndex()),
+                  ChangeNotifierProvider<LoginStatus>(create: (c)=>LoginStatus()),
+                  ],
                 child: CustomNavigator(),
               )),
     );

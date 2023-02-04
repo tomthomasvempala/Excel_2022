@@ -5,6 +5,9 @@ import 'package:excelapp/UI/Components/LoadingUI/loadingAnimation.dart';
 import 'package:excelapp/UI/Screens/ProfilePage/profile_main.dart';
 import 'package:excelapp/UI/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../../../../Providers/navigationProvider.dart';
 
 class AddReferal extends StatefulWidget {
   @override
@@ -47,13 +50,16 @@ class _AddReferalState extends State<AddReferal> {
     setState(() {
       loading = false;
     });
-    if (refetchDetails == "success")
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-          builder: (context) => CheckUserLoggedIn(),
-        ),
-      );
+    if (refetchDetails == "success") {
+      final myProvider = Provider.of<MyNavigationIndex>(context);
+      myProvider.setIndex = 3;
+    }
+    // Navigator.pushReplacement(
+    //   context,
+    //   MaterialPageRoute(
+    //     builder: (context) => CheckUserLoggedIn(),
+    //   ),
+    // );
     // else show error
   }
 
