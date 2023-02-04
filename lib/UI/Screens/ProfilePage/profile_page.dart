@@ -465,7 +465,10 @@ class _ProfilePageState extends State<ProfilePage>
               fontWeight: FontWeight.w700,
               fontSize: 11),
         ),
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => QrCode()));
+        },
       ),
     );
   }
