@@ -470,12 +470,18 @@ class _ProfilePageState extends State<ProfilePage>
               context,
               MaterialPageRoute(
                   builder: (context) => QrCode(
-                        user.qrCodeUrl,
+                        ((user.qrCodeUrl != null) ? (user.qrCodeUrl) : ("")),
                         user.name,
-                        user.institutionName,
+                        ((user.institutionName != null)
+                            ? (user.institutionName)
+                            : ("Not Entered")),
                         user.id,
-                        user.gender,
-                        user.mobileNumber,
+                        ((user.gender != null)
+                            ? (user.gender)
+                            : ("Not Entered")),
+                        ((user.mobileNumber != null)
+                            ? (user.mobileNumber)
+                            : ("Not Entered")),
                         user.email,
                       )));
         },

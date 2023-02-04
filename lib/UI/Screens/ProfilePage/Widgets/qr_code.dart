@@ -13,6 +13,7 @@ class QrCode extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print(institutionName);
     // return Card(
     //   elevation: 3,
     //   child: Center(
@@ -118,7 +119,7 @@ class QrCode extends StatelessWidget {
                       height: 5,
                     ),
                     Text(
-                      name,
+                      ((name != null || name != '') ? name : "Not Entered"),
                       style: TextStyle(
                         color: Color.fromARGB(255, 28, 31, 32),
                         fontWeight: FontWeight.w700,
@@ -129,7 +130,7 @@ class QrCode extends StatelessWidget {
                       height: 10,
                     ),
                     Text(
-                      'Excel ID : ${id.toString()}',
+                      'Excel ID : ${((id != null) ? id.toString() : "Not Alloted")}',
                       style: TextStyle(
                           fontFamily: pfontFamily,
                           fontSize: 14,
@@ -180,7 +181,9 @@ class QrCode extends StatelessWidget {
                           ),
                           SizedBox(height: 5),
                           Text(
-                            gender,
+                            ((gender != null || gender != '')
+                                ? gender
+                                : "Not Entered"),
                             style: TextStyle(
                               color: Color(0xFF3D4747),
                               fontSize: 14,
@@ -232,7 +235,9 @@ class QrCode extends StatelessWidget {
                           ),
                           SizedBox(height: 5),
                           Text(
-                            mobileNumber,
+                            ((mobileNumber != null || mobileNumber != '')
+                                ? mobileNumber
+                                : "Not Entered"),
                             style: TextStyle(
                               color: Color(0xFF3D4747),
                               fontSize: 14,
@@ -285,7 +290,9 @@ class QrCode extends StatelessWidget {
                         ),
                         SizedBox(height: 5),
                         Text(
-                          email,
+                          ((email != null || email != '')
+                              ? email
+                              : "Not Entered"),
                           style: TextStyle(
                             color: Color(0xFF3D4747),
                             fontSize: 14,
@@ -330,7 +337,7 @@ class QrCode extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'College',
+                          "Institution",
                           style: TextStyle(
                             color: Color(0xFF778585),
                             fontSize: 11,
@@ -340,7 +347,9 @@ class QrCode extends StatelessWidget {
                         ),
                         SizedBox(height: 5),
                         Text(
-                          institutionName,
+                          ((institutionName != null || institutionName != '')
+                              ? institutionName
+                              : "Not Entered"),
                           style: TextStyle(
                             color: Color(0xFF3D4747),
                             fontSize: 14,
