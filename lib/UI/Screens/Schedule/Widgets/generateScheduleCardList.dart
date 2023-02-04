@@ -116,10 +116,15 @@ class ScheduleEvent extends StatelessWidget {
                             color: Color(0xff0E99E8),
                           ),
                           padding: EdgeInsets.all(10),
-                          child: CachedNetworkImage(
-                            imageUrl: eventSchedule.icon,
-                            width: 50,
-                            height: 50,
+                          // child: CachedNetworkImage(
+                          //   imageUrl: eventSchedule.icon,
+                          //   width: 50,
+                          //   height: 50,
+                          // ),
+                          child: Image.asset(
+                            "assets/eventicons/wave.png",
+                            width: 31.5,
+                            height: 31.5,
                           ),
                         ),
                         SizedBox(
@@ -145,7 +150,7 @@ class ScheduleEvent extends StatelessWidget {
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) =>
-                                                EventPage(123)));
+                                                EventPage(eventSchedule.id)));
                                   },
                                   child: Text(
                                     "View Event",
