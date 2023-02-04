@@ -84,7 +84,7 @@ class SharingOptions extends StatelessWidget {
             icon: Icons.content_copy,
             color: primaryColor,
             action: () async {
-              await SocialShare.copyToClipboard(
+              await SocialShare.copyToClipboard(text:
                 message,
               );
               ScaffoldMessenger.of(context).showSnackBar(

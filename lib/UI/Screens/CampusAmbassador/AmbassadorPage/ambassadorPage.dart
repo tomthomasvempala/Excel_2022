@@ -85,7 +85,7 @@ class _AmbassadorPageState extends State<AmbassadorPage> {
                         color: Colors.grey,
                       ),
                       onPressed: () async {
-                        await SocialShare.copyToClipboard(
+                        await SocialShare.copyToClipboard(text:
                           ambassadorData["id"].toString(),
                         );
                         ScaffoldMessenger.of(context).showSnackBar(
