@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter_html/flutter_html.dart';
+import 'package:html/dom.dart' as dom;
 
 import '../../../constants.dart';
 
@@ -90,12 +92,17 @@ class _MoreEventDetailsState extends State<MoreEventDetails> {
     String content;
 
     if (pageNumber == 1)
-      content = widget.eventDetails.about??"This is event is about an event. Please consult Ashish for more content in dummy data in the backend.";
+      content = widget.eventDetails.about ??
+          "This is event is about an event. Please consult Ashish for more content in dummy data in the backend.";
     else if (pageNumber == 2)
-      content = widget.eventDetails.format??"Format of the event is like this. Tada !";
+      content = widget.eventDetails.format ??
+          "Format of the event is like this. Tada !";
     else if (pageNumber == 3)
-      content = widget.eventDetails.rules??"The only rule is that there are no rules.";
-    else if (pageNumber == 4) content = widget.eventDetails.rules??"Please consult Ashish for more content in dummy data in the backend";
+      content = widget.eventDetails.rules ??
+          "The only rule is that there are no rules.";
+    else if (pageNumber == 4)
+      content = widget.eventDetails.rules ??
+          "Please consult Ashish for more content in dummy data in the backend";
 
     return Container(
       decoration: BoxDecoration(color: Colors.white),
@@ -103,13 +110,50 @@ class _MoreEventDetailsState extends State<MoreEventDetails> {
         physics: BouncingScrollPhysics(),
         child: Padding(
             padding: padding,
-            child: Text(
-              content,
-              style: TextStyle(
+            // child: Text(
+            //   content,
+            //   style: TextStyle(
+            //       fontFamily: pfontFamily,
+            //       fontSize: 14,
+            //       height: 1.5,
+            //       color: Color(0xff3D4747)),
+            // ),
+            child: Html(
+              data: content,
+              customTextStyle: (node, baseStyle) {
+                if (node is dom.Element)
+                  switch (node.localName) {
+                    case "h2":
+                      return TextStyle(
+                          fontFamily: pfontFamily,
+                          fontSize: 18,
+                          height: 1.3,
+                          color: Color(0xff3D4747));
+                    case "p":
+                      return TextStyle(
+                          fontFamily: pfontFamily,
+                          fontSize: 14.7,
+                          height: 1.5,
+                          color: Color(0xff3D4747));
+                    case "li":
+                      return TextStyle(
+                          fontFamily: pfontFamily,
+                          fontSize: 14.7,
+                          height: 1.7,
+                          color: Color(0xff3D4747));
+                  }
+                return TextStyle(
+                    fontFamily: pfontFamily,
+                    fontSize: 14.7,
+                    height: 1.5,
+                    color: Color(0xff3D4747));
+              },
+              defaultTextStyle: TextStyle(
+                  color: Color.fromARGB(255, 61, 71, 71),
                   fontFamily: pfontFamily,
-                  fontSize: 14,
-                  height: 1.5,
-                  color: Color(0xff3D4747)),
+                  height: 1.7,
+                  fontSize: 14.5,
+                  fontWeight: FontWeight.w400),
             )),
       ),
     );
