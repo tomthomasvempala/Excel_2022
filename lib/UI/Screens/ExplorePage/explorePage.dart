@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:excelapp/Providers/navigationProvider.dart';
+import 'package:excelapp/UI/Components/LoadingUI/loadingAnimation.dart';
 import 'package:excelapp/UI/Screens/ExplorePage/Widgets/Competitions/competitionsCardList.dart';
 import 'package:excelapp/UI/Screens/ExplorePage/Widgets/Events/eventsCardList.dart';
 import 'package:flutter/material.dart';
@@ -184,14 +185,8 @@ class _ExplorePageState extends State<ExplorePage>
                                 ]));
                       } else {
                         return Container(
-                          child: Shimmer.fromColors(
-                            child: Container(
-                              color: Colors.white,
-                              height: MediaQuery.of(context).size.height / 4,
-                              margin: EdgeInsets.symmetric(horizontal: 15),
-                            ),
-                            baseColor: Colors.grey[300],
-                            highlightColor: Colors.grey[100],
+                          child: Center(
+                            child: LoadingAnimation(),
                           ),
                         );
                       }

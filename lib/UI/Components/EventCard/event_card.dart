@@ -3,6 +3,7 @@ import 'package:excelapp/Models/event_card.dart';
 import 'package:excelapp/UI/Screens/EventPage/eventPage.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:intl/intl.dart';
 import 'package:shimmer/shimmer.dart';
 
 class EventCard extends StatelessWidget {
@@ -54,7 +55,7 @@ class EventCard extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          event.name??"Event",
+                          event.name ?? "Event",
                           style: TextStyle(
                               color: Color.fromARGB(255, 28, 31, 32),
                               fontWeight: FontWeight.w800,
@@ -67,7 +68,7 @@ class EventCard extends StatelessWidget {
                         SizedBox(
                           width: MediaQuery.of(context).size.width * 0.46,
                           child: Text(
-                            event.desc??"Event Description",
+                            event.desc ?? "Event Description",
                             style: TextStyle(
                                 color: Color.fromARGB(255, 119, 133, 133),
                                 fontWeight: FontWeight.w500,
@@ -128,7 +129,8 @@ class EventCard extends StatelessWidget {
                     child: Column(
                       children: [
                         Text(
-                          event.date.substring(3, 6),
+                          new DateFormat.MMM().format(DateTime.parse(event.date)
+                              .add(Duration(days: 1))),
                           style: TextStyle(
                               color: Color.fromARGB(255, 7, 131, 131),
                               fontWeight: FontWeight.w800,
@@ -136,7 +138,8 @@ class EventCard extends StatelessWidget {
                               fontSize: 11),
                         ),
                         Text(
-                          event.date.substring(0, 2),
+                          new DateFormat.d().format(DateTime.parse(event.date)
+                              .add(Duration(days: 1))),
                           style: TextStyle(
                               color: Color.fromARGB(255, 18, 221, 197),
                               fontWeight: FontWeight.w800,
