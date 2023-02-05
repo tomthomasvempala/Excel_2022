@@ -108,10 +108,19 @@ class EventCard extends StatelessWidget {
                                         ),
                                       ),
                                     ))),
-                            SizedBox(width: 10),
-                            FaIcon(FontAwesomeIcons.heart,
-                                color: Color.fromARGB(255, 179, 193, 197),
-                                size: 20),
+                            // SizedBox(width: 10),
+                            // Container(
+                            //   decoration: BoxDecoration(
+                            //     borderRadius: BorderRadius.circular(50),
+                            //     color: Color(0xffECF4F5),
+                            //   ),
+                            //   child: Padding(
+                            //     padding: EdgeInsets.all(10),
+                            //     child: FaIcon(FontAwesomeIcons.heart,
+                            //         color: Color.fromARGB(255, 179, 193, 197),
+                            //         size: 20),
+                            //   ),
+                            // ),
                           ],
                         ),
                       ],

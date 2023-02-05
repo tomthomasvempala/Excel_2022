@@ -191,9 +191,7 @@ class EventPageBody extends StatelessWidget {
                       ),
                       child: Padding(
                         padding: EdgeInsets.all(10),
-                        child: FaIcon(FontAwesomeIcons.heart,
-                            color: Color.fromARGB(255, 179, 193, 197),
-                            size: 20),
+                        child: LikeButton(eventDetails: eventDetails)
                       ),
                     ),
                   ]),

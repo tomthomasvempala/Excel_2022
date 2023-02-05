@@ -91,7 +91,7 @@ class FavouritesAPI {
     if (!await isFavourited(id)) return "Already Unfavourited";
     try {
       var response = await deleteAuthorisedData(
-        APIConfig.baseUrl + '/bookmark/' + id.toString(),
+        APIConfig.baseUrl + 'bookmark/' + id.toString(),
       );
       print("Removing from favourites attempted with status code " +
           response.statusCode.toString());
@@ -119,7 +119,7 @@ class FavouritesAPI {
     else if (await isFavourited(id)) return "Already in Favourites";
     try {
       var response = await postAuthorisedData(
-        url: APIConfig.baseUrl + '/bookmark',
+        url: APIConfig.baseUrl + 'bookmark',
         body: json.encode({"eventId": id}),
       );
       print("Adding to favourites attempted with status code " +

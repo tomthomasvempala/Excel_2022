@@ -3,6 +3,7 @@ import 'package:excelapp/Services/API/favourites_api.dart';
 import 'package:excelapp/UI/Components/AlertDialog/alertDialog.dart';
 import 'package:excelapp/UI/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class LikeButton extends StatefulWidget {
   final EventDetails eventDetails;
@@ -42,7 +43,7 @@ class _LikeButton extends State<LikeButton> {
     setState(() {
       isLoading = false;
     });
-    // FavouritesStatus.instance.favouritesStatus = 3;
+    FavouritesStatus.instance.favouritesStatus = 3;
   }
 
   deleteFromFavourites() async {
@@ -72,33 +73,36 @@ class _LikeButton extends State<LikeButton> {
 
   @override
   Widget build(BuildContext context) {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(70),
-      child: Container(
-        color: Colors.white,
-        child: isLoading
-            ? Container(
-                width: 47,
-                height: 47,
-                padding: const EdgeInsets.all(12.0),
-                child: CircularProgressIndicator(
-                  strokeWidth: 2,
-                  valueColor: new AlwaysStoppedAnimation<Color>(primaryColor),
-                ),
-              )
-            : IconButton(
-                alignment: Alignment.bottomCenter,
-                iconSize: 30,
-                color: Colors.grey,
-                icon: !likeState
-                    ? Icon(Icons.favorite)
-                    : Icon(Icons.favorite, color: Colors.redAccent),
-                onPressed: () {
-                  likeState ? deleteFromFavourites() : addToFavourites();
-                  getFavouritedStatus();
-                },
+    return Container(
+      height: 25,
+      width: 25,
+      color: Color(0xffECF4F5),
+      child: isLoading
+          ? Container(
+              color: Color(0xffECF4F5),
+              height: 25,
+              width: 25,
+              padding: const EdgeInsets.all(2.0),
+              child: CircularProgressIndicator(
+                strokeWidth: 2,
+                valueColor: new AlwaysStoppedAnimation<Color>(primaryColor),
               ),
-      ),
+            )
+          : InkWell(
+              child: !likeState
+                  ? Center(
+                      child: FaIcon(FontAwesomeIcons.heart,
+                          color: Color.fromARGB(255, 179, 193, 197), size: 20),
+                    )
+                  : Center(
+                      child: FaIcon(FontAwesomeIcons.solidHeart,
+                          color: Colors.redAccent, size: 20),
+                    ),
+              onTap: () {
+                likeState ? deleteFromFavourites() : addToFavourites();
+                getFavouritedStatus();
+              },
+            ),
     );
   }
 }
