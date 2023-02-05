@@ -50,8 +50,22 @@ class _LoginScreenState extends State<LoginScreen> {
     } else {
       print("Authentication went wrong");
     }
-    final myProvider = Provider.of<LoginStatus>(context,listen: false);
-    await HiveDB.retrieveData(valueName: "user").then((value) => myProvider.setData(User.fromJson(value)));
+    final myProvider = Provider.of<LoginStatus>(context, listen: false);
+    if (User.fromJson(await HiveDB.retrieveData(valueName: "user"))
+                .mobileNumber ==
+            null ||
+        User.fromJson(await HiveDB.retrieveData(valueName: "user")).gender ==
+            null ||
+        User.fromJson(await HiveDB.retrieveData(valueName: "user")).institutionId ==
+            null) {
+      showCreateAccountModal(
+          context, User.fromJson(await HiveDB.retrieveData(valueName: "user")));
+    }
+
+    await HiveDB.retrieveData(valueName: "user")
+        .then((value) => myProvider.setData(User.fromJson(value)));
+//I want to open a bottommodal hseet if user doesn't have mobileNumber
+
     // myProvider.setData('user');
     // Navigator.pushReplacement(
     //   context,
@@ -127,7 +141,10 @@ class _LoginScreenState extends State<LoginScreen> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          FaIcon(FontAwesomeIcons.google,size: 18,),
+                          FaIcon(
+                            FontAwesomeIcons.google,
+                            size: 18,
+                          ),
                           // CircleAvatar(
                           //   radius: 10,
                           //   backgroundColor: Colors.white,
@@ -142,12 +159,10 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                         ],
                       ),
-                      onPressed: () =>authentication(context),
-
-                      onLongPress: (){
-                        showCreateAccountModal(context);
-                     },
-
+                      onPressed: () => authentication(context),
+                      onLongPress: () {
+                        // showCreateAccountModal(context);
+                      },
                     ),
                   ),
                 ],

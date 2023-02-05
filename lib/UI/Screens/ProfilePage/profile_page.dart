@@ -3,6 +3,7 @@ import 'package:excelapp/Accounts/auth_service.dart';
 import 'package:excelapp/Models/user_model.dart';
 import 'package:excelapp/Providers/navigationProvider.dart';
 import 'package:excelapp/UI/Components/Appbar/appbar.dart';
+import 'package:excelapp/UI/Components/CreateAccountModal/createAccountModal.dart';
 import 'package:excelapp/UI/Components/LoadingUI/alertDialog.dart';
 import 'package:excelapp/UI/Components/LoadingUI/loadingAnimation.dart';
 
@@ -91,7 +92,6 @@ class _ProfilePageState extends State<ProfilePage>
   ];
 
   var userDetails;
-
   void initState() {
     super.initState();
     tabController = TabController(length: 3, vsync: this);
