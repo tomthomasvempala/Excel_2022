@@ -38,27 +38,12 @@ class _ProfilePageState extends State<ProfilePage>
   User _user;
   bool _isProfileUpdated;
   AuthService authService;
+  List<Event> _favouritedEvents = [];
 
   @override
   TabController tabController;
 
   List registeredEvents = [
-    Event(
-      id: 5,
-      name: "Issue!",
-      desc: "Lorem ipsum dolor sit amet, conse ctetur adi piscing elit.",
-      date: "2023-03-04T00:00:00",
-      icon: 'assets/icons/even_sample.png',
-    ),
-    Event(
-      id: 5,
-      name: "Issue!",
-      desc: "Lorem ipsum dolor sit amet, conse ctetur adi piscing elit.",
-      date: "2023-03-04T00:00:00",
-      icon: 'assets/icons/even_sample.png',
-    )
-  ];
-  List favoriteEvents = [
     Event(
       id: 5,
       name: "Issue!",
@@ -101,7 +86,14 @@ class _ProfilePageState extends State<ProfilePage>
     _isProfileUpdated = widget.isProfileUpdated;
     authService = AuthService();
     // RegistrationAPI.fetchRegisteredEvents();
-    FavouritesAPI.fetchFavourites();
+    fetchFavourites();
+  }
+
+  Future fetchFavourites() async {
+    List<Event> events = await FavouritesAPI.fetchFavourites();
+    setState(() {
+      _favouritedEvents = events;
+    });
   }
 
   Future<dynamic> viewUserProfile() async {
@@ -127,10 +119,10 @@ class _ProfilePageState extends State<ProfilePage>
     await authService.logout();
     Navigator.of(context, rootNavigator: true).pop();
     print("Logout");
-    final myProvider = Provider.of<MyNavigationIndex>(context,listen: false);
+    final myProvider = Provider.of<MyNavigationIndex>(context, listen: false);
     myProvider.setIndex = 3;
-    
-    final loginStatus = Provider.of<LoginStatus>(context,listen: false);
+
+    final loginStatus = Provider.of<LoginStatus>(context, listen: false);
     loginStatus.setData('login');
     // Navigator.pushReplacement(
     //   context,
@@ -440,9 +432,9 @@ class _ProfilePageState extends State<ProfilePage>
     return ListView.builder(
         physics: BouncingScrollPhysics(),
         shrinkWrap: true,
-        itemCount: favoriteEvents.length,
+        itemCount: _favouritedEvents.length,
         itemBuilder: (_, index) {
-          return EventCard(favoriteEvents[index]);
+          return EventCard(_favouritedEvents[index]);
         });
   }
 
