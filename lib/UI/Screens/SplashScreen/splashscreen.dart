@@ -1,3 +1,4 @@
+import 'package:excelapp/Providers/favouritesProvider.dart';
 import 'package:excelapp/Providers/loginStatusProvider.dart';
 import 'package:excelapp/Providers/navigationProvider.dart';
 import 'package:excelapp/UI/Screens/LandingPage/landingPage.dart';
@@ -23,6 +24,7 @@ class _SplashscreenState extends State<Splashscreen> {
                 providers: [
                   ChangeNotifierProvider<MyNavigationIndex>(create: (c)=>MyNavigationIndex()),
                   ChangeNotifierProvider<LoginStatus>(create: (c)=>LoginStatus()),
+                  ChangeNotifierProvider<FavoritesProvider>(create: (c)=>FavoritesProvider()),
                   ],
                 child: CustomNavigator(),
               )),

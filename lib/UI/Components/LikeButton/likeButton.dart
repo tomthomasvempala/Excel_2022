@@ -1,9 +1,13 @@
 import 'package:excelapp/Models/event_details.dart';
+import 'package:excelapp/Providers/navigationProvider.dart';
 import 'package:excelapp/Services/API/favourites_api.dart';
 import 'package:excelapp/UI/Components/AlertDialog/alertDialog.dart';
 import 'package:excelapp/UI/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
+
+import '../../../Providers/favouritesProvider.dart';
 
 class LikeButton extends StatefulWidget {
   final EventDetails eventDetails;
@@ -99,7 +103,14 @@ class _LikeButton extends State<LikeButton> {
                           color: Colors.redAccent, size: 20),
                     ),
               onTap: () {
-                likeState ? deleteFromFavourites() : addToFavourites();
+                final myProvider = Provider.of<FavoritesProvider>(context);
+                if (likeState) {
+                  deleteFromFavourites();
+                  myProvider.removeFromFavorites(widget.eventDetails.id);
+                } else {
+                  addToFavourites();
+                  myProvider.addToFavorites(widget.eventDetails.id);
+                }
                 getFavouritedStatus();
               },
             ),
