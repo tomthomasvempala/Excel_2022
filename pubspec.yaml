@@ -29,7 +29,7 @@ dependencies:
   introduction_screen: ^3.1.4
   font_awesome_flutter: ^10.2.1
   image_picker: ^0.8.6
-  fluttertoast: ^8.1.1
+  fluttertoast: ^8.1.2
   flutter_launcher_icons: ^0.10.0
   provider:
   http: ^0.13.5

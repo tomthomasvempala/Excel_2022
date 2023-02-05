@@ -1,4 +1,5 @@
 import 'package:excelapp/UI/Components/Appbar/appbar.dart';
+import 'package:excelapp/UI/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:excelapp/UI/Screens/HomePage/Widgets/Notifications/notificationCard.dart';
 
@@ -6,9 +7,28 @@ class NotificationsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: customappbar("Notifications"),
+      backgroundColor: Color.fromARGB(255, 236, 244, 245),
+      appBar: AppBar(
+        backgroundColor: Color.fromARGB(255, 251, 255, 255),
+        elevation: 0,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          color: secondaryColor,
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+        titleTextStyle: TextStyle(
+          color: secondaryColor,
+          fontFamily: pfontFamily,
+          fontSize: 18,
+          fontWeight: FontWeight.w700,
+        ),
+        title: Text("Notifications"),
+        actions: [],
+      ),
       body: SingleChildScrollView(
-        physics: AlwaysScrollableScrollPhysics(),
+        physics: BouncingScrollPhysics(),
         padding: EdgeInsets.fromLTRB(0, 10, 0, 100),
         child: Column(
           children: List.generate(
@@ -17,6 +37,8 @@ class NotificationsPage extends StatelessWidget {
               title: notificationData[index]['title'],
               time: notificationData[index]['time'],
               description: notificationData[index]['content'],
+              button: notificationData[index]['button'],
+              link: notificationData[index]['link'],
             ),
           ),
         ),
@@ -28,22 +50,29 @@ class NotificationsPage extends StatelessWidget {
 List<Map<String, dynamic>> notificationData = [
   {
     "id": 1,
-    "title": "Interesting fact!",
-    "time": "Just now",
+    "title": "Lorem Ipsum",
+    "time": "2023-02-02T00:00:00",
     "content":
-        "Excel 2020 is called excel 2020 because it happend in the year 2020 and also because it happens after Excel 2019"
+        "Lorem ipsum dolor sit amet, consectetur adip is cing elit. Netus platea quis malesu",
+    "button": "Read more",
+    "link": "https://www.google.com"
   },
   {
     "id": 2,
-    "title": "Second notification",
-    "time": "5 mins ago",
+    "title": "Lorem Ipsum",
+    "time": "2020-01-04T00:00:00",
     "content":
-        "* Lorem ipsum dolor sit amet\n* consectetur adipiscing elit\n* sed do eiusmod tempor incididunt ut.\n* labore et dolore magna aliqua.",
+        "Lorem ipsum dolor sit amet, consectetur adip is cing elit. Netus platea quis malesu",
+    "button": "Read more",
+    "link": "https://www.google.com"
   },
   {
     "id": 3,
-    "title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-    "time": "2 hours ago",
-    "content": "Excel 2020 is ging to be the first tech fest of its kind !"
+    "title": "Lorem Ipsum",
+    "time": "2023-01-15T00:00:00",
+    "content":
+        "Lorem ipsum dolor sit amet, consectetur adip is cing elit. Netus platea quis malesu",
+    "button": "Read more",
+    "link": "https://www.google.com"
   }
 ];

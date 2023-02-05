@@ -1,3 +1,4 @@
+import 'package:excelapp/UI/Screens/HomePage/Widgets/Notifications/notifications.dart';
 import 'package:excelapp/UI/Screens/HomePage/Widgets/QuickAccess/modals/contactUsModal.dart';
 import 'package:excelapp/UI/Screens/HomePage/Widgets/QuickAccess/modals/reachUsModal.dart';
 import 'package:excelapp/UI/Themes/profile_themes.dart';
@@ -60,7 +61,12 @@ class QuickAccessBar extends StatelessWidget {
                         context: context,
                         builder: (context) =>
                             Wrap(children: <Widget>[modalSheet]))
-                    : ("");
+                    : (buttonName == 'Notifs'
+                        ? Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => NotificationsPage()))
+                        : "");
               },
               child: FaIcon(
                 iconName,
