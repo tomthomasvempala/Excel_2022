@@ -35,7 +35,7 @@ class LastestNewsCard extends StatelessWidget {
                           width: 40,
                           height: 40,
                           child: FloatingActionButton(
-                            heroTag: 'btn1',
+                            heroTag: 'newsIcon${news.id}',
                             elevation: 0,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(60),
