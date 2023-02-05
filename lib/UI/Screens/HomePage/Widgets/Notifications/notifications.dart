@@ -14,7 +14,9 @@ class NotificationsPage extends StatelessWidget {
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           color: secondaryColor,
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pop(context);
+          },
         ),
         titleTextStyle: TextStyle(
           color: secondaryColor,
