@@ -39,8 +39,11 @@ class FavouritesAPI {
     }
 
     // Return already fetched Data if loaded.
-    if (FavouritesStatus.instance.favouritesStatus == 1)
+    if (FavouritesStatus.instance.favouritesStatus == 1) {
+      print('--- Favourites: Fetched from memory ---');
+      print(FavouritesStatus.instance.favouritesIDs);
       return FavouritesStatus.instance.eventList;
+    }
 
     // Returns if already fetching
     if (FavouritesStatus.instance.favouritesStatus == 4) return;
@@ -136,13 +139,12 @@ class FavouritesAPI {
     }
   }
   // End of registerEvent
-
 }
 
 Future fetchDataFromNet(jwt) async {
   var res;
   try {
-    res = await getAuthorisedData(APIConfig.baseUrl + '/bookmark');
+    res = await getAuthorisedData(APIConfig.baseUrl + 'bookmark');
     return res;
   } catch (_) {
     await Future.delayed(Duration(milliseconds: 3000), () async {

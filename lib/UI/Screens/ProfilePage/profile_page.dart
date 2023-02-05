@@ -2,6 +2,7 @@ import 'package:excelapp/Accounts/account_services.dart';
 import 'package:excelapp/Accounts/auth_service.dart';
 import 'package:excelapp/Models/user_model.dart';
 import 'package:excelapp/Providers/navigationProvider.dart';
+import 'package:excelapp/Services/API/favourites_api.dart';
 import 'package:excelapp/UI/Components/Appbar/appbar.dart';
 import 'package:excelapp/UI/Components/CreateAccountModal/createAccountModal.dart';
 import 'package:excelapp/UI/Components/LoadingUI/alertDialog.dart';
@@ -100,6 +101,7 @@ class _ProfilePageState extends State<ProfilePage>
     _isProfileUpdated = widget.isProfileUpdated;
     authService = AuthService();
     // RegistrationAPI.fetchRegisteredEvents();
+    FavouritesAPI.fetchFavourites();
   }
 
   Future<dynamic> viewUserProfile() async {
