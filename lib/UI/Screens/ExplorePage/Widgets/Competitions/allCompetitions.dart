@@ -10,7 +10,9 @@ class AllCompetitions extends StatefulWidget {
   @override
   State<AllCompetitions> createState() => _AllCompetitionsState();
   final String category;
-  const AllCompetitions({Key key, this.category}) : super(key: key);
+  final String txtQuery;
+  const AllCompetitions({Key key, this.category, this.txtQuery})
+      : super(key: key);
 }
 
 class _AllCompetitionsState extends State<AllCompetitions> {
@@ -36,6 +38,14 @@ class _AllCompetitionsState extends State<AllCompetitions> {
     }
   }
 
+  filterbyTxtQuery() {
+    if (widget.txtQuery != null) {
+      competitions = competitions
+          .where((i) => i.name.toLowerCase().contains(widget.txtQuery))
+          .toList();
+    }
+  }
+
   @override
   void initState() {
     final _myProvider =
@@ -47,6 +57,7 @@ class _AllCompetitionsState extends State<AllCompetitions> {
   @override
   Widget build(BuildContext context) {
     filerbyCategory();
+    filterbyTxtQuery();
 
     return (Container(
       child: Column(

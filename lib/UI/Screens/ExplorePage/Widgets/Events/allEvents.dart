@@ -8,7 +8,8 @@ class AllEvents extends StatefulWidget {
   @override
   State<AllEvents> createState() => _AllEventsState();
   final String category;
-  const AllEvents({Key key, this.category}) : super(key: key);
+  final String txtQuery;
+  const AllEvents({Key key, this.category, this.txtQuery}) : super(key: key);
 }
 
 class _AllEventsState extends State<AllEvents> {
@@ -31,6 +32,14 @@ class _AllEventsState extends State<AllEvents> {
     }
   }
 
+  filterbyTxtQuery() {
+    if (widget.txtQuery != null) {
+      events = events
+          .where((i) => i.name.toLowerCase().contains(widget.txtQuery))
+          .toList();
+    }
+  }
+
   @override
   void initState() {
        final _myProvider =
@@ -42,6 +51,7 @@ class _AllEventsState extends State<AllEvents> {
   @override
   Widget build(BuildContext context) {
     filerbyCategory();
+    filterbyTxtQuery();
     return (Container(
       child: Column(
         children: [CardBody(eventsMap: events)
