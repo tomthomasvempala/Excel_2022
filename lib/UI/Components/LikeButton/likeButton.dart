@@ -77,6 +77,7 @@ class _LikeButton extends State<LikeButton> {
 
   @override
   Widget build(BuildContext context) {
+    
     return Container(
       height: 25,
       width: 25,
@@ -103,13 +104,13 @@ class _LikeButton extends State<LikeButton> {
                           color: Colors.redAccent, size: 20),
                     ),
               onTap: () {
-                final myProvider = Provider.of<FavoritesProvider>(context);
+                // final myProvider = Provider.of<FavoritesProvider>(context,listen: false);
                 if (likeState) {
                   deleteFromFavourites();
-                  myProvider.removeFromFavorites(widget.eventDetails.id);
+                  // myProvider.removeFromFavorites(widget.eventDetails.id);
                 } else {
                   addToFavourites();
-                  myProvider.addToFavorites(widget.eventDetails.id);
+                  // myProvider.addToFavorites(widget.eventDetails.id);
                 }
                 getFavouritedStatus();
               },

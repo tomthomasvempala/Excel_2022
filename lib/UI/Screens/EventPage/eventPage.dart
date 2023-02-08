@@ -6,6 +6,9 @@ import 'package:excelapp/UI/Components/LoadingUI/loadingAnimation.dart';
 import 'package:excelapp/UI/Screens/EventPage/Widgets/backgroundImage.dart';
 import 'package:flutter/material.dart';
 import 'package:excelapp/UI/Screens/EventPage/Widgets/eventPageBody.dart';
+import 'package:provider/provider.dart';
+
+import '../../../Services/API/favourites_api.dart';
 
 class EventPage extends StatefulWidget {
   final int eventId;
@@ -81,7 +84,12 @@ class _EventPageState extends State<EventPage> {
                 ),
               );
             }
-            return EventPageBody(eventDetails: snapshot.data);
+            return MultiProvider(
+              providers: [
+                
+                  ChangeNotifierProvider<FavouritesStatus>(create: (c)=>FavouritesStatus.instance),
+              ],
+              child: EventPageBody(eventDetails: snapshot.data));
           } else {
             return Stack(
               fit: StackFit.expand,

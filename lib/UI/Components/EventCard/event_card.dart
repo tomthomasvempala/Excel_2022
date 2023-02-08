@@ -162,24 +162,27 @@ _buildCard(
                         height: 5,
                       ),
                       FutureBuilder(
-                          future: EventsAPI.fetchAndStoreEventDetailsFromNet(
-                              event.id),
+                          future: Future.delayed(Duration(milliseconds: 1000),(){
+                            return "Event description. This was just a fake timer. Not API call.";
+                          }),
+                          // EventsAPI.fetchAndStoreEventDetailsFromNet(
+                          //     event.id),
                           builder: (context, snapshot) {
                             if (snapshot.hasData) {
                               return SizedBox(
                                 width: MediaQuery.of(context).size.width * 0.46,
                                 child: Text(
-                                  snapshot.data.about
+                                  snapshot.data
                                               .toString()
                                               .replaceAll("<br/>", "")
                                               .substring(
                                                   0,
-                                                  snapshot.data.about
+                                                  snapshot.data
                                                               .toString()
                                                               .length >
                                                           50
                                                       ? 50
-                                                      : snapshot.data.about
+                                                      : snapshot.data
                                                           .toString()
                                                           .length) +
                                           "..." ??
@@ -225,7 +228,10 @@ _buildCard(
                                           context,
                                           MaterialPageRoute(
                                               builder: (context) =>
-                                                  EventPage(event.id)));
+                                                  EventPage(event.id))).then((value) {
+
+                                                    getFavouritedStatus();
+                                                  });
                                     },
                                     child: Container(
                                       child: Text(

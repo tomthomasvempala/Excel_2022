@@ -8,6 +8,8 @@ import 'package:excelapp/UI/Components/Navigation/customNavigation.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../../Services/API/favourites_api.dart';
+
 class Splashscreen extends StatefulWidget {
   @override
   _SplashscreenState createState() => _SplashscreenState();
@@ -25,6 +27,7 @@ class _SplashscreenState extends State<Splashscreen> {
                   ChangeNotifierProvider<MyNavigationIndex>(create: (c)=>MyNavigationIndex()),
                   ChangeNotifierProvider<LoginStatus>(create: (c)=>LoginStatus()),
                   ChangeNotifierProvider<FavoritesProvider>(create: (c)=>FavoritesProvider()),
+                  ChangeNotifierProvider<FavouritesStatus>(create: (c)=>FavouritesStatus.instance),
                   ],
                 child: CustomNavigator(),
               )),

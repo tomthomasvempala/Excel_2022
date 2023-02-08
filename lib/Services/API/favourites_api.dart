@@ -8,7 +8,7 @@ import 'package:excelapp/Services/API/api_config.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/material.dart';
 
-class FavouritesStatus {
+class FavouritesStatus with ChangeNotifier {
   static final FavouritesStatus instance = FavouritesStatus.internal();
   FavouritesStatus.internal();
   // 0 if data not retreived, 1 if data retrieved, 2 if error, 3 if refresh needed, 4 if fetching already
@@ -25,6 +25,14 @@ class FavouritesStatus {
         break;
       }
     }
+   instance.notifyListeners();
+    print("has listeners");
+    print(instance.hasListeners);
+  }
+
+  addEventToMemory(Event event) {
+    eventList.add(event);
+    instance.notifyListeners();
   }
 }
 
@@ -131,7 +139,7 @@ class FavouritesAPI {
       FavouritesStatus.instance.favouritesIDs.add(id);
       // Converts event details model to event model to add to favourites
       Event eventDetailsToEvent = Event.fromJson(eventDetails.toJson());
-      FavouritesStatus.instance.eventList.add(eventDetailsToEvent);
+      FavouritesStatus.instance.addEventToMemory(eventDetailsToEvent);
       // Can instead use FavouritesStatus.instance.favouritesStatus = 3;
       return "added";
     } catch (_) {
