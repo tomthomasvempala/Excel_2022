@@ -51,7 +51,7 @@ class _ExplorePageState extends State<ExplorePage>
     var dataFromNet =
         await EventsAPI.fetchAndStoreEventsandCompetitionsFromNet();
     if (!dataLoaded || dataFromNet != "error") {
-      estream.add(dataFromNet??"error");
+      estream.add(dataFromNet ?? "error");
     }
     // estream.add(competitions);
     dataLoaded = true;
@@ -61,12 +61,12 @@ class _ExplorePageState extends State<ExplorePage>
     var dataFromStorage =
         await EventsAPI.fetchAndStoreEventsandCompetitionsFromStorage();
     if (!dataLoaded || dataFromStorage != "error") {
-      estream.add(dataFromStorage??"error");
+      estream.add(dataFromStorage ?? "error");
     }
     // estream.add(competitions);
     dataLoaded = true;
   }
-
+var _searchQuery = "";
   @override
   Widget build(BuildContext context) {
     final _myNavIndex = Provider.of<MyNavigationIndex>(context);
@@ -87,6 +87,12 @@ class _ExplorePageState extends State<ExplorePage>
                         padding: EdgeInsets.fromLTRB(30, 7, 30, 7),
                         child: TextField(
                           controller: txtQuery,
+                          onChanged: (value) {
+                            setState(() {
+                              
+                               _searchQuery = txtQuery.text;
+                            });
+                          },
                           style: TextStyle(
                             fontFamily: "mulish",
                             fontSize: 14,
@@ -187,8 +193,10 @@ class _ExplorePageState extends State<ExplorePage>
                                 controller: _tabcontroller,
                                 physics: BouncingScrollPhysics(),
                                 children: [
-                                  CompetitionsCardList(),
+                                  CompetitionsCardList(
+                                      txtQuery:_searchQuery),
                                   EventsCardList(
+                                      txtQuery: _searchQuery,
                                       selectedTab:
                                           _myNavIndex.getExplorerCategory)
                                 ]));

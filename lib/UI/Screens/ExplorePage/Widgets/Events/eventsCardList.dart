@@ -8,7 +8,9 @@ class EventsCardList extends StatefulWidget {
   @override
   State<EventsCardList> createState() => _EventsCardListState();
   final String selectedTab;
-  const EventsCardList({Key key, this.selectedTab}) : super(key: key);
+  final String txtQuery;
+  const EventsCardList({Key key, this.selectedTab, this.txtQuery})
+      : super(key: key);
 }
 
 class _EventsCardListState extends State<EventsCardList>
@@ -51,7 +53,7 @@ class _EventsCardListState extends State<EventsCardList>
           ),
           SizedBox(height: 10),
           Flexible(
-            child: AllEvents(category: selectedCategory),
+            child: AllEvents(category: selectedCategory,txtQuery: widget.txtQuery),
           ),
         ],
       ),

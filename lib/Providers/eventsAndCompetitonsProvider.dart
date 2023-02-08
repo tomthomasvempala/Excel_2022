@@ -17,4 +17,10 @@ class EventsAndCompetitionsProvider with ChangeNotifier{
     notifyListeners();
   }
 
+  setSearchQuery(String value) {}
+
+  void searchCompetitions(String value) {}
+
+  void searchEvents(String value) {}
+
 }
