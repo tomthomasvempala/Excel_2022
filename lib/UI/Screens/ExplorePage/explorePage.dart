@@ -32,8 +32,10 @@ class _ExplorePageState extends State<ExplorePage>
   StreamController<dynamic> estream;
   bool dataLoaded = false;
   List<Event> competitionsAndEvents;
+  bool isInit;
   @override
   void initState() {
+    isInit = true;
     estream = StreamController<dynamic>();
     super.initState();
     print("Explore object is created with ${widget.selectedCategory}");
@@ -44,6 +46,13 @@ class _ExplorePageState extends State<ExplorePage>
   }
 
   void didChangeDependencies() {
+    if(isInit){
+      isInit=false;
+        print("setting tab");
+      _tabcontroller.addListener(() {
+        final provider = Provider.of<MyNavigationIndex>(context,listen: false);
+        provider.justsetIndextoExplore(_tabcontroller.index, provider.getExplorerCategory);});
+    }
     super.didChangeDependencies();
   }
 

@@ -21,6 +21,12 @@ class MyNavigationIndex with ChangeNotifier{
     notifyListeners();
   }
 
+
+  void justsetIndextoExplore(int pageNumber,String category){
+    _exploreCategory = category;
+    _explorePageNumber = pageNumber;
+    _index = 1;
+  }
   void setJustCategory(String category){
     _exploreCategory = category;
   }
