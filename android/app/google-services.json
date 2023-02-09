@@ -29,6 +29,13 @@
             {
               "client_id": "602359993946-5ojmptqt7j7hm8cg5g4emfm8anl1fl6l.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "602359993946-mg5gu6ii548njtq394r823cobphkh6pu.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.excel2022"
+              }
             }
           ]
         }
