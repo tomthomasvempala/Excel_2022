@@ -1,41 +1,33 @@
 {
   "project_info": {
-    "project_number": "347228001421",
-    "project_id": "excel-2022-376709",
-    "storage_bucket": "excel-2022-376709.appspot.com"
+    "project_number": "602359993946",
+    "project_id": "excel-notification",
+    "storage_bucket": "excel-notification.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:347228001421:android:bfd06b4718462b15cfbec4",
+        "mobilesdk_app_id": "1:602359993946:android:08bc044975991ecbce6a63",
         "android_client_info": {
           "package_name": "com.example.excel2022"
         }
       },
       "oauth_client": [
         {
-          "client_id": "347228001421-u27ghprpsqocf51b8g8ot71qta0inhgq.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.excel2022",
-            "certificate_hash": "4517452e92e625a547cd172624e0b7bb1fe0ef49"
-          }
-        },
-        {
-          "client_id": "347228001421-55mai2nan2sc43o29qbn3aa3jbofi6ih.apps.googleusercontent.com",
+          "client_id": "602359993946-5ojmptqt7j7hm8cg5g4emfm8anl1fl6l.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDd4ST7th48MaSLR4DI3mQmvYg0yiyKNF4"
+          "current_key": "AIzaSyCX_91EyrsxB353OxoE5ek1my1pwe8AE2U"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "347228001421-55mai2nan2sc43o29qbn3aa3jbofi6ih.apps.googleusercontent.com",
+              "client_id": "602359993946-5ojmptqt7j7hm8cg5g4emfm8anl1fl6l.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

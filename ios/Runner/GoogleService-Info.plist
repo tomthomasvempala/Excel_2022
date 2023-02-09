@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>602359993946-mg5gu6ii548njtq394r823cobphkh6pu.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.602359993946-mg5gu6ii548njtq394r823cobphkh6pu</string>
+	<key>API_KEY</key>
+	<string>AIzaSyB9z-J27upKC-7RROxiy62-jJL13QwVYOw</string>
+	<key>GCM_SENDER_ID</key>
+	<string>602359993946</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.excel2022</string>
+	<key>PROJECT_ID</key>
+	<string>excel-notification</string>
+	<key>STORAGE_BUCKET</key>
+	<string>excel-notification.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:602359993946:ios:1ae0307d8ea08bc8ce6a63</string>
+</dict>
+</plist>

@@ -3,11 +3,17 @@ import 'package:flutter/services.dart';
 import 'package:excelapp/UI/Screens/SplashScreen/splashscreen.dart';
 import 'package:provider/provider.dart';
 
-void main() {Provider.debugCheckInvalidValueType = null;
+import 'Services/Notifications/firebase_messaging.dart';
+
+
+void main() async {
+  Provider.debugCheckInvalidValueType = null;
+  await initiliaseNotificationServices();
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  
   @override
   Widget build(BuildContext context) {
     // Locks Device Orientation
@@ -24,7 +30,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         fontFamily: 'mulish',
         primarySwatch: Colors.blue,
-        appBarTheme: AppBarTheme(brightness: Brightness.light,backgroundColor: Color(0xffe4edef)),
+        appBarTheme: AppBarTheme(backgroundColor: Color(0xffe4edef)),
       ),
       home: Splashscreen(),
     );
