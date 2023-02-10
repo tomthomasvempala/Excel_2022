@@ -18,10 +18,10 @@ class EventPageBody extends StatelessWidget {
   Widget build(BuildContext context) {
     Widget registerButton;
 
-//     if (eventDetails.needRegistration == 0 && eventDetails.button == null)
-//       registerButton = SizedBox();
-//     else
-//       registerButton = RegisterButton(eventDetails: eventDetails);
+    if (eventDetails.needRegistration == false && eventDetails.button == null)
+      registerButton = SizedBox();
+    else
+      registerButton = RegisterButton(eventDetails: eventDetails);
 
     double deviceHeight = MediaQuery.of(context).size.height;
     double deviceWidth = MediaQuery.of(context).size.width;
@@ -154,36 +154,8 @@ class EventPageBody extends StatelessWidget {
                   Image.asset('assets/icons/divider.png'),
                   SizedBox(height: 8),
                   Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                    InkWell(
-                      child: Container(
-                        width: 250,
-                        height: 50,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(40),
-                          color: Color.fromARGB(255, 14, 152, 232),
-                        ),
-                        alignment: Alignment.center,
-                        child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text( 
-                                eventDetails.needRegistration?
-                                'Register for  ₹ ${eventDetails.entryFee}':'Register',
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontFamily: "mulish",
-                                    fontWeight: FontWeight.w700,
-                                    fontSize: 14),
-                              ),
-                              SizedBox(
-                                width: 10,
-                              ),
-                              Icon(Icons.arrow_forward,
-                                  size: 19, color: Colors.white)
-                            ]),
-                      ),
-                    ),
-                    SizedBox(width: 20),
+                    registerButton,
+                    
                     Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(50),
