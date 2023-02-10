@@ -95,8 +95,9 @@ class _MoreEventDetailsState extends State<MoreEventDetails> {
       content = widget.eventDetails.about ??
           "This is event is about an event. Please consult Ashish for more content in dummy data in the backend.";
     else if (pageNumber == 2)
-      content = widget.eventDetails.format ??
-          "Format of the event is like this. Tada !";
+      content = (widget.eventDetails.format != null)
+          ? widget.eventDetails.format.replaceAll('<h2/>', "</h2>")
+          : "Format of the event is like this. Tada !";
     else if (pageNumber == 3)
       content = widget.eventDetails.rules ??
           "The only rule is that there are no rules.";
