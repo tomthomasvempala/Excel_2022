@@ -8,6 +8,7 @@ class ScheduleModel {
   String category;
   bool needRegistration;
   String round;
+  int roundId;
   int day;
   String datetime;
 
@@ -19,6 +20,7 @@ class ScheduleModel {
       this.category,
       this.needRegistration,
       this.round,
+      this.roundId,
       this.day,
       this.datetime});
 
@@ -30,6 +32,7 @@ class ScheduleModel {
     category = json['category'];
     needRegistration = json['needRegistration'];
     round = json['round'];
+    roundId = json['roundId'];
     day = json['day'];
     datetime = json['datetime'];
   }
@@ -43,6 +46,7 @@ class ScheduleModel {
     data['category'] = this.category;
     data['needRegistration'] = this.needRegistration;
     data['round'] = this.round;
+    data['roundId'] = this.roundId;
     data['day'] = this.day;
     data['datetime'] = this.datetime;
     return data;
