@@ -305,7 +305,7 @@ _buildCard(
                     children: [
                       Text(
                         new DateFormat.MMM().format(
-                            DateTime.parse(event.date).add(Duration(days: 1))),
+                            DateTime.parse(event.date)),
                         style: TextStyle(
                             color: Color.fromARGB(255, 7, 131, 131),
                             fontWeight: FontWeight.w800,
@@ -314,7 +314,7 @@ _buildCard(
                       ),
                       Text(
                         new DateFormat.d().format(
-                            DateTime.parse(event.date).add(Duration(days: 1))),
+                            DateTime.parse(event.date)),
                         style: TextStyle(
                             color: Color.fromARGB(255, 18, 221, 197),
                             fontWeight: FontWeight.w800,
