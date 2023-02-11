@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:excelapp/Services/API/highlights_api.dart';
 import 'package:excelapp/UI/Screens/HomePage/Widgets/Highlights/data.dart';
 import 'package:flutter/material.dart';
@@ -82,19 +83,41 @@ class _HighlightsSectionState extends State<HighlightsSection> {
                       ),
                     ),
                   );
-                if (snapshot.hasData)
+                if (snapshot.hasData) {
                   return HighlightsBody(highLightsMap: snapshot.data);
-                else {
-                  return Container(
-                    child: Shimmer.fromColors(
-                      child: Container(
-                        color: Colors.white,
-                        height: MediaQuery.of(context).size.width * .9 * (3 / 5.7),
-                        margin: EdgeInsets.symmetric(horizontal: 15),
-                      ),
-                      baseColor: Colors.grey[300],
-                      highlightColor: Colors.grey[100],
+
+
+                } else {
+                  return CarouselSlider.builder(
+                    itemCount: 3,
+                    options: CarouselOptions(
+                      viewportFraction: .7,
+                      initialPage: 2,
+                      height:
+                      MediaQuery.of(context).size.width * .9 * (3 / 5.7),
+                      autoPlay: true,
+                      autoPlayInterval: Duration(seconds: 2),
                     ),
+                    itemBuilder: (BuildContext build, index, pageViewIndex) {
+                      return GestureDetector(
+                          child: Container(
+                            child: Shimmer.fromColors(
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(15.0),
+                                ),
+                                height: MediaQuery.of(context).size.width *
+                                    .9 *
+                                    (3 / 5.7),
+                                width: MediaQuery.of(context).size.width * .9,
+                                margin: EdgeInsets.symmetric(horizontal: 15),
+                              ),
+                              baseColor: Colors.grey[300],
+                              highlightColor: Colors.grey[100],
+                            ),
+                          ));
+                    },
                   );
                 }
               },

@@ -156,7 +156,8 @@ class QrCode extends StatelessWidget {
                   Padding(
                     padding: EdgeInsets.fromLTRB(15, 5.23, 0, 0),
                     child: Icon(
-                      Icons.person_2_outlined,
+                      Icons.person_outline,
+                      //Icons.person_2_outlined,
                       size: 20.0,
                       color: Color(0xFF0E99E8),
                     ),
