@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:excelapp/Accounts/account_services.dart';
 import 'package:excelapp/Accounts/auth_service.dart';
 import 'package:excelapp/Models/user_model.dart';
@@ -291,7 +292,7 @@ class _ProfilePageState extends State<ProfilePage>
                                   CircleAvatar(
                                     radius: 42.5,
                                     backgroundImage:
-                                        NetworkImage(snapshot.data.picture),
+                                        CachedNetworkImageProvider(snapshot.data.picture),
                                   ),
                                   ElevatedButton(
                                     style: ElevatedButton.styleFrom(
