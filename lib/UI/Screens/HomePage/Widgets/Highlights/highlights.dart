@@ -92,7 +92,7 @@ class _HighlightsSectionState extends State<HighlightsSection> {
                       initialPage: 2,
                       height:
                       MediaQuery.of(context).size.width * .9 * (3 / 5.7),
-                      autoPlay: true,
+                      autoPlay: false,
                       autoPlayInterval: Duration(seconds: 2),
                     ),
                     itemBuilder: (BuildContext build, index, pageViewIndex) {
