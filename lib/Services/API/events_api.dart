@@ -5,10 +5,9 @@ import 'package:excelapp/Models/event_details.dart';
 import 'package:excelapp/Services/API/api_config.dart';
 import 'package:excelapp/Services/Database/hive_operations.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 class EventsAPI {
-
-
   static fetchEventListFromStorage(String endpoint) async {
     print("- Event list $endpoint Storage fetch");
     var eventListData =
@@ -20,8 +19,8 @@ class EventsAPI {
   static fetchAndStoreEventListFromNet(String endpoint) async {
     print("- Event list $endpoint network fetch");
     try {
-      var response =
-          await http.get(Uri.parse(APIConfig.baseUrl + '/events/type' + '/$endpoint'));
+      var response = await http
+          .get(Uri.parse(APIConfig.baseUrl + '/events/type' + '/$endpoint'));
       List responseData = json.decode(response.body);
       await HiveDB.storeData(
           valueName: "eventlist-$endpoint", value: responseData);
@@ -32,11 +31,10 @@ class EventsAPI {
     }
   }
 
-   static fetchAndStoreEventsandCompetitionsFromNet() async {
+  static fetchAndStoreEventsandCompetitionsFromNet() async {
     print("- Event and Compe list network fetch");
     try {
-      var response =
-          await http.get(Uri.parse(APIConfig.baseUrl + 'events'));
+      var response = await http.get(Uri.parse(APIConfig.baseUrl + 'events'));
       List responseData = json.decode(response.body);
       await HiveDB.storeData(
           valueName: "eventAndCompelist", value: responseData);
@@ -50,8 +48,7 @@ class EventsAPI {
   static fetchAndStoreEventsandCompetitionsFromStorage() async {
     print("- Event and Compe list network fetch");
     try {
-      var response =  await HiveDB.retrieveData(
-          valueName: "eventAndCompelist");
+      var response = await HiveDB.retrieveData(valueName: "eventAndCompelist");
       return response.map<Event>((event) => Event.fromJson(event)).toList();
     } catch (e) {
       print("Error $e");
@@ -70,23 +67,47 @@ class EventsAPI {
 
   static fetchAndStoreEventDetailsFromNet(int id) async {
     print("- Event list $id network fetch");
-    try {
-      var response = await http.get(Uri.parse(APIConfig.baseUrl + 'events/$id'));
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String jwt = prefs.getString('jwt');
+    if (jwt == null || jwt == "null")
+      try {
+        var response =
+            await http.get(Uri.parse(APIConfig.baseUrl + 'events/' + '$id'));
+        Map<String, dynamic> responseData = json.decode(response.body);
+        responseData["eventHead1"] = json.encode(responseData["eventHead1"]);
+        responseData["eventHead2"] = json.encode(responseData["eventHead2"]);
+        responseData["rounds"] = json.encode(responseData["rounds"]);
+        responseData["registration"] =
+            json.encode(responseData["registration"]);
 
-      Map<String, dynamic> responseData = json.decode(response.body);
-      responseData["eventHead1"] = json.encode(responseData["eventHead1"]);
-      responseData["eventHead2"] = json.encode(responseData["eventHead2"]);
-      responseData["rounds"] = json.encode(responseData["rounds"]);
-      responseData["registration"] = json.encode(responseData["registration"]);
+        await HiveDB.storeData(
+            valueName: "eventdetails-$id", value: responseData);
+        EventDetails event = EventDetails.fromJson(responseData);
+        return event;
+      } catch (e) {
+        print("Error $e");
+        return ("error");
+      }
+    else
+      try {
+        var response =
+            await getAuthorisedData(APIConfig.baseUrl + 'events/' + '$id');
 
-      await HiveDB.storeData(
-          valueName: "eventdetails-$id", value: responseData);
-      EventDetails event = EventDetails.fromJson(responseData);
-      return event;
-    } catch (e) {
-      print("Error $e");
-      return ("error");
-    }
+        Map<String, dynamic> responseData = json.decode(response.body);
+        responseData["eventHead1"] = json.encode(responseData["eventHead1"]);
+        responseData["eventHead2"] = json.encode(responseData["eventHead2"]);
+        responseData["rounds"] = json.encode(responseData["rounds"]);
+        responseData["registration"] =
+            json.encode(responseData["registration"]);
+
+        await HiveDB.storeData(
+            valueName: "eventdetails-$id", value: responseData);
+        EventDetails event = EventDetails.fromJson(responseData);
+        return event;
+      } catch (e) {
+        print("Error $e");
+        return ("error");
+      }
   }
 
   static deleteEventDetailsfromDB(int id) {

@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:excelapp/Models/event_details.dart';
+import 'package:excelapp/Services/API/events_api.dart';
 import 'package:excelapp/Services/API/registration_api.dart';
 import 'package:excelapp/UI/Components/AlertDialog/alertDialog.dart';
 import 'package:excelapp/UI/Components/LoadingUI/loadingAnimation.dart';
@@ -31,14 +32,16 @@ class _RegisterButtonState extends State<RegisterButton> {
   bool isLoading = false;
 
   reloadPage() {
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(
-        builder: (context) => EventPage(
-          widget.eventDetails.id,
-        ),
-      ),
-    );
+    EventsAPI.fetchAndStoreEventDetailsFromNet(widget.eventDetails.id);
+
+    // Navigator.pushReplacement(
+    //   context,
+    //   MaterialPageRoute(
+    //     builder: (context) => EventPage(
+    //       widget.eventDetails.id,
+    //     ),
+    //   ),
+    // );
   }
 
   openJoinTeamPage(int teamID) {
@@ -79,6 +82,7 @@ class _RegisterButtonState extends State<RegisterButton> {
   register(context) async {
     String response = await RegistrationAPI.preRegistration(
         id: widget.eventDetails.id, context: context);
+    print("response ${response}");
     if (response == "proceed") {
       // Registers for event
       // If team event, goto join team or create team
@@ -192,16 +196,22 @@ class _RegisterButtonState extends State<RegisterButton> {
       }
     } else if (response == 'Already Registered' &&
         widget.eventDetails.isTeam == true) {
+      print("Teesting${widget.eventDetails.registration}");
       if (widget.eventDetails.registration == null) {
+        print("in If");
         reloadPage();
         return;
-      } else if (widget.eventDetails.isTeam == true) {
+      } else if (widget.eventDetails.isTeam == true&&
+          widget.eventDetails.registration != null) {
+        print("in else if");
+        print(widget.eventDetails.toJson());
+        print(widget.eventDetails.registration);
         dynamic registrationDetails =
             widget.eventDetails.registration.toString();
         registrationDetails = json.decode(registrationDetails);
         var teamID = registrationDetails["teamId"];
         // var team = registrationDetails["team"];
-        // print(teamID);
+        print(teamID);
         // DISPLAYS TEAM ID DIALOG
         dialogWithContent(
             child: Column(
@@ -309,7 +319,7 @@ class _RegisterButtonState extends State<RegisterButton> {
           text: "You have registered for this event.", context: context);
     else {
       // Show returned error
-      alertDialog(text: response, context: context);
+      alertDialog(text: response ?? "Null", context: context);
     }
 
     refreshIsRegistered();
@@ -332,7 +342,8 @@ class _RegisterButtonState extends State<RegisterButton> {
             widget.eventDetails.isTeam == true ? 'Manage Team' : 'Registered';
         buttonColor = registered ? Color(0xff335533) : primaryColor;
       } else if (widget.eventDetails.registrationOpen == true) {
-        buttonText = (widget.eventDetails.entryFee == null||widget.eventDetails.entryFee == 0)
+        buttonText = (widget.eventDetails.entryFee == null ||
+                widget.eventDetails.entryFee == 0)
             ? 'Register'
             : 'Register for ₹ ${widget.eventDetails.entryFee}';
         buttonColor = primaryColor;
@@ -354,12 +365,18 @@ class _RegisterButtonState extends State<RegisterButton> {
       child: Row(children: [
         InkWell(
           onTap: () {
+            print("Clicked Button");
             if (widget.eventDetails.needRegistration == true) {
+              print("Clicked and need registration true");
               if (registered) {
+                print("Clicked and need registration true and registered");
                 register(context);
               } else if (widget.eventDetails.registrationOpen == true) {
                 register(context);
+                print(
+                    "Clicked and need registration true and registration open is true");
               } else {
+                print('Registration CLosed');
                 alertDialog(text: "Registration Closed", context: context);
               }
             } else if (widget.eventDetails.registrationLink != null) {
@@ -380,7 +397,7 @@ class _RegisterButtonState extends State<RegisterButton> {
                   : Row(
                       children: [
                         Text(
-                          buttonText,
+                          buttonText ?? '',
                           style: TextStyle(
                               color: Colors.white,
                               fontFamily: "mulish",
