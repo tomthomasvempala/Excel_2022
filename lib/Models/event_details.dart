@@ -18,14 +18,14 @@ class EventDetails {
   String eventHead1;
   int eventHead2Id;
   String eventHead2;
-  int isTeam;
+  bool isTeam;
   int teamSize;
   int eventStatusId;
   String eventStatus;
   int numberOfRounds;
   int currentRound;
   bool needRegistration;
-  int registrationOpen;
+  bool registrationOpen;
   String registrationEndDate;
   String button;
   String registrationLink;
@@ -87,7 +87,7 @@ class EventDetails {
     eventHead1 = data['eventHead1'];
     eventHead2Id = data['eventHead2Id'];
     eventHead2 = data['eventHead2'];
-    isTeam = (data['isTeam'] == true || data['isTeam'] == 1) ? 1 : 0;
+    isTeam = (data['isTeam'] == true || data['isTeam'] == 1) ? true : false;
     teamSize = data['teamSize']??1;
     eventStatusId = data['eventStatusId'];
     eventStatus = data['eventStatus'];
@@ -96,8 +96,8 @@ class EventDetails {
     needRegistration = data['needRegistration'];
     registrationOpen =
         (data['registrationOpen'] == true || data['registrationOpen'] == 1)
-            ? 1
-            : 0;
+            ? true
+            : false;
     registrationEndDate = data['registrationEndDate'];
     button = data['button'];
     registrationLink = data['registrationLink'];

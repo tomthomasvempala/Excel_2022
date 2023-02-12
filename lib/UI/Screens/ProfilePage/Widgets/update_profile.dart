@@ -1,5 +1,6 @@
 import 'dart:ffi';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:excelapp/Accounts/account_services.dart';
 import 'package:excelapp/Models/user_model.dart';
 import 'package:excelapp/UI/Components/AlertDialog/alertDialog.dart';
@@ -393,7 +394,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
                             backgroundColor: Colors.white38,
                             child: CircleAvatar(
                               radius: 53,
-                              backgroundImage: NetworkImage(_picture),
+                              backgroundImage: CachedNetworkImageProvider(_picture),
                             ),
                           ),
                         ),

@@ -22,7 +22,9 @@ class RegistrationStatus {
 
 class RegistrationAPI {
   // Gets registrationID's of events
-  static void fetchRegisteredEvents() async {
+
+  //have removed void to fix a error
+  static fetchRegisteredEvents() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String jwt = prefs.getString('jwt');
     if (jwt == null || jwt == "null") {

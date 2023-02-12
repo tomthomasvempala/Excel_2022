@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:excelapp/Accounts/account_services.dart';
 import 'package:excelapp/Accounts/auth_service.dart';
 import 'package:excelapp/Models/user_model.dart';
@@ -39,26 +40,27 @@ class _ProfilePageState extends State<ProfilePage>
   bool _isProfileUpdated;
   AuthService authService;
   List<Event> _favouritedEvents = [];
+  List<Event> _registeredEvents = [];
 
   @override
   TabController tabController;
 
-  List registeredEvents = [
-    Event(
-      id: 5,
-      name: "Issue!",
-      desc: "Lorem ipsum dolor sit amet, conse ctetur adi piscing elit.",
-      date: "2023-03-04T00:00:00",
-      icon: 'assets/icons/even_sample.png',
-    ),
-    Event(
-      id: 5,
-      name: "Issue!",
-      desc: "Lorem ipsum dolor sit amet, conse ctetur adi piscing elit.",
-      date: "2023-03-04T00:00:00",
-      icon: 'assets/icons/even_sample.png',
-    )
-  ];
+  // List registeredEvents = [
+  //   Event(
+  //     id: 5,
+  //     name: "Issue!",
+  //     desc: "Lorem ipsum dolor sit amet, conse ctetur adi piscing elit.",
+  //     date: "2023-03-04T00:00:00",
+  //     icon: 'assets/icons/even_sample.png',
+  //   ),
+  //   Event(
+  //     id: 5,
+  //     name: "Issue!",
+  //     desc: "Lorem ipsum dolor sit amet, conse ctetur adi piscing elit.",
+  //     date: "2023-03-04T00:00:00",
+  //     icon: 'assets/icons/even_sample.png',
+  //   )
+  // ];
 
   List savedNews = [
     Event(
@@ -85,14 +87,21 @@ class _ProfilePageState extends State<ProfilePage>
     userDetails = viewUserProfile();
     _isProfileUpdated = widget.isProfileUpdated;
     authService = AuthService();
-    // RegistrationAPI.fetchRegisteredEvents();
     fetchFavourites();
+    fetchRegistrations();
   }
 
   Future fetchFavourites() async {
     List<Event> events = await FavouritesAPI.fetchFavourites();
     setState(() {
       _favouritedEvents = events;
+    });
+  }
+
+  Future fetchRegistrations() async {
+    List<Event> registrations = await RegistrationAPI.fetchRegisteredEvents();
+    setState(() {
+      _registeredEvents = registrations;
     });
   }
 
@@ -283,7 +292,7 @@ class _ProfilePageState extends State<ProfilePage>
                                   CircleAvatar(
                                     radius: 42.5,
                                     backgroundImage:
-                                        NetworkImage(snapshot.data.picture),
+                                        CachedNetworkImageProvider(snapshot.data.picture),
                                   ),
                                   ElevatedButton(
                                     style: ElevatedButton.styleFrom(
@@ -421,10 +430,10 @@ class _ProfilePageState extends State<ProfilePage>
   Widget Registered() {
     return ListView.builder(
         physics: BouncingScrollPhysics(),
-        itemCount: registeredEvents.length,
+        itemCount: _registeredEvents.length,
         shrinkWrap: true,
         itemBuilder: (_, index) {
-          return EventCard(registeredEvents[index]);
+          return EventCard(_registeredEvents[index]);
         });
   }
 

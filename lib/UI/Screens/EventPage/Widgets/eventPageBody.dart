@@ -18,10 +18,10 @@ class EventPageBody extends StatelessWidget {
   Widget build(BuildContext context) {
     Widget registerButton;
 
-//     if (eventDetails.needRegistration == 0 && eventDetails.button == null)
-//       registerButton = SizedBox();
-//     else
-//       registerButton = RegisterButton(eventDetails: eventDetails);
+    if (eventDetails.needRegistration == false && eventDetails.button == null)
+      registerButton = SizedBox();
+    else
+      registerButton = RegisterButton(eventDetails: eventDetails);
 
     double deviceHeight = MediaQuery.of(context).size.height;
     double deviceWidth = MediaQuery.of(context).size.width;
@@ -95,23 +95,40 @@ class EventPageBody extends StatelessWidget {
                       Padding(
                         padding: EdgeInsets.fromLTRB(0, 0, 24, 0),
                         child: Hero(
-                          tag: 'eventIcon1',
-                          child: Container(
-                            height: deviceHeight / 12.13,
-                            child: Card(
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(25),
-                              ),
-                              child: Container(
-                                child: Image.asset(
-                                  "assets/events/eventLogo.png"
-                                  // eventDetails.icon
-                                  ),
-                              ),
-                            ),
-                          ),
+                  tag: 'eventIcon${eventDetails.id}',
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(21),
+                      color: Color.fromARGB(255, 14, 152, 232),
+                    ),
+                    child: Padding(
+                      padding: EdgeInsets.all(12.25),
+                      child: ClipRRect(
+                        //Change this to Image.network when image server is up
+                        // child: Image.asset(
+                        //   "assets/events/eventLogo.png",
+                        //   //event.icon,
+                        //   width: 31.5,
+                        //   height: 31.5,
+                        // ),
+                        child:(eventDetails.icon.startsWith("Microsoft"))?(
+                          Image.asset(
+                            "assets/events/eventLogo.png",
+                            //event.icon,
+                            width: 31.5,
+                            height: 31.5,
+                          )
+                        ): CachedNetworkImage(
+                          imageUrl: eventDetails.icon,
+                          width: 31.5,
+                          height: 31.5,
+                          fit: BoxFit.cover,
                         ),
                       ),
+                    ),
+                  ),
+                ),
+                      )
                     ],
                   ),
                 ],
@@ -154,45 +171,15 @@ class EventPageBody extends StatelessWidget {
                   Image.asset('assets/icons/divider.png'),
                   SizedBox(height: 8),
                   Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                    InkWell(
-                      child: Container(
-                        width: 250,
-                        height: 50,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(40),
-                          color: Color.fromARGB(255, 14, 152, 232),
-                        ),
-                        alignment: Alignment.center,
-                        child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text( 
-                                eventDetails.needRegistration?
-                                'Register for  ₹ ${eventDetails.entryFee}':'Register',
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontFamily: "mulish",
-                                    fontWeight: FontWeight.w700,
-                                    fontSize: 14),
-                              ),
-                              SizedBox(
-                                width: 10,
-                              ),
-                              Icon(Icons.arrow_forward,
-                                  size: 19, color: Colors.white)
-                            ]),
-                      ),
-                    ),
-                    SizedBox(width: 20),
+                    registerButton,
                     Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(50),
                         color: Color(0xffECF4F5),
                       ),
                       child: Padding(
-                        padding: EdgeInsets.all(10),
-                        child: LikeButton(eventDetails: eventDetails)
-                      ),
+                          padding: EdgeInsets.all(10),
+                          child: LikeButton(eventDetails: eventDetails)),
                     ),
                   ]),
                 ],

@@ -16,9 +16,9 @@ fetchHighlightsFromStorage() async {
 fetchAndStoreHighlightsFromNet() async {
   print("-    Highlights: Network Fetch    -");
   try {
-    var response = await http.get(Uri.parse(APIConfig.baseUrl + "/highlights"));
-    //List responseData = json.decode(response.body);//
-    List responseData = [{"id":100,"name":"Event Name","image":"url"}];
+    var response = await http.get(Uri.parse(APIConfig.baseUrl + "highlights"));
+    List responseData = json.decode(response.body);//
+    // List responseData = [{"id":100,"name":"Event Name","image":"url"}];
     await HiveDB.storeData(valueName: "highlights", value: responseData);
     return responseData
         .map<Highlights>((highlight) => Highlights.fromJson(highlight))

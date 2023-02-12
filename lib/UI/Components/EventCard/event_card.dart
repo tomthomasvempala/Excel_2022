@@ -134,11 +134,24 @@ _buildCard(
                       padding: EdgeInsets.all(12.25),
                       child: ClipRRect(
                         //Change this to Image.network when image server is up
-                        child: Image.asset(
-                          "assets/events/eventLogo.png",
-                          //event.icon,
+                        // child: Image.asset(
+                        //   "assets/events/eventLogo.png",
+                        //   //event.icon,
+                        //   width: 31.5,
+                        //   height: 31.5,
+                        // ),
+                        child:(event.icon.startsWith("Microsoft"))?(
+                          Image.asset(
+                            "assets/events/eventLogo.png",
+                            //event.icon,
+                            width: 31.5,
+                            height: 31.5,
+                          )
+                        ): CachedNetworkImage(
+                          imageUrl: event.icon,
                           width: 31.5,
                           height: 31.5,
+                          fit: BoxFit.cover,
                         ),
                       ),
                     ),
@@ -305,7 +318,7 @@ _buildCard(
                     children: [
                       Text(
                         new DateFormat.MMM().format(
-                            DateTime.parse(event.date).add(Duration(days: 1))),
+                            DateTime.parse(event.date)),
                         style: TextStyle(
                             color: Color.fromARGB(255, 7, 131, 131),
                             fontWeight: FontWeight.w800,
@@ -314,7 +327,7 @@ _buildCard(
                       ),
                       Text(
                         new DateFormat.d().format(
-                            DateTime.parse(event.date).add(Duration(days: 1))),
+                            DateTime.parse(event.date)),
                         style: TextStyle(
                             color: Color.fromARGB(255, 18, 221, 197),
                             fontWeight: FontWeight.w800,

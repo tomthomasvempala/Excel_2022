@@ -9,7 +9,8 @@ class SchedulePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 4,
+      // length: 4,
+      length: 3,
       child: new Scaffold(
         body: new NestedScrollView(
           physics: BouncingScrollPhysics(),
@@ -40,10 +41,10 @@ class SchedulePage extends StatelessWidget {
                   labelColor: Color(0xff0E99E8),
                   unselectedLabelColor: Color(0xff778585),
                   tabs: [
-                    dayTab('Oct-Nov', 'Pre Events'),
-                    dayTab('Nov 3', 'Day 1'),
-                    dayTab('Nov 4', 'Day 2'),
-                    dayTab('Nov 5', 'Day 3'),
+                    // dayTab('Oct-Nov', 'Pre Events'),
+                    dayTab('Mar 10', 'Day 1'),
+                    dayTab('Mar 11', 'Day 2'),
+                    dayTab('Mar 12', 'Day 3'),
                   ],
                 ),
               ),
@@ -57,7 +58,7 @@ class SchedulePage extends StatelessWidget {
                 schedule(0),
                 schedule(1),
                 schedule(2),
-                schedule(3),
+                // schedule(3),
               ],
             ),
           ),
@@ -100,9 +101,9 @@ class SchedulePage extends StatelessWidget {
     List<ScheduleModel> day2 = scheduleData["day2"];
     day2.sort((a, b) =>
         DateTime.parse(a.datetime).compareTo(DateTime.parse(b.datetime)));
-    List<ScheduleModel> day3 = scheduleData["day3"];
-    day3.sort((a, b) =>
-        DateTime.parse(a.datetime).compareTo(DateTime.parse(b.datetime)));
+    // List<ScheduleModel> day3 = scheduleData["day3"];
+    // day3.sort((a, b) =>
+    //     DateTime.parse(a.datetime).compareTo(DateTime.parse(b.datetime)));
     Widget returnWidget;
     if (dayNumber == 0)
       returnWidget = TimeTableList(day0);
@@ -110,7 +111,7 @@ class SchedulePage extends StatelessWidget {
       returnWidget = TimeTableList(day1);
     else if (dayNumber == 2)
       returnWidget = TimeTableList(day2);
-    else if (dayNumber == 3) returnWidget = TimeTableList(day3);
+    // else if (dayNumber == 3) returnWidget = TimeTableList(day3);
     return SingleChildScrollView(
       physics: BouncingScrollPhysics(),
       scrollDirection: Axis.vertical,

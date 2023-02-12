@@ -27,7 +27,10 @@ class HighlightsCard extends StatelessWidget {
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(15.0),
                 image: DecorationImage(
-                    image: NetworkImage(highlights.image), fit: BoxFit.cover)),
+                    image: CachedNetworkImageProvider((highlights.image != null)
+                        ? highlights.image
+                        : "https://images.squarespace-cdn.com/content/v1/51cdafc4e4b09eb676a64e68/1540579572916-0BE4Z85H2A2Z6KWULBNG/character_head.jpg?format=2500w"),
+                    fit: BoxFit.cover)),
             child: Stack(
               children: [
                 ClipRRect(
@@ -62,6 +65,9 @@ class HighlightsCard extends StatelessWidget {
                                       fontSize: 15,
                                       fontWeight: FontWeight.w500,
                                       color: Colors.white),
+                                ),
+                                SizedBox(
+                                  height: 5,
                                 ),
                                 Text(
                                   highlights.name,
