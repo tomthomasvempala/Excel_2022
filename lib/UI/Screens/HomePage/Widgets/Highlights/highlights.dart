@@ -18,25 +18,25 @@ class _HighlightsSectionState extends State<HighlightsSection> {
   fetchfromNet() async {
     var dataFromNet = await fetchAndStoreHighlightsFromNet();
     if (!dataLoaded || dataFromNet != "error") {
-      //estream.add(dataFromNet);
-      estream.add(highlightsData);
+      estream.add(dataFromNet);
+      // estream.add(highlightsData);
       dataLoaded = true;
     }
   }
 
-  // initialisePage() async {
-  //   var datafromStorage = await fetchHighlightsFromStorage();
-  //   if (datafromStorage != null) {
-  //     estream.add(datafromStorage);
-  //     dataLoaded = true;
-  //   }
-  //   await fetchfromNet();
-  // }
+  initialisePage() async {
+    var datafromStorage = await fetchHighlightsFromStorage();
+    if (datafromStorage != null) {
+      estream.add(datafromStorage);
+      dataLoaded = true;
+    }
+    await fetchfromNet();
+  }
 
   @override
   void initState() {
     estream = StreamController<dynamic>();
-    // initialisePage();
+    initialisePage();
     fetchfromNet();
     super.initState();
   }
