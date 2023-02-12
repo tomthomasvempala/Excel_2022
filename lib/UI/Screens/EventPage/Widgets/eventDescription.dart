@@ -51,8 +51,13 @@ Widget getEventDetails(
               ),
               Padding(
                 padding: const EdgeInsets.fromLTRB(8, 8, 8, 0),
-                child: detailBox(Icons.person, "Team Size",
-                    eventDetails.teamSize.toString(), height, width),
+                child: (eventDetails.isTeam == false)
+                    ? (SizedBox(
+                        height: height,
+                        width: width,
+                      ))
+                    : detailBox(Icons.person, "Team Size",
+                        eventDetails.teamSize.toString(), height, width),
               ),
             ],
           ),
