@@ -95,23 +95,40 @@ class EventPageBody extends StatelessWidget {
                       Padding(
                         padding: EdgeInsets.fromLTRB(0, 0, 24, 0),
                         child: Hero(
-                          tag: 'eventIcon1',
-                          child: Container(
-                            height: deviceHeight / 12.13,
-                            child: Card(
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(25),
-                              ),
-                              child: Container(
-                                child: Image.asset(
-                                  "assets/events/eventLogo.png"
-                                  // eventDetails.icon
-                                  ),
-                              ),
-                            ),
-                          ),
+                  tag: 'eventIcon${eventDetails.id}',
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(21),
+                      color: Color.fromARGB(255, 14, 152, 232),
+                    ),
+                    child: Padding(
+                      padding: EdgeInsets.all(12.25),
+                      child: ClipRRect(
+                        //Change this to Image.network when image server is up
+                        // child: Image.asset(
+                        //   "assets/events/eventLogo.png",
+                        //   //event.icon,
+                        //   width: 31.5,
+                        //   height: 31.5,
+                        // ),
+                        child:(eventDetails.icon.startsWith("Microsoft"))?(
+                          Image.asset(
+                            "assets/events/eventLogo.png",
+                            //event.icon,
+                            width: 31.5,
+                            height: 31.5,
+                          )
+                        ): CachedNetworkImage(
+                          imageUrl: eventDetails.icon,
+                          width: 31.5,
+                          height: 31.5,
+                          fit: BoxFit.cover,
                         ),
                       ),
+                    ),
+                  ),
+                ),
+                      )
                     ],
                   ),
                 ],
@@ -155,16 +172,14 @@ class EventPageBody extends StatelessWidget {
                   SizedBox(height: 8),
                   Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                     registerButton,
-                    
                     Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(50),
                         color: Color(0xffECF4F5),
                       ),
                       child: Padding(
-                        padding: EdgeInsets.all(10),
-                        child: LikeButton(eventDetails: eventDetails)
-                      ),
+                          padding: EdgeInsets.all(10),
+                          child: LikeButton(eventDetails: eventDetails)),
                     ),
                   ]),
                 ],

@@ -134,11 +134,24 @@ _buildCard(
                       padding: EdgeInsets.all(12.25),
                       child: ClipRRect(
                         //Change this to Image.network when image server is up
-                        child: Image.asset(
-                          "assets/events/eventLogo.png",
-                          //event.icon,
+                        // child: Image.asset(
+                        //   "assets/events/eventLogo.png",
+                        //   //event.icon,
+                        //   width: 31.5,
+                        //   height: 31.5,
+                        // ),
+                        child:(event.icon.startsWith("Microsoft"))?(
+                          Image.asset(
+                            "assets/events/eventLogo.png",
+                            //event.icon,
+                            width: 31.5,
+                            height: 31.5,
+                          )
+                        ): CachedNetworkImage(
+                          imageUrl: event.icon,
                           width: 31.5,
                           height: 31.5,
+                          fit: BoxFit.cover,
                         ),
                       ),
                     ),
