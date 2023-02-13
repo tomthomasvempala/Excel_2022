@@ -34,14 +34,14 @@ class _RegisterButtonState extends State<RegisterButton> {
   reloadPage() {
     EventsAPI.fetchAndStoreEventDetailsFromNet(widget.eventDetails.id);
 
-    // Navigator.pushReplacement(
-    //   context,
-    //   MaterialPageRoute(
-    //     builder: (context) => EventPage(
-    //       widget.eventDetails.id,
-    //     ),
-    //   ),
-    // );
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (context) => EventPage(
+          widget.eventDetails.id,
+        ),
+      ),
+    );
   }
 
   openJoinTeamPage(int teamID) {
@@ -201,7 +201,7 @@ class _RegisterButtonState extends State<RegisterButton> {
         print("in If");
         reloadPage();
         return;
-      } else if (widget.eventDetails.isTeam == true&&
+      } else if (widget.eventDetails.isTeam == true &&
           widget.eventDetails.registration != null) {
         print("in else if");
         print(widget.eventDetails.toJson());
