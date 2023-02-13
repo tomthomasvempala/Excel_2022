@@ -87,7 +87,7 @@ class _RegisterButtonState extends State<RegisterButton> {
       // Registers for event
       // If team event, goto join team or create team
       // Else confirmation to registration is asked.
-      if (widget.eventDetails.isTeam == 1) {
+      if (widget.eventDetails.isTeam == true) {
         await showDialog(
           context: context,
           useRootNavigator: false,

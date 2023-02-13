@@ -29,7 +29,7 @@ class _ChangeTeamPageState extends State<ChangeTeamPage> {
         json.encode({"eventId": widget.eventDetails.id, "teamId": teamID});
     print(requestBody);
     var response = await putAuthorisedData(
-      url: APIConfig.baseUrl + '/registration/team',
+      url: APIConfig.baseUrl + 'registration/team',
       body: requestBody,
     );
     print(response.body);
