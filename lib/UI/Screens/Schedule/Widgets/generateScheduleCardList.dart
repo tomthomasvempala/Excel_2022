@@ -131,13 +131,19 @@ class ScheduleEvent extends StatelessWidget {
                       child: Padding(
                         padding: EdgeInsets.all(12.25),
                         child: ClipRRect(
-                          //Change this to Image.network when image server is up
-                          child: Image.asset(
+                          child:(eventSchedule.icon.startsWith("Microsoft"))?(
+                          Image.asset(
                             "assets/events/eventLogo.png",
                             //event.icon,
                             width: 31.5,
                             height: 31.5,
-                          ),
+                          )
+                        ): CachedNetworkImage(
+                          imageUrl: eventSchedule.icon,
+                          width: 31.5,
+                          height: 31.5,
+                          fit: BoxFit.cover,
+                        ),
                         ),
                       ),
                     ),
