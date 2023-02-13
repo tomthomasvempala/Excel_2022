@@ -45,22 +45,22 @@ class _ProfilePageState extends State<ProfilePage>
   @override
   TabController tabController;
 
-  // List registeredEvents = [
-  //   Event(
-  //     id: 5,
-  //     name: "Issue!",
-  //     desc: "Lorem ipsum dolor sit amet, conse ctetur adi piscing elit.",
-  //     date: "2023-03-04T00:00:00",
-  //     icon: 'assets/icons/even_sample.png',
-  //   ),
-  //   Event(
-  //     id: 5,
-  //     name: "Issue!",
-  //     desc: "Lorem ipsum dolor sit amet, conse ctetur adi piscing elit.",
-  //     date: "2023-03-04T00:00:00",
-  //     icon: 'assets/icons/even_sample.png',
-  //   )
-  // ];
+  List registeredEvents = [
+    Event(
+      id: 5,
+      name: "Issue!",
+      desc: "Lorem ipsum dolor sit amet, conse ctetur adi piscing elit.",
+      date: "2023-03-04T00:00:00",
+      icon: 'Microsoft',
+    ),
+    Event(
+      id: 5,
+      name: "Issue!",
+      desc: "Lorem ipsum dolor sit amet, conse ctetur adi piscing elit.",
+      date: "2023-03-04T00:00:00",
+      icon: 'Microsoft',
+    )
+  ];
 
   List savedNews = [
     Event(
@@ -68,14 +68,14 @@ class _ProfilePageState extends State<ProfilePage>
       name: "Issue!",
       desc: "Lorem ipsum dolor sit amet, conse ctetur adi piscing elit.",
       date: "2023-03-04T00:00:00",
-      icon: 'assets/icons/even_sample.png',
+      icon: 'Microsoft',
     ),
     Event(
       name: "Issue!",
       id: 5,
       desc: "Lorem ipsum dolor sit amet, conse ctetur adi piscing elit.",
       date: "2023-03-04T00:00:00",
-      icon: 'assets/icons/even_sample.png',
+      icon: 'Microsoft',
     )
   ];
 
@@ -89,6 +89,7 @@ class _ProfilePageState extends State<ProfilePage>
     authService = AuthService();
     fetchFavourites();
     fetchRegistrations();
+    RegistrationAPI.fetchRegisteredEvents();
   }
 
   Future fetchFavourites() async {
@@ -99,7 +100,7 @@ class _ProfilePageState extends State<ProfilePage>
   }
 
   Future fetchRegistrations() async {
-    List<Event> registrations = await RegistrationAPI.fetchRegisteredEvents();
+    List<Event> registrations = await RegistrationAPI.fetchRegistrations();
     setState(() {
       _registeredEvents = registrations;
     });
