@@ -44,7 +44,7 @@ class _AllEventsState extends State<AllEvents> {
   void initState() {
        final _myProvider =
         Provider.of<EventsAndCompetitionsProvider>(context, listen: false);
-    EventsData = _myProvider.dataList.where((element) => !element.isCompetition).toList();
+    EventsData = _myProvider.dataList.where((element) => element.eventType!="competition").toList();
     super.initState();
   }
 

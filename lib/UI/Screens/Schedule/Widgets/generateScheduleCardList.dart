@@ -109,46 +109,46 @@ class ScheduleEvent extends StatelessWidget {
                     child: Row(
                       children: [
                         Container(
-                          // width: 50,
-                          // height: 50,
-                          // decoration: BoxDecoration(
-                          //   borderRadius: BorderRadius.all(Radius.circular(18)),
-                          //   color: Color(0xff0E99E8),
-                          // ),
-                          // padding: EdgeInsets.all(10),
-                          // child: CachedNetworkImage(
-                          //   imageUrl: eventSchedule.icon,
-                          //   width: 50,
-                          //   height: 50,
-                          // ),
-                          child: Hero(
-                    tag: 'scheduleIcon${eventSchedule.id}',
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(21),
-                        color: Color.fromARGB(255, 14, 152, 232),
-                      ),
-                      child: Padding(
-                        padding: EdgeInsets.all(12.25),
-                        child: ClipRRect(
-                          child:(eventSchedule.icon.startsWith("Microsoft"))?(
-                          Image.asset(
-                            "assets/events/eventLogo.png",
-                            //event.icon,
-                            width: 31.5,
-                            height: 31.5,
-                          )
-                        ): CachedNetworkImage(
-                          imageUrl: eventSchedule.icon,
-                          width: 31.5,
-                          height: 31.5,
-                          fit: BoxFit.cover,
-                        ),
-                        ),
-                      ),
-                    ),
-                  ),
-                        ),
+                            // width: 50,
+                            // height: 50,
+                            // decoration: BoxDecoration(
+                            //   borderRadius: BorderRadius.all(Radius.circular(18)),
+                            //   color: Color(0xff0E99E8),
+                            // ),
+                            // padding: EdgeInsets.all(10),
+                            // child: CachedNetworkImage(
+                            //   imageUrl: eventSchedule.icon,
+                            //   width: 50,
+                            //   height: 50,
+                            // ),
+                            child: Hero(
+                          tag: 'scheduleIcon${eventSchedule.id}',
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(21),
+                              color: Color.fromARGB(255, 14, 152, 232),
+                            ),
+                            child: Padding(
+                              padding: EdgeInsets.all(12.25),
+                              child: ClipRRect(
+                                child:
+                                    (eventSchedule.icon.startsWith("Microsoft"))
+                                        ? (Image.asset(
+                                            "assets/events/eventLogo.png",
+                                            //event.icon,
+                                            width: 31.5,
+                                            height: 31.5,
+                                          ))
+                                        : CachedNetworkImage(
+                                            imageUrl: eventSchedule.icon,
+                                            width: 31.5,
+                                            height: 31.5,
+                                            fit: BoxFit.cover,
+                                          ),
+                              ),
+                            ),
+                          ),
+                        )),
                         SizedBox(
                           width: 12,
                         ),
