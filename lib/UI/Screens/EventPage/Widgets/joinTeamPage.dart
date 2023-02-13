@@ -76,19 +76,36 @@ class _JoinTeamPageState extends State<JoinTeamPage> {
             child: Column(
               children: [
                 SizedBox(height: 15),
-                Center(
+                Hero(
+                  tag: '${widget.eventDetails.id}',
                   child: Container(
-                    height: 100,
-                    child: Card(
-                      elevation: 8,
-                      child: Container(
-                        padding: EdgeInsets.all(20),
-                        child: CachedNetworkImage(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(21),
+                      color: Color.fromARGB(255, 14, 152, 232),
+                    ),
+                    child: Padding(
+                      padding: EdgeInsets.all(12.25),
+                      child: ClipRRect(
+                        //Change this to Image.network when image server is up
+                        // child: Image.asset(
+                        //   "assets/events/eventLogo.png",
+                        //   //event.icon,
+                        //   width: 31.5,
+                        //   height: 31.5,
+                        // ),
+                        child:(widget.eventDetails.icon.startsWith("Microsoft"))?(
+                          Image.asset(
+                            "assets/events/eventLogo.png",
+                            //event.icon,
+                            width: 31.5,
+                            height: 31.5,
+                          )
+                        ): CachedNetworkImage(
                           imageUrl: widget.eventDetails.icon,
+                          width: 31.5,
+                          height: 31.5,
+                          fit: BoxFit.cover,
                         ),
-                      ),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(80),
                       ),
                     ),
                   ),

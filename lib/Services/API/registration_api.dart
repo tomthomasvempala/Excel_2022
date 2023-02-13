@@ -52,13 +52,16 @@ class RegistrationAPI {
     print("Fetching registered events");
     var response;
     try {
-      response = await getAuthorisedData(APIConfig.baseUrl + '/registration');
+      response = await getAuthorisedData(APIConfig.baseUrl + 'registration');
+      print("Response from fetchRegistrations:${response.statusCode}");
+      print("Response from fetchRegistrations:${response.body}");
     } catch (e) {
       print("Error $e");
       return "error";
     }
     if (response.statusCode != 200) return "error";
     List<dynamic> responseData = json.decode(response.body);
+    RegistrationStatus.instance.registeredStatus = 1;
     return responseData.map<Event>((event) => Event.fromJson(event)).toList();
   }
 
@@ -76,21 +79,23 @@ class RegistrationAPI {
 
 // Recheck if registration possible
   static Future preRegistration({@required int id, @required context}) async {
-    // print("Registration status " +
-    //     RegistrationStatus.instance.registeredStatus.toString());
+    print("Registration status " +
+        RegistrationStatus.instance.registeredStatus.toString());
+
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String jwt = prefs.getString('jwt');
     if (jwt == null || jwt == "null") {
       return 'Log in to register for events';
     }
     if (RegistrationStatus.instance.registeredStatus == 0) {
-      fetchRegistrations();
+      await fetchRegistrations();
       return;
     }
     if (RegistrationStatus.instance.registeredStatus == 3) {
       return 'Could not fetch registration data';
     }
     if (await isRegistered(id)) {
+      print("Already registered");
       return 'Already Registered';
     }
 
@@ -119,7 +124,7 @@ class RegistrationAPI {
     try {
       print(requestBody);
       var response = await postAuthorisedData(
-        url: APIConfig.baseUrl + '/registration',
+        url: APIConfig.baseUrl + 'registration',
         body: requestBody,
       );
       print(response.body);
@@ -142,7 +147,7 @@ class RegistrationAPI {
     print(json.encode({"name": teamName, "eventId": eventId}));
     try {
       var response = await postAuthorisedData(
-        url: APIConfig.baseUrl + '/team',
+        url: APIConfig.baseUrl + 'team',
         body: json.encode({"name": teamName, "eventId": eventId}),
       );
       print("Create team status code " + response.statusCode.toString());
@@ -159,7 +164,7 @@ class RegistrationAPI {
 Future fetchDataFromNet(jwt) async {
   http.Response res;
   try {
-    res = await getAuthorisedData(APIConfig.baseUrl + '/registration');
+    res = await getAuthorisedData(APIConfig.baseUrl + 'registration');
     return res;
   } catch (_) {
     await Future.delayed(Duration(milliseconds: 2000), () async {
