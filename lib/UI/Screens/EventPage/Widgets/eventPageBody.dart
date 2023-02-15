@@ -122,7 +122,7 @@ class EventPageBody extends StatelessWidget {
                           imageUrl: eventDetails.icon,
                           width: 31.5,
                           height: 31.5,
-                          fit: BoxFit.cover,
+                          fit: BoxFit.contain,
                         ),
                       ),
                     ),
