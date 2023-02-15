@@ -248,7 +248,7 @@ _buildCard(
                                     },
                                     child: Container(
                                       child: Text(
-                                        'Register',
+                                        'View',
                                         style: TextStyle(
                                             color: Color.fromARGB(
                                                 255, 14, 152, 232),

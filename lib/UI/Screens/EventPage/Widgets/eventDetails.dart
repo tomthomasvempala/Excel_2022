@@ -108,7 +108,7 @@ class _MoreEventDetailsState extends State<MoreEventDetails> {
     {
       var eventhead1 =json.decode(widget.eventDetails.eventHead1);
       var eventhead2 =json.decode(widget.eventDetails.eventHead2);
-      String head1 = "<h3> ${eventhead1['name']}</h3>\n<p>Ph:  ${eventhead1['phoneNumber']}</p>\n<p>Email: ${eventhead1['email']}</p>\n";
+      String head1 = "<h3> ${eventhead1['name']}</h3>\n<p>Ph:  ${eventhead1['phoneNumber']}</p>\n<p>Email: ${eventhead1['email']}</p><br>\n";
       String head2 = "<h3> ${eventhead2['name']}</h3>\n<p>Ph:  ${eventhead2['phoneNumber']}</p>\n<p>Email: ${eventhead2['email']}</p>";
     content = head1 + head2;
     }

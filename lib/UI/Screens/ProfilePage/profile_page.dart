@@ -82,7 +82,7 @@ class _ProfilePageState extends State<ProfilePage>
   var userDetails;
   void initState() {
     super.initState();
-    tabController = TabController(length: 3, vsync: this);
+    tabController = TabController(length: 2, vsync: this);
     _user = widget.user;
     userDetails = viewUserProfile();
     _isProfileUpdated = widget.isProfileUpdated;
@@ -388,16 +388,16 @@ class _ProfilePageState extends State<ProfilePage>
                                         ),
                                       ),
                                     ),
-                                    Tab(
-                                      child: Text(
-                                        "Saved News",
-                                        style: TextStyle(
-                                          fontFamily: "mulish",
-                                          fontSize: 13,
-                                          fontWeight: FontWeight.w800,
-                                        ),
-                                      ),
-                                    ),
+                                    // Tab(
+                                    //   child: Text(
+                                    //     "Saved News",
+                                    //     style: TextStyle(
+                                    //       fontFamily: "mulish",
+                                    //       fontSize: 13,
+                                    //       fontWeight: FontWeight.w800,
+                                    //     ),
+                                    //   ),
+                                    // ),
                                   ]),
                             ],
                           ),
@@ -411,7 +411,7 @@ class _ProfilePageState extends State<ProfilePage>
                               children: [
                                 Registered(),
                                 Favorites(),
-                                SavedNews(),
+                                // SavedNews(),
                               ],
                             ),
                           ),
