@@ -19,12 +19,16 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
     print('Message notification: ${message.notification?.body}');
     List notifications = await HiveDB.retrieveData(valueName: 'notifications')??[];
     final newNotification = {
-      'data' : message.data,
+      'data' : message.data??{},
       'title':'${message.notification?.title}',
-      'body': '${message.notification?.body}'
+      'body': '${message.notification?.body}',
+      'time': DateTime.now().toString()
     };
     notifications.add(newNotification);
-    HiveDB.storeData(valueName: 'notifications',value: newNotification);
+    await HiveDB.storeData(valueName: 'notifications',value: notifications);
+    int count = await HiveDB.retrieveData(valueName: 'unread_notifications');
+    count = count??0;
+    await HiveDB.storeData(valueName: 'unread_notifications',value: count+1);
   }
 }
 
