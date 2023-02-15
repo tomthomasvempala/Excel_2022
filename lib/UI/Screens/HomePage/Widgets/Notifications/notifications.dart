@@ -4,9 +4,13 @@ import 'package:excelapp/UI/Components/LoadingUI/loadingAnimation.dart';
 import 'package:excelapp/UI/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:excelapp/UI/Screens/HomePage/Widgets/Notifications/notificationCard.dart';
+import 'package:clear_all_notifications/clear_all_notifications.dart';
+
 
 class NotificationsPage extends StatelessWidget {
   Future<Map> notifications() async {
+    await ClearAllNotifications.clear();
+
     List noti = await HiveDB.retrieveData(valueName: 'notifications');
     var count = await HiveDB.retrieveData(valueName: 'unread_notifications');
     await HiveDB.storeData(valueName: 'unread_notifications', value: 0);
@@ -33,7 +37,7 @@ class NotificationsPage extends StatelessWidget {
     //   ],
     //   'count': 3
     // };
-    print(noti);
+    // print(noti);
     return {'notifications': noti ?? [], 'count': count??noti.length};
   }
 
