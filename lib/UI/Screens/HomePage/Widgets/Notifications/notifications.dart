@@ -33,7 +33,7 @@ class NotificationsPage extends StatelessWidget {
     //   ],
     //   'count': 3
     // };
-
+    print(noti);
     return {'notifications': noti ?? [], 'count': count??noti.length};
   }
 

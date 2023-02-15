@@ -16,10 +16,11 @@ class NotificationCard extends StatelessWidget {
       this.time,
       this.description,
       this.link,
-      this.outline = true,this.icon = null});
+      this.outline = true,
+      this.icon = null});
 
   getTime(time) {
-    if(time=="error"){
+    if (time == "error") {
       return "Some time ago";
     }
     if (new DateTime.now().difference(DateTime.parse(time)).inDays < 1) {
@@ -122,7 +123,9 @@ class NotificationCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       elevation: 0,
-      color: !outline?Color.fromARGB(255, 236, 244, 245): Color.fromARGB(255, 251, 255, 255),
+      color: !outline
+          ? Color.fromARGB(255, 236, 244, 245)
+          : Color.fromARGB(255, 251, 255, 255),
       margin: EdgeInsets.fromLTRB(20, 5, 20, 5),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(20),
@@ -135,7 +138,8 @@ class NotificationCard extends StatelessWidget {
         },
         child: Container(
           decoration: BoxDecoration(
-            border: Border.all(width: 0.5, color: Colors.black.withOpacity(0.2)),
+            border:
+                Border.all(width: 0.5, color: Colors.black.withOpacity(0.2)),
             borderRadius: BorderRadius.circular(20),
           ),
           padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
@@ -149,14 +153,18 @@ class NotificationCard extends StatelessWidget {
                 padding: EdgeInsets.all(12.25),
                 child: ClipRRect(
                   //Change this to Image.network when image server is up
-                  child:icon==null? Image.asset(
-                    "assets/events/eventLogo.png",
-                    //event.icon,
-                    width: 31.5,
-                    height: 31.5,
-                  ): Image.network(icon,
-                    width: 31.5,
-                    height: 31.5,),
+                  child: icon == null
+                      ? Image.asset(
+                          "assets/events/eventLogo.png",
+                          //event.icon,
+                          width: 31.5,
+                          height: 31.5,
+                        )
+                      : Image.network(
+                          icon,
+                          width: 31.5,
+                          height: 31.5,
+                        ),
                 ),
               ),
             ),

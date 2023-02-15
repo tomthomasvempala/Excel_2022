@@ -11,9 +11,14 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../../../constants.dart';
 
-class QuickAccessBar extends StatelessWidget {
+class QuickAccessBar extends StatefulWidget {
   QuickAccessBar({Key key}) : super(key: key);
 
+  @override
+  State<QuickAccessBar> createState() => _QuickAccessBarState();
+}
+
+class _QuickAccessBarState extends State<QuickAccessBar> {
   final labelStyle = TextStyle(
     color: primaryColor,
     fontFamily: pfontFamily,
@@ -114,7 +119,11 @@ class QuickAccessBar extends StatelessWidget {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => NotificationsPage()));
+                            builder: (context) => NotificationsPage())).then((value) {
+                              setState(() {
+                                
+                              });
+                            });
                   },
                   child: FaIcon(
                     Icons.notifications_none_outlined,
@@ -134,7 +143,7 @@ class QuickAccessBar extends StatelessWidget {
                     future:
                         HiveDB.retrieveData(valueName: 'unread_notifications'),
                     builder: (context, snapshot) {
-                      if (snapshot.hasData && snapshot.data == true)
+                      if (snapshot.hasData && snapshot.data >0 )
                         return Transform.translate(
                           offset: Offset(22, -22),
                           child: Container(
