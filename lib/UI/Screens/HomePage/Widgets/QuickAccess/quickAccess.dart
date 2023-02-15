@@ -3,9 +3,6 @@ import 'package:excelapp/UI/Screens/HomePage/Widgets/Notifications/notifications
 import 'package:excelapp/UI/Screens/HomePage/Widgets/QuickAccess/modals/contactUsModal.dart';
 import 'package:excelapp/UI/Screens/HomePage/Widgets/QuickAccess/modals/reachUsModal.dart';
 import 'package:excelapp/UI/Themes/profile_themes.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 

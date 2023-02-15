@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'package:excelapp/Accounts/account_services.dart';
 import 'package:excelapp/UI/Components/AlertDialog/alertDialog.dart';
 import 'package:excelapp/UI/Components/LoadingUI/loadingAnimation.dart';
-import 'package:excelapp/UI/Screens/ProfilePage/profile_main.dart';
 import 'package:excelapp/UI/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

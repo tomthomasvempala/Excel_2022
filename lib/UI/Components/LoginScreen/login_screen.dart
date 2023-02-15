@@ -2,17 +2,14 @@ import 'package:excelapp/Accounts/account_services.dart';
 import 'package:excelapp/Accounts/auth_service.dart';
 import 'package:excelapp/Providers/loginStatusProvider.dart';
 import 'package:excelapp/Services/API/favourites_api.dart';
-import 'package:excelapp/UI/Components/Appbar/darkAppbar.dart';
 import 'package:excelapp/UI/Components/CreateAccountModal/createAccountModal.dart';
 import 'package:excelapp/UI/Components/LoadingUI/alertDialog.dart';
-import 'package:excelapp/UI/Screens/ProfilePage/profile_main.dart';
 import 'package:excelapp/UI/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 
 import '../../../Models/user_model.dart';
-import '../../../Providers/navigationProvider.dart';
 import '../../../Services/Database/hive_operations.dart';
 
 class LoginScreen extends StatefulWidget {

@@ -1,6 +1,5 @@
 import 'package:flutter/foundation.dart';
 
-import '../Services/API/favourites_api.dart';
 
 class FavoritesProvider with ChangeNotifier {
   List<int> _favorites = [];

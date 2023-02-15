@@ -3,8 +3,6 @@ import 'package:excelapp/Models/user_model.dart';
 import 'package:excelapp/Providers/navigationProvider.dart';
 import 'package:excelapp/UI/Components/AlertDialog/alertDialog.dart';
 import 'package:excelapp/UI/Components/LoadingUI/alertDialog.dart';
-import 'package:excelapp/UI/Components/LoadingUI/snackBar.dart';
-import 'package:excelapp/UI/Screens/ProfilePage/Widgets/update_profile.dart';
 import 'package:flutter/material.dart';
 import 'package:excelapp/UI/constants.dart';
 import 'package:flutter/services.dart';
@@ -42,6 +40,7 @@ class _CreateAccountModalState extends State<CreateAccountModal> {
   final _formKey = GlobalKey<FormState>();
 //int _id;
   String _name;
+  // ignore: unused_field
   String _picture;
   String _mobileNumber;
   int _categoryId;

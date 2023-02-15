@@ -1,11 +1,6 @@
-import 'package:excelapp/UI/Screens/EventPage/eventPage.dart';
-import 'package:excelapp/UI/Screens/ExplorePage/explorePage.dart';
 import 'package:excelapp/UI/Screens/HomePage/Widgets/Discover/button.dart';
 import 'package:excelapp/UI/Screens/HomePage/Widgets/Discover/buttonData.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 

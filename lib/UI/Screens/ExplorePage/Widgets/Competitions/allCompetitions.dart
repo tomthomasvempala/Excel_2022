@@ -1,4 +1,3 @@
-import 'dart:async';
 
 import 'package:excelapp/Models/event_card.dart';
 import 'package:excelapp/Providers/eventsAndCompetitonsProvider.dart';
