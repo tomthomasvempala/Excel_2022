@@ -1,6 +1,5 @@
 import 'package:excelapp/UI/Screens/Prelims/TestPage/testPage.dart';
 
-import './scoreDialog.dart';
 import 'package:flutter/material.dart';
 import 'package:excelapp/UI/constants.dart';
 

@@ -1,6 +1,4 @@
-import 'package:excelapp/UI/Screens/EventLists/eventsList.dart';
 import 'package:excelapp/UI/Screens/ExplorePage/explorePage.dart';
-import 'package:excelapp/UI/Screens/Favourites/favourites.dart';
 import 'package:flutter/material.dart';
 import 'package:excelapp/UI/Screens/HomePage/homePage.dart';
 import 'package:excelapp/UI/Screens/ProfilePage/profile_main.dart';

@@ -4,9 +4,6 @@ import 'package:excelapp/UI/Screens/EventPage/Widgets/eventDescription.dart';
 import 'package:excelapp/UI/Screens/EventPage/Widgets/eventDetails.dart';
 import 'package:excelapp/UI/Screens/EventPage/Widgets/registerButton.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'moreDetailsPage.dart';
-import 'backgroundImage.dart';
 import 'package:excelapp/UI/constants.dart';
 import 'package:excelapp/UI/Components/LikeButton/likeButton.dart';
 
