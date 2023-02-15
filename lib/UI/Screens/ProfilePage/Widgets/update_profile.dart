@@ -54,6 +54,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
   @override
   void initState() {
     super.initState();
+    print(widget.user);
     initialiseUserDetails(widget.user);
     //initialiseUserDetails();
   }
@@ -878,9 +879,6 @@ class _UpdateProfileState extends State<UpdateProfile> {
                     // );
 
                     Navigator.pop(context);
-                    final myProvider =
-                        Provider.of<MyNavigationIndex>(context, listen: false);
-                    myProvider.setIndex = 3;
                   } else {
                     // _formKey.currentState.save();
                     ScaffoldMessenger.of(context).showSnackBar(snackBar(value));
