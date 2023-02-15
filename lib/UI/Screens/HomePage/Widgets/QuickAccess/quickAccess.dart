@@ -1,3 +1,4 @@
+import 'package:excelapp/Services/Database/hive_operations.dart';
 import 'package:excelapp/UI/Screens/HomePage/Widgets/Notifications/notifications.dart';
 import 'package:excelapp/UI/Screens/HomePage/Widgets/QuickAccess/modals/contactUsModal.dart';
 import 'package:excelapp/UI/Screens/HomePage/Widgets/QuickAccess/modals/reachUsModal.dart';
@@ -30,8 +31,7 @@ class QuickAccessBar extends StatelessWidget {
             ContactUsModal(context)),
         quickAccessButton(context, Icons.location_on_outlined, "Reach Us",
             ReachUsModal(context)),
-        quickAccessButton(
-            context, Icons.notifications_none_outlined, "Notifs", null),
+        notificationButton(context),
       ]),
     );
   }
@@ -46,6 +46,12 @@ class QuickAccessBar extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             OutlinedButton(
+              onLongPress: () async {
+                await HiveDB.storeData(valueName: 'notifications', value: null);
+                await HiveDB.storeData(
+                    valueName: 'unread_notifications', value: true);
+                    print('done');
+              },
               onPressed: () {
                 (modalSheet != null)
                     ? showModalBottomSheet<dynamic>(
@@ -86,6 +92,70 @@ class QuickAccessBar extends StatelessWidget {
             ),
             Text(
               buttonName,
+              style: labelStyle,
+            )
+          ],
+        ));
+  }
+
+  Widget notificationButton(context) {
+    return Container(
+        //decoration: BoxDecoration(color: Colors.brown),
+        margin: EdgeInsets.fromLTRB(0, 5, 0, 5),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Stack(
+              alignment: Alignment.center,
+              children: [
+                OutlinedButton(
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => NotificationsPage()));
+                  },
+                  child: FaIcon(
+                    Icons.notifications_none_outlined,
+                    color: primaryColor,
+                    size: 28,
+                  ),
+                  style: ButtonStyle(
+                      fixedSize: MaterialStateProperty.all(const Size(60, 60)),
+                      padding:
+                          MaterialStateProperty.all(const EdgeInsets.all(15)),
+                      backgroundColor:
+                          MaterialStateProperty.all(ProfileTheme.bgColor),
+                      shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(25)))),
+                ),
+                FutureBuilder(
+                    future:
+                        HiveDB.retrieveData(valueName: 'unread_notifications'),
+                    builder: (context, snapshot) {
+                      if (snapshot.hasData && snapshot.data == true)
+                        return Transform.translate(
+                          offset: Offset(22, -22),
+                          child: Container(
+                            height: 12,
+                            width: 12,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(8),
+                                color: Color(0xFFFD7B69)),
+                          ),
+                        );
+                      else {
+                        return Container();
+                      }
+                    })
+              ],
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Text(
+              "Notifications",
               style: labelStyle,
             )
           ],
