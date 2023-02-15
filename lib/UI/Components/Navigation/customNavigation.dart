@@ -68,6 +68,7 @@ class CustomNavigatorState extends State<CustomNavigator> {
     final _myNavIndex = Provider.of<MyNavigationIndex>(context);
     return WillPopScope(
       onWillPop: () async {
+        FocusManager.instance.primaryFocus?.unfocus();  
         if(_myNavIndex.getIndex!=0){
           _myNavIndex.setIndex=0;
           return false;
