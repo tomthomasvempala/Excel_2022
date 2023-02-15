@@ -43,7 +43,7 @@ class _HomePageState extends State<HomePage> {
               ),
 
               Discover(),
-              LatestNewsSection(),
+              // LatestNewsSection(),
               // Categories(),
               // SocialIcons(),
             ],
