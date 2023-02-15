@@ -199,7 +199,9 @@ class QrCode extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(width: 20,),
+            SizedBox(
+              width: 20,
+            ),
             Expanded(
               child: Container(
                 height: 66,
