@@ -151,7 +151,7 @@ _buildCard(
                           imageUrl: event.icon,
                           width: 31.5,
                           height: 31.5,
-                          fit: BoxFit.cover,
+                          fit: BoxFit.contain,
                         ),
                       ),
                     ),
@@ -174,55 +174,55 @@ _buildCard(
                       SizedBox(
                         height: 5,
                       ),
-                      FutureBuilder(
-                          future: Future.delayed(Duration(milliseconds: 1000),(){
-                            return "Event description. This was just a fake timer. Not API call.";
-                          }),
-                          // EventsAPI.fetchAndStoreEventDetailsFromNet(
-                          //     event.id),
-                          builder: (context, snapshot) {
-                            if (snapshot.hasData) {
-                              return SizedBox(
-                                width: MediaQuery.of(context).size.width * 0.46,
-                                child: Text(
-                                  snapshot.data
-                                              .toString()
-                                              .replaceAll("<br/>", "")
-                                              .substring(
-                                                  0,
-                                                  snapshot.data
-                                                              .toString()
-                                                              .length >
-                                                          50
-                                                      ? 50
-                                                      : snapshot.data
-                                                          .toString()
-                                                          .length) +
-                                          "..." ??
-                                      "Event Description",
-                                  style: TextStyle(
-                                      color: Color.fromARGB(255, 119, 133, 133),
-                                      fontWeight: FontWeight.w500,
-                                      fontFamily: "mulish",
-                                      fontSize: 11),
-                                ),
-                              );
-                            } else {
-                              return SizedBox(
-                                width: MediaQuery.of(context).size.width * 0.46,
-                                child: Shimmer.fromColors(
-                                  baseColor: Color.fromARGB(255, 238, 240, 240),
-                                  highlightColor:
-                                      Color.fromARGB(255, 255, 255, 255),
-                                  child: Container(
-                                    height: 10,
-                                    width: 100,
-                                    color: Colors.white,
-                                  ),
-                                ),
-                              );
-                            }
-                          }),
+                      // FutureBuilder(
+                      //     future: Future.delayed(Duration(milliseconds: 1000),(){
+                      //       return "Event description. This was just a fake timer. Not API call.";
+                      //     }),
+                      //     // EventsAPI.fetchAndStoreEventDetailsFromNet(
+                      //     //     event.id),
+                      //     builder: (context, snapshot) {
+                      //       if (snapshot.hasData) {
+                      //         return SizedBox(
+                      //           width: MediaQuery.of(context).size.width * 0.46,
+                      //           child: Text(
+                      //             snapshot.data
+                      //                         .toString()
+                      //                         .replaceAll("<br/>", "")
+                      //                         .substring(
+                      //                             0,
+                      //                             snapshot.data
+                      //                                         .toString()
+                      //                                         .length >
+                      //                                     50
+                      //                                 ? 50
+                      //                                 : snapshot.data
+                      //                                     .toString()
+                      //                                     .length) +
+                      //                     "..." ??
+                      //                 "Event Description",
+                      //             style: TextStyle(
+                      //                 color: Color.fromARGB(255, 119, 133, 133),
+                      //                 fontWeight: FontWeight.w500,
+                      //                 fontFamily: "mulish",
+                      //                 fontSize: 11),
+                      //           ),
+                      //         );
+                      //       } else {
+                      //         return SizedBox(
+                      //           width: MediaQuery.of(context).size.width * 0.46,
+                      //           child: Shimmer.fromColors(
+                      //             baseColor: Color.fromARGB(255, 238, 240, 240),
+                      //             highlightColor:
+                      //                 Color.fromARGB(255, 255, 255, 255),
+                      //             child: Container(
+                      //               height: 10,
+                      //               width: 100,
+                      //               color: Colors.white,
+                      //             ),
+                      //           ),
+                      //         );
+                      //       }
+                      //     }),
                       SizedBox(height: 10),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -248,7 +248,7 @@ _buildCard(
                                     },
                                     child: Container(
                                       child: Text(
-                                        'Register',
+                                        'View',
                                         style: TextStyle(
                                             color: Color.fromARGB(
                                                 255, 14, 152, 232),

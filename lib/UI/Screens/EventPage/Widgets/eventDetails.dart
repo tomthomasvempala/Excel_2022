@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:excelapp/Models/event_details.dart';
 
 import 'package:flutter/material.dart';
@@ -20,6 +22,7 @@ class MoreEventDetails extends StatefulWidget {
 class _MoreEventDetailsState extends State<MoreEventDetails> {
   @override
   Widget build(BuildContext context) {
+    print(widget.eventDetails.eventHead1);
     double deviceHeight = MediaQuery.of(context).size.height;
     double deviceWidth = MediaQuery.of(context).size.width;
     var boxPadding = EdgeInsets.fromLTRB(deviceWidth / 12,
@@ -97,14 +100,18 @@ class _MoreEventDetailsState extends State<MoreEventDetails> {
     else if (pageNumber == 2)
       content = (widget.eventDetails.format != null)
           ? widget.eventDetails.format.replaceAll('<h2/>', "</h2>")
-          : "Format of the event is like this. Tada !";
+          : "No event format";
     else if (pageNumber == 3)
       content = widget.eventDetails.rules ??
-          "The only rule is that there are no rules.";
+          "Rules are not specified for this event";
     else if (pageNumber == 4)
-      content = widget.eventDetails.rules ??
-          "Please consult Ashish for more content in dummy data in the backend";
-
+    {
+      var eventhead1 =json.decode(widget.eventDetails.eventHead1);
+      var eventhead2 =json.decode(widget.eventDetails.eventHead2);
+      String head1 = "<h3> ${eventhead1['name']}</h3>\n<p>Ph:  ${eventhead1['phoneNumber']}</p>\n<p>Email: ${eventhead1['email']}</p><br>\n";
+      String head2 = "<h3> ${eventhead2['name']}</h3>\n<p>Ph:  ${eventhead2['phoneNumber']}</p>\n<p>Email: ${eventhead2['email']}</p>";
+    content = head1 + head2;
+    }
     return Container(
       decoration: BoxDecoration(color: Colors.white),
       child: SingleChildScrollView(

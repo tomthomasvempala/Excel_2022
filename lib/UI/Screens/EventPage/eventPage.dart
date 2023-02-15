@@ -50,8 +50,6 @@ class _EventPageState extends State<EventPage> {
     //commented for hard coded data to be passed
     var result1;
     result1 = await EventsAPI.fetchEventDetailsFromStorage(id);
-    print("My id is ");
-    print(id);
     if (result1 != null) estream.add(result1);
     // // Fetch from net & update
     var result2 = await EventsAPI.fetchAndStoreEventDetailsFromNet(id);
