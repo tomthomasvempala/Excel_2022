@@ -36,7 +36,7 @@ class NotificationCard extends StatelessWidget {
             1) {
           return new DateTime.now()
                   .difference(DateTime.parse(time))
-                  .inSeconds
+                  .inMinutes
                   .toString() +
               ' minute ago';
         }

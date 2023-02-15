@@ -51,12 +51,12 @@ class _QuickAccessBarState extends State<QuickAccessBar> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             OutlinedButton(
-              onLongPress: () async {
-                await HiveDB.storeData(valueName: 'notifications', value: null);
-                await HiveDB.storeData(
-                    valueName: 'unread_notifications', value: true);
-                    print('done');
-              },
+              // onLongPress: () async {
+              //   await HiveDB.storeData(valueName: 'notifications', value: null);
+              //   await HiveDB.storeData(
+              //       valueName: 'unread_notifications', value: true);
+              //       print('done');
+              // },
               onPressed: () {
                 (modalSheet != null)
                     ? showModalBottomSheet<dynamic>(

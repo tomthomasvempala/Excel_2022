@@ -92,9 +92,8 @@ class NotificationsPage extends StatelessWidget {
                 ),
               );
             } else if (snapshot.hasError) {
-              print("has error");
               {
-                return Text("Sorry");
+                return Center(child: Text("Something went wrong"));
               }
             }
 

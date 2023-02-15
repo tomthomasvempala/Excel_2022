@@ -12,7 +12,8 @@ import '../../../Services/API/favourites_api.dart';
 
 class EventPage extends StatefulWidget {
   final int eventId;
-  EventPage(this.eventId);
+  final bool isHero;
+  EventPage(this.eventId,{this.isHero=true});
   @override
   _EventPageState createState() => _EventPageState();
 }
