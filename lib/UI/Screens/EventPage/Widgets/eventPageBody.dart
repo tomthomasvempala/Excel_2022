@@ -73,6 +73,7 @@ class EventPageBody extends StatelessWidget {
                             ),
                           ),
                         ),
+                        SizedBox(width: 20,),
                         Hero(
                           tag: 'eventIcon${eventDetails.id}',
                           child: Container(
