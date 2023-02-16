@@ -4,21 +4,15 @@ import 'package:excelapp/Accounts/auth_service.dart';
 import 'package:excelapp/Models/user_model.dart';
 import 'package:excelapp/Providers/navigationProvider.dart';
 import 'package:excelapp/Services/API/favourites_api.dart';
-import 'package:excelapp/UI/Components/Appbar/appbar.dart';
-import 'package:excelapp/UI/Components/CreateAccountModal/createAccountModal.dart';
 import 'package:excelapp/UI/Components/LoadingUI/alertDialog.dart';
 import 'package:excelapp/UI/Components/LoadingUI/loadingAnimation.dart';
 
-// import 'package:excelapp/UI/Screens/ProfilePage/Widgets/referal.dart';
 import 'package:excelapp/UI/Screens/ProfilePage/Widgets/qr_code.dart';
 import 'package:excelapp/UI/Screens/ProfilePage/Widgets/update_profile.dart';
-import 'package:excelapp/UI/Screens/ProfilePage/Widgets/view_profile.dart';
-import 'package:excelapp/UI/Screens/ProfilePage/profile_main.dart';
 import 'package:excelapp/UI/Themes/profile_themes.dart';
 import 'package:excelapp/UI/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:excelapp/Services/API/registration_api.dart';
-import 'package:excelapp/UI/Screens/ProfilePage/Registration/registration.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -42,44 +36,11 @@ class _ProfilePageState extends State<ProfilePage>
   List<Event> _favouritedEvents = [];
   List<Event> _registeredEvents = [];
 
-  @override
-  TabController tabController;
-
-  List registeredEvents = [
-    Event(
-      id: 5,
-      name: "Issue!",
-      desc: "Lorem ipsum dolor sit amet, conse ctetur adi piscing elit.",
-      date: "2023-03-04T00:00:00",
-      icon: 'Microsoft',
-    ),
-    Event(
-      id: 5,
-      name: "Issue!",
-      desc: "Lorem ipsum dolor sit amet, conse ctetur adi piscing elit.",
-      date: "2023-03-04T00:00:00",
-      icon: 'Microsoft',
-    )
-  ];
-
-  List savedNews = [
-    Event(
-      id: 5,
-      name: "Issue!",
-      desc: "Lorem ipsum dolor sit amet, conse ctetur adi piscing elit.",
-      date: "2023-03-04T00:00:00",
-      icon: 'Microsoft',
-    ),
-    Event(
-      name: "Issue!",
-      id: 5,
-      desc: "Lorem ipsum dolor sit amet, conse ctetur adi piscing elit.",
-      date: "2023-03-04T00:00:00",
-      icon: 'Microsoft',
-    )
-  ];
+  
+  TabController tabController;  
 
   var userDetails;
+  @override
   void initState() {
     super.initState();
     tabController = TabController(length: 2, vsync: this);
@@ -107,6 +68,7 @@ class _ProfilePageState extends State<ProfilePage>
   }
 
   Future<dynamic> viewUserProfile() async {
+    print("netpoi");
     SharedPreferences prefs = await SharedPreferences.getInstance();
     if (prefs.getBool('isProfileUpdated') == false ||
         prefs.getBool('isProfileUpdated') == null) {
@@ -117,6 +79,9 @@ class _ProfilePageState extends State<ProfilePage>
       return user;
     }
   }
+
+
+
 
   logoutUser() async {
     final alertDialog = alertBox("Please Wait");
@@ -351,7 +316,7 @@ class _ProfilePageState extends State<ProfilePage>
                                   SizedBox(
                                     width: 12,
                                   ),
-                                  editProfileButton(context),
+                                  editProfileButton(context,snapshot.data),
                                 ],
                               ),
                               TabBar(
@@ -448,15 +413,15 @@ class _ProfilePageState extends State<ProfilePage>
         });
   }
 
-  Widget SavedNews() {
-    return ListView.builder(
-        physics: BouncingScrollPhysics(),
-        shrinkWrap: true,
-        itemCount: savedNews.length,
-        itemBuilder: (_, index) {
-          return EventCard(savedNews[index]);
-        });
-  }
+  // Widget SavedNews() {
+  //   return ListView.builder(
+  //       physics: BouncingScrollPhysics(),
+  //       shrinkWrap: true,
+  //       itemCount: savedNews.length,
+  //       itemBuilder: (_, index) {
+  //         return EventCard(savedNews[index]);
+  //       });
+  // }
 
   Widget showQRButton(BuildContext context, User user) {
     return ButtonTheme(
@@ -501,7 +466,7 @@ class _ProfilePageState extends State<ProfilePage>
     );
   }
 
-  Widget editProfileButton(BuildContext context) {
+  Widget editProfileButton(BuildContext context,User user) {
     return ButtonTheme(
       //minWidth: MediaQuery.of(context).size.width / 2,
       child: TextButton(
@@ -520,10 +485,14 @@ class _ProfilePageState extends State<ProfilePage>
               fontWeight: FontWeight.w700,
               fontSize: 11),
         ),
-        onPressed: () {
+        onPressed: () async{
           Navigator.push(context, MaterialPageRoute(builder: (context) {
             return UpdateProfile(_user);
-          }));
+          })).then((value) {
+            setState((){
+              userDetails = viewUserProfile();
+            });
+          });
         },
       ),
     );

@@ -8,7 +8,6 @@ import 'package:excelapp/UI/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import './bottom_navigation.dart';
-import './tab_navigator.dart';
 import './BottomNavigationBarWidget/layout.dart';
 
 // To add pages to Bottom Navigation Bar, import & add them to /lib/UI/Components/Navigation/pageNavigator.dart
@@ -26,13 +25,13 @@ class CustomNavigator extends StatefulWidget {
 
 class CustomNavigatorState extends State<CustomNavigator> {
   int selectedTab;
-  TabItem _currentTab = TabItem.page1;
-  Map<TabItem, GlobalKey<NavigatorState>> _navigatorKeys = {
-    TabItem.page1: GlobalKey<NavigatorState>(),
-    TabItem.page2: GlobalKey<NavigatorState>(),
-    TabItem.page3: GlobalKey<NavigatorState>(),
-    TabItem.page4: GlobalKey<NavigatorState>(),
-  };
+  // TabItem _currentTab = TabItem.page1;
+  // Map<TabItem, GlobalKey<NavigatorState>> _navigatorKeys = {
+  //   TabItem.page1: GlobalKey<NavigatorState>(),
+  //   TabItem.page2: GlobalKey<NavigatorState>(),
+  //   TabItem.page3: GlobalKey<NavigatorState>(),
+  //   TabItem.page4: GlobalKey<NavigatorState>(),
+  // };
 
   bool bottonNavHidden = false;
   // ExplorePage explorePage = ExplorePage(key: Key('A'), selectedPage: 1,selectedCategory: 'talks',);
@@ -53,14 +52,14 @@ class CustomNavigatorState extends State<CustomNavigator> {
     super.initState();
   }
 
-  void _selectTab(TabItem tabItem) {
-    if (tabItem == _currentTab) {
-      // pop to first route
-      _navigatorKeys[tabItem].currentState.popUntil((route) => route.isFirst);
-    } else {
-      setState(() => _currentTab = tabItem);
-    }
-  }
+  // void _selectTab(TabItem tabItem) {
+  //   if (tabItem == _currentTab) {
+  //     // pop to first route
+  //     _navigatorKeys[tabItem].currentState.popUntil((route) => route.isFirst);
+  //   } else {
+  //     setState(() => _currentTab = tabItem);
+  //   }
+  // }
 
 
   @override
@@ -68,6 +67,7 @@ class CustomNavigatorState extends State<CustomNavigator> {
     final _myNavIndex = Provider.of<MyNavigationIndex>(context);
     return WillPopScope(
       onWillPop: () async {
+        FocusManager.instance.primaryFocus?.unfocus();  
         if(_myNavIndex.getIndex!=0){
           _myNavIndex.setIndex=0;
           return false;
@@ -125,15 +125,15 @@ class CustomNavigatorState extends State<CustomNavigator> {
     );
   }
 
-  Widget _buildOffstageNavigator(TabItem tabItem) {
-    return Offstage(
-      offstage: _currentTab != tabItem,
-      child: TabNavigator(
-        navigatorKey: _navigatorKeys[tabItem],
-        tabItem: tabItem,
-      ),
-    );
-  }
+  // Widget _buildOffstageNavigator(TabItem tabItem) {
+  //   return Offstage(
+  //     offstage: _currentTab != tabItem,
+  //     child: TabNavigator(
+  //       navigatorKey: _navigatorKeys[tabItem],
+  //       tabItem: tabItem,
+  //     ),
+  //   );
+  // }
 }
 
 Widget _buildFab(BuildContext context, bottonNavHidden) {

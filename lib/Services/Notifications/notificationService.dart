@@ -1,11 +1,11 @@
-import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+// import 'package:firebase_messaging/firebase_messaging.dart';
+// import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 
 class NotificationService {
-  final FirebaseMessaging _firebaseMessaging = FirebaseMessaging.instance;
-  final FlutterLocalNotificationsPlugin _flutterLocalNotificationsPlugin =
-      FlutterLocalNotificationsPlugin();
+  // final FirebaseMessaging _firebaseMessaging = FirebaseMessaging.instance;
+  // final FlutterLocalNotificationsPlugin _flutterLocalNotificationsPlugin =
+      // FlutterLocalNotificationsPlugin();
 
   // void initialiseFCMNotification() async {
   //   var android = AndroidInitializationSettings('app_icon');

@@ -73,7 +73,7 @@ class SharingOptions extends StatelessWidget {
           ),
           // Telegram
           ShareOption(
-            icon: FontAwesomeIcons.telegramPlane,
+            icon: FontAwesomeIcons.telegram,
             color: Color(0xff0088cc),
             action: () {
               SocialShare.shareTelegram(message);
