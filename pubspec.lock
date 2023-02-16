@@ -89,6 +89,13 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.2"
+  clear_all_notifications:
+    dependency: "direct main"
+    description:
+      name: clear_all_notifications
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.3"
   cli_util:
     dependency: transitive
     description:

@@ -3,7 +3,6 @@ import 'package:excelapp/Models/event_card.dart';
 import 'package:excelapp/Services/API/events_api.dart';
 import 'package:excelapp/Services/API/favourites_api.dart';
 import 'package:excelapp/UI/Components/AlertDialog/alertDialog.dart';
-import 'package:excelapp/UI/Components/LoadingUI/loadingAnimation.dart';
 import 'package:excelapp/UI/Screens/EventPage/eventPage.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';

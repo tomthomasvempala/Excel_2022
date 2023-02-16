@@ -1,7 +1,6 @@
 import 'package:excelapp/Models/user_model.dart';
 import 'package:excelapp/Providers/loginStatusProvider.dart';
 import 'package:excelapp/Services/Database/hive_operations.dart';
-import 'package:excelapp/UI/Components/CreateAccountModal/createAccountModal.dart';
 import 'package:excelapp/UI/Components/LoadingUI/loadingAnimation.dart';
 import 'package:excelapp/UI/Components/LoginScreen/login_screen.dart';
 import 'package:excelapp/UI/Screens/ProfilePage/profile_page.dart';

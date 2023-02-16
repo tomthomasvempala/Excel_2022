@@ -1,7 +1,4 @@
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:excelapp/Models/user_model.dart';
-import 'package:excelapp/UI/Screens/ProfilePage/Widgets/updateImage.dart';
-import 'package:excelapp/UI/Themes/profile_themes.dart';
+
 import 'package:excelapp/UI/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:qr_flutter/qr_flutter.dart';
@@ -202,7 +199,9 @@ class QrCode extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(width: 20,),
+            SizedBox(
+              width: 20,
+            ),
             Expanded(
               child: Container(
                 height: 66,

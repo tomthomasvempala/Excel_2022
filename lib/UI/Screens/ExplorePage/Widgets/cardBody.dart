@@ -1,6 +1,5 @@
 import 'package:excelapp/Models/event_card.dart';
 import 'package:excelapp/UI/Components/EventCard/event_card.dart';
-import 'package:excelapp/UI/Screens/ExplorePage/Widgets/data.dart';
 import 'package:flutter/material.dart';
 
 class CardBody extends StatelessWidget {

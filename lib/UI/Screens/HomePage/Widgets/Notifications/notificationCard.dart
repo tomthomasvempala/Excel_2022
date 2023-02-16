@@ -1,4 +1,3 @@
-import 'package:excelapp/UI/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -36,7 +35,7 @@ class NotificationCard extends StatelessWidget {
             1) {
           return new DateTime.now()
                   .difference(DateTime.parse(time))
-                  .inSeconds
+                  .inMinutes
                   .toString() +
               ' minute ago';
         }
