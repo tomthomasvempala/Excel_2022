@@ -200,7 +200,10 @@ class _RegisterButtonState extends State<RegisterButton> {
                         var response = await http.post(
                             Uri.parse(
                                 APIConfig.cabaseUrl + "addTransactionByToken"),
-                            body: json.encode(body));
+                            body: json.encode(body),
+                            headers: {
+                              "content-type": "application/json",
+                            });
                         print(response.statusCode);
                         // If token has expired, rfresh it
                         if (response.statusCode == 455 ||
@@ -216,14 +219,23 @@ class _RegisterButtonState extends State<RegisterButton> {
                           };
                           // Retrying Request
                           response = await http.post(
-                            Uri.parse(
-                                APIConfig.cabaseUrl + "addTransactionByToken"),
-                            body: json.encode(body),
-                          );
+                              Uri.parse(APIConfig.cabaseUrl +
+                                  "addTransactionByToken"),
+                              body: json.encode(body),
+                              headers: {
+                                "content-type": "application/json",
+                              });
                         }
                         if (response.statusCode == 200) {
                           print("Transaction added");
+                          print(response.body);
                         } else {
+                          print('jabanji moonji');
+                          print(response.headers);
+                          print(response.reasonPhrase);
+                          print(response.statusCode);
+                          print(response.request);
+                          print(response.toString());
                           print("Transaction not added");
                         }
                       });
