@@ -94,63 +94,173 @@ class _RegisterButtonState extends State<RegisterButton> {
       // If team event, goto join team or create team
       // Else confirmation to registration is asked.
       if (widget.eventDetails.isTeam == true) {
-        await showDialog(
+        await showModalBottomSheet(
+          useRootNavigator: true,
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(40), topRight: Radius.circular(40))),
+          constraints: BoxConstraints(
+            minWidth: MediaQuery.of(context).size.width,
+            maxHeight: 230,
+          ),
           context: context,
-          useRootNavigator: false,
           builder: (BuildContext context) {
-            return AlertDialog(
-              title: Center(child: Text('This is a team event')),
-              content: Text(
-                "You can either create a team or join a team. ",
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 14),
-              ),
-              actions: <Widget>[
-                Center(
-                  child: TextButton(
-                    child: Text("Register new team"),
-                    onPressed: () {
-                      Navigator.pop(context);
-                      // Register as team page
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => CreateTeamPage(
-                            eventDetails: widget.eventDetails,
-                            refreshIsRegistered: refreshIsRegistered,
+            return Container(
+                child: Column(
+              children: [
+                SizedBox(height: 8),
+                Image.asset(
+                  "assets/icons/divider.png",
+                  width: 340,
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                  Padding(
+                    padding: EdgeInsets.fromLTRB(30, 0, 30, 0),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        InkWell(
+                          onTap: () {
+                            Navigator.pop(context);
+                            // Register as team page
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => CreateTeamPage(
+                                  eventDetails: widget.eventDetails,
+                                  refreshIsRegistered: refreshIsRegistered,
+                                ),
+                              ),
+                            ).then((_) async {
+                              reloadPage();
+                              return;
+                            });
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(50),
+                              color: primaryColor,
+                            ),
+                            // width: MediaQuery.of(context).size.width * 0.4,
+                            height: 60,
+                            child: Center(
+                              child: Text(
+                                "Register new team",
+                                style: TextStyle(
+                                    fontFamily: "mulish",
+                                    fontSize: 14,
+                                    color: Color.fromARGB(255, 251, 255, 255),
+                                    fontWeight: FontWeight.w700),
+                              ),
+                            ),
                           ),
                         ),
-                      ).then((_) async {
-                        reloadPage();
-                        return;
-                      });
-                    },
-                  ),
-                ),
-                Center(
-                  child: TextButton(
-                    child: Text("Join existing team"),
-                    onPressed: () {
-                      Navigator.pop(context);
-                      // Register as team page
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => JoinTeamPage(
-                            eventDetails: widget.eventDetails,
-                            refreshIsRegistered: refreshIsRegistered,
+                        SizedBox(
+                          height: 20,
+                        ),
+                        InkWell(
+                          onTap: () {
+                            Navigator.pop(context);
+                            // Register as team page
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => JoinTeamPage(
+                                  eventDetails: widget.eventDetails,
+                                  refreshIsRegistered: refreshIsRegistered,
+                                ),
+                              ),
+                            ).then((_) async {
+                              reloadPage();
+                              return;
+                            });
+                            return;
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(50),
+                              color: Color.fromARGB(255, 228, 237, 239),
+                              border: Border.all(
+                                color: Color.fromARGB(255, 211, 225, 228),
+                              ),
+                            ),
+                            // width: MediaQuery.of(context).size.width * 0.4,
+                            height: 60,
+                            child: Center(
+                              child: Text(
+                                "Join existing team",
+                                style: TextStyle(
+                                    fontFamily: "mulish",
+                                    fontSize: 14,
+                                    color: Color.fromARGB(255, 61, 71, 71),
+                                    fontWeight: FontWeight.w700),
+                              ),
+                            ),
                           ),
                         ),
-                      ).then((_) async {
-                        reloadPage();
-                        return;
-                      });
-                      return;
-                    },
-                  ),
-                ),
+                      ],
+                    ),
+                  )
+                ])
               ],
-            );
+            ));
+
+            // AlertDialog(
+            //   title: Center(child: Text('This is a team event')),
+            //   content: Text(
+            //     "You can either create a team or join a team. ",
+            //     textAlign: TextAlign.center,
+            //     style: TextStyle(fontSize: 14),
+            //   ),
+            //   actions: <Widget>[
+            //     Center(
+            //       child: TextButton(
+            //         child: Text("Register new team"),
+            //         onPressed: () {
+            //           Navigator.pop(context);
+            //           // Register as team page
+            //           Navigator.push(
+            //             context,
+            //             MaterialPageRoute(
+            //               builder: (context) => CreateTeamPage(
+            //                 eventDetails: widget.eventDetails,
+            //                 refreshIsRegistered: refreshIsRegistered,
+            //               ),
+            //             ),
+            //           ).then((_) async {
+            //             reloadPage();
+            //             return;
+            //           });
+            //         },
+            //       ),
+            //     ),
+            //     Center(
+            //       child: TextButton(
+            //         child: Text("Join existing team"),
+            //         onPressed: () {
+            //           Navigator.pop(context);
+            //           // Register as team page
+            //           Navigator.push(
+            //             context,
+            //             MaterialPageRoute(
+            //               builder: (context) => JoinTeamPage(
+            //                 eventDetails: widget.eventDetails,
+            //                 refreshIsRegistered: refreshIsRegistered,
+            //               ),
+            //             ),
+            //           ).then((_) async {
+            //             reloadPage();
+            //             return;
+            //           });
+            //           return;
+            //         },
+            //       ),
+            //     ),
+            //   ],
+            // );
           },
         );
       } else {
