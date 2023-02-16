@@ -265,105 +265,284 @@ class _RegisterButtonState extends State<RegisterButton> {
         );
       } else {
         // Show confirmation dialog
-        await showDialog(
+        await showModalBottomSheet(
+          useRootNavigator: true,
+          isScrollControlled: true,
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(40), topRight: Radius.circular(40))),
+          constraints: BoxConstraints(
+            minWidth: MediaQuery.of(context).size.width,
+            maxHeight: 250,
+          ),
           context: context,
           builder: (BuildContext context) {
-            return AlertDialog(
-              title: Text('Are you sure you want to register ?'),
-              content: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  TextFormField(
-                    controller: _controller,
-                    decoration: InputDecoration(
-                      hintText: "Enter Referral ID (optional)",
+            return Container(
+              padding:EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+
+                child: Column(
+  mainAxisSize: MainAxisSize.min,
+              children: [
+                SizedBox(height: 8),
+                Image.asset(
+                  "assets/icons/divider.png",
+                  width: 340,
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                  Padding(
+                      padding: EdgeInsets.fromLTRB(30, 0, 0, 0),
+                      child: Text(
+                        "Are you sure you want to register ?",
+                        style: TextStyle(
+                            fontFamily: "mulish",
+                            fontSize: 20,
+                            fontWeight: FontWeight.w800),
+                      )),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Padding(
+                    padding: EdgeInsets.fromLTRB(30, 0, 30, 0),
+                    child: TextFormField(
+                      controller: _controller,
+                      decoration: InputDecoration(
+                        hintText: "Enter Referral ID (optional)",
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Padding(
+                    padding: EdgeInsets.fromLTRB(30, 0, 30, 0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        InkWell(
+                          onTap: () {
+                            () async {
+                              // Starts loading
+                              setState(() {
+                                isLoading = true;
+                              });
+
+                              await RegistrationAPI.registerEvent(
+                                id: widget.eventDetails.id,
+                                refreshFunction: refreshIsRegistered,
+                                context: context,
+                              ).then((_) async {
+                                SharedPreferences prefs =
+                                    await SharedPreferences.getInstance();
+                                String jwt = prefs.getString('jwt');
+                                print(jwt);
+                                var body = {
+                                  "eventId": widget.eventDetails.id,
+                                  "referrerId": int.parse(_controller.text),
+                                  "accessToken": jwt,
+                                  "point": 10
+                                };
+                                print(json.encode(body));
+                                var response = await http.post(
+                                    Uri.parse(APIConfig.cabaseUrl +
+                                        "addTransactionByToken"),
+                                    body: json.encode(body),
+                                    headers: {
+                                      "content-type": "application/json",
+                                    });
+                                print(response.statusCode);
+                                // If token has expired, rfresh it
+                                if (response.statusCode == 455 ||
+                                    response.statusCode == 500) {
+                                  // Refreshes Token & gets JWT
+                                  jwt = await refreshToken();
+                                  if (jwt == null) return null;
+                                  var body = {
+                                    "eventId": widget.eventDetails.id,
+                                    "referrerId": int.parse(_controller.text),
+                                    "accessToken": jwt,
+                                    "point": 10
+                                  };
+                                  // Retrying Request
+                                  response = await http.post(
+                                      Uri.parse(APIConfig.cabaseUrl +
+                                          "addTransactionByToken"),
+                                      body: json.encode(body),
+                                      headers: {
+                                        "content-type": "application/json",
+                                      });
+                                }
+                                if (response.statusCode == 200) {
+                                  print("Transaction added");
+                                  print(response.body);
+                                } else {
+                                  print("Transaction not added");
+                                }
+                              });
+
+                              // Ends Loading
+                              setState(() {
+                                isLoading = false;
+                              });
+                            }();
+
+                            Navigator.pop(context);
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(50),
+                              color: primaryColor,
+                            ),
+                            width: MediaQuery.of(context).size.width * 0.4,
+                            height: 60,
+                            child: Center(
+                              child: Text(
+                                "Proceed",
+                                style: TextStyle(
+                                    fontFamily: "mulish",
+                                    fontSize: 14,
+                                    color: Color.fromARGB(255, 251, 255, 255),
+                                    fontWeight: FontWeight.w700),
+                              ),
+                            ),
+                          ),
+                        ),
+                        InkWell(
+                          onTap: () {
+                            setState(() {
+                              isLoading = false;
+                            });
+                            Navigator.of(context).pop();
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(50),
+                              color: Color.fromARGB(255, 228, 237, 239),
+                              border: Border.all(
+                                color: Color.fromARGB(255, 211, 225, 228),
+                              ),
+                            ),
+                            width: MediaQuery.of(context).size.width * 0.4,
+                            height: 60,
+                            child: Center(
+                              child: Text(
+                                "Cancel",
+                                style: TextStyle(
+                                    fontFamily: "mulish",
+                                    fontSize: 14,
+                                    color: Color.fromARGB(255, 61, 71, 71),
+                                    fontWeight: FontWeight.w700),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   )
-                ],
-              ),
-              actions: <Widget>[
-                TextButton(
-                  child: Text("Proceed"),
-                  onPressed: () {
-                    () async {
-                      // Starts loading
-                      setState(() {
-                        isLoading = true;
-                      });
-
-                      await RegistrationAPI.registerEvent(
-                        id: widget.eventDetails.id,
-                        refreshFunction: refreshIsRegistered,
-                        context: context,
-                      ).then((_) async {
-                        SharedPreferences prefs =
-                            await SharedPreferences.getInstance();
-                        String jwt = prefs.getString('jwt');
-                        print(jwt);
-                        var body = {
-                          "eventId": widget.eventDetails.id,
-                          "referrerId": int.parse(_controller.text),
-                          "accessToken": jwt,
-                          "point": 10
-                        };
-                        print(json.encode(body));
-                        var response = await http.post(
-                            Uri.parse(
-                                APIConfig.cabaseUrl + "addTransactionByToken"),
-                            body: json.encode(body),
-                            headers: {
-                              "content-type": "application/json",
-                            });
-                        print(response.statusCode);
-                        // If token has expired, rfresh it
-                        if (response.statusCode == 455 ||
-                            response.statusCode == 500) {
-                          // Refreshes Token & gets JWT
-                          jwt = await refreshToken();
-                          if (jwt == null) return null;
-                          var body = {
-                            "eventId": widget.eventDetails.id,
-                            "referrerId": int.parse(_controller.text),
-                            "accessToken": jwt,
-                            "point": 10
-                          };
-                          // Retrying Request
-                          response = await http.post(
-                              Uri.parse(APIConfig.cabaseUrl +
-                                  "addTransactionByToken"),
-                              body: json.encode(body),
-                              headers: {
-                                "content-type": "application/json",
-                              });
-                        }
-                        if (response.statusCode == 200) {
-                          print("Transaction added");
-                          print(response.body);
-                        } else {
-                          print("Transaction not added");
-                        }
-                      });
-
-                      // Ends Loading
-                      setState(() {
-                        isLoading = false;
-                      });
-                    }();
-
-                    Navigator.pop(context);
-                  },
-                ),
-                TextButton(
-                  child: Text("Cancel"),
-                  onPressed: () {
-                    setState(() {
-                      isLoading = false;
-                    });
-                    Navigator.of(context).pop();
-                  },
-                ),
+                ]),
+                
+                SizedBox(height: 25),
               ],
-            );
+            ));
+
+            // return AlertDialog(
+            //   title: Text('Are you sure you want to register ?'),
+            //   content: Column(
+            //     mainAxisSize: MainAxisSize.min,
+            //     children: [
+            //       TextFormField(
+            //         controller: _controller,
+            //         decoration: InputDecoration(
+            //           hintText: "Enter Referral ID (optional)",
+            //         ),
+            //       )
+            //     ],
+            //   ),
+            //   actions: <Widget>[
+            //     TextButton(
+            //       child: Text("Proceed"),
+            //       onPressed: () {
+            //         () async {
+            //           // Starts loading
+            //           setState(() {
+            //             isLoading = true;
+            //           });
+
+            //           await RegistrationAPI.registerEvent(
+            //             id: widget.eventDetails.id,
+            //             refreshFunction: refreshIsRegistered,
+            //             context: context,
+            //           ).then((_) async {
+            //             SharedPreferences prefs =
+            //                 await SharedPreferences.getInstance();
+            //             String jwt = prefs.getString('jwt');
+            //             print(jwt);
+            //             var body = {
+            //               "eventId": widget.eventDetails.id,
+            //               "referrerId": int.parse(_controller.text),
+            //               "accessToken": jwt,
+            //               "point": 10
+            //             };
+            //             print(json.encode(body));
+            //             var response = await http.post(
+            //                 Uri.parse(
+            //                     APIConfig.cabaseUrl + "addTransactionByToken"),
+            //                 body: json.encode(body),
+            //                 headers: {
+            //                   "content-type": "application/json",
+            //                 });
+            //             print(response.statusCode);
+            //             // If token has expired, rfresh it
+            //             if (response.statusCode == 455 ||
+            //                 response.statusCode == 500) {
+            //               // Refreshes Token & gets JWT
+            //               jwt = await refreshToken();
+            //               if (jwt == null) return null;
+            //               var body = {
+            //                 "eventId": widget.eventDetails.id,
+            //                 "referrerId": int.parse(_controller.text),
+            //                 "accessToken": jwt,
+            //                 "point": 10
+            //               };
+            //               // Retrying Request
+            //               response = await http.post(
+            //                   Uri.parse(APIConfig.cabaseUrl +
+            //                       "addTransactionByToken"),
+            //                   body: json.encode(body),
+            //                   headers: {
+            //                     "content-type": "application/json",
+            //                   });
+            //             }
+            //             if (response.statusCode == 200) {
+            //               print("Transaction added");
+            //               print(response.body);
+            //             } else {
+            //               print("Transaction not added");
+            //             }
+            //           });
+
+            //           // Ends Loading
+            //           setState(() {
+            //             isLoading = false;
+            //           });
+            //         }();
+
+            //         Navigator.pop(context);
+            //       },
+            //     ),
+            //     TextButton(
+            //       child: Text("Cancel"),
+            //       onPressed: () {
+            //         setState(() {
+            //           isLoading = false;
+            //         });
+            //         Navigator.of(context).pop();
+            //       },
+            //     ),
+            //   ],
+            // );
           },
         );
       }
