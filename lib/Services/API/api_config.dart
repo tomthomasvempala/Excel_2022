@@ -3,6 +3,7 @@
 class APIConfig {
   // static final String baseUrl = 'https://staging.events.excelmec.org/api/';
    static final String baseUrl = 'https://eventbackend-xgveswperq-uc.a.run.app/api/';
+   static final String teamUrl = 'https://excel-team-backend.vercel.app/api/';
   //static final String baseUrl = 'https://events.excelmec.org/';
 
   static String getEndpoint(String category) {
