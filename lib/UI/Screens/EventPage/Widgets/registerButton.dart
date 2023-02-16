@@ -230,12 +230,6 @@ class _RegisterButtonState extends State<RegisterButton> {
                           print("Transaction added");
                           print(response.body);
                         } else {
-                          print('jabanji moonji');
-                          print(response.headers);
-                          print(response.reasonPhrase);
-                          print(response.statusCode);
-                          print(response.request);
-                          print(response.toString());
                           print("Transaction not added");
                         }
                       });
