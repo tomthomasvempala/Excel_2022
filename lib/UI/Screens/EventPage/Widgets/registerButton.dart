@@ -1,5 +1,7 @@
 import 'dart:convert';
+import 'package:excelapp/Accounts/refreshToken.dart';
 import 'package:excelapp/Models/event_details.dart';
+import 'package:excelapp/Services/API/api_config.dart';
 import 'package:excelapp/Services/API/events_api.dart';
 import 'package:excelapp/Services/API/registration_api.dart';
 import 'package:excelapp/UI/Components/AlertDialog/alertDialog.dart';
@@ -14,7 +16,10 @@ import 'package:excelapp/UI/Screens/HomePage/Widgets/Drawer/drawer.dart';
 import 'package:excelapp/UI/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:hive/hive.dart';
 import 'package:social_share/social_share.dart';
+import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 // All these commented because raised button deprecated
 
@@ -82,6 +87,7 @@ class _RegisterButtonState extends State<RegisterButton> {
   register(context) async {
     String response = await RegistrationAPI.preRegistration(
         id: widget.eventDetails.id, context: context);
+    TextEditingController _controller = TextEditingController();
     print("response ${response}");
     if (response == "proceed") {
       // Registers for event
@@ -154,7 +160,17 @@ class _RegisterButtonState extends State<RegisterButton> {
           builder: (BuildContext context) {
             return AlertDialog(
               title: Text('Are you sure you want to register ?'),
-              content: Text("This cannot be undone."),
+              content: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  TextFormField(
+                    controller: _controller,
+                    decoration: InputDecoration(
+                      hintText: "Enter Referral ID (optional)",
+                    ),
+                  )
+                ],
+              ),
               actions: <Widget>[
                 TextButton(
                   child: Text("Proceed"),
@@ -169,7 +185,48 @@ class _RegisterButtonState extends State<RegisterButton> {
                         id: widget.eventDetails.id,
                         refreshFunction: refreshIsRegistered,
                         context: context,
-                      );
+                      ).then((_) async {
+                        SharedPreferences prefs =
+                            await SharedPreferences.getInstance();
+                        String jwt = prefs.getString('jwt');
+                        print(jwt);
+                        var body = {
+                          "eventId": widget.eventDetails.id,
+                          "referrerId": int.parse(_controller.text),
+                          "accessToken": jwt,
+                          "point": 10
+                        };
+                        print(json.encode(body));
+                        var response = await http.post(
+                            Uri.parse(
+                                APIConfig.cabaseUrl + "addTransactionByToken"),
+                            body: json.encode(body));
+                        print(response.statusCode);
+                        // If token has expired, rfresh it
+                        if (response.statusCode == 455 ||
+                            response.statusCode == 500) {
+                          // Refreshes Token & gets JWT
+                          jwt = await refreshToken();
+                          if (jwt == null) return null;
+                          var body = {
+                            "eventId": widget.eventDetails.id,
+                            "referrerId": int.parse(_controller.text),
+                            "accessToken": jwt,
+                            "point": 10
+                          };
+                          // Retrying Request
+                          response = await http.post(
+                            Uri.parse(
+                                APIConfig.cabaseUrl + "addTransactionByToken"),
+                            body: json.encode(body),
+                          );
+                        }
+                        if (response.statusCode == 200) {
+                          print("Transaction added");
+                        } else {
+                          print("Transaction not added");
+                        }
+                      });
 
                       // Ends Loading
                       setState(() {
