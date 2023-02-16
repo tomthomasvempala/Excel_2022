@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'package:excelapp/Services/API/highlights_api.dart';
-import 'package:excelapp/UI/Screens/HomePage/Widgets/Highlights/data.dart';
 import 'package:flutter/material.dart';
 import 'package:excelapp/UI/constants.dart';
 import 'package:shimmer/shimmer.dart';

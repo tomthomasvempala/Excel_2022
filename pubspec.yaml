@@ -38,6 +38,8 @@ dependencies:
   searchable_paginated_dropdown: ^0.0.7
   flutter_html: ^0.11.1
   firebase_core: ^2.5.0
+  qr_flutter: ^4.0.0
+  clear_all_notifications: ^0.0.3
 
 
 dev_dependencies:

@@ -14,9 +14,9 @@ class ListOfTests extends StatefulWidget {
 class _ListOfTests extends State<ListOfTests> {
   var tests;
 
-  List notStarted = List<Widget>();
-  List inProgress = List<Widget>();
-  List results = List<Widget>();
+  List notStarted = [];
+  List inProgress = [];
+  List results = [];
 
   @override
   void initState() {

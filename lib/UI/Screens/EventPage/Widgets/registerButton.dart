@@ -334,6 +334,7 @@ class _RegisterButtonState extends State<RegisterButton> {
   @override
   Widget build(BuildContext context) {
     String buttonText = "";
+    // ignore: unused_local_variable
     Color buttonColor = primaryColor;
 
     if (widget.eventDetails.needRegistration == true) {

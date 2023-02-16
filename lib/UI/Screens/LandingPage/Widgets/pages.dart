@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:excelapp/UI/constants.dart';
 import 'package:excelapp/UI/Screens/LandingPage/landingPage.dart';
-import 'package:path/path.dart';
 
 Widget introPage(context) {
   return Container(

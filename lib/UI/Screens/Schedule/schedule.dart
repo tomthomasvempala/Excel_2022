@@ -19,13 +19,17 @@ class _ScheduleState extends State<Schedule> {
 
   fetchScheduleDetails() async {
     var  result1 = await fetchScheduleFromStorage();
-    if(result1!=null)
-      estream.add(result1);
+    if (result1 != null) estream.add(result1);
     var result2 = await fetchAndStoreScheduleFromNet();
-    if(result2!='error' && result1!=result2)
-      estream.add(result1);
-    if(result2=='error' && result1==null)
-      estream.add('error');
+    if (result2 == "error" && result1 == null) {
+      estream.add("error");
+      return;
+    }
+    if (result2 == "error") 
+      return;
+    print("schedule fetched, added to DB & updated in UI");
+    estream.add(result2);
+    return;
   }
 
   @override

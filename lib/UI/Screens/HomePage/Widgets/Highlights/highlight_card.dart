@@ -4,6 +4,7 @@ import 'package:excelapp/UI/Themes/profile_themes.dart';
 import 'package:excelapp/UI/constants.dart';
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class HighlightsCard extends StatelessWidget {
   final Highlights highlights;
   final int index;
@@ -83,6 +84,9 @@ class HighlightsCard extends StatelessWidget {
                             Padding(
                               padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
                               child: IconButton(
+                                onPressed: (){
+
+                                },
                                 icon: Icon(
                                   Icons.arrow_forward,
                                   color: Colors.white,

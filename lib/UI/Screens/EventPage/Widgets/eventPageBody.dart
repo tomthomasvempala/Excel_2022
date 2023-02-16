@@ -4,9 +4,6 @@ import 'package:excelapp/UI/Screens/EventPage/Widgets/eventDescription.dart';
 import 'package:excelapp/UI/Screens/EventPage/Widgets/eventDetails.dart';
 import 'package:excelapp/UI/Screens/EventPage/Widgets/registerButton.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'moreDetailsPage.dart';
-import 'backgroundImage.dart';
 import 'package:excelapp/UI/constants.dart';
 import 'package:excelapp/UI/Components/LikeButton/likeButton.dart';
 
@@ -29,14 +26,10 @@ class EventPageBody extends StatelessWidget {
     return Scaffold(
       //backgroundColor: Color(0xffECF4F5),
       backgroundColor: Colors.white,
-      body:
-          // Event Info
-          Container(
+      body: Container(
         height: deviceHeight,
-        // width: deviceWidth,
         child: Column(
           children: <Widget>[
-            // Top Area
             Container(
               color: Color(0xffECF4F5),
               child: Column(
@@ -46,90 +39,74 @@ class EventPageBody extends StatelessWidget {
                     child: Container(),
                   ),
                   SizedBox(height: 10),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Container(
-                        // height: 200,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            IconButton(
-                              icon: new Icon(Icons.arrow_back),
-                              iconSize: 30.0,
-                              color: Color(0xFF1C1F20),
-                              onPressed: () {
-                                Navigator.pop(context);
-                              },
+                  Container(
+                    alignment: Alignment.centerLeft,
+                    child: IconButton(
+                      icon: new Icon(Icons.arrow_back),
+                      iconSize: 30.0,
+                      color: Color(0xFF1C1F20),
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                    ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.fromLTRB(35,10,35,10),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Flexible(
+                          child: Text(
+                            eventDetails.name,
+                            maxLines: 3,
+                            style: TextStyle(
+                              overflow: TextOverflow.ellipsis,
+                              decoration: TextDecoration.none,
+                              fontFamily: pfontFamily,
+                              fontSize: 32.0,
+                              fontWeight: FontWeight.w900,
+                              color: textColor,
                             ),
-                            Align(
-                              alignment: Alignment.topLeft,
-                              child: Container(
-                                padding: EdgeInsets.fromLTRB(
-                                    deviceWidth / 11.636,
-                                    deviceHeight / 83.7,
-                                    0,
-                                    deviceHeight / 83.7),
-
-                                // height: 100,
-                                width: deviceWidth / 1.910,
-
-                                child: Text(
-                                  eventDetails.name,
-                                  textAlign: TextAlign.justify,
-                                  maxLines: 3,
-                                  style: TextStyle(
-                                    overflow: TextOverflow.ellipsis,
-                                    decoration: TextDecoration.none,
-                                    fontFamily: pfontFamily,
-                                    fontSize: 32.0,
-                                    fontWeight: FontWeight.w900,
-                                    color: textColor,
-                                  ),
+                          ),
+                        ),
+                        SizedBox(width: 20,),
+                        Hero(
+                          tag: 'eventIcon${eventDetails.id}',
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(21),
+                              color: Color.fromARGB(255, 14, 152, 232),
+                            ),
+                            child: Padding(
+                              padding: EdgeInsets.all(12.25),
+                              child: ClipRRect(
+                                //Change this to Image.network when image server is up
+                                // child: Image.asset(
+                                //   "assets/events/eventLogo.png",
+                                //   //event.icon,
+                                //   width: 31.5,
+                                //   height: 31.5,
+                                // ),
+                                child:(eventDetails.icon.startsWith("Microsoft"))?(
+                                  Image.asset(
+                                    "assets/events/eventLogo.png",
+                                    //event.icon,
+                                    width: 31.5,
+                                    height: 31.5,
+                                  )
+                                ): CachedNetworkImage(
+                                  imageUrl: eventDetails.icon,
+                                  width: 31.5,
+                                  height: 31.5,
+                                  fit: BoxFit.contain,
                                 ),
                               ),
                             ),
-                          ],
+                          ),
                         ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.fromLTRB(0, 0, 24, 0),
-                        child: Hero(
-                  tag: 'eventIcon${eventDetails.id}',
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(21),
-                      color: Color.fromARGB(255, 14, 152, 232),
+                      ],
                     ),
-                    child: Padding(
-                      padding: EdgeInsets.all(12.25),
-                      child: ClipRRect(
-                        //Change this to Image.network when image server is up
-                        // child: Image.asset(
-                        //   "assets/events/eventLogo.png",
-                        //   //event.icon,
-                        //   width: 31.5,
-                        //   height: 31.5,
-                        // ),
-                        child:(eventDetails.icon.startsWith("Microsoft"))?(
-                          Image.asset(
-                            "assets/events/eventLogo.png",
-                            //event.icon,
-                            width: 31.5,
-                            height: 31.5,
-                          )
-                        ): CachedNetworkImage(
-                          imageUrl: eventDetails.icon,
-                          width: 31.5,
-                          height: 31.5,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                      )
-                    ],
                   ),
                 ],
               ),

@@ -1,9 +1,7 @@
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:excelapp/Models/user_model.dart';
-import 'package:excelapp/UI/Screens/ProfilePage/Widgets/updateImage.dart';
-import 'package:excelapp/UI/Themes/profile_themes.dart';
+
 import 'package:excelapp/UI/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:qr_flutter/qr_flutter.dart';
 
 class QrCode extends StatelessWidget {
   final String qrCodeUrl, name, institutionName, gender, mobileNumber, email;
@@ -110,10 +108,13 @@ class QrCode extends StatelessWidget {
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Image.asset(
-                      'assets/qrcode.png',
-                      height: 250,
-                      width: 250,
+                    QrImage(
+                      data: id.toString(),
+                      version: QrVersions.auto,
+                      size: 250.0,
+                      padding: EdgeInsets.all(20.0),
+                      backgroundColor: Colors.white,
+                      foregroundColor: Colors.black,
                     ),
                     SizedBox(
                       height: 5,
@@ -146,7 +147,7 @@ class QrCode extends StatelessWidget {
           Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
             Container(
               height: 66,
-              width: 155,
+              width: 120,
               decoration: BoxDecoration(
                   color: Color(0xFFFBFFFF),
                   borderRadius: BorderRadius.circular(24)),
@@ -198,58 +199,62 @@ class QrCode extends StatelessWidget {
                 ],
               ),
             ),
-            Container(
-              height: 66,
-              width: 155,
-              decoration: BoxDecoration(
-                  color: Color(0xFFFBFFFF),
-                  borderRadius: BorderRadius.circular(24)),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: <Widget>[
-                  Padding(
-                    padding: EdgeInsets.fromLTRB(15, 5.23, 0, 0),
-                    child: Icon(
-                      Icons.phone_in_talk_outlined,
-                      size: 20.0,
-                      color: Color(0xFF0E99E8),
-                    ),
-                  ),
-                  Expanded(
-                      child: Padding(
-                    padding: const EdgeInsets.fromLTRB(11, 0, 0, 0),
-                    child: Align(
-                      alignment: Alignment.centerLeft,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Phone',
-                            style: TextStyle(
-                              color: Color(0xFF778585),
-                              fontSize: 11,
-                              fontFamily: pfontFamily,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                          SizedBox(height: 5),
-                          Text(
-                            ((mobileNumber != null || mobileNumber != '')
-                                ? mobileNumber
-                                : "Not Entered"),
-                            style: TextStyle(
-                              color: Color(0xFF3D4747),
-                              fontSize: 14,
-                              fontFamily: pfontFamily,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ],
+            SizedBox(
+              width: 20,
+            ),
+            Expanded(
+              child: Container(
+                height: 66,
+                decoration: BoxDecoration(
+                    color: Color(0xFFFBFFFF),
+                    borderRadius: BorderRadius.circular(24)),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(15, 5.23, 0, 0),
+                      child: Icon(
+                        Icons.phone_in_talk_outlined,
+                        size: 20.0,
+                        color: Color(0xFF0E99E8),
                       ),
                     ),
-                  ))
-                ],
+                    Expanded(
+                        child: Padding(
+                      padding: const EdgeInsets.fromLTRB(11, 0, 0, 0),
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Phone',
+                              style: TextStyle(
+                                color: Color(0xFF778585),
+                                fontSize: 11,
+                                fontFamily: pfontFamily,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                            SizedBox(height: 5),
+                            Text(
+                              ((mobileNumber != null || mobileNumber != '')
+                                  ? mobileNumber
+                                  : "Not Entered"),
+                              style: TextStyle(
+                                color: Color(0xFF3D4747),
+                                fontSize: 14,
+                                fontFamily: pfontFamily,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ))
+                  ],
+                ),
               ),
             )
           ]),

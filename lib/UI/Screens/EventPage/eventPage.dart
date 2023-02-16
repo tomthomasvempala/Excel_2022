@@ -1,9 +1,6 @@
 import 'dart:async';
-import 'package:excelapp/Models/event_details.dart';
 import 'package:excelapp/Services/API/events_api.dart';
-import 'package:excelapp/UI/Components/Appbar/darkAppbar.dart';
 import 'package:excelapp/UI/Components/LoadingUI/loadingAnimation.dart';
-import 'package:excelapp/UI/Screens/EventPage/Widgets/backgroundImage.dart';
 import 'package:flutter/material.dart';
 import 'package:excelapp/UI/Screens/EventPage/Widgets/eventPageBody.dart';
 import 'package:provider/provider.dart';
@@ -12,7 +9,8 @@ import '../../../Services/API/favourites_api.dart';
 
 class EventPage extends StatefulWidget {
   final int eventId;
-  EventPage(this.eventId);
+  final bool isHero;
+  EventPage(this.eventId,{this.isHero=true});
   @override
   _EventPageState createState() => _EventPageState();
 }
@@ -50,8 +48,6 @@ class _EventPageState extends State<EventPage> {
     //commented for hard coded data to be passed
     var result1;
     result1 = await EventsAPI.fetchEventDetailsFromStorage(id);
-    print("My id is ");
-    print(id);
     if (result1 != null) estream.add(result1);
     // // Fetch from net & update
     var result2 = await EventsAPI.fetchAndStoreEventDetailsFromNet(id);

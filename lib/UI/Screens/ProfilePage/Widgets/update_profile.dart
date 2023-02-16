@@ -1,22 +1,15 @@
-import 'dart:ffi';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:excelapp/Accounts/account_services.dart';
 import 'package:excelapp/Models/user_model.dart';
 import 'package:excelapp/UI/Components/AlertDialog/alertDialog.dart';
-import 'package:excelapp/UI/Components/Appbar/appbar.dart';
 import 'package:excelapp/UI/Components/LoadingUI/alertDialog.dart';
 import 'package:excelapp/UI/Components/LoadingUI/snackBar.dart';
-import 'package:excelapp/UI/Screens/ProfilePage/profile_main.dart';
 import 'package:excelapp/UI/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:provider/provider.dart';
 import 'package:searchable_paginated_dropdown/searchable_paginated_dropdown.dart';
 
-import '../../../../Providers/navigationProvider.dart';
-
-// import 'package:searchable_dropdown/searchable_dropdown.dart';
 
 class UpdateProfile extends StatefulWidget {
   final User user;
@@ -54,6 +47,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
   @override
   void initState() {
     super.initState();
+    print(widget.user);
     initialiseUserDetails(widget.user);
     //initialiseUserDetails();
   }
@@ -878,9 +872,6 @@ class _UpdateProfileState extends State<UpdateProfile> {
                     // );
 
                     Navigator.pop(context);
-                    final myProvider =
-                        Provider.of<MyNavigationIndex>(context, listen: false);
-                    myProvider.setIndex = 3;
                   } else {
                     // _formKey.currentState.save();
                     ScaffoldMessenger.of(context).showSnackBar(snackBar(value));
