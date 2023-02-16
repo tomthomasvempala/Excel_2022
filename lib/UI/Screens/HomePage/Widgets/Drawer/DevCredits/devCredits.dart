@@ -28,24 +28,44 @@ class DevCreditsState extends State<DevCredits>
 
   var developers = [
     {
-      "name": "Steev James",
-      "email": "steev.james11@gmail.com",
-      "image": "assets/devs/steev.jpg"
+      "name":"Tom Vempala",
+      "email": "tomthomas.mec@gmail.com",
+      "image": "assets/devs/tom.jpg"
+    },
+    // {
+    //   "name": "Ashish Mathew Philip",
+    //   "email": "ashishmathewphilip.mec@gmail.com",
+    //   "image": "assets/devs/ashish.jpg"
+    // },
+    {
+      "name": "Jaison Dennis",
+      "email": "jaisondennis080@gmail.com",
+      "image": "assets/devs/jaison.jpg"
     },
     {
-      "name": "Joyal A Johney",
-      "email": "joyalajohny@gmail.com",
-      "image": "assets/devs/joyal.jpg"
+      "name": "Denin Paul",
+      "email": "deninpaulv@gmail.com",
+      "image": "assets/devs/denin.jpg"
     },
     {
-      "name": "Ajesh Kumar",
-      "email": "ajeshkumar.mec@gmail.com",
-      "image": "assets/devs/ajesh.jpg"
+      "name": "Athul Reji",
+      "email": "athulreji007@gmail.com",
+      "image": "assets/devs/athul.jpg"
     },
     {
-      "name": "Priyanga P Kini",
-      "email": "priyangapkini99@gmail.com",
-      "image": "assets/devs/priyanka.jpg"
+      "name": "Faheem",
+      "email": "send2faheempp@gmail.com",
+      "image": "assets/devs/faheem.jpg"
+    },
+    {
+      "name": "Nevin Manoj",
+      "email": "nevinmanojp@gmail.com",
+      "image": "assets/devs/nevin.jpg"
+    },
+    {
+      "name": "Pooja Johnson",
+      "email": "poojajohnson2002@gmail.com",
+      "image": "assets/devs/pooja.jpg"
     }
   ];
 
