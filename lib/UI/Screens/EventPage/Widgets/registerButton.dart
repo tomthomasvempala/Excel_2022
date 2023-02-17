@@ -334,7 +334,8 @@ class _RegisterButtonState extends State<RegisterButton> {
                                 refreshFunction: refreshIsRegistered,
                                 context: context,
                               ).then((_) async {
-                                SharedPreferences prefs =
+                                if(_controller.text!="")
+                                {SharedPreferences prefs =
                                     await SharedPreferences.getInstance();
                                 String jwt = prefs.getString('jwt');
                                 print(jwt);
@@ -379,7 +380,7 @@ class _RegisterButtonState extends State<RegisterButton> {
                                   print(response.body);
                                 } else {
                                   print("Transaction not added");
-                                }
+                                }}
                               });
 
                               // Ends Loading
