@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:excelapp/Accounts/refreshToken.dart';
 import 'package:excelapp/Models/event_details.dart';
 import 'package:excelapp/Services/API/events_api.dart';
 import 'package:excelapp/Services/API/registration_api.dart';
@@ -10,6 +11,9 @@ import 'package:excelapp/UI/Components/LoadingUI/loadingAnimation.dart';
 import 'package:excelapp/UI/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:http/http.dart' as http;
+import 'package:excelapp/Services/API/api_config.dart';
 
 class JoinTeamPage extends StatefulWidget {
   final EventDetails eventDetails;
@@ -23,6 +27,7 @@ class JoinTeamPage extends StatefulWidget {
 class _JoinTeamPageState extends State<JoinTeamPage> {
   final _formKey = GlobalKey<FormState>();
   int teamID;
+  String referralID = "";
   bool isLoading = false;
   registerEvent() async {
     var registered = await RegistrationAPI.registerEvent(
@@ -32,6 +37,50 @@ class _JoinTeamPageState extends State<JoinTeamPage> {
       context: context,
     );
     print(registered);
+    if (referralID != "") {
+        SharedPreferences prefs = await SharedPreferences.getInstance();
+        String jwt = prefs.getString('jwt');
+        print(jwt);
+        var body = {
+          "eventId": widget.eventDetails.id,
+          "referrerId": int.parse(referralID),
+          "accessToken": jwt,
+          "point": 10
+        };
+        print(json.encode(body));
+        var response = await http.post(
+            Uri.parse(APIConfig.cabaseUrl + "addTransactionByToken"),
+            body: json.encode(body),
+            headers: {
+              "content-type": "application/json",
+            });
+        print(response.statusCode);
+        // If token has expired, rfresh it
+        if (response.statusCode == 455 || response.statusCode == 500) {
+          // Refreshes Token & gets JWT
+          jwt = await refreshToken();
+          if (jwt == null) return null;
+          var body = {
+            "eventId": widget.eventDetails.id,
+            "referrerId": int.parse(referralID),
+            "accessToken": jwt,
+            "point": 10
+          };
+          // Retrying Request
+          response = await http.post(
+              Uri.parse(APIConfig.cabaseUrl + "addTransactionByToken"),
+              body: json.encode(body),
+              headers: {
+                "content-type": "application/json",
+              });
+        }
+        if (response.statusCode == 200) {
+          print("Transaction added");
+          print(response.body);
+        } else {
+          print("Transaction not added");
+        }
+      }
     if (registered == -1) {
       print("Joining failed");
     } else if (registered != null && registered.statusCode != 200) {
@@ -149,28 +198,43 @@ class _JoinTeamPageState extends State<JoinTeamPage> {
                 SizedBox(height: 30),
                 Form(
                   key: _formKey,
-                  child: TextFormField(
-                    style: TextStyle(fontFamily: pfontFamily, fontSize: 15),
-                    inputFormatters: [
-                      FilteringTextInputFormatter.allow(RegExp("[0-9]"))
+                  child: Column(
+                    children: [TextFormField(
+                      style: TextStyle(fontFamily: pfontFamily, fontSize: 15),
+                      inputFormatters: [
+                        FilteringTextInputFormatter.allow(RegExp("[0-9]"))
+                      ],
+                      keyboardType: TextInputType.number,
+                      onChanged: (String value) {
+                        setState(() {
+                          teamID = int.parse(value);
+                        });
+                      },
+                      validator: (value) {
+                        if (value.isEmpty) {
+                          return "Enter ID of the required team to join";
+                        }
+                        return null;
+                      },
+                      decoration: InputDecoration(
+                        labelText: "Enter ID of team to join",
+                        icon: Icon(Icons.edit),
+                        contentPadding: EdgeInsets.zero,
+                      ),
+                    ),SizedBox(height: 20),
+                    TextFormField(
+                        style: TextStyle(fontFamily: pfontFamily, fontSize: 15),
+                        onChanged: (String value) {
+                          setState(() {
+                            referralID = value.trim();
+                          });
+                        },
+                        decoration: InputDecoration(
+                          labelText: "Enter Referral ID (Optional)",
+                          contentPadding: EdgeInsets.zero,
+                        ),
+                      ),  
                     ],
-                    keyboardType: TextInputType.number,
-                    onChanged: (String value) {
-                      setState(() {
-                        teamID = int.parse(value);
-                      });
-                    },
-                    validator: (value) {
-                      if (value.isEmpty) {
-                        return "Enter ID of the required team to join";
-                      }
-                      return null;
-                    },
-                    decoration: InputDecoration(
-                      labelText: "Enter ID of team to join",
-                      icon: Icon(Icons.edit),
-                      contentPadding: EdgeInsets.zero,
-                    ),
                   ),
                 ),
                 SizedBox(height: 50),
