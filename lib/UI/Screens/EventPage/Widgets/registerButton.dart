@@ -580,7 +580,7 @@ class _RegisterButtonState extends State<RegisterButton> {
         dialogWithContent(
             child: Container(
                 child: Column(
-                  mainAxisSize: MainAxisSize.min,
+              mainAxisSize: MainAxisSize.min,
               children: [
                 SizedBox(height: 8),
                 Image.asset(
@@ -709,7 +709,9 @@ class _RegisterButtonState extends State<RegisterButton> {
                     ),
                   )
                 ]),
-                SizedBox(height: 25,)
+                SizedBox(
+                  height: 25,
+                )
               ],
             )),
 
@@ -863,70 +865,142 @@ class _RegisterButtonState extends State<RegisterButton> {
       minWidth: MediaQuery.of(context).size.width / 2.3,
       height: 45.0,
       child: Row(children: [
-        InkWell(
-          onTap: () {
-            print("Clicked Button");
-            if (widget.eventDetails.needRegistration == true) {
-              print("Clicked and need registration true");
-              if (registered) {
-                print("Clicked and need registration true and registered");
-                register(context);
-              } else if (widget.eventDetails.registrationOpen == true) {
-                register(context);
-                print(
-                    "Clicked and need registration true and registration open is true");
-              } else {
-                print('Registration CLosed');
-                alertDialog(text: "Registration Closed", context: context);
-              }
-            } else if (widget.eventDetails.registrationLink != null) {
-              launchURL(widget.eventDetails.registrationLink.toString());
-            }
-          },
-          child: Container(
-            width: 250,
-            height: 50,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(40),
-              color: Color.fromARGB(255, 14, 152, 232),
-            ),
-            alignment: Alignment.center,
-            child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-              isLoading
-                  ? LoadingAnimation(color: Colors.white)
-                  : Row(
-                      children: [
-                        Text(
-                          buttonText ?? '',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontFamily: "mulish",
-                              fontWeight: FontWeight.w700,
-                              fontSize: 14),
+        Column(
+          children: [
+            InkWell(
+              onTap: () {
+                print("Clicked Button");
+                if (widget.eventDetails.needRegistration == true) {
+                  print("Clicked and need registration true");
+                  if (registered) {
+                    print("Clicked and need registration true and registered");
+                    register(context);
+                  } else if (widget.eventDetails.registrationOpen == true) {
+                    register(context);
+                    print(
+                        "Clicked and need registration true and registration open is true");
+                  } else {
+                    print('Registration CLosed');
+                    alertDialog(text: "Registration Closed", context: context);
+                  }
+                } else if (widget.eventDetails.registrationLink != null) {
+                  launchURL(widget.eventDetails.registrationLink.toString());
+                }
+              },
+              child: Container(
+                width: 250,
+                height: 50,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(40),
+                  color: Color.fromARGB(255, 14, 152, 232),
+                ),
+                alignment: Alignment.center,
+                child:
+                    Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                  isLoading
+                      ? LoadingAnimation(color: Colors.white)
+                      : Row(
+                          children: [
+                            Text(
+                              buttonText ?? '',
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontFamily: "mulish",
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: 14),
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Icon(Icons.arrow_forward,
+                                size: 19, color: Colors.white)
+                          ],
                         ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Icon(Icons.arrow_forward, size: 19, color: Colors.white)
-                      ],
-                    ),
-              // Text(
-              //   widget.eventDetails.needRegistration?
-              //   'Register for  ₹ ${widget.eventDetails.entryFee}':'Register',
+                  // Text(
+                  //   widget.eventDetails.needRegistration?
+                  //   'Register for  ₹ ${widget.eventDetails.entryFee}':'Register',
 
-              //   style: TextStyle(
-              //       color: Colors.white,
-              //       fontFamily: "mulish",
-              //       fontWeight: FontWeight.w700,
-              //       fontSize: 14),
-              // ),
-              // SizedBox(
-              //   width: 10,
-              // ),
-              // Icon(Icons.arrow_forward,
-              //     size: 19, color: Colors.white)
-            ]),
-          ),
+                  //   style: TextStyle(
+                  //       color: Colors.white,
+                  //       fontFamily: "mulish",
+                  //       fontWeight: FontWeight.w700,
+                  //       fontSize: 14),
+                  // ),
+                  // SizedBox(
+                  //   width: 10,
+                  // ),
+                  // Icon(Icons.arrow_forward,
+                  //     size: 19, color: Colors.white)
+                ]),
+              ),
+            ),
+            SizedBox(
+              height: widget.eventDetails.isTeam &&
+                      registered &&
+                      widget.eventDetails.entryFee != null
+                  ? 15
+                  : 0,
+            ),
+            widget.eventDetails.isTeam &&
+                    registered &&
+                    widget.eventDetails.entryFee != null
+                ? InkWell(
+                    onTap: () {
+                      if (widget.eventDetails.registrationLink != null) {
+                        launchURL(
+                            widget.eventDetails.registrationLink.toString());
+                      }
+                    },
+                    child: Container(
+                      width: 250,
+                      height: 50,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(40),
+                        color: Color.fromARGB(255, 14, 152, 232),
+                      ),
+                      alignment: Alignment.center,
+                      child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            isLoading
+                                ? LoadingAnimation(color: Colors.white)
+                                : Row(
+                                    children: [
+                                      Text(
+                                        "Payment Form",
+                                        style: TextStyle(
+                                            color: Colors.white,
+                                            fontFamily: "mulish",
+                                            fontWeight: FontWeight.w700,
+                                            fontSize: 14),
+                                      ),
+                                      SizedBox(
+                                        width: 10,
+                                      ),
+                                      Icon(Icons.arrow_forward,
+                                          size: 19, color: Colors.white)
+                                    ],
+                                  ),
+                            // Text(
+                            //   widget.eventDetails.needRegistration?
+                            //   'Register for  ₹ ${widget.eventDetails.entryFee}':'Register',
+
+                            //   style: TextStyle(
+                            //       color: Colors.white,
+                            //       fontFamily: "mulish",
+                            //       fontWeight: FontWeight.w700,
+                            //       fontSize: 14),
+                            // ),
+                            // SizedBox(
+                            //   width: 10,
+                            // ),
+                            // Icon(Icons.arrow_forward,
+                            //     size: 19, color: Colors.white)
+                          ]),
+                    ),
+                  )
+                : Container(),
+          ],
         ),
         SizedBox(width: 20),
       ]),

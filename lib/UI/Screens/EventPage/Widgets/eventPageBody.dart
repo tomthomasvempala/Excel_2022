@@ -129,7 +129,8 @@ class EventPageBody extends StatelessWidget {
               ),
             ),
             Container(
-              height: 86,
+              // height: 86,
+              padding: EdgeInsetsDirectional.only(bottom: 20),
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.only(
