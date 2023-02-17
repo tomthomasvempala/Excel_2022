@@ -25,6 +25,7 @@ class EventPageBody extends StatelessWidget {
     Color textColor = Color(0xFF1C1F20);
     return Scaffold(
       //backgroundColor: Color(0xffECF4F5),
+      resizeToAvoidBottomInset: true,
       backgroundColor: Colors.white,
       body: Container(
         height: deviceHeight,

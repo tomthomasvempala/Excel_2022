@@ -65,7 +65,25 @@ class _JoinTeamPageState extends State<JoinTeamPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: customappbar("Join Team"),
+      appBar: AppBar(
+        backgroundColor: Colors.white70,
+        shadowColor: null,
+        elevation: 1,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          color: secondaryColor,
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+        titleTextStyle: TextStyle(
+          color: secondaryColor,
+          fontFamily: pfontFamily,
+          fontSize: 18,
+          fontWeight: FontWeight.w700,
+        ),
+        title: Text("Join Team"),
+      ),
       body: Theme(
         data: Theme.of(context).copyWith(
           primaryColor: primaryColor,

@@ -369,7 +369,7 @@ class _ProfilePageState extends State<ProfilePage>
                         ),
                         Expanded(
                           child: Padding(
-                            padding: const EdgeInsets.fromLTRB(0, 15, 0, 0),
+                            padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
                             child: TabBarView(
                               controller: tabController,
                               physics: BouncingScrollPhysics(),
@@ -394,23 +394,29 @@ class _ProfilePageState extends State<ProfilePage>
   }
 
   Widget Registered() {
-    return ListView.builder(
-        physics: BouncingScrollPhysics(),
-        itemCount: _registeredEvents.length,
-        shrinkWrap: true,
-        itemBuilder: (_, index) {
-          return EventCard(_registeredEvents[index]);
-        });
+    return Container(
+      color: Color(0xffECF4F5),
+      child: ListView.builder(
+          physics: BouncingScrollPhysics(),
+          itemCount: _registeredEvents.length,
+          shrinkWrap: true,
+          itemBuilder: (_, index) {
+            return EventCard(_registeredEvents[index],first: index==0);
+          }),
+    );
   }
 
   Widget Favorites() {
-    return ListView.builder(
-        physics: BouncingScrollPhysics(),
-        shrinkWrap: true,
-        itemCount: _favouritedEvents.length,
-        itemBuilder: (_, index) {
-          return EventCard(_favouritedEvents[index]);
-        });
+    return Container(
+      color: Color(0xffECF4F5),
+      child: ListView.builder(
+          physics: BouncingScrollPhysics(),
+          shrinkWrap: true,
+          itemCount: _favouritedEvents.length,
+          itemBuilder: (_, index) {
+            return EventCard(_favouritedEvents[index],first: index==0);
+          }),
+    );
   }
 
   // Widget SavedNews() {
