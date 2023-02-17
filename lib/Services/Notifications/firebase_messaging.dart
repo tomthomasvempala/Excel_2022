@@ -9,8 +9,9 @@ import 'package:firebase_core/firebase_core.dart';
 // final _messageStreamController = BehaviorSubject<RemoteMessage>();
 
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
-  await Firebase.initializeApp();
-
+if (Firebase.apps.isEmpty) {
+    await Firebase.initializeApp(name: 'Excel Services');
+ }
   if (kDebugMode) {
     print("Handling a background message: ${message.messageId}");
     print('Message data: ${message.data}');
@@ -35,6 +36,7 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
 void initiliaseNotificationServices() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
+    name: 'Excel Services',
     options: DefaultFirebaseOptions.currentPlatform,
   );
   final messaging = FirebaseMessaging.instance;

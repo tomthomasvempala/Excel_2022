@@ -28,7 +28,7 @@ class _QuickAccessBarState extends State<QuickAccessBar> {
   Widget build(BuildContext context) {
     return Container(
       child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-        quickAccessButton(context, FontAwesomeIcons.qrcode, "Scan QR", null),
+        //quickAccessButton(context, FontAwesomeIcons.qrcode, "Scan QR", null),
         quickAccessButton(context, Icons.phone_outlined, "Contact Us",
             ContactUsModal(context)),
         quickAccessButton(context, Icons.location_on_outlined, "Reach Us",

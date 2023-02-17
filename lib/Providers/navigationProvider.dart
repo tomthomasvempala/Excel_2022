@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class MyNavigationIndex with ChangeNotifier{
   int _index =0;
   int _explorePageNumber=0;
-  String _exploreCategory = 'talks';
+  String _exploreCategory = 'all';
   int get getIndex=> _index;
   int get getExplorePageNumber => _explorePageNumber;
   String get getExplorerCategory => _exploreCategory;

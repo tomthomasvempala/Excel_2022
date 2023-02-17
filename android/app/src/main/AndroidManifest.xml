@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.excel2022">
+    package="org.excelmec">
    <application
         android:label="Excel 2022"
         android:name="${applicationName}"

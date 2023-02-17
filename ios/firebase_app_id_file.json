@@ -1,7 +1,7 @@
 {
   "file_generated_by": "FlutterFire CLI",
   "purpose": "FirebaseAppID & ProjectID for this Firebase app in this directory",
-  "GOOGLE_APP_ID": "1:602359993946:ios:1ae0307d8ea08bc8ce6a63",
-  "FIREBASE_PROJECT_ID": "excel-notification",
-  "GCM_SENDER_ID": "602359993946"
+  "GOOGLE_APP_ID": "1:694756029811:ios:75f457dc1ff90d855d8106",
+  "FIREBASE_PROJECT_ID": "excel-services-4dcd1",
+  "GCM_SENDER_ID": "694756029811"
 }
