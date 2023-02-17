@@ -815,10 +815,14 @@ class _RegisterButtonState extends State<RegisterButton> {
             context: context);
         // END OF DIALOG
       }
-    } else if (response == 'Already Registered')
-      alertDialog(
-          text: "You have registered for this event.", context: context);
-    else {
+    } else if (response == 'Already Registered') {
+      if ((widget.eventDetails.entryFee != null && widget.eventDetails.entryFee !=0) &&
+          widget.eventDetails.registrationLink != null) {
+        launchURL(widget.eventDetails.registrationLink.toString());
+      } else
+        alertDialog(
+            text: "You have registered for this event.", context: context);
+    } else {
       // Show returned error
       alertDialog(text: response ?? "Null", context: context);
     }
@@ -841,7 +845,7 @@ class _RegisterButtonState extends State<RegisterButton> {
     if (widget.eventDetails.needRegistration == true) {
       if (registered) {
         buttonText =
-            widget.eventDetails.isTeam == true ? 'Manage Team' : 'Registered';
+            widget.eventDetails.isTeam == true ? 'Manage Team' : (widget.eventDetails.entryFee != null && widget.eventDetails.entryFee !=0) && widget.eventDetails.registrationLink!= null? 'Payment Form': 'Registered';
         buttonColor = registered ? Color(0xff335533) : primaryColor;
       } else if (widget.eventDetails.registrationOpen == true) {
         buttonText = (widget.eventDetails.entryFee == null ||
@@ -943,7 +947,7 @@ class _RegisterButtonState extends State<RegisterButton> {
             ),
             widget.eventDetails.isTeam &&
                     registered &&
-                    widget.eventDetails.entryFee != null
+                    (widget.eventDetails.entryFee != null && widget.eventDetails.entryFee !=0)
                 ? InkWell(
                     onTap: () {
                       if (widget.eventDetails.registrationLink != null) {
