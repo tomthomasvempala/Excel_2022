@@ -579,103 +579,238 @@ class _RegisterButtonState extends State<RegisterButton> {
         print(teamID);
         // DISPLAYS TEAM ID DIALOG
         dialogWithContent(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
+            child: Container(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
               children: [
-                Text(
-                  "Share this team Id with your teammates to add them to team",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(color: Color(0xaa000000)),
+                SizedBox(height: 8),
+                Image.asset(
+                  "assets/icons/divider.png",
+                  width: 340,
                 ),
-                SizedBox(height: 35),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SizedBox(width: 30),
-                    Text(
-                      "$teamID",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: 25, color: primaryColor),
-                    ),
-                    SizedBox(width: 10),
-                    IconButton(
-                      icon: Icon(
-                        Icons.content_copy,
-                        size: 28,
-                        color: Colors.grey,
-                      ),
-                      onPressed: () async {
-                        await SocialShare.copyToClipboard(
-                          text: teamID.toString(),
-                        );
-                        // alertDialog(text: "Copied", context: context);
-                        Fluttertoast.showToast(
-                          msg: "Copied",
-                          toastLength: Toast.LENGTH_SHORT,
-                          gravity: ToastGravity.CENTER,
-                          timeInSecForIosWeb: 1,
-                          backgroundColor: Color(0x77000000),
-                          textColor: Colors.white,
-                          fontSize: 11.0,
-                        );
-                      },
-                    )
-                  ],
+                SizedBox(
+                  height: 20,
                 ),
-                SizedBox(height: 35),
-                Text(
-                  "is your team ID",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(color: Color(0xaa000000)),
-                ),
-                SizedBox(height: 35),
-                FractionallySizedBox(
-                  widthFactor: .8,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: primaryColor,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(5),
-                      ),
+                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                  Padding(
+                    padding: EdgeInsets.fromLTRB(30, 0, 30, 0),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Padding(
+                            padding: EdgeInsets.fromLTRB(30, 0, 0, 0),
+                            child: Text(
+                              "Share this Team ID with your teammates to add them to team",
+                              style: TextStyle(
+                                  fontFamily: "mulish",
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w800),
+                            )),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            SizedBox(width: 30),
+                            Text(
+                              "$teamID",
+                              textAlign: TextAlign.center,
+                              style:
+                                  TextStyle(fontSize: 25, color: primaryColor),
+                            ),
+                            SizedBox(width: 10),
+                            IconButton(
+                              icon: Icon(
+                                Icons.content_copy,
+                                size: 28,
+                                color: Colors.grey,
+                              ),
+                              onPressed: () async {
+                                await SocialShare.copyToClipboard(
+                                  text: teamID.toString(),
+                                );
+                                // alertDialog(text: "Copied", context: context);
+                                Fluttertoast.showToast(
+                                  msg: "Copied",
+                                  toastLength: Toast.LENGTH_SHORT,
+                                  gravity: ToastGravity.BOTTOM,
+                                  timeInSecForIosWeb: 1,
+                                  backgroundColor: Color(0x77000000),
+                                  textColor: Colors.white,
+                                  fontSize: 11.0,
+                                );
+                              },
+                            )
+                          ],
+                        ),
+                        SizedBox(height: 35),
+                        InkWell(
+                          onTap: () {
+                            Navigator.of(context).pop();
+                            openJoinTeamPage(teamID);
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(50),
+                              color: primaryColor,
+                            ),
+                            // width: MediaQuery.of(context).size.width * 0.4,
+                            height: 60,
+                            child: Center(
+                              child: Text(
+                                "View Team",
+                                style: TextStyle(
+                                    fontFamily: "mulish",
+                                    fontSize: 14,
+                                    color: Color.fromARGB(255, 251, 255, 255),
+                                    fontWeight: FontWeight.w700),
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        InkWell(
+                          onTap: () {
+                            Navigator.of(context).pop();
+                            if (widget.eventDetails.registrationOpen == true)
+                              openChangeTeamPage(teamID);
+                            else
+                              alertDialog(
+                                text:
+                                    "Registrations for this event has been closed. \n\nTeam change operation cannot be performed.",
+                                context: context,
+                              );
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(50),
+                              color: Color.fromARGB(255, 228, 237, 239),
+                              border: Border.all(
+                                color: Color.fromARGB(255, 211, 225, 228),
+                              ),
+                            ),
+                            // width: MediaQuery.of(context).size.width * 0.4,
+                            height: 60,
+                            child: Center(
+                              child: Text(
+                                "Change Team",
+                                style: TextStyle(
+                                    fontFamily: "mulish",
+                                    fontSize: 14,
+                                    color: Color.fromARGB(255, 61, 71, 71),
+                                    fontWeight: FontWeight.w700),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                      openJoinTeamPage(teamID);
-                    },
-                    child: Text(
-                      "View Team",
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  ),
-                ),
-                FractionallySizedBox(
-                  widthFactor: .8,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: primaryColor,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(5),
-                      ),
-                    ),
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                      if (widget.eventDetails.registrationOpen == true)
-                        openChangeTeamPage(teamID);
-                      else
-                        alertDialog(
-                          text:
-                              "Registrations for this event has been closed. \n\nTeam change operation cannot be performed.",
-                          context: context,
-                        );
-                    },
-                    child: Text(
-                      "Change Team",
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  ),
-                ),
+                  )
+                ]),
+                SizedBox(height: 25,)
               ],
-            ),
+            )),
+
+            // Column(
+            //   mainAxisSize: MainAxisSize.min,
+            //   children: [
+            //     Text(
+            //       "Share this Team ID with your teammates to add them to team",
+            //       textAlign: TextAlign.center,
+            //       style: TextStyle(color: Color(0xaa000000)),
+            //     ),
+            //     SizedBox(height: 35),
+            //     Row(
+            //       mainAxisAlignment: MainAxisAlignment.center,
+            //       children: [
+            //         SizedBox(width: 30),
+            //         Text(
+            //           "$teamID",
+            //           textAlign: TextAlign.center,
+            //           style: TextStyle(fontSize: 25, color: primaryColor),
+            //         ),
+            //         SizedBox(width: 10),
+            //         IconButton(
+            //           icon: Icon(
+            //             Icons.content_copy,
+            //             size: 28,
+            //             color: Colors.grey,
+            //           ),
+            //           onPressed: () async {
+            //             await SocialShare.copyToClipboard(
+            //               text: teamID.toString(),
+            //             );
+            //             // alertDialog(text: "Copied", context: context);
+            //             Fluttertoast.showToast(
+            //               msg: "Copied",
+            //               toastLength: Toast.LENGTH_SHORT,
+            //               gravity: ToastGravity.CENTER,
+            //               timeInSecForIosWeb: 1,
+            //               backgroundColor: Color(0x77000000),
+            //               textColor: Colors.white,
+            //               fontSize: 11.0,
+            //             );
+            //           },
+            //         )
+            //       ],
+            //     ),
+            //     SizedBox(height: 35),
+            //     // Text(
+            //     //   "is your team ID",
+            //     //   textAlign: TextAlign.center,
+            //     //   style: TextStyle(color: Color(0xaa000000)),
+            //     // ),
+            //     SizedBox(height: 35),
+            //     FractionallySizedBox(
+            //       widthFactor: .8,
+            //       child: ElevatedButton(
+            //         style: ElevatedButton.styleFrom(
+            //           backgroundColor: primaryColor,
+            //           shape: RoundedRectangleBorder(
+            //             borderRadius: BorderRadius.circular(5),
+            //           ),
+            //         ),
+            //         onPressed: () {
+            //           Navigator.of(context).pop();
+            //           openJoinTeamPage(teamID);
+            //         },
+            //         child: Text(
+            //           "View Team",
+            //           style: TextStyle(color: Colors.white),
+            //         ),
+            //       ),
+            //     ),
+            //     FractionallySizedBox(
+            //       widthFactor: .8,
+            //       child: ElevatedButton(
+            //         style: ElevatedButton.styleFrom(
+            //           backgroundColor: primaryColor,
+            //           shape: RoundedRectangleBorder(
+            //             borderRadius: BorderRadius.circular(5),
+            //           ),
+            //         ),
+            //         onPressed: () {
+            //           Navigator.of(context).pop();
+            //           if (widget.eventDetails.registrationOpen == true)
+            //             openChangeTeamPage(teamID);
+            //           else
+            //             alertDialog(
+            //               text:
+            //                   "Registrations for this event has been closed. \n\nTeam change operation cannot be performed.",
+            //               context: context,
+            //             );
+            //         },
+            //         child: Text(
+            //           "Change Team",
+            //           style: TextStyle(color: Colors.white),
+            //         ),
+            //       ),
+            //     ),
+            //   ],
+            // ),
             context: context);
         // END OF DIALOG
       }
