@@ -267,12 +267,13 @@ class _RegisterButtonState extends State<RegisterButton> {
         // Show confirmation dialog
         await showModalBottomSheet(
           useRootNavigator: true,
+          isScrollControlled: true,
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(40), topRight: Radius.circular(40))),
           constraints: BoxConstraints(
             minWidth: MediaQuery.of(context).size.width,
-            maxHeight: 250,
+            // maxHeight: 250,
           ),
           context: context,
           builder: (BuildContext context) {
