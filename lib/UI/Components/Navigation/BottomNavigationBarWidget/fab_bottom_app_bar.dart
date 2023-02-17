@@ -49,14 +49,13 @@ class FABBottomAppBarState extends State<FABBottomAppBar> {
 
   @override
   Widget build(BuildContext context) {
-    
-  final myNavIndex = Provider.of<MyNavigationIndex>(context);
-  _selectedIndex=myNavIndex.getIndex;
+    final myNavIndex = Provider.of<MyNavigationIndex>(context);
+    _selectedIndex = myNavIndex.getIndex;
     List<Widget> items = List.generate(widget.items.length, (int index) {
       return _buildTabItem(
         item: widget.items[index],
         index: index,
-        onPressed: (i){
+        onPressed: (i) {
           myNavIndex.setIndex = i;
         },
       );
@@ -101,17 +100,21 @@ class FABBottomAppBarState extends State<FABBottomAppBar> {
   }) {
     Color color = _selectedIndex == index ? widget.selectedColor : widget.color;
     return Expanded(
-      child: SizedBox(
+      child: Container(
+        margin: EdgeInsets.symmetric(horizontal: 10),
         child: Material(
           type: MaterialType.transparency,
           child: InkWell(
+            borderRadius: BorderRadius.circular(30.0),
+            splashColor: Color.fromARGB(255, 214, 249, 255),
+          highlightColor: Color.fromARGB(255, 214, 249, 255),
             onTap: () => onPressed(index),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Container(
-                  margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
+                  margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
                   padding: EdgeInsets.fromLTRB(3, 10, 3, 10),
                   decoration: BoxDecoration(
                       color: _selectedIndex == index
