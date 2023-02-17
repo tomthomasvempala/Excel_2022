@@ -5,6 +5,19 @@ import 'package:intl/intl.dart';
 
 Widget getEventDetails(
     {EventDetails eventDetails, bool detailed, double height, double width}) {
+  List<Widget> children = [];
+
+  if (eventDetails.isTeam) {
+    children.add(detailBox(Icons.person, "Team Size",
+        eventDetails.teamSize.toString(), height, width));
+  }
+
+  if (eventDetails.prizeMoney != null ) {
+    if(eventDetails.prizeMoney != 0) 
+    children.add(detailBox(Icons.person, "Prize pool",
+       "₹"+ eventDetails.prizeMoney.toString(), height, width));
+  }
+
   return Hero(
     tag: 'EventDescription',
     child: Container(
@@ -15,7 +28,7 @@ Widget getEventDetails(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Padding(
-                padding: const EdgeInsets.fromLTRB(8, 8, 8, 8),
+                padding: const EdgeInsets.fromLTRB(8, 8, 8, 4),
                 child: detailBox(
                     Icons.calendar_month,
                     "Date",
@@ -27,7 +40,7 @@ Widget getEventDetails(
                     width),
               ),
               Padding(
-                padding: const EdgeInsets.fromLTRB(8, 8, 8, 8),
+                padding: const EdgeInsets.fromLTRB(8, 8, 8, 4),
                 child: detailBox(
                     Icons.access_time_outlined,
                     "Time",
@@ -44,22 +57,42 @@ Widget getEventDetails(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Padding(
-                padding: const EdgeInsets.fromLTRB(8, 8, 8, 0),
+                padding: const EdgeInsets.fromLTRB(8, 8, 8, 4),
                 child: detailBox(
                     Icons.pin_drop, "Venue", eventDetails.venue, height, width),
               ),
               Padding(
-                padding: const EdgeInsets.fromLTRB(8, 8, 8, 0),
+                padding: const EdgeInsets.fromLTRB(8, 8, 8, 4),
                 child: (eventDetails.isTeam == false)
-                    ? (SizedBox(
-                        height: height,
-                        width: width,
-                      ))
+                    ? eventDetails.prizeMoney != null && eventDetails.prizeMoney != 0
+                        ? children[0]
+                        : (SizedBox(
+                            height: height,
+                            width: width,
+                          ))
                     : detailBox(Icons.person, "Team Size",
                         eventDetails.teamSize.toString(), height, width),
               ),
             ],
           ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: (children.length > 1)
+                ? [
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(8, 8, 8, 0),
+                      child: children[1],
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(8, 8, 8, 0),
+                      child: SizedBox(
+                        height: height,
+                        width: width,
+                      ),
+                    )
+                  ]
+                : [],
+          )
         ],
       ),
     ),

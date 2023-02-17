@@ -105,11 +105,11 @@ class _MoreEventDetailsState extends State<MoreEventDetails> {
     else if (pageNumber == 4) {
       var eventhead1 = json.decode(widget.eventDetails.eventHead1);
       var eventhead2 = json.decode(widget.eventDetails.eventHead2);
-      String head1 =
-          "<h3> ${eventhead1['name']}</h3>\n<p>Ph:  ${eventhead1['phoneNumber']}</p>\n<p>Email: ${eventhead1['email']}</p><br>\n";
-      String head2 =
-          "<h3> ${eventhead2['name']}</h3>\n<p>Ph:  ${eventhead2['phoneNumber']}</p>\n<p>Email: ${eventhead2['email']}</p>";
-      content = head1 + head2;
+      // String head1 =
+      //     "<h3> ${eventhead1['name']}</h3>\n<p>Ph:  ${eventhead1['phoneNumber']}</p>\n<p>Email: ${eventhead1['email']}</p><br>\n";
+      // String head2 =
+      //     "<h3> ${eventhead2['name']}</h3>\n<p>Ph:  ${eventhead2['phoneNumber']}</p>\n<p>Email: ${eventhead2['email']}</p>";
+      // content = head1 + head2;
       return Container(
         color: Colors.white,
         //padding: padding,
@@ -203,17 +203,17 @@ class _MoreEventDetailsState extends State<MoreEventDetails> {
                     color: Color(0xff3D4747),
                     fontWeight: FontWeight.w700,
                   )),
-              SizedBox(
-                height: 5,
-              ),
-              Text(
-                  eventHeadNumber,
-                  style: TextStyle(
-                      fontFamily: pfontFamily,
-                      fontSize: 14,
-                      height: 1.5,
-                      color: Color(0xff3D4747))
-              ),
+              // SizedBox(
+              //   height: 5,
+              // ),
+              // Text(
+              //     eventHeadNumber,
+              //     style: TextStyle(
+              //         fontFamily: pfontFamily,
+              //         fontSize: 14,
+              //         height: 1.5,
+              //         color: Color(0xff3D4747))
+              // ),
             ],
           ),
           Container(

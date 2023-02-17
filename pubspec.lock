@@ -89,8 +89,7 @@ packages:
     dependency: "direct main"
     description:
       name: clear_all_notifications
-      sha256: "1a778d072ea4919edda06636fbd27b0beb9f2ad048f2d881409d23030d190be6"
-      url: "https://pub.dev"
+      url: "https://pub.dartlang.org"
     source: hosted
     version: "0.0.3"
   cli_util:
