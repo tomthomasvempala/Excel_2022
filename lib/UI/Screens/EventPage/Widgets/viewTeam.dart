@@ -77,6 +77,7 @@ class _ViewTeamState extends State<ViewTeam> {
                           child: Container(
                             height: 100,
                             child: Card(
+                              color: primaryColor,
                               elevation: 8,
                               child: Container(
                                 padding: EdgeInsets.all(20),
