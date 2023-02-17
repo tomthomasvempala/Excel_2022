@@ -121,7 +121,25 @@ class _CreateTeamPageState extends State<CreateTeamPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: customappbar("Create Team"),
+      appBar: AppBar(
+        backgroundColor: Colors.white70,
+        shadowColor: null,
+        elevation: 1,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          color: secondaryColor,
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+        titleTextStyle: TextStyle(
+          color: secondaryColor,
+          fontFamily: pfontFamily,
+          fontSize: 18,
+          fontWeight: FontWeight.w700,
+        ),
+        title: Text("Create Team"),
+      ),
       body: Theme(
         data: Theme.of(context).copyWith(
           primaryColor: primaryColor,
@@ -229,29 +247,31 @@ class _CreateTeamPageState extends State<CreateTeamPage> {
                   ),
                 ),
                 SizedBox(height: 50),
-                ButtonTheme(
-                  minWidth: MediaQuery.of(context).size.width / 2.3,
-                  height: 45.0,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: primaryColor,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(5),
-                      ),
-                    ),
-                    onPressed: isLoading
+                InkWell(
+                          onTap: isLoading
                         ? null
                         : () {
                             onSubmit();
                           },
-                    child: isLoading
-                        ? LoadingAnimation(color: Colors.white)
-                        : Text(
-                            "Submit",
-                            style: TextStyle(color: Colors.white),
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(50),
+                              color: primaryColor,
+                            ),
+                            // width: MediaQuery.of(context).size.width * 0.4,
+                            height: 60,
+                            child: Center(
+                              child: Text(
+                                "Submit",
+                                style: TextStyle(
+                                    fontFamily: "mulish",
+                                    fontSize: 14,
+                                    color: Color.fromARGB(255, 251, 255, 255),
+                                    fontWeight: FontWeight.w700),
+                              ),
+                            ),
                           ),
-                  ),
-                ),
+                        ),
                 SizedBox(height: 100),
               ],
             ),

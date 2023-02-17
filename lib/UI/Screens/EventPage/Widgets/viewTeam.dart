@@ -47,7 +47,25 @@ class _ViewTeamState extends State<ViewTeam> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: customappbar("Team Information"),
+      appBar: AppBar(
+        backgroundColor: Colors.white70,
+        shadowColor: null,
+        elevation: 1,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          color: secondaryColor,
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+        titleTextStyle: TextStyle(
+          color: secondaryColor,
+          fontFamily: pfontFamily,
+          fontSize: 18,
+          fontWeight: FontWeight.w700,
+        ),
+        title: Text("Team Information"),
+      ),
       body: Container(
         padding: EdgeInsets.symmetric(horizontal: 20),
         child: dataFetched
