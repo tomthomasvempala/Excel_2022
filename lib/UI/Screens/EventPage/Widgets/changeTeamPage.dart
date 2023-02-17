@@ -162,6 +162,33 @@ class _ChangeTeamPageState extends State<ChangeTeamPage> {
                   ),
                 ),
                 SizedBox(height: 50),
+                SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.8,
+                  height: 60,
+                  child: TextButton(
+                    style: TextButton.styleFrom(
+                      backgroundColor: primaryColor,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(50),
+                      ),
+                    ),
+                    onPressed: isLoading
+                        ? null
+                        : () {
+                            onSubmit();
+                          },
+                    child: isLoading
+                      ? LoadingAnimation(color: Colors.white)
+                      : Text(
+                      "Submit",
+                      style: TextStyle(
+                          fontFamily: "mulish",
+                          fontSize: 14,
+                          color: Color.fromARGB(255, 251, 255, 255),
+                          fontWeight: FontWeight.w700),
+                      ),
+                    ),
+                ),
                 ButtonTheme(
                   minWidth: MediaQuery.of(context).size.width / 2.3,
                   height: 45.0,
