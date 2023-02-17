@@ -392,32 +392,32 @@ class _UpdateProfileState extends State<UpdateProfile> {
                             ),
                           ),
                         ),
-                        Positioned(
-                          //alignment: Alignment.topRight,
-                          top: 0,
-                          right: 0,
-                          child: Padding(
-                            padding: const EdgeInsets.all(0.0),
-                            child: ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                padding: EdgeInsets.all(10),
-                                backgroundColor: primaryColor,
-                                shape: CircleBorder(
-                                  side: BorderSide(
-                                    color: primaryColor,
-                                    width: 2,
-                                  ),
-                                ),
-                              ),
-                              child: Icon(
-                                Icons.camera_alt_outlined,
-                                size: 18,
-                                color: Colors.white,
-                              ),
-                              onPressed: () {},
-                            ),
-                          ),
-                        ),
+                        // Positioned(
+                        //   //alignment: Alignment.topRight,
+                        //   top: 0,
+                        //   right: 0,
+                        //   child: Padding(
+                        //     padding: const EdgeInsets.all(0.0),
+                        //     child: ElevatedButton(
+                        //       style: ElevatedButton.styleFrom(
+                        //         padding: EdgeInsets.all(10),
+                        //         backgroundColor: primaryColor,
+                        //         shape: CircleBorder(
+                        //           side: BorderSide(
+                        //             color: primaryColor,
+                        //             width: 2,
+                        //           ),
+                        //         ),
+                        //       ),
+                        //       child: Icon(
+                        //         Icons.camera_alt_outlined,
+                        //         size: 18,
+                        //         color: Colors.white,
+                        //       ),
+                        //       onPressed: () {},
+                        //     ),
+                        //   ),
+                        // ),
                       ],
                     ),
                   )),
