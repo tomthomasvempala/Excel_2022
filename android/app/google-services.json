@@ -1,41 +1,42 @@
 {
   "project_info": {
-    "project_number": "602359993946",
-    "project_id": "excel-notification",
-    "storage_bucket": "excel-notification.appspot.com"
+    "project_number": "694756029811",
+    "project_id": "excel-services-4dcd1",
+    "storage_bucket": "excel-services-4dcd1.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:602359993946:android:08bc044975991ecbce6a63",
+        "mobilesdk_app_id": "1:694756029811:android:e0e272bf8ddc94a15d8106",
         "android_client_info": {
-          "package_name": "com.example.excel2022"
+          "package_name": "org.excelmec"
         }
       },
       "oauth_client": [
         {
-          "client_id": "602359993946-5ojmptqt7j7hm8cg5g4emfm8anl1fl6l.apps.googleusercontent.com",
+          "client_id": "694756029811-hu8jhoeqsrba6jqcc5n10th0e2kgtenj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "org.excelmec",
+            "certificate_hash": "7bbb81281afeacc2c7d42e4d413d698be2f84bdc"
+          }
+        },
+        {
+          "client_id": "694756029811-1lfbgutgcho7bed4vccgpa1hv5keg26s.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCX_91EyrsxB353OxoE5ek1my1pwe8AE2U"
+          "current_key": "AIzaSyB7tbTG9snkcjih4gxw-kwxLynPa6wqCXA"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "602359993946-5ojmptqt7j7hm8cg5g4emfm8anl1fl6l.apps.googleusercontent.com",
+              "client_id": "694756029811-1lfbgutgcho7bed4vccgpa1hv5keg26s.apps.googleusercontent.com",
               "client_type": 3
-            },
-            {
-              "client_id": "602359993946-mg5gu6ii548njtq394r823cobphkh6pu.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.example.excel2022"
-              }
             }
           ]
         }

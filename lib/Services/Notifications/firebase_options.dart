@@ -17,7 +17,10 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      return web;
+      throw UnsupportedError(
+        'DefaultFirebaseOptions have not been configured for web - '
+        'you can reconfigure this by running the FlutterFire CLI again.',
+      );
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
@@ -46,31 +49,22 @@ class DefaultFirebaseOptions {
     }
   }
 
-  static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyBKVnsz2nu3-EULR9iX1l_ehbdVm7a74P4',
-    appId: '1:602359993946:web:9eb69c0f246b045dce6a63',
-    messagingSenderId: '602359993946',
-    projectId: 'excel-notification',
-    authDomain: 'excel-notification.firebaseapp.com',
-    storageBucket: 'excel-notification.appspot.com',
-    measurementId: 'G-FELVWCKNS0',
-  );
-
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyCX_91EyrsxB353OxoE5ek1my1pwe8AE2U',
-    appId: '1:602359993946:android:08bc044975991ecbce6a63',
-    messagingSenderId: '602359993946',
-    projectId: 'excel-notification',
-    storageBucket: 'excel-notification.appspot.com',
+    apiKey: 'AIzaSyB7tbTG9snkcjih4gxw-kwxLynPa6wqCXA',
+    appId: '1:694756029811:android:e0e272bf8ddc94a15d8106',
+    messagingSenderId: '694756029811',
+    projectId: 'excel-services-4dcd1',
+    storageBucket: 'excel-services-4dcd1.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyB9z-J27upKC-7RROxiy62-jJL13QwVYOw',
-    appId: '1:602359993946:ios:1ae0307d8ea08bc8ce6a63',
-    messagingSenderId: '602359993946',
-    projectId: 'excel-notification',
-    storageBucket: 'excel-notification.appspot.com',
-    iosClientId: '602359993946-mg5gu6ii548njtq394r823cobphkh6pu.apps.googleusercontent.com',
+    apiKey: 'AIzaSyB7ZQiInM77fAmb2QmvXGgR-YW21IE8sMs',
+    appId: '1:694756029811:ios:75f457dc1ff90d855d8106',
+    messagingSenderId: '694756029811',
+    projectId: 'excel-services-4dcd1',
+    storageBucket: 'excel-services-4dcd1.appspot.com',
+    androidClientId: '694756029811-hu8jhoeqsrba6jqcc5n10th0e2kgtenj.apps.googleusercontent.com',
+    iosClientId: '694756029811-3hqpa4agri5bv7jfdm2sd51ad6fi5tut.apps.googleusercontent.com',
     iosBundleId: 'com.example.excel2022',
   );
 }
