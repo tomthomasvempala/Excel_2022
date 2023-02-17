@@ -154,7 +154,7 @@ class NotificationCard extends StatelessWidget {
                   //Change this to Image.network when image server is up
                   child: icon == null
                       ? Image.asset(
-                          "assets/events/eventLogo.png",
+                          "assets/icons/excel logo.png",
                           //event.icon,
                           width: 31.5,
                           height: 31.5,

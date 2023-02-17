@@ -12,7 +12,8 @@ import 'package:shimmer/shimmer.dart';
 
 class EventCard extends StatefulWidget {
   final Event event;
-  EventCard(this.event);
+  final bool first;
+  EventCard(this.event,{this.first=false});
 
   @override
   State<EventCard> createState() => _EventCardState();
@@ -69,30 +70,33 @@ class _EventCardState extends State<EventCard> {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-        future: FavouritesAPI.isFavourited(widget.event.id),
-        builder: (context, snapshot) => snapshot.hasData
-            ? _buildCard(
-                context,
-                snapshot.data,
-                widget.event,
-                getFavouritedStatus,
-                addToFavourites,
-                deleteFromFavourites,
-                isLoading,
-                likeState)
-            : Shimmer.fromColors(
-                baseColor: Color.fromARGB(255, 238, 240, 240),
-                highlightColor: Color.fromARGB(255, 255, 255, 255),
-                child: Container(
-                  margin: EdgeInsets.symmetric(horizontal: 15, vertical: 0),
-                  height: 100,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(30),
-                    color: Colors.white,
+    return Padding(
+      padding: EdgeInsets.only(top: widget.first?15:0),
+      child: FutureBuilder(
+          future: FavouritesAPI.isFavourited(widget.event.id),
+          builder: (context, snapshot) => snapshot.hasData
+              ? _buildCard(
+                  context,
+                  snapshot.data,
+                  widget.event,
+                  getFavouritedStatus,
+                  addToFavourites,
+                  deleteFromFavourites,
+                  isLoading,
+                  likeState)
+              : Shimmer.fromColors(
+                  baseColor: Color.fromARGB(255, 238, 240, 240),
+                  highlightColor: Color.fromARGB(255, 255, 255, 255),
+                  child: Container(
+                    margin: EdgeInsets.symmetric(horizontal: 15, vertical: 0),
+                    height: 100,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(30),
+                      color: Colors.white,
+                    ),
                   ),
-                ),
-              ));
+                )),
+    );
   }
 }
 
@@ -111,6 +115,7 @@ _buildCard(
         margin: EdgeInsets.symmetric(horizontal: 15, vertical: 0),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(30),
+          border: Border.all(width: 0.5,color: Colors.black.withOpacity(0.1)),
           color: Colors.white,
         ),
         child: Padding(

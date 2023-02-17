@@ -1,5 +1,7 @@
 import 'dart:convert';
+import 'package:excelapp/Accounts/refreshToken.dart';
 import 'package:excelapp/Models/event_details.dart';
+import 'package:excelapp/Services/API/api_config.dart';
 import 'package:excelapp/Services/API/events_api.dart';
 import 'package:excelapp/Services/API/registration_api.dart';
 import 'package:excelapp/UI/Components/AlertDialog/alertDialog.dart';
@@ -14,7 +16,10 @@ import 'package:excelapp/UI/Screens/HomePage/Widgets/Drawer/drawer.dart';
 import 'package:excelapp/UI/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:hive/hive.dart';
 import 'package:social_share/social_share.dart';
+import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 // All these commented because raised button deprecated
 
@@ -82,115 +87,475 @@ class _RegisterButtonState extends State<RegisterButton> {
   register(context) async {
     String response = await RegistrationAPI.preRegistration(
         id: widget.eventDetails.id, context: context);
+    TextEditingController _controller = TextEditingController();
     print("response ${response}");
     if (response == "proceed") {
       // Registers for event
       // If team event, goto join team or create team
       // Else confirmation to registration is asked.
       if (widget.eventDetails.isTeam == true) {
-        await showDialog(
+        await showModalBottomSheet(
+          useRootNavigator: true,
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(40), topRight: Radius.circular(40))),
+          constraints: BoxConstraints(
+            minWidth: MediaQuery.of(context).size.width,
+            maxHeight: 230,
+          ),
           context: context,
-          useRootNavigator: false,
           builder: (BuildContext context) {
-            return AlertDialog(
-              title: Center(child: Text('This is a team event')),
-              content: Text(
-                "You can either create a team or join a team. ",
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 14),
-              ),
-              actions: <Widget>[
-                Center(
-                  child: TextButton(
-                    child: Text("Register new team"),
-                    onPressed: () {
-                      Navigator.pop(context);
-                      // Register as team page
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => CreateTeamPage(
-                            eventDetails: widget.eventDetails,
-                            refreshIsRegistered: refreshIsRegistered,
+            return Container(
+                child: Column(
+              children: [
+                SizedBox(height: 8),
+                Image.asset(
+                  "assets/icons/divider.png",
+                  width: 340,
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                  Padding(
+                    padding: EdgeInsets.fromLTRB(30, 0, 30, 0),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        InkWell(
+                          onTap: () {
+                            Navigator.pop(context);
+                            // Register as team page
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => CreateTeamPage(
+                                  eventDetails: widget.eventDetails,
+                                  refreshIsRegistered: refreshIsRegistered,
+                                ),
+                              ),
+                            ).then((_) async {
+                              reloadPage();
+                              return;
+                            });
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(50),
+                              color: primaryColor,
+                            ),
+                            // width: MediaQuery.of(context).size.width * 0.4,
+                            height: 60,
+                            child: Center(
+                              child: Text(
+                                "Register new team",
+                                style: TextStyle(
+                                    fontFamily: "mulish",
+                                    fontSize: 14,
+                                    color: Color.fromARGB(255, 251, 255, 255),
+                                    fontWeight: FontWeight.w700),
+                              ),
+                            ),
                           ),
                         ),
-                      ).then((_) async {
-                        reloadPage();
-                        return;
-                      });
-                    },
-                  ),
-                ),
-                Center(
-                  child: TextButton(
-                    child: Text("Join existing team"),
-                    onPressed: () {
-                      Navigator.pop(context);
-                      // Register as team page
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => JoinTeamPage(
-                            eventDetails: widget.eventDetails,
-                            refreshIsRegistered: refreshIsRegistered,
+                        SizedBox(
+                          height: 20,
+                        ),
+                        InkWell(
+                          onTap: () {
+                            Navigator.pop(context);
+                            // Register as team page
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => JoinTeamPage(
+                                  eventDetails: widget.eventDetails,
+                                  refreshIsRegistered: refreshIsRegistered,
+                                ),
+                              ),
+                            ).then((_) async {
+                              reloadPage();
+                              return;
+                            });
+                            return;
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(50),
+                              color: Color.fromARGB(255, 228, 237, 239),
+                              border: Border.all(
+                                color: Color.fromARGB(255, 211, 225, 228),
+                              ),
+                            ),
+                            // width: MediaQuery.of(context).size.width * 0.4,
+                            height: 60,
+                            child: Center(
+                              child: Text(
+                                "Join existing team",
+                                style: TextStyle(
+                                    fontFamily: "mulish",
+                                    fontSize: 14,
+                                    color: Color.fromARGB(255, 61, 71, 71),
+                                    fontWeight: FontWeight.w700),
+                              ),
+                            ),
                           ),
                         ),
-                      ).then((_) async {
-                        reloadPage();
-                        return;
-                      });
-                      return;
-                    },
-                  ),
-                ),
+                      ],
+                    ),
+                  )
+                ])
               ],
-            );
+            ));
+
+            // AlertDialog(
+            //   title: Center(child: Text('This is a team event')),
+            //   content: Text(
+            //     "You can either create a team or join a team. ",
+            //     textAlign: TextAlign.center,
+            //     style: TextStyle(fontSize: 14),
+            //   ),
+            //   actions: <Widget>[
+            //     Center(
+            //       child: TextButton(
+            //         child: Text("Register new team"),
+            //         onPressed: () {
+            //           Navigator.pop(context);
+            //           // Register as team page
+            //           Navigator.push(
+            //             context,
+            //             MaterialPageRoute(
+            //               builder: (context) => CreateTeamPage(
+            //                 eventDetails: widget.eventDetails,
+            //                 refreshIsRegistered: refreshIsRegistered,
+            //               ),
+            //             ),
+            //           ).then((_) async {
+            //             reloadPage();
+            //             return;
+            //           });
+            //         },
+            //       ),
+            //     ),
+            //     Center(
+            //       child: TextButton(
+            //         child: Text("Join existing team"),
+            //         onPressed: () {
+            //           Navigator.pop(context);
+            //           // Register as team page
+            //           Navigator.push(
+            //             context,
+            //             MaterialPageRoute(
+            //               builder: (context) => JoinTeamPage(
+            //                 eventDetails: widget.eventDetails,
+            //                 refreshIsRegistered: refreshIsRegistered,
+            //               ),
+            //             ),
+            //           ).then((_) async {
+            //             reloadPage();
+            //             return;
+            //           });
+            //           return;
+            //         },
+            //       ),
+            //     ),
+            //   ],
+            // );
           },
         );
       } else {
         // Show confirmation dialog
-        await showDialog(
+        await showModalBottomSheet(
+          useRootNavigator: true,
+          isScrollControlled: true,
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(40), topRight: Radius.circular(40))),
+          constraints: BoxConstraints(
+            minWidth: MediaQuery.of(context).size.width,
+            // maxHeight: 250,
+          ),
           context: context,
           builder: (BuildContext context) {
-            return AlertDialog(
-              title: Text('Are you sure you want to register ?'),
-              content: Text("This cannot be undone."),
-              actions: <Widget>[
-                TextButton(
-                  child: Text("Proceed"),
-                  onPressed: () {
-                    () async {
-                      // Starts loading
-                      setState(() {
-                        isLoading = true;
-                      });
+            return Container(
+                padding: EdgeInsets.only(
+                    bottom: MediaQuery.of(context).viewInsets.bottom),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    SizedBox(height: 8),
+                    Image.asset(
+                      "assets/icons/divider.png",
+                      width: 340,
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                              padding: EdgeInsets.fromLTRB(30, 0, 0, 0),
+                              child: Text(
+                                "Are you sure you want to register ?",
+                                style: TextStyle(
+                                    fontFamily: "mulish",
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w800),
+                              )),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          Padding(
+                            padding: EdgeInsets.fromLTRB(30, 0, 30, 0),
+                            child: TextFormField(
+                              controller: _controller,
+                              decoration: InputDecoration(
+                                hintText: "Enter Referral ID (optional)",
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          Padding(
+                            padding: EdgeInsets.fromLTRB(30, 0, 30, 0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                InkWell(
+                                  onTap: () {
+                                    () async {
+                                      // Starts loading
+                                      setState(() {
+                                        isLoading = true;
+                                      });
 
-                      await RegistrationAPI.registerEvent(
-                        id: widget.eventDetails.id,
-                        refreshFunction: refreshIsRegistered,
-                        context: context,
-                      );
+                                      await RegistrationAPI.registerEvent(
+                                        id: widget.eventDetails.id,
+                                        refreshFunction: refreshIsRegistered,
+                                        context: context,
+                                      ).then((_) async {
+                                        if (_controller.text != "") {
+                                          SharedPreferences prefs =
+                                              await SharedPreferences
+                                                  .getInstance();
+                                          String jwt = prefs.getString('jwt');
+                                          print(jwt);
+                                          var body = {
+                                            "eventId": widget.eventDetails.id,
+                                            "referrerId":
+                                                int.parse(_controller.text),
+                                            "accessToken": jwt,
+                                            "point": 10
+                                          };
+                                          print(json.encode(body));
+                                          var response = await http.post(
+                                              Uri.parse(APIConfig.cabaseUrl +
+                                                  "addTransactionByToken"),
+                                              body: json.encode(body),
+                                              headers: {
+                                                "content-type":
+                                                    "application/json",
+                                              });
+                                          print(response.statusCode);
+                                          // If token has expired, rfresh it
+                                          if (response.statusCode == 455 ||
+                                              response.statusCode == 500) {
+                                            // Refreshes Token & gets JWT
+                                            jwt = await refreshToken();
+                                            if (jwt == null) return null;
+                                            var body = {
+                                              "eventId": widget.eventDetails.id,
+                                              "referrerId":
+                                                  int.parse(_controller.text),
+                                              "accessToken": jwt,
+                                              "point": 10
+                                            };
+                                            // Retrying Request
+                                            response = await http.post(
+                                                Uri.parse(APIConfig.cabaseUrl +
+                                                    "addTransactionByToken"),
+                                                body: json.encode(body),
+                                                headers: {
+                                                  "content-type":
+                                                      "application/json",
+                                                });
+                                          }
+                                          if (response.statusCode == 200) {
+                                            print("Transaction added");
+                                            print(response.body);
+                                          } else {
+                                            print("Transaction not added");
+                                          }
+                                        }
+                                      });
 
-                      // Ends Loading
-                      setState(() {
-                        isLoading = false;
-                      });
-                    }();
+                                      // Ends Loading
+                                      setState(() {
+                                        isLoading = false;
+                                      });
+                                    }();
 
-                    Navigator.pop(context);
-                  },
-                ),
-                TextButton(
-                  child: Text("Cancel"),
-                  onPressed: () {
-                    setState(() {
-                      isLoading = false;
-                    });
-                    Navigator.of(context).pop();
-                  },
-                ),
-              ],
-            );
+                                    Navigator.pop(context);
+                                  },
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(50),
+                                      color: primaryColor,
+                                    ),
+                                    width:
+                                        MediaQuery.of(context).size.width * 0.4,
+                                    height: 60,
+                                    child: Center(
+                                      child: Text(
+                                        "Proceed",
+                                        style: TextStyle(
+                                            fontFamily: "mulish",
+                                            fontSize: 14,
+                                            color: Color.fromARGB(
+                                                255, 251, 255, 255),
+                                            fontWeight: FontWeight.w700),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                InkWell(
+                                  onTap: () {
+                                    setState(() {
+                                      isLoading = false;
+                                    });
+                                    Navigator.of(context).pop();
+                                  },
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(50),
+                                      color: Color.fromARGB(255, 228, 237, 239),
+                                      border: Border.all(
+                                        color:
+                                            Color.fromARGB(255, 211, 225, 228),
+                                      ),
+                                    ),
+                                    width:
+                                        MediaQuery.of(context).size.width * 0.4,
+                                    height: 60,
+                                    child: Center(
+                                      child: Text(
+                                        "Cancel",
+                                        style: TextStyle(
+                                            fontFamily: "mulish",
+                                            fontSize: 14,
+                                            color:
+                                                Color.fromARGB(255, 61, 71, 71),
+                                            fontWeight: FontWeight.w700),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          )
+                        ]),
+                    SizedBox(height: 25),
+                  ],
+                ));
+
+            // return AlertDialog(
+            //   title: Text('Are you sure you want to register ?'),
+            //   content: Column(
+            //     mainAxisSize: MainAxisSize.min,
+            //     children: [
+            //       TextFormField(
+            //         controller: _controller,
+            //         decoration: InputDecoration(
+            //           hintText: "Enter Referral ID (optional)",
+            //         ),
+            //       )
+            //     ],
+            //   ),
+            //   actions: <Widget>[
+            //     TextButton(
+            //       child: Text("Proceed"),
+            //       onPressed: () {
+            //         () async {
+            //           // Starts loading
+            //           setState(() {
+            //             isLoading = true;
+            //           });
+
+            //           await RegistrationAPI.registerEvent(
+            //             id: widget.eventDetails.id,
+            //             refreshFunction: refreshIsRegistered,
+            //             context: context,
+            //           ).then((_) async {
+            //             SharedPreferences prefs =
+            //                 await SharedPreferences.getInstance();
+            //             String jwt = prefs.getString('jwt');
+            //             print(jwt);
+            //             var body = {
+            //               "eventId": widget.eventDetails.id,
+            //               "referrerId": int.parse(_controller.text),
+            //               "accessToken": jwt,
+            //               "point": 10
+            //             };
+            //             print(json.encode(body));
+            //             var response = await http.post(
+            //                 Uri.parse(
+            //                     APIConfig.cabaseUrl + "addTransactionByToken"),
+            //                 body: json.encode(body),
+            //                 headers: {
+            //                   "content-type": "application/json",
+            //                 });
+            //             print(response.statusCode);
+            //             // If token has expired, rfresh it
+            //             if (response.statusCode == 455 ||
+            //                 response.statusCode == 500) {
+            //               // Refreshes Token & gets JWT
+            //               jwt = await refreshToken();
+            //               if (jwt == null) return null;
+            //               var body = {
+            //                 "eventId": widget.eventDetails.id,
+            //                 "referrerId": int.parse(_controller.text),
+            //                 "accessToken": jwt,
+            //                 "point": 10
+            //               };
+            //               // Retrying Request
+            //               response = await http.post(
+            //                   Uri.parse(APIConfig.cabaseUrl +
+            //                       "addTransactionByToken"),
+            //                   body: json.encode(body),
+            //                   headers: {
+            //                     "content-type": "application/json",
+            //                   });
+            //             }
+            //             if (response.statusCode == 200) {
+            //               print("Transaction added");
+            //               print(response.body);
+            //             } else {
+            //               print("Transaction not added");
+            //             }
+            //           });
+
+            //           // Ends Loading
+            //           setState(() {
+            //             isLoading = false;
+            //           });
+            //         }();
+
+            //         Navigator.pop(context);
+            //       },
+            //     ),
+            //     TextButton(
+            //       child: Text("Cancel"),
+            //       onPressed: () {
+            //         setState(() {
+            //           isLoading = false;
+            //         });
+            //         Navigator.of(context).pop();
+            //       },
+            //     ),
+            //   ],
+            // );
           },
         );
       }
@@ -214,103 +579,238 @@ class _RegisterButtonState extends State<RegisterButton> {
         print(teamID);
         // DISPLAYS TEAM ID DIALOG
         dialogWithContent(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
+            child: Container(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
               children: [
-                Text(
-                  "Share this team Id with your teammates to add them to team",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(color: Color(0xaa000000)),
+                SizedBox(height: 8),
+                Image.asset(
+                  "assets/icons/divider.png",
+                  width: 340,
                 ),
-                SizedBox(height: 35),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SizedBox(width: 30),
-                    Text(
-                      "$teamID",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: 25, color: primaryColor),
-                    ),
-                    SizedBox(width: 10),
-                    IconButton(
-                      icon: Icon(
-                        Icons.content_copy,
-                        size: 28,
-                        color: Colors.grey,
-                      ),
-                      onPressed: () async {
-                        await SocialShare.copyToClipboard(
-                          text: teamID.toString(),
-                        );
-                        // alertDialog(text: "Copied", context: context);
-                        Fluttertoast.showToast(
-                          msg: "Copied",
-                          toastLength: Toast.LENGTH_SHORT,
-                          gravity: ToastGravity.CENTER,
-                          timeInSecForIosWeb: 1,
-                          backgroundColor: Color(0x77000000),
-                          textColor: Colors.white,
-                          fontSize: 11.0,
-                        );
-                      },
-                    )
-                  ],
+                SizedBox(
+                  height: 20,
                 ),
-                SizedBox(height: 35),
-                Text(
-                  "is your team ID",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(color: Color(0xaa000000)),
-                ),
-                SizedBox(height: 35),
-                FractionallySizedBox(
-                  widthFactor: .8,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: primaryColor,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(5),
-                      ),
+                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                  Padding(
+                    padding: EdgeInsets.fromLTRB(30, 0, 30, 0),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Padding(
+                            padding: EdgeInsets.fromLTRB(30, 0, 0, 0),
+                            child: Text(
+                              "Share this Team ID with your teammates to add them to team",
+                              style: TextStyle(
+                                  fontFamily: "mulish",
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w800),
+                            )),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            SizedBox(width: 30),
+                            Text(
+                              "$teamID",
+                              textAlign: TextAlign.center,
+                              style:
+                                  TextStyle(fontSize: 25, color: primaryColor),
+                            ),
+                            SizedBox(width: 10),
+                            IconButton(
+                              icon: Icon(
+                                Icons.content_copy,
+                                size: 28,
+                                color: Colors.grey,
+                              ),
+                              onPressed: () async {
+                                await SocialShare.copyToClipboard(
+                                  text: teamID.toString(),
+                                );
+                                // alertDialog(text: "Copied", context: context);
+                                Fluttertoast.showToast(
+                                  msg: "Copied",
+                                  toastLength: Toast.LENGTH_SHORT,
+                                  gravity: ToastGravity.BOTTOM,
+                                  timeInSecForIosWeb: 1,
+                                  backgroundColor: Color(0x77000000),
+                                  textColor: Colors.white,
+                                  fontSize: 11.0,
+                                );
+                              },
+                            )
+                          ],
+                        ),
+                        SizedBox(height: 35),
+                        InkWell(
+                          onTap: () {
+                            Navigator.of(context).pop();
+                            openJoinTeamPage(teamID);
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(50),
+                              color: primaryColor,
+                            ),
+                            // width: MediaQuery.of(context).size.width * 0.4,
+                            height: 60,
+                            child: Center(
+                              child: Text(
+                                "View Team",
+                                style: TextStyle(
+                                    fontFamily: "mulish",
+                                    fontSize: 14,
+                                    color: Color.fromARGB(255, 251, 255, 255),
+                                    fontWeight: FontWeight.w700),
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        InkWell(
+                          onTap: () {
+                            Navigator.of(context).pop();
+                            if (widget.eventDetails.registrationOpen == true)
+                              openChangeTeamPage(teamID);
+                            else
+                              alertDialog(
+                                text:
+                                    "Registrations for this event has been closed. \n\nTeam change operation cannot be performed.",
+                                context: context,
+                              );
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(50),
+                              color: Color.fromARGB(255, 228, 237, 239),
+                              border: Border.all(
+                                color: Color.fromARGB(255, 211, 225, 228),
+                              ),
+                            ),
+                            // width: MediaQuery.of(context).size.width * 0.4,
+                            height: 60,
+                            child: Center(
+                              child: Text(
+                                "Change Team",
+                                style: TextStyle(
+                                    fontFamily: "mulish",
+                                    fontSize: 14,
+                                    color: Color.fromARGB(255, 61, 71, 71),
+                                    fontWeight: FontWeight.w700),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                      openJoinTeamPage(teamID);
-                    },
-                    child: Text(
-                      "View Team",
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  ),
-                ),
-                FractionallySizedBox(
-                  widthFactor: .8,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: primaryColor,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(5),
-                      ),
-                    ),
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                      if (widget.eventDetails.registrationOpen == true)
-                        openChangeTeamPage(teamID);
-                      else
-                        alertDialog(
-                          text:
-                              "Registrations for this event has been closed. \n\nTeam change operation cannot be performed.",
-                          context: context,
-                        );
-                    },
-                    child: Text(
-                      "Change Team",
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  ),
-                ),
+                  )
+                ]),
+                SizedBox(height: 25,)
               ],
-            ),
+            )),
+
+            // Column(
+            //   mainAxisSize: MainAxisSize.min,
+            //   children: [
+            //     Text(
+            //       "Share this Team ID with your teammates to add them to team",
+            //       textAlign: TextAlign.center,
+            //       style: TextStyle(color: Color(0xaa000000)),
+            //     ),
+            //     SizedBox(height: 35),
+            //     Row(
+            //       mainAxisAlignment: MainAxisAlignment.center,
+            //       children: [
+            //         SizedBox(width: 30),
+            //         Text(
+            //           "$teamID",
+            //           textAlign: TextAlign.center,
+            //           style: TextStyle(fontSize: 25, color: primaryColor),
+            //         ),
+            //         SizedBox(width: 10),
+            //         IconButton(
+            //           icon: Icon(
+            //             Icons.content_copy,
+            //             size: 28,
+            //             color: Colors.grey,
+            //           ),
+            //           onPressed: () async {
+            //             await SocialShare.copyToClipboard(
+            //               text: teamID.toString(),
+            //             );
+            //             // alertDialog(text: "Copied", context: context);
+            //             Fluttertoast.showToast(
+            //               msg: "Copied",
+            //               toastLength: Toast.LENGTH_SHORT,
+            //               gravity: ToastGravity.CENTER,
+            //               timeInSecForIosWeb: 1,
+            //               backgroundColor: Color(0x77000000),
+            //               textColor: Colors.white,
+            //               fontSize: 11.0,
+            //             );
+            //           },
+            //         )
+            //       ],
+            //     ),
+            //     SizedBox(height: 35),
+            //     // Text(
+            //     //   "is your team ID",
+            //     //   textAlign: TextAlign.center,
+            //     //   style: TextStyle(color: Color(0xaa000000)),
+            //     // ),
+            //     SizedBox(height: 35),
+            //     FractionallySizedBox(
+            //       widthFactor: .8,
+            //       child: ElevatedButton(
+            //         style: ElevatedButton.styleFrom(
+            //           backgroundColor: primaryColor,
+            //           shape: RoundedRectangleBorder(
+            //             borderRadius: BorderRadius.circular(5),
+            //           ),
+            //         ),
+            //         onPressed: () {
+            //           Navigator.of(context).pop();
+            //           openJoinTeamPage(teamID);
+            //         },
+            //         child: Text(
+            //           "View Team",
+            //           style: TextStyle(color: Colors.white),
+            //         ),
+            //       ),
+            //     ),
+            //     FractionallySizedBox(
+            //       widthFactor: .8,
+            //       child: ElevatedButton(
+            //         style: ElevatedButton.styleFrom(
+            //           backgroundColor: primaryColor,
+            //           shape: RoundedRectangleBorder(
+            //             borderRadius: BorderRadius.circular(5),
+            //           ),
+            //         ),
+            //         onPressed: () {
+            //           Navigator.of(context).pop();
+            //           if (widget.eventDetails.registrationOpen == true)
+            //             openChangeTeamPage(teamID);
+            //           else
+            //             alertDialog(
+            //               text:
+            //                   "Registrations for this event has been closed. \n\nTeam change operation cannot be performed.",
+            //               context: context,
+            //             );
+            //         },
+            //         child: Text(
+            //           "Change Team",
+            //           style: TextStyle(color: Colors.white),
+            //         ),
+            //       ),
+            //     ),
+            //   ],
+            // ),
             context: context);
         // END OF DIALOG
       }

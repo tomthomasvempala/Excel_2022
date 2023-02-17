@@ -7,6 +7,8 @@ import 'package:excelapp/UI/Components/Appbar/appbar.dart';
 import 'package:excelapp/UI/Components/LoadingUI/loadingAnimation.dart';
 import 'package:excelapp/UI/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'package:intl/intl.dart';
 
 class ViewTeam extends StatefulWidget {
   final EventDetails eventDetails;
@@ -18,15 +20,20 @@ class ViewTeam extends StatefulWidget {
 
 class _ViewTeamState extends State<ViewTeam> {
   bool dataFetched = false;
-  Map<String, dynamic> teamDetails;
+  Map<String, dynamic> teamDetails = {};
 
   fetchData() async {
+    teamDetails["id"] = widget.teamID.toString();
+    // teamDetails["name"] = "Team Name";
     String teamID = widget.teamID.toString();
-    String requestUrl = APIConfig.baseUrl + "/Team/$teamID";
-    var response = await getAuthorisedData(requestUrl);
+    print(teamID);
+    String requestUrl = APIConfig.teamUrl + "getTeamDetails";
+    var response = await http.post(Uri.parse(requestUrl), body: {
+      "teamId": teamID,
+    });
     setState(() {
       dataFetched = true;
-      teamDetails = jsonDecode(response.body);
+      teamDetails["members"] = jsonDecode(response.body);
     });
     print(teamDetails);
   }
@@ -40,7 +47,25 @@ class _ViewTeamState extends State<ViewTeam> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: customappbar("Team Information"),
+      appBar: AppBar(
+        backgroundColor: Colors.white70,
+        shadowColor: null,
+        elevation: 1,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          color: secondaryColor,
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+        titleTextStyle: TextStyle(
+          color: secondaryColor,
+          fontFamily: pfontFamily,
+          fontSize: 18,
+          fontWeight: FontWeight.w700,
+        ),
+        title: Text("Team Information"),
+      ),
       body: Container(
         padding: EdgeInsets.symmetric(horizontal: 20),
         child: dataFetched
@@ -52,6 +77,7 @@ class _ViewTeamState extends State<ViewTeam> {
                           child: Container(
                             height: 100,
                             child: Card(
+                              color: primaryColor,
                               elevation: 8,
                               child: Container(
                                 padding: EdgeInsets.all(20),
@@ -66,11 +92,11 @@ class _ViewTeamState extends State<ViewTeam> {
                           ),
                         ),
                         SizedBox(height: 15),
-                        Text(
-                          "Team: " + teamDetails["name"].toString(),
-                          style: TextStyle(fontSize: 19, color: primaryColor),
-                          textAlign: TextAlign.center,
-                        ),
+                        // Text(
+                        //   "Team: " + teamDetails["name"].toString(),
+                        //   style: TextStyle(fontSize: 19, color: primaryColor),
+                        //   textAlign: TextAlign.center,
+                        // ),
 
                         SizedBox(height: 30),
                         // SizedBox(height: 20),
@@ -94,7 +120,8 @@ class _ViewTeamState extends State<ViewTeam> {
                         ),
                         SizedBox(height: 10),
                         Text(
-                          widget.eventDetails.datetime.toString(),
+                            new DateFormat("dd MMMM yyyy")
+                                .format(DateTime.parse(widget.eventDetails.datetime)).toString(),
                           style: TextStyle(
                             fontSize: 14,
                             color: lightTextColor,
@@ -107,7 +134,7 @@ class _ViewTeamState extends State<ViewTeam> {
                           quarterTurns: 0,
                           child: Image(
                             height: 40,
-                            image: AssetImage("assets/divider.png"),
+                            image: AssetImage("assets/divider_design.png"),
                           ),
                         ),
                         SizedBox(height: 25),
@@ -123,13 +150,13 @@ class _ViewTeamState extends State<ViewTeam> {
                           padding: EdgeInsets.symmetric(vertical: 5),
                           child: ListTile(
                             dense: true,
-                            leading: CircleAvatar(
-                              radius: 15.5,
-                              backgroundColor: primaryColor,
-                              backgroundImage: CachedNetworkImageProvider(
-                                teamDetails["members"][index]["picture"],
-                              ),
-                            ),
+                            // leading: CircleAvatar(
+                            //   radius: 15.5,
+                            //   backgroundColor: primaryColor,
+                            //   backgroundImage: CachedNetworkImageProvider(
+                            //     teamDetails["members"][index]["picture"],
+                            //   ),
+                            // ),
                             title: Text(teamDetails["members"][index]["name"]),
                             subtitle:
                                 Text(teamDetails["members"][index]["email"]),
