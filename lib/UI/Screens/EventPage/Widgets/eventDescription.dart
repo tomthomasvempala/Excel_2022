@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:excelapp/Models/event_details.dart';
 import 'package:excelapp/UI/constants.dart';
 import 'package:intl/intl.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 Widget getEventDetails(
     {EventDetails eventDetails, bool detailed, double height, double width}) {
@@ -14,7 +15,7 @@ Widget getEventDetails(
 
   if (eventDetails.prizeMoney != null ) {
     if(eventDetails.prizeMoney != 0) 
-    children.add(detailBox(Icons.person, "Prize pool",
+    children.add(detailBox(FontAwesomeIcons.trophy, "Prize pool",
        "₹"+ eventDetails.prizeMoney.toString(), height, width));
   }
 
@@ -114,7 +115,7 @@ Widget detailBox(
       children: <Widget>[
         Padding(
           padding: EdgeInsets.fromLTRB(15, 5.23, 0, 0),
-          child: Icon(
+          child: FaIcon(
             icon,
             size: 20.0,
             color: Color(0xFF0E99E8),
