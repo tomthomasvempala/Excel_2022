@@ -19,6 +19,13 @@ Widget getEventDetails(
        "₹"+ eventDetails.prizeMoney.toString(), height, width));
   }
 
+  
+  if (eventDetails.entryFee != null ) {
+    if(eventDetails.entryFee != 0) 
+    children.add(detailBox(FontAwesomeIcons.moneyBill, "Entry Fee",
+       "₹"+ eventDetails.entryFee.toString(), height, width));
+  }
+
   return Hero(
     tag: 'EventDescription',
     child: Container(
@@ -64,15 +71,18 @@ Widget getEventDetails(
               ),
               Padding(
                 padding: const EdgeInsets.fromLTRB(8, 8, 8, 4),
-                child: (eventDetails.isTeam == false)
-                    ? eventDetails.prizeMoney != null && eventDetails.prizeMoney != 0
-                        ? children[0]
-                        : (SizedBox(
-                            height: height,
-                            width: width,
-                          ))
-                    : detailBox(Icons.person, "Team Size",
-                        eventDetails.teamSize.toString(), height, width),
+                child: 
+                children.length > 0 ? children[0] : SizedBox(height:height,width:width),
+                
+                // (eventDetails.isTeam == false)
+                //     ? eventDetails.prizeMoney != null && eventDetails.prizeMoney != 0
+                //         ? children[0]
+                //         : (SizedBox(
+                //             height: height,
+                //             width: width,
+                //           ))
+                //     : detailBox(Icons.person, "Team Size",
+                //         eventDetails.teamSize.toString(), height, width),
               ),
             ],
           ),
@@ -86,7 +96,8 @@ Widget getEventDetails(
                     ),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(8, 8, 8, 0),
-                      child: SizedBox(
+                      child: children.length > 2 ? children[2] :
+                      SizedBox(
                         height: height,
                         width: width,
                       ),
