@@ -13,28 +13,4 @@ var NewsData = [
     date: "27 Oct",
     time: '5:30 PM',
   ),
-  News(
-    id: 2,
-    title: 'Debugger: debug your way through faulty code',
-    desc:
-        "Ever been in a mess of faulty codes, scratching your brains to clear out the bugs ? Well we have someth..",
-    image:
-        'https://s3-alpha-sig.figma.com/img/25da/736e/831c9e4847170e046c118db85f3c6e73?Expires=1672617600&Signature=EixmCv6KJNdym94qYDq4A3VCHMEeo-TZncJYp~YAMxFub5Tj~nifbKuC8oW7ZSVkGkY6Dri4cEARXmIb0YHInwUb0jX9E3Vjbcpribp22bpaE1nTlPVMkP4gNLl0dypQHQ5rWss2GvL8Cxsx8Z08X5xdC7du~Is27g3eNqYusMviD4aBVT~SqfKWiXk1ZqyhqgMOI4ESINDvOlTFJvxFCjP-b47XM-SqOAy61Sq9EWWwGminBxhMmiGwXjEPyFhKUMjU2fWCc0kWk3b1JK4VWd8tqPeB-mYIYeooJc1CbYwc6M0riaT7zMaNruGJjy3hBN6BSv-Kc1gEtGgYmuPrSw__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4',
-    button: 'Register Now',
-    link: 'true',
-    date: "27 Oct",
-    time: '5:30 PM',
-  ),
-  News(
-    id: 3,
-    title: 'Debugger: debug your way through faulty code',
-    desc:
-        "Ever been in a mess of faulty codes, scratching your brains to clear out the bugs ? Well we have someth..",
-    image:
-        'https://s3-alpha-sig.figma.com/img/e9e4/d8c2/b1dfbb8af16328533da4aa51f080832d?Expires=1672617600&Signature=MF6u6ZqbFUY4s8h217RP3S16ZbfG9ywfiyenMzLWOLak~PCkGFj3h1BozyW4342pNsWwkOg3DDUF4EjmE5dj2TyNXyEynbssi~aE4UnlQzNL4PhGbtz6qmNrbjkpqzIKnvSmXgRwJvhQFMNIyjToQgzPGXtMR3ZTbfdKPkiVfO52Z2RnwqciirM91AV75TU92Imt-3ooaY8sk98SkJiv8IrcYWIfNmK64lAN3E0~fUH7tl-kMJdTH8J04pSMtsTK3FYfpy797lsjCefQY0J5yxSaBpIz3F0BBtHXXLxzOdp8KIggu9PqH6GFIsl9MrYH-UDgyZz2FUiV1gPWoWiBBw__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4',
-    button: 'Register Now',
-    link: 'true',
-    date: "27 Oct",
-    time: '5:30 PM',
-  ),
 ];
