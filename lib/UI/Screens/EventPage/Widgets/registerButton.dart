@@ -851,7 +851,9 @@ class _RegisterButtonState extends State<RegisterButton> {
         buttonText = (widget.eventDetails.entryFee == null ||
                 widget.eventDetails.entryFee == 0)
             ? 'Register'
-            : 'Register for ₹ ${widget.eventDetails.entryFee}';
+            : 'Register'
+            // : 'Register for ₹ ${widget.eventDetails.entryFee}'
+            ;
         buttonColor = primaryColor;
       } else {
         buttonText = "Registration Closed";
