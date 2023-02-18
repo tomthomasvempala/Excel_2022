@@ -8,6 +8,7 @@ import 'package:excelapp/Services/API/api_config.dart';
 import 'package:excelapp/Services/API/events_api.dart';
 import 'package:excelapp/Services/API/registration_api.dart';
 import 'package:excelapp/UI/Components/AlertDialog/alertDialog.dart';
+import 'package:excelapp/UI/Components/LoadingUI/loadingAnimation.dart';
 import 'package:excelapp/UI/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -245,31 +246,33 @@ class _CreateTeamPageState extends State<CreateTeamPage> {
                   ),
                 ),
                 SizedBox(height: 50),
-                InkWell(
-                          onTap: isLoading
+                SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.8,
+                  height: 60,
+                  child: TextButton(
+                    style: TextButton.styleFrom(
+                      backgroundColor: primaryColor,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(50),
+                      ),
+                    ),
+                    onPressed: isLoading
                         ? null
                         : () {
                             onSubmit();
                           },
-                          child: Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(50),
-                              color: primaryColor,
-                            ),
-                            // width: MediaQuery.of(context).size.width * 0.4,
-                            height: 60,
-                            child: Center(
-                              child: Text(
-                                "Submit",
-                                style: TextStyle(
-                                    fontFamily: "mulish",
-                                    fontSize: 14,
-                                    color: Color.fromARGB(255, 251, 255, 255),
-                                    fontWeight: FontWeight.w700),
-                              ),
-                            ),
-                          ),
-                        ),
+                    child: isLoading
+                      ? LoadingAnimation(color: Colors.white)
+                      : Text(
+                      "Submit",
+                      style: TextStyle(
+                          fontFamily: "mulish",
+                          fontSize: 14,
+                          color: Color.fromARGB(255, 251, 255, 255),
+                          fontWeight: FontWeight.w700),
+                      ),
+                    ),
+                ),
                 SizedBox(height: 100),
               ],
             ),
