@@ -34,7 +34,7 @@ Widget ContactUsModal(context) {
                 children: [
                   InkWell(
                     onTap: () {
-                      launch('tel:8547588532');
+                      launch('tel:+918921545611');
                     },
                     child: Container(
                       decoration: BoxDecoration(
