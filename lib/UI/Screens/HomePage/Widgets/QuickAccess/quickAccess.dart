@@ -49,10 +49,13 @@ class _QuickAccessBarState extends State<QuickAccessBar> {
           children: [
             OutlinedButton(
               // onLongPress: () async {
-              //   await HiveDB.storeData(valueName: 'notifications', value: null);
-              //   await HiveDB.storeData(
-              //       valueName: 'unread_notifications', value: true);
-              //       print('done');
+              //   // await HiveDB.storeData(valueName: 'notifications', value: null);
+              //   // await HiveDB.storeData(
+              //   //     valueName: 'unread_notifications', value: true);
+              //   //     print('done');
+              //   // SharedPreferences prefs = await SharedPreferences.getInstance();
+              //   // prefs.setBool('firstTime',true);
+              //   // print('done');
               // },
               onPressed: () {
                 (modalSheet != null)
@@ -114,13 +117,12 @@ class _QuickAccessBarState extends State<QuickAccessBar> {
                 OutlinedButton(
                   onPressed: () {
                     Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => NotificationsPage())).then((value) {
-                              setState(() {
-                                
-                              });
-                            });
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => NotificationsPage()))
+                        .then((value) {
+                      setState(() {});
+                    });
                   },
                   child: FaIcon(
                     Icons.notifications_none_outlined,
@@ -140,7 +142,7 @@ class _QuickAccessBarState extends State<QuickAccessBar> {
                     future:
                         HiveDB.retrieveData(valueName: 'unread_notifications'),
                     builder: (context, snapshot) {
-                      if (snapshot.hasData && snapshot.data >0 )
+                      if (snapshot.hasData && snapshot.data > 0)
                         return Transform.translate(
                           offset: Offset(22, -22),
                           child: Container(

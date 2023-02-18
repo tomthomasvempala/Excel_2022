@@ -96,7 +96,7 @@ class NotificationsPage extends StatelessWidget {
               );
             } else if (snapshot.hasError) {
               {
-                return Center(child: Text("Something went wrong"));
+                return Center(child: Text("Seems like you have no new notifcations"));
               }
             }
 

@@ -1,10 +1,6 @@
 import 'package:excelapp/UI/Screens/HomePage/Widgets/Drawer/drawer.dart';
 import 'package:excelapp/UI/constants.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class CampusAmbassador extends StatelessWidget {
   const CampusAmbassador({Key key}) : super(key: key);

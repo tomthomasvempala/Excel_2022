@@ -16,7 +16,7 @@ Widget page(context) {
         Column(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
       Lottie.asset('assets/mascot.json'),
       Text(
-        'Welcome to Excel 2022',
+        'Hi! I\'m AEVA',
         style: TextStyle(
           color: Color(0xff1C1F20),
           fontSize: 20,
@@ -106,7 +106,7 @@ Widget lastPage(context) {
       Padding(
         padding: EdgeInsets.fromLTRB(0, 40, 0, 0),
         child: Text(
-          'Welcome to Excel 2022',
+          'Let\'s get into it!',
           style: TextStyle(
             color: Color(0xff1C1F20),
             fontSize: 20,
