@@ -1,6 +1,6 @@
 name: excelapp
 description: The Official App of the tech fest of Govt. Model Engineering College.
-version: 2.0.0+16
+version: 2.0.0+17
 
 environment:
   sdk: ">=2.2.0 <3.0.0"
@@ -21,7 +21,7 @@ dependencies:
   hive: ^2.2.3
   social_share: ^2.3.1
   firebase_messaging: ^14.2.2
-  flutter_local_notifications: ^9.3.2
+  flutter_local_notifications: ^9.3.2 
  
   # UI
   shimmer: ^2.0.0

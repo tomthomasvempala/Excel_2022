@@ -158,7 +158,7 @@ class ScheduleEvent extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  eventSchedule.name ?? "",
+                                  eventSchedule.name + (eventSchedule.round != null ? " (${eventSchedule.round})": "") ?? "",
                                   style: TextStyle(
                                       fontWeight: FontWeight.w800,
                                       fontSize: 14),
