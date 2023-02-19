@@ -81,19 +81,19 @@ class HighlightsCard extends StatelessWidget {
                                 ),
                               ],
                             ),
-                            Padding(
-                              padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
-                              child: IconButton(
-                                onPressed: (){
+                            // Padding(
+                            //   padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
+                            //   child: IconButton(
+                            //     onPressed: (){
 
-                                },
-                                icon: Icon(
-                                  Icons.arrow_forward,
-                                  color: Colors.white,
-                                  size: 30.0,
-                                ),
-                              ),
-                            )
+                            //     },
+                            //     icon: Icon(
+                            //       Icons.arrow_forward,
+                            //       color: Colors.white,
+                            //       size: 30.0,
+                            //     ),
+                            //   ),
+                            // )
                           ],
                         ),
                       )
