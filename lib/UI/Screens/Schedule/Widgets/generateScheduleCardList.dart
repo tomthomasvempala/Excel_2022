@@ -138,12 +138,12 @@ class ScheduleEvent extends StatelessWidget {
                                             //event.icon,
                                             width: 31.5,
                                             height: 31.5,
-                                          ))
+                                            fit: BoxFit.contain))
                                         : CachedNetworkImage(
                                             imageUrl: eventSchedule.icon,
                                             width: 31.5,
                                             height: 31.5,
-                                            fit: BoxFit.cover,
+                                            fit: BoxFit.contain,
                                           ),
                               ),
                             ),
@@ -158,7 +158,11 @@ class ScheduleEvent extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  eventSchedule.name + (eventSchedule.round != null ? " (${eventSchedule.round})": "") ?? "",
+                                  eventSchedule.name +
+                                          (eventSchedule.round != null
+                                              ? " (${eventSchedule.round})"
+                                              : "") ??
+                                      "",
                                   style: TextStyle(
                                       fontWeight: FontWeight.w800,
                                       fontSize: 14),
