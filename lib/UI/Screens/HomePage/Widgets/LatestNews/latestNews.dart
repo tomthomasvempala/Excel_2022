@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:excelapp/Models/latest_news.dart';
+import 'package:excelapp/Services/API/news_api.dart';
 import 'package:excelapp/UI/Screens/HomePage/Widgets/LatestNews/data.dart';
 import 'package:excelapp/UI/constants.dart';
 import 'package:excelapp/UI/Screens/HomePage/Widgets/LatestNews/LatestNews_card.dart';
@@ -18,11 +19,12 @@ class _LatestNewsSectionState extends State<LatestNewsSection> {
   List<News> news;
   bool dataLoaded = false;
   fetchfromNet() async {
-    // var dataFromNet = await fetchAndStoreEventsFromNet();
-    // if (!dataLoaded || dataFromNet != "error") {
-    //estream.add(dataFromNet);
-    estream.add(NewsData);
-    dataLoaded = true;
+    var dataFromNet = await fetchAndStoreNewsFromNet();
+    if (!dataLoaded || dataFromNet != "error") {
+      estream.add(dataFromNet);
+    }
+    // estream.add(NewsData);
+    // dataLoaded = true;
   }
 
   @override
@@ -65,11 +67,11 @@ class _LatestNewsSectionState extends State<LatestNewsSection> {
           StreamBuilder(
               stream: estream.stream,
               builder: (context, snapshot) {
+                print(snapshot.data);
                 if (snapshot.data == "error")
                   return Container(
-                    color: Color(0xffeeeeee),
                     margin: EdgeInsets.symmetric(horizontal: 20),
-                    padding: EdgeInsets.symmetric(vertical: 40, horizontal: 20),
+                    padding: EdgeInsets.symmetric(vertical: 50, horizontal: 20),
                     child: Center(
                       child: Column(
                         children: <Widget>[
@@ -89,7 +91,8 @@ class _LatestNewsSectionState extends State<LatestNewsSection> {
                               "Retry",
                               style: TextStyle(color: Colors.white),
                             ),
-                          )
+                          ),
+                          SizedBox(height: 50,)
                         ],
                       ),
                     ),
