@@ -39,7 +39,8 @@ class _HomePageState extends State<HomePage> {
 
               Discover(),
               CampusAmbassador(),
-              LatestNewsSection(),
+              SizedBox(height: 60,)
+              // LatestNewsSection(),
               // Categories(),
               // SocialIcons(),
             ],
