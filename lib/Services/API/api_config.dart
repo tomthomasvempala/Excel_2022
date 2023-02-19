@@ -5,6 +5,7 @@ class APIConfig {
    static final String baseUrl = 'https://eventbackend-xgveswperq-uc.a.run.app/api/';
    static final String teamUrl = 'https://excel-team-backend.vercel.app/api/';
    static final String cabaseUrl = 'https://campus-ambassador-backend-xgveswperq-el.a.run.app/';
+   static final String newsbaseUrl = 'https://excel-news-api.fly.dev/news/';
   //static final String baseUrl = 'https://events.excelmec.org/';
 
   static String getEndpoint(String category) {

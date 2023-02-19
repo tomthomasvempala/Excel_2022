@@ -1,45 +1,45 @@
 class News {
   int id;
   String title;
-  String desc;
+  String content;
   String image;
   String button;
   String link;
   String date;
-  String time;
+  String imageurl;
 
   News({
     this.id,
     this.title,
-    this.desc,
+    this.content,
     this.image,
     this.button,
     this.link,
     this.date,
-    this.time,
+    this.imageurl,
   });
 
   News.fromJson(json) {
     id = json['id'];
     title = json['title'];
-    desc = json['desc'];
+    content = json['content'];
     image = json['image'];
     button = json['button'];
     link = json['link'];
     date = json['date'];
-    time = json['time'];
+    imageurl = json['imageurl'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['id'] = this.id;
     data['title'] = this.title;
-    data['desc'] = this.desc;
+    data['content'] = this.content;
     data['image'] = this.image;
     data['button'] = this.button;
     data['link'] = this.link;
     data['date'] = this.date;
-    data['time'] = this.time;
+    data['imageurl'] = this.imageurl;
     return data;
   }
 }
