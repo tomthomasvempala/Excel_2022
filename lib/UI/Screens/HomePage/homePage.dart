@@ -3,7 +3,7 @@ import 'package:excelapp/UI/Screens/HomePage/Widgets/Highlights/highlights.dart'
 import 'package:excelapp/UI/Screens/HomePage/Widgets/home_appBar.dart';
 import 'package:flutter/material.dart';
 import 'package:excelapp/UI/Screens/HomePage/Widgets/QuickAccess/quickAccess.dart';
-
+import 'Widgets/LatestNews/latestNews.dart';
 import 'Widgets/CampusAmbassador/campusAmb.dart';
 
 class HomePage extends StatefulWidget {

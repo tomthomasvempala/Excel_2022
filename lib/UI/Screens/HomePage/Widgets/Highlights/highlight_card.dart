@@ -30,7 +30,7 @@ class HighlightsCard extends StatelessWidget {
                 image: DecorationImage(
                     image: CachedNetworkImageProvider((highlights.image != null)
                         ? highlights.image
-                        : "https://images.squarespace-cdn.com/content/v1/51cdafc4e4b09eb676a64e68/1540579572916-0BE4Z85H2A2Z6KWULBNG/character_head.jpg?format=2500w"),
+                        : "http://greatcatwalk.com/images/service2.jpg"),
                     fit: BoxFit.cover)),
             child: Stack(
               children: [

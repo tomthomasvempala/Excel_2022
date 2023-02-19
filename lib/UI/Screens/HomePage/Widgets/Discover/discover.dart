@@ -89,7 +89,7 @@ class Discover extends StatelessWidget {
                   onTap: () {
                     //other
                     
-                      myNavIndex.setIndextoExplore(1, 'all');
+                      myNavIndex.setIndextoExplore(1, 'general');
                   },
                   child: DiscoverButtons(
                     data: DiscoverButtonData[3],
