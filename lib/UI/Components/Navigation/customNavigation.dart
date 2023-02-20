@@ -35,10 +35,12 @@ class CustomNavigatorState extends State<CustomNavigator> {
 
   bool bottonNavHidden = false;
   // ExplorePage explorePage = ExplorePage(key: Key('A'), selectedPage: 1,selectedCategory: 'talks',);
-  ExplorePage explorePage = ExplorePage(key: Key('A'),);
+  ExplorePage explorePage = ExplorePage(
+    key: Key('A'),
+  );
   @protected
   void initState() {
-    selectedTab=0;
+    selectedTab = 0;
     hideBottomNav = () {
       setState(() {
         bottonNavHidden = true;
@@ -61,15 +63,14 @@ class CustomNavigatorState extends State<CustomNavigator> {
   //   }
   // }
 
-
   @override
   Widget build(BuildContext context) {
     final _myNavIndex = Provider.of<MyNavigationIndex>(context);
     return WillPopScope(
       onWillPop: () async {
-        FocusManager.instance.primaryFocus?.unfocus();  
-        if(_myNavIndex.getIndex!=0){
-          _myNavIndex.setIndex=0;
+        FocusManager.instance.primaryFocus?.unfocus();
+        if (_myNavIndex.getIndex != 0) {
+          _myNavIndex.setIndex = 0;
           return false;
         }
         return true;
@@ -88,40 +89,27 @@ class CustomNavigatorState extends State<CustomNavigator> {
         // return isFirstRouteInCurrentTab;
       },
       child: Scaffold(
-          extendBody: true,
-          body: 
-          IndexedStack(
-            index: _myNavIndex.getIndex,
-            children: [
-              HomePage(),
-              explorePage,
-              Schedule(),
-              CheckUserLoggedIn()
-          ],
-          
-          ),
-          // Stack(children: <Widget>[
-          //   _buildOffstageNavigator(TabItem.page1),
-          //   _buildOffstageNavigator(TabItem.page2),
-          //   _buildOffstageNavigator(TabItem.page3),
-          //   _buildOffstageNavigator(TabItem.page4),
-          // ]),
-          bottomNavigationBar: Visibility(
-            maintainState: true,
-            visible: bottonNavHidden ? false : true,
-            child: BottomNavigation(
-              selectedIndex: selectedTab,
-              onSelect: (i){
-                _myNavIndex.setIndex = i;
-                // selectedTab=i;
-                // setState(() {
-                // });
-              },
-            ),
-          ),
-          floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-          floatingActionButton: _buildFab(context, bottonNavHidden),
+        extendBody: true,
+        body: IndexedStack(
+          index: _myNavIndex.getIndex,
+          children: [HomePage(), explorePage, Schedule(), CheckUserLoggedIn()],
         ),
+        bottomNavigationBar: Visibility(
+          maintainState: true,
+          visible: bottonNavHidden ? false : true,
+          child: BottomNavigation(
+            selectedIndex: selectedTab,
+            onSelect: (i) {
+              _myNavIndex.setIndex = i;
+              // selectedTab=i;
+              // setState(() {
+              // });
+            },
+          ),
+        ),
+        // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        // floatingActionButton: _buildFab(context, bottonNavHidden),
+      ),
     );
   }
 

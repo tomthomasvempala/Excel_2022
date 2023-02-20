@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:excelapp/Models/latest_news.dart';
 import 'package:excelapp/Services/API/news_api.dart';
 import 'package:excelapp/UI/Screens/HomePage/Widgets/LatestNews/data.dart';
+import 'package:excelapp/UI/Themes/colors.dart';
 import 'package:excelapp/UI/constants.dart';
 import 'package:excelapp/UI/Screens/HomePage/Widgets/LatestNews/LatestNews_card.dart';
 import 'package:flutter/material.dart';
@@ -38,27 +39,26 @@ class _LatestNewsSectionState extends State<LatestNewsSection> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.all(16),
       child: Column(
         children: [
           Container(
-            margin: EdgeInsets.all(15),
+            margin: EdgeInsets.fromLTRB(24, 32, 28, 16),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Row(
                   children: [
-                    FaIcon(Icons.mic_none_outlined),
-                    SizedBox(width: 10),
+                    Image.asset("assets/icons/news.png", height: 24),
+                    SizedBox(width: 8),
                     Text("Latest News", style: headingStyle),
                   ],
                 ),
                 Text(
                   "from Excel 2022",
                   style: TextStyle(
-                      color: Color(0xff778585),
+                      color: black200,
                       fontWeight: FontWeight.w600,
-                      fontSize: 11,
+                      fontSize: 12,
                       fontFamily: pfontFamily),
                 ),
               ],
@@ -92,7 +92,9 @@ class _LatestNewsSectionState extends State<LatestNewsSection> {
                               style: TextStyle(color: Colors.white),
                             ),
                           ),
-                          SizedBox(height: 50,)
+                          SizedBox(
+                            height: 50,
+                          )
                         ],
                       ),
                     ),

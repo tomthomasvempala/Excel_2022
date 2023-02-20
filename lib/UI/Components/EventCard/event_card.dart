@@ -4,6 +4,7 @@ import 'package:excelapp/Services/API/events_api.dart';
 import 'package:excelapp/Services/API/favourites_api.dart';
 import 'package:excelapp/UI/Components/AlertDialog/alertDialog.dart';
 import 'package:excelapp/UI/Screens/EventPage/eventPage.dart';
+import 'package:excelapp/UI/Themes/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:excelapp/UI/constants.dart';
@@ -72,7 +73,7 @@ class _EventCardState extends State<EventCard> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(top: widget.first?15:0),
+      padding: EdgeInsets.only(top: widget.first ? 15 : 0),
       child: FutureBuilder(
           future: FavouritesAPI.isFavourited(widget.event.id),
           builder: (context, snapshot) => snapshot.hasData
@@ -118,57 +119,46 @@ _buildCard(
         margin: EdgeInsets.symmetric(horizontal: 15, vertical: 0),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(30),
-          border: Border.all(width: 0.5,color: Colors.black.withOpacity(0.1)),
+          border: Border.all(width: 0.5, color: Colors.black.withOpacity(0.1)),
           color: Colors.white,
         ),
-        child: Padding(
-          padding: EdgeInsets.fromLTRB(15, 20, 0, 20),
+        child: Container(
+          padding: EdgeInsets.fromLTRB(16, 24, 0, 20),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                Hero(
-                  tag: '${heroname}${event.id}',
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(21),
-                      color: Color.fromARGB(255, 14, 152, 232),
-                    ),
-                    child: Padding(
-                      padding: EdgeInsets.all(12.25),
-                      child: ClipRRect(
-                        //Change this to Image.network when image server is up
-                        // child: Image.asset(
-                        //   "assets/events/eventLogo.png",
-                        //   //event.icon,
-                        //   width: 31.5,
-                        //   height: 31.5,
-                        // ),
-                        child:(event.icon.startsWith("Microsoft"))?(
-                          Image.asset(
-                            "assets/events/eventLogo.png",
-                            //event.icon,
-                            width: 31.5,
-                            height: 31.5,
-                          )
-                        ): CachedNetworkImage(
-                          imageUrl: event.icon,
-                          width: 31.5,
-                          height: 31.5,
-                          fit: BoxFit.contain,
-                        ),
-                      ),
+              Hero(
+                tag: '${heroname}${event.id}',
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(21),
+                    color: Color.fromARGB(255, 14, 152, 232),
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.all(10),
+                    child: ClipRRect(
+                      child: (event.icon.startsWith("Microsoft"))
+                          ? (Image.asset(
+                              "assets/events/eventLogo.png",
+                              height: 32,
+                            ))
+                          : CachedNetworkImage(
+                              imageUrl: event.icon,
+                              height: 32,
+                            ),
                     ),
                   ),
                 ),
-                SizedBox(width: 20),
-                Container(
+              ),
+              SizedBox(width: 16),
+              Expanded(
+                flex: 1,
+                child: Container(
+                  padding: EdgeInsets.only(right: 16),
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Text(
                         event.name ?? "Event",
@@ -181,69 +171,56 @@ _buildCard(
                       SizedBox(
                         height: 5,
                       ),
-                      // FutureBuilder(
-                      //     future: Future.delayed(Duration(milliseconds: 1000),(){
-                      //       return "Event description. This was just a fake timer. Not API call.";
-                      //     }),
-                      //     // EventsAPI.fetchAndStoreEventDetailsFromNet(
-                      //     //     event.id),
-                      //     builder: (context, snapshot) {
-                      //       if (snapshot.hasData) {
-                      //         return SizedBox(
-                      //           width: MediaQuery.of(context).size.width * 0.46,
-                      //           child: Text(
-                      //             snapshot.data
-                      //                         .toString()
-                      //                         .replaceAll("<br/>", "")
-                      //                         .substring(
-                      //                             0,
-                      //                             snapshot.data
-                      //                                         .toString()
-                      //                                         .length >
-                      //                                     50
-                      //                                 ? 50
-                      //                                 : snapshot.data
-                      //                                     .toString()
-                      //                                     .length) +
-                      //                     "..." ??
-                      //                 "Event Description",
-                      //             style: TextStyle(
-                      //                 color: Color.fromARGB(255, 119, 133, 133),
-                      //                 fontWeight: FontWeight.w500,
-                      //                 fontFamily: "mulish",
-                      //                 fontSize: 11),
-                      //           ),
-                      //         );
-                      //       } else {
-                      //         return SizedBox(
-                      //           width: MediaQuery.of(context).size.width * 0.46,
-                      //           child: Shimmer.fromColors(
-                      //             baseColor: Color.fromARGB(255, 238, 240, 240),
-                      //             highlightColor:
-                      //                 Color.fromARGB(255, 255, 255, 255),
-                      //             child: Container(
-                      //               height: 10,
-                      //               width: 100,
-                      //               color: Colors.white,
-                      //             ),
-                      //           ),
-                      //         );
-                      //       }
-                      //     }),
+                      FutureBuilder(
+                        future:
+                            EventsAPI.fetchAndStoreEventDetailsFromNet(event.id),
+                        builder: (context, snapshot) {
+                          if (snapshot.hasData && !(snapshot.data is String)) {
+                            return SizedBox(
+                              width: MediaQuery.of(context).size.width * 0.46,
+                              child: Text(
+                                snapshot.data.about
+                                        .toString()
+                                        .replaceAll("<br/>", " ") ??
+                                    "Event Description",
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyle(
+                                    color: Color.fromARGB(255, 119, 133, 133),
+                                    fontWeight: FontWeight.w500,
+                                    fontFamily: "mulish",
+                                    fontSize: 11),
+                              ),
+                            );
+                          } else {
+                            return Shimmer.fromColors(
+                                baseColor: Color.fromARGB(255, 238, 240, 240),
+                                highlightColor:
+                                    Color.fromARGB(255, 255, 255, 255),
+                                child: Container(
+                                  height: 10,
+                                  width: 100,
+                                  color: Colors.white,
+                                ),
+                              
+                            );
+                          }
+                        },
+                      ),
                       SizedBox(height: 10),
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(50),
-                                color: Color.fromARGB(255, 215, 245, 245),
-                              ),
-                              child: Padding(
-                                  padding: EdgeInsets.fromLTRB(16, 6, 16, 6),
-                                  child: InkWell(
-                                    onTap: () {
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(50),
+                              color: Color.fromARGB(255, 215, 245, 245),
+                            ),
+                            child: Padding(
+                              padding: EdgeInsets.fromLTRB(16, 8, 16, 8),
+                              child: InkWell(
+                                onTap: () {
                                       Navigator.push(
                                           context,
                                           MaterialPageRoute(
@@ -253,18 +230,19 @@ _buildCard(
                                                     getFavouritedStatus();
                                                   });
                                     },
-                                    child: Container(
-                                      child: Text(
-                                        'View',
-                                        style: TextStyle(
-                                            color: Color.fromARGB(
-                                                255, 14, 152, 232),
-                                            fontWeight: FontWeight.w700,
-                                            fontFamily: "mulish",
-                                            fontSize: 11),
-                                      ),
-                                    ),
-                                  ))),
+                                child: Container(
+                                  child: Text(
+                                    'View',
+                                    style: TextStyle(
+                                        color: Color.fromARGB(255, 14, 152, 232),
+                                        fontWeight: FontWeight.w700,
+                                        fontFamily: "mulish",
+                                        fontSize: 11),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
                           SizedBox(width: 10),
                           InkWell(
                             onTap: () {
@@ -295,16 +273,15 @@ _buildCard(
                                       color: Color(0xffECF4F5),
                                     ),
                                     child: Padding(
-                                        padding: EdgeInsets.all(10),
-                                        child: (data)
-                                            ? FaIcon(
-                                                FontAwesomeIcons.solidHeart,
-                                                color: Colors.redAccent,
-                                                size: 20)
-                                            : FaIcon(FontAwesomeIcons.heart,
-                                                color: Color.fromARGB(
-                                                    255, 179, 193, 197),
-                                                size: 20)),
+                                      padding: EdgeInsets.all(10),
+                                      child: (data)
+                                          ? FaIcon(FontAwesomeIcons.solidHeart,
+                                              color: Colors.redAccent, size: 20)
+                                          : FaIcon(FontAwesomeIcons.heart,
+                                              color: Color.fromARGB(
+                                                  255, 179, 193, 197),
+                                              size: 18),
+                                    ),
                                   ),
                           ),
                         ],
@@ -312,31 +289,29 @@ _buildCard(
                     ],
                   ),
                 ),
-              ]),
+              ),
               Container(
                 decoration: BoxDecoration(
-                    color: Color.fromARGB(255, 230, 255, 234),
+                    color: green100,
                     borderRadius: BorderRadiusDirectional.only(
                         topStart: Radius.circular(24),
                         bottomStart: Radius.circular(24))),
                 child: Padding(
-                  padding: EdgeInsets.all(10),
+                  padding: EdgeInsets.fromLTRB(14,12,12,12),
                   child: Column(
                     children: [
                       Text(
-                        new DateFormat.MMM().format(
-                            DateTime.parse(event.date)),
+                        new DateFormat.MMM().format(DateTime.parse(event.date)),
                         style: TextStyle(
-                            color: Color.fromARGB(255, 7, 131, 131),
+                            color: green600,
                             fontWeight: FontWeight.w800,
                             fontFamily: "mulish",
                             fontSize: 11),
                       ),
                       Text(
-                        new DateFormat.d().format(
-                            DateTime.parse(event.date)),
+                        new DateFormat.d().format(DateTime.parse(event.date)),
                         style: TextStyle(
-                            color: Color.fromARGB(255, 18, 221, 197),
+                            color: green500,
                             fontWeight: FontWeight.w800,
                             fontFamily: "mulish",
                             fontSize: 18),

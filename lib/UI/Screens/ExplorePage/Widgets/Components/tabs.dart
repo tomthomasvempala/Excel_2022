@@ -23,14 +23,14 @@ class _FilterTabState extends State<FilterTab> {
             ,border: Border.all(color: ExcelTheme.aevaDark.withOpacity(0.1))
           ),
           child: Padding(
-            padding: EdgeInsets.fromLTRB(18,18,18,18),
+            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
             child: Align(
               alignment: Alignment.center,
               child: Text(
               widget.text,
                 style: TextStyle(
                     fontFamily: "mulish",
-                    fontSize: 11,
+                    fontSize: 12,
                     color:widget.isSelected? Colors.white : Colors.black,
                     fontWeight: FontWeight.w700),
               ),

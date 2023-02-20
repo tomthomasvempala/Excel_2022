@@ -6,7 +6,6 @@ class CompetitionsCardList extends StatefulWidget {
   final String txtQuery;
   const CompetitionsCardList({Key key, this.txtQuery}) : super(key: key);
 
-
   @override
   State<CompetitionsCardList> createState() => _CompetitionsCardListState();
 }
@@ -25,14 +24,16 @@ class _CompetitionsCardListState extends State<CompetitionsCardList>
   @override
   Widget build(BuildContext context) {
     print(selectedCategory);
-    return Container(
-      alignment: Alignment.topCenter,
-      child: Column(
-        children: [
-          SizedBox(height: 7),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8.0),
-            child: Row(
+    return SingleChildScrollView(
+      physics: BouncingScrollPhysics(),
+      child: Container(
+        alignment: Alignment.topCenter,
+        child: Column(
+          children: [
+            SizedBox(height: 16),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: tabs
                     .map((tabItem) => FilterTab(
@@ -44,13 +45,16 @@ class _CompetitionsCardListState extends State<CompetitionsCardList>
                             });
                           },
                         ))
-                    .toList()),
-          ),
-          SizedBox(height: 10),
-          Flexible(
-            child: AllCompetitions(category: selectedCategory, txtQuery: widget.txtQuery),
-          )
-        ],
+                    .toList(),
+              ),
+            ),
+            SizedBox(height: 20),
+            AllCompetitions(
+              category: selectedCategory,
+              txtQuery: widget.txtQuery,
+            ),
+          ],
+        ),
       ),
     );
   }

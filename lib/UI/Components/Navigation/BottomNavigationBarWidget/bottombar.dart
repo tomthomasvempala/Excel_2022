@@ -10,7 +10,7 @@ class FABBottomAppBar extends StatefulWidget {
   FABBottomAppBar({
     this.items,
     this.centerItemText,
-    this.height: 60.0,
+    this.height: 72.0,
     this.iconSize: 24.0,
     this.backgroundColor,
     this.color,
@@ -57,10 +57,13 @@ class FABBottomAppBarState extends State<FABBottomAppBar> {
 
     return BottomAppBar(
       shape: widget.notchedShape,
-      child: Row(
-        mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: items,
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        child: Row(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: items,
+        ),
       ),
       color: widget.backgroundColor,
     );
@@ -68,10 +71,10 @@ class FABBottomAppBarState extends State<FABBottomAppBar> {
 
   Widget _buildMiddleTabItem() {
     return Expanded(
-      child: SizedBox(
-        height: widget.height,
+      child: Padding(
+        padding: EdgeInsets.all(16),
         child: Column(
-          mainAxisSize: MainAxisSize.min,
+          mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             SizedBox(height: widget.iconSize),

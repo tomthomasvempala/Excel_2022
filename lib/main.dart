@@ -5,7 +5,6 @@ import 'package:provider/provider.dart';
 
 import 'Services/Notifications/firebase_messaging.dart';
 
-
 void main() async {
   Provider.debugCheckInvalidValueType = null;
   await initiliaseNotificationServices();
@@ -13,7 +12,6 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
-  
   @override
   Widget build(BuildContext context) {
     // Locks Device Orientation
@@ -23,7 +21,11 @@ class MyApp extends StatelessWidget {
     ]);
     // Set status bar color
     SystemChrome.setSystemUIOverlayStyle(
-        SystemUiOverlayStyle(statusBarColor: Color(0x07000033)));
+      SystemUiOverlayStyle(
+        statusBarIconBrightness: Brightness.dark,
+        statusBarColor: Color(0x07000033),
+      ),
+    );
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Excel 2022',
