@@ -21,7 +21,8 @@ class Event {
     id = json['id'];
     name = json['name'];
     icon = json['icon'];
-    desc = json['desc'];
+    desc = json['about'];
+    // desc = 'Hey';
     category = json['category'];
     eventType = json['eventType'];
     date = json['datetime'];

@@ -15,7 +15,7 @@ class EventCard extends StatefulWidget {
   final Event event;
   final bool first;
   final String heroname;
-  EventCard(this.event,{this.first=false,this.heroname='profileIcon'});
+  EventCard(this.event, {this.first = false, this.heroname = 'profileIcon'});
 
   @override
   State<EventCard> createState() => _EventCardState();
@@ -112,7 +112,7 @@ _buildCard(
     Function deleteFromFavourites,
     bool isLoading,
     bool likeState,
-    String heroname){
+    String heroname) {
   return Column(
     children: [
       Container(
@@ -141,11 +141,13 @@ _buildCard(
                       child: (event.icon.startsWith("Microsoft"))
                           ? (Image.asset(
                               "assets/events/eventLogo.png",
-                              height: 32,
+                              height: 33,
+                              width: 33,
                             ))
                           : CachedNetworkImage(
                               imageUrl: event.icon,
-                              height: 32,
+                              height: 33,
+                              width: 33,
                             ),
                     ),
                   ),
@@ -171,17 +173,13 @@ _buildCard(
                       SizedBox(
                         height: 5,
                       ),
-                      FutureBuilder(
-                        future:
-                            EventsAPI.fetchAndStoreEventDetailsFromNet(event.id),
-                        builder: (context, snapshot) {
-                          if (snapshot.hasData && !(snapshot.data is String)) {
-                            return SizedBox(
+                      event.desc != null
+                          ? SizedBox(
                               width: MediaQuery.of(context).size.width * 0.46,
                               child: Text(
-                                snapshot.data.about
+                                event.desc
                                         .toString()
-                                        .replaceAll("<br/>", " ") ??
+                                        .replaceAll(RegExp('<[^>]*>'), '') ??
                                     "Event Description",
                                 maxLines: 2,
                                 overflow: TextOverflow.ellipsis,
@@ -191,22 +189,44 @@ _buildCard(
                                     fontFamily: "mulish",
                                     fontSize: 11),
                               ),
-                            );
-                          } else {
-                            return Shimmer.fromColors(
-                                baseColor: Color.fromARGB(255, 238, 240, 240),
-                                highlightColor:
-                                    Color.fromARGB(255, 255, 255, 255),
-                                child: Container(
-                                  height: 10,
-                                  width: 100,
-                                  color: Colors.white,
-                                ),
-                              
-                            );
-                          }
-                        },
-                      ),
+                            )
+                          : Container(),
+                      // FutureBuilder(
+                      //   future:
+                      //       EventsAPI.fetchAndStoreEventDetailsFromNet(event.id),
+                      //   builder: (context, snapshot) {
+                      //     if (snapshot.hasData && !(snapshot.data is String)) {
+                      //       return SizedBox(
+                      //         width: MediaQuery.of(context).size.width * 0.46,
+                      //         child: Text(
+                      //           snapshot.data.about
+                      //                   .toString()
+                      //                   .replaceAll("<br/>", " ") ??
+                      //               "Event Description",
+                      //           maxLines: 2,
+                      //           overflow: TextOverflow.ellipsis,
+                      //           style: TextStyle(
+                      //               color: Color.fromARGB(255, 119, 133, 133),
+                      //               fontWeight: FontWeight.w500,
+                      //               fontFamily: "mulish",
+                      //               fontSize: 11),
+                      //         ),
+                      //       );
+                      //     } else {
+                      //       return Shimmer.fromColors(
+                      //           baseColor: Color.fromARGB(255, 238, 240, 240),
+                      //           highlightColor:
+                      //               Color.fromARGB(255, 255, 255, 255),
+                      //           child: Container(
+                      //             height: 10,
+                      //             width: 100,
+                      //             color: Colors.white,
+                      //           ),
+
+                      //       );
+                      //     }
+                      //   },
+                      // ),
                       SizedBox(height: 10),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.start,
@@ -221,20 +241,22 @@ _buildCard(
                               padding: EdgeInsets.fromLTRB(16, 8, 16, 8),
                               child: InkWell(
                                 onTap: () {
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  EventPage(event.id,heroname:heroname,))).then((value) {
-
-                                                    getFavouritedStatus();
-                                                  });
-                                    },
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => EventPage(
+                                                event.id,
+                                                heroname: heroname,
+                                              ))).then((value) {
+                                    getFavouritedStatus();
+                                  });
+                                },
                                 child: Container(
                                   child: Text(
                                     'View',
                                     style: TextStyle(
-                                        color: Color.fromARGB(255, 14, 152, 232),
+                                        color:
+                                            Color.fromARGB(255, 14, 152, 232),
                                         fontWeight: FontWeight.w700,
                                         fontFamily: "mulish",
                                         fontSize: 11),
@@ -297,7 +319,7 @@ _buildCard(
                         topStart: Radius.circular(24),
                         bottomStart: Radius.circular(24))),
                 child: Padding(
-                  padding: EdgeInsets.fromLTRB(14,12,12,12),
+                  padding: EdgeInsets.fromLTRB(14, 12, 12, 12),
                   child: Column(
                     children: [
                       Text(

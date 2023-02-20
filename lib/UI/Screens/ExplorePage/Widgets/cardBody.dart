@@ -25,7 +25,7 @@ class CardBody extends StatelessWidget {
       shrinkWrap: true,
       itemCount: eventsMap.length,
       itemBuilder: (context, index) {
-        return EventCard(eventsMap[index]);
+        return EventCard(eventsMap[index],heroname: 'eventIcon',);
       },
     );
   }
