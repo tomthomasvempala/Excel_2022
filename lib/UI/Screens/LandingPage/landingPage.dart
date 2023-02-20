@@ -47,7 +47,7 @@ class _LandingPageState extends State<LandingPage> {
             context,
             data[2]["title"],
             data[2]["description"],
-            Image.asset('assets/ui.jpeg', height: 240),
+            Image.asset('assets/rocket.png', height: 240),
             extra: CTAButton(context),
           ),
         ),

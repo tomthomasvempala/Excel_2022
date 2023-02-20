@@ -62,7 +62,7 @@ flutter:
   assets:
   - assets/BG 2.jpg
   - assets/mascot.json
-  - assets/ui.jpeg
+  - assets/rocket.png
   - assets/qrcode.png
   - assets/divider_design.png
   - assets/excel logo.png
