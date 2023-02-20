@@ -2,6 +2,8 @@ import 'package:excelapp/Services/Database/hive_operations.dart';
 import 'package:excelapp/UI/Screens/HomePage/Widgets/Notifications/notifications.dart';
 import 'package:excelapp/UI/Screens/HomePage/Widgets/QuickAccess/modals/contactUsModal.dart';
 import 'package:excelapp/UI/Screens/HomePage/Widgets/QuickAccess/modals/reachUsModal.dart';
+import 'package:excelapp/UI/Screens/HomePage/Widgets/aboutExcel.dart';
+import 'package:excelapp/UI/Themes/colors.dart';
 import 'package:excelapp/UI/Themes/profile_themes.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -17,9 +19,9 @@ class QuickAccessBar extends StatefulWidget {
 
 class _QuickAccessBarState extends State<QuickAccessBar> {
   final labelStyle = TextStyle(
-    color: primaryColor,
+    color: black300,
     fontFamily: pfontFamily,
-    fontSize: 13,
+    fontSize: 12,
     fontWeight: FontWeight.w500,
     //shadows: [Shadow(blurRadius: 10, color: primaryColor)],
   );
@@ -29,17 +31,21 @@ class _QuickAccessBarState extends State<QuickAccessBar> {
     return Container(
       child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
         //quickAccessButton(context, FontAwesomeIcons.qrcode, "Scan QR", null),
-        quickAccessButton(context, Icons.phone_outlined, "Contact Us",
+        quickAccessButton(
+            context, "assets/excel logo.png", "About", AboutExcelPopUp(),
+            inverted: true),
+        quickAccessButton(context, "assets/icons/call.png", "Contact",
             ContactUsModal(context)),
-        quickAccessButton(context, Icons.location_on_outlined, "Reach Us",
+        quickAccessButton(context, "assets/icons/location.png", "Reach Us",
             ReachUsModal(context)),
         notificationButton(context),
       ]),
     );
   }
 
-  Widget quickAccessButton(BuildContext context, IconData iconName,
-      String buttonName, Widget modalSheet) {
+  Widget quickAccessButton(BuildContext context, String iconName,
+      String buttonName, Widget modalSheet,
+      {bool inverted = false}) {
     return Container(
         //decoration: BoxDecoration(color: Colors.brown),
         margin: EdgeInsets.fromLTRB(0, 5, 0, 5),
@@ -58,37 +64,32 @@ class _QuickAccessBarState extends State<QuickAccessBar> {
               //   // print('done');
               // },
               onPressed: () {
-                (modalSheet != null)
-                    ? showModalBottomSheet<dynamic>(
-                        isScrollControlled: true,
-                        useRootNavigator: true,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(40),
-                                topRight: Radius.circular(40))),
-                        constraints: BoxConstraints(
-                          minWidth: MediaQuery.of(context).size.width,
-                        ),
-                        context: context,
-                        builder: (context) =>
-                            Wrap(children: <Widget>[modalSheet]))
-                    : (buttonName == 'Notifs'
-                        ? Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => NotificationsPage()))
-                        : "");
+                showModalBottomSheet<dynamic>(
+                  isScrollControlled: true,
+                  useRootNavigator: true,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(40),
+                          topRight: Radius.circular(40))),
+                  constraints: BoxConstraints(
+                    minWidth: MediaQuery.of(context).size.width,
+                  ),
+                  context: context,
+                  builder: (context) => Wrap(children: <Widget>[modalSheet]),
+                );
               },
-              child: FaIcon(
-                iconName,
-                color: primaryColor,
-                size: 28,
-              ),
+              child: Image.asset(iconName, height: 28),
               style: ButtonStyle(
                   fixedSize: MaterialStateProperty.all(const Size(60, 60)),
-                  padding: MaterialStateProperty.all(const EdgeInsets.all(15)),
+                  padding: MaterialStateProperty.all(const EdgeInsets.all(16)),
+                  side: MaterialStateProperty.all(
+                    BorderSide(
+                      color: white300,
+                      width: 1.2,
+                    ),
+                  ),
                   backgroundColor:
-                      MaterialStateProperty.all(ProfileTheme.bgColor),
+                      MaterialStateProperty.all(inverted ? blue500 : white200),
                   shape: MaterialStateProperty.all(RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(25)))),
             ),
@@ -124,19 +125,23 @@ class _QuickAccessBarState extends State<QuickAccessBar> {
                       setState(() {});
                     });
                   },
-                  child: FaIcon(
-                    Icons.notifications_none_outlined,
-                    color: primaryColor,
-                    size: 28,
-                  ),
+                  child: Image.asset("assets/icons/notification.png", height: 28),
                   style: ButtonStyle(
-                      fixedSize: MaterialStateProperty.all(const Size(60, 60)),
-                      padding:
-                          MaterialStateProperty.all(const EdgeInsets.all(15)),
-                      backgroundColor:
-                          MaterialStateProperty.all(ProfileTheme.bgColor),
-                      shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(25)))),
+                    fixedSize: MaterialStateProperty.all(const Size(60, 60)),
+                    padding:
+                        MaterialStateProperty.all(const EdgeInsets.all(15)),
+                    backgroundColor: MaterialStateProperty.all(white200),
+                    side: MaterialStateProperty.all(
+                      BorderSide(
+                        color: white300,
+                        width: 1.2,
+                      ),
+                    ),
+                    shape: MaterialStateProperty.all(
+                      RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(25)),
+                    ),
+                  ),
                 ),
                 FutureBuilder(
                     future:

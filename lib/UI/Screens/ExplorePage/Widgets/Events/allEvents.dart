@@ -21,8 +21,7 @@ class _AllEventsState extends State<AllEvents> {
       events = EventsData.where((i) => i.isCompetition == false).toList();
     }
     if (widget.category == 'workshops') {
-      events =
-          EventsData.where((i) => i.eventType == "workshop").toList();
+      events = EventsData.where((i) => i.eventType == "workshop").toList();
     }
     if (widget.category == 'talks') {
       events = EventsData.where((i) => i.eventType == "talk").toList();
@@ -42,9 +41,11 @@ class _AllEventsState extends State<AllEvents> {
 
   @override
   void initState() {
-       final _myProvider =
+    final _myProvider =
         Provider.of<EventsAndCompetitionsProvider>(context, listen: false);
-    EventsData = _myProvider.dataList.where((element) => element.eventType!="competition").toList();
+    EventsData = _myProvider.dataList
+        .where((element) => element.eventType != "competition")
+        .toList();
     super.initState();
   }
 
@@ -52,11 +53,6 @@ class _AllEventsState extends State<AllEvents> {
   Widget build(BuildContext context) {
     filerbyCategory();
     filterbyTxtQuery();
-    return (Container(
-      child: Column(
-        children: [CardBody(eventsMap: events)
-        ],
-      ),
-    ));
+    return (CardBody(eventsMap: events));
   }
 }
