@@ -81,16 +81,21 @@ class _ExplorePageState extends State<ExplorePage>
     final _myNavIndex = Provider.of<MyNavigationIndex>(context);
     _tabcontroller.index = _myNavIndex.getExplorePageNumber;
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       backgroundColor: white200,
       body: Container(
         child: Column(
           children: [
             Container(
-              padding: const EdgeInsets.only(top: 16),
               color: white100,
+              padding: const EdgeInsets.only(top: 16),
               child: ClipRRect(
                 child: Column(
                   children: [
+                    SafeArea(
+                      bottom: false,
+                      child: Container(),
+                    ),
                     Padding(
                       padding: EdgeInsets.fromLTRB(30, 12, 30, 7),
                       child: TextField(
@@ -171,7 +176,7 @@ class _ExplorePageState extends State<ExplorePage>
                   builder: (context, snapshot) {
                     if (snapshot.data == "error")
                       return Container(
-                        color: Color(0xffeeeeee),
+                        color: white200,
                         margin: EdgeInsets.symmetric(horizontal: 20),
                         padding:
                             EdgeInsets.symmetric(vertical: 40, horizontal: 20),

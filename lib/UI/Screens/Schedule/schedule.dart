@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../Providers/scheduleProvider.dart';
+import '../../Themes/colors.dart';
 
 class Schedule extends StatefulWidget {
   @override
@@ -42,6 +43,11 @@ class _ScheduleState extends State<Schedule> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: white100,
+        toolbarHeight: 0,
+        elevation: 0,
+      ),
       body: StreamBuilder(
         stream: estream.stream,
         builder: (context, snapshot) {

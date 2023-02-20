@@ -16,6 +16,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       backgroundColor: white100,
       body: Container(
         color: white100,
@@ -26,6 +27,10 @@ class _HomePageState extends State<HomePage> {
             color: white200,
             child: Column(
               children: <Widget>[
+                SafeArea(
+                    bottom: false,
+                    child: Container(),
+                  ),
                 Container(
                   child: Column(
                     children: [
@@ -38,7 +43,6 @@ class _HomePageState extends State<HomePage> {
                     color: white100,
                     border:
                         Border(bottom: BorderSide(color: white300, width: 1.2)),
-                        
                   ),
                 ),
                 Discover(),

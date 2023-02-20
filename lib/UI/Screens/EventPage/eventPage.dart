@@ -6,6 +6,7 @@ import 'package:excelapp/UI/Screens/EventPage/Widgets/eventPageBody.dart';
 import 'package:provider/provider.dart';
 
 import '../../../Services/API/favourites_api.dart';
+import '../../Themes/colors.dart';
 
 class EventPage extends StatefulWidget {
   final int eventId;
