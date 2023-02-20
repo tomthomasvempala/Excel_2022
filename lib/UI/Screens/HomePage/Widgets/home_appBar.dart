@@ -8,7 +8,7 @@ class ExcelTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
+      padding: const EdgeInsets.fromLTRB(0, 24, 0, 24),
       child: Center(
           child: Row(
         mainAxisAlignment: MainAxisAlignment.center,

@@ -51,41 +51,31 @@ class HighlightsCard extends StatelessWidget {
                               stops: [0.2, 1],
                             ),
                           ),
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            mainAxisAlignment: MainAxisAlignment.end,
                             children: [
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  Text(
-                                    "HIGHLIGHTS",
-                                    textAlign: TextAlign.left,
-                                    style: TextStyle(
-                                        fontFamily: pfontFamily,
-                                        fontSize: 10,
-                                        letterSpacing: 2,
-                                        fontWeight: FontWeight.w500,
-                                        color: Colors.white),
-                                  ),
-                                  SizedBox(
-                                    height: 5,
-                                  ),
-                                  Text(
-                                    highlights.name,
-                                    textAlign: TextAlign.left,
-                                    style: TextStyle(
-                                        fontFamily: pfontFamily,
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.w800,
-                                        color: Colors.white),
-                                  ),
-                                ],
+                              Text(
+                                "HIGHLIGHTS",
+                                textAlign: TextAlign.left,
+                                style: TextStyle(
+                                    fontFamily: pfontFamily,
+                                    fontSize: 10,
+                                    letterSpacing: 2,
+                                    fontWeight: FontWeight.w500,
+                                    color: Colors.white),
                               ),
-                              Padding(
-                                padding: const EdgeInsets.only(bottom: 4),
-                                child: Image.asset("assets/icons/arrow.png", height: 16),
+                              SizedBox(
+                                height: 5,
+                              ),
+                              Text(
+                                highlights.name,
+                                textAlign: TextAlign.left,
+                                style: TextStyle(
+                                    fontFamily: pfontFamily,
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w800,
+                                    color: Colors.white),
                               ),
                             ],
                           ),

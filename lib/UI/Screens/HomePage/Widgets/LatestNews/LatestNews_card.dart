@@ -96,7 +96,7 @@ class _LastestNewsCardState extends State<LastestNewsCard> {
                     textAlign: TextAlign.left,
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
-                    style: TextStyle(fontSize: 14, color: black300),
+                    style: TextStyle(fontSize: 14, color: black300, height: 1.4,),
                   ),
                   SizedBox(
                     height: 16,

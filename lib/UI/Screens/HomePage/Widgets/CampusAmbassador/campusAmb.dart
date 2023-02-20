@@ -11,7 +11,7 @@ class CampusAmbassador extends StatelessWidget {
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: const EdgeInsets.fromLTRB(20,12,20,12),
           child: Divider(
             color: white400,
             thickness: 2,
@@ -49,7 +49,7 @@ class CampusAmbassador extends StatelessWidget {
                             Text(
                               "Campus Ambassador",
                               style: TextStyle(
-                                  fontSize: 22,
+                                  fontSize: 20,
                                   color: primaryColor,
                                   fontWeight: FontWeight.w900),
                             ),
@@ -99,7 +99,7 @@ class CampusAmbassador extends StatelessWidget {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: const EdgeInsets.fromLTRB(20,12,20,4),
           child: Divider(
             color: white400,
             thickness: 2,

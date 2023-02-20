@@ -13,7 +13,7 @@ class Discover extends StatelessWidget {
     double width = MediaQuery.of(context).size.width;
     final myNavIndex = Provider.of<MyNavigationIndex>(context);
     return Container(
-      margin: EdgeInsets.all(20),
+      margin: EdgeInsets.fromLTRB(20,16,20,20),
       child: Column(
         children: [
           SizedBox(height: 8),
