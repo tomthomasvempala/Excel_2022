@@ -58,10 +58,6 @@ class _AllCompetitionsState extends State<AllCompetitions> {
     filerbyCategory();
     filterbyTxtQuery();
 
-    return (Container(
-      child: Column(
-        children: [CardBody(eventsMap: competitions)],
-      ),
-    ));
+    return CardBody(eventsMap: competitions);
   }
 }

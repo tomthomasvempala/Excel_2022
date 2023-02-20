@@ -1,5 +1,4 @@
-import 'package:excelapp/UI/Screens/HomePage/Widgets/Discover/button.dart';
-import 'package:excelapp/UI/Screens/HomePage/Widgets/Discover/buttonData.dart';
+import 'package:excelapp/UI/Themes/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
@@ -12,20 +11,21 @@ class Discover extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
-  final myNavIndex = Provider.of<MyNavigationIndex>(context);
+    final myNavIndex = Provider.of<MyNavigationIndex>(context);
     return Container(
-      margin: EdgeInsets.all(16),
+      margin: EdgeInsets.all(20),
       child: Column(
         children: [
+          SizedBox(height: 8),
           //heading
           Container(
-            margin: EdgeInsets.all(15),
+            margin: EdgeInsets.fromLTRB(8,16,12,16),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Row(
                   children: [
-                    FaIcon(FontAwesomeIcons.compass),
+                    Image.asset("assets/icons/discover.png", height: 24),
                     SizedBox(width: 10),
                     Text("Discover", style: headingStyle),
                   ],
@@ -33,68 +33,70 @@ class Discover extends StatelessWidget {
                 Text(
                   "our prime events",
                   style: TextStyle(
-                      color: Color(0xff778585),
+                      color: black200,
                       fontWeight: FontWeight.w600,
-                      fontSize: 11,
+                      fontSize: 12,
                       fontFamily: pfontFamily),
                 ),
               ],
             ),
           ),
-
+          const SizedBox(height: 8),
           //buttons row 1
           Container(
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              mainAxisSize: MainAxisSize.max,
               children: [
-                InkWell(
+                Expanded(
+                  child: InkWell(
                     onTap: () {
-                      //Talks
                       myNavIndex.setIndextoExplore(1, 'talks');
                     },
-                    child: DiscoverButtons(
-                      data: DiscoverButtonData[0],
-                      width: width / 2.41,
-                    )),
-                InkWell(
+                    child: Image.asset("assets/discover/talks.png"),
+                    borderRadius: BorderRadius.circular(24),
+                  ),
+                  flex: 1,
+                ),
+                const SizedBox(width: 16),
+                Expanded(
+                  child: InkWell(
                     onTap: () {
-                      //Workshop
                       myNavIndex.setIndextoExplore(1, 'workshops');
                     },
-                    child: DiscoverButtons(
-                      data: DiscoverButtonData[1],
-                      width: width / 2.41,
-                    )),
+                    child: Image.asset("assets/discover/workshops.png"),
+                    borderRadius: BorderRadius.circular(24),
+                  ),
+                  flex: 1,
+                ),
               ],
             ),
           ),
-          SizedBox(
-            height: 16,
-          ),
-          //buttons row 2
+          SizedBox(height: 16),
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              InkWell(
+              Expanded(
+                child: InkWell(
                   onTap: () {
-                    //Competitions
-                    
-                      myNavIndex.setIndextoExplore(0, 'all');
+                    myNavIndex.setIndextoExplore(0, 'all');
                   },
-                  child: DiscoverButtons(
-                    data: DiscoverButtonData[2],
-                    width: width / 1.969,
-                  )),
-              InkWell(
+                  child: Image.asset("assets/discover/competitions.png"),
+                  borderRadius: BorderRadius.circular(24),
+                ),
+                flex: 3,
+              ),
+              const SizedBox(width: 16),
+              Expanded(
+                child: InkWell(
                   onTap: () {
-                    //other
-                    
-                      myNavIndex.setIndextoExplore(1, 'general');
+                    myNavIndex.setIndextoExplore(1, 'general');
                   },
-                  child: DiscoverButtons(
-                    data: DiscoverButtonData[3],
-                    width: width / 3.096,
-                  )),
+                  child: Image.asset("assets/discover/others.png"),
+                  borderRadius: BorderRadius.circular(24),
+                ),
+                flex: 2,
+              ),
             ],
           ),
         ],

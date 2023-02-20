@@ -29,14 +29,16 @@ class _EventsCardListState extends State<EventsCardList>
     final _myNavIndex = Provider.of<MyNavigationIndex>(context);
     selectedCategory = _myNavIndex.getExplorerCategory;
     print("I want this " + _myNavIndex.getExplorerCategory);
-    return Container(
-      alignment: Alignment.topCenter,
-      child: Column(
-        children: [
-          SizedBox(height: 7),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8.0),
-            child: Row(
+    return SingleChildScrollView(
+      physics: BouncingScrollPhysics(),
+      child: Container(
+        alignment: Alignment.topCenter,
+        child: Column(
+          children: [
+            SizedBox(height: 16),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: tabs
                     .map((tabItem) => FilterTab(
@@ -49,13 +51,16 @@ class _EventsCardListState extends State<EventsCardList>
                             });
                           },
                         ))
-                    .toList()),
-          ),
-          SizedBox(height: 10),
-          Flexible(
-            child: AllEvents(category: selectedCategory,txtQuery: widget.txtQuery),
-          ),
-        ],
+                    .toList(),
+              ),
+            ),
+            SizedBox(height: 20),
+            AllEvents(
+              category: selectedCategory,
+              txtQuery: widget.txtQuery,
+            )
+          ],
+        ),
       ),
     );
   }

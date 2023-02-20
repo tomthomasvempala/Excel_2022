@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:excelapp/Models/highlights_model.dart';
+import 'package:excelapp/UI/Themes/colors.dart';
 import 'package:excelapp/UI/Themes/profile_themes.dart';
 import 'package:excelapp/UI/constants.dart';
 import 'package:flutter/material.dart';
@@ -11,10 +12,10 @@ class HighlightsCard extends StatelessWidget {
   Color firstColor;
   HighlightsCard(this.highlights, this.index) {
     firstColor = this.index % 3 == 0
-        ? ExcelTheme.aevaBlue
+        ? blue500
         : this.index % 3 == 1
-            ? ExcelTheme.aevaCyan
-            : ExcelTheme.aevaDark;
+            ? green500
+            : Color(0xFF104164);
   }
 
   @override
@@ -35,69 +36,64 @@ class HighlightsCard extends StatelessWidget {
             child: Stack(
               children: [
                 ClipRRect(
-                    borderRadius: BorderRadius.circular(15.0),
-                    child: Stack(children: <Widget>[
+                  borderRadius: BorderRadius.circular(15.0),
+                  child: Stack(
+                    children: <Widget>[
                       Opacity(
                         opacity: 0.9,
                         child: Container(
+                          padding: EdgeInsets.fromLTRB(20, 0, 24, 24),
                           decoration: BoxDecoration(
                             gradient: LinearGradient(
                               begin: FractionalOffset.bottomCenter,
                               end: FractionalOffset.topCenter,
                               colors: [firstColor, firstColor.withOpacity(0.4)],
-                              stops: [0.0, 1],
+                              stops: [0.2, 1],
                             ),
+                          ),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  Text(
+                                    "HIGHLIGHTS",
+                                    textAlign: TextAlign.left,
+                                    style: TextStyle(
+                                        fontFamily: pfontFamily,
+                                        fontSize: 10,
+                                        letterSpacing: 2,
+                                        fontWeight: FontWeight.w500,
+                                        color: Colors.white),
+                                  ),
+                                  SizedBox(
+                                    height: 5,
+                                  ),
+                                  Text(
+                                    highlights.name,
+                                    textAlign: TextAlign.left,
+                                    style: TextStyle(
+                                        fontFamily: pfontFamily,
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.w800,
+                                        color: Colors.white),
+                                  ),
+                                ],
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(bottom: 4),
+                                child: Image.asset("assets/icons/arrow.png", height: 16),
+                              ),
+                            ],
                           ),
                         ),
                       ),
-                      Padding(
-                        padding: EdgeInsets.fromLTRB(20, 100, 0, 10),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  "HIGHLIGHTS",
-                                  textAlign: TextAlign.left,
-                                  style: TextStyle(
-                                      fontFamily: pfontFamily,
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.w500,
-                                      color: Colors.white),
-                                ),
-                                SizedBox(
-                                  height: 5,
-                                ),
-                                Text(
-                                  highlights.name,
-                                  textAlign: TextAlign.left,
-                                  style: TextStyle(
-                                      fontFamily: pfontFamily,
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.w800,
-                                      color: Colors.white),
-                                ),
-                              ],
-                            ),
-                            // Padding(
-                            //   padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
-                            //   child: IconButton(
-                            //     onPressed: (){
-
-                            //     },
-                            //     icon: Icon(
-                            //       Icons.arrow_forward,
-                            //       color: Colors.white,
-                            //       size: 30.0,
-                            //     ),
-                            //   ),
-                            // )
-                          ],
-                        ),
-                      )
-                    ])),
+                    ],
+                  ),
+                ),
               ],
             ),
           )

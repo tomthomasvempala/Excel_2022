@@ -8,25 +8,25 @@ class CardBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (eventsMap.length == 0)
+    if (eventsMap.length == 0) {
       return Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 45),
         child: Center(
-            child: Text(
-          "No Events",
-          style: TextStyle(color: Colors.black54),
-        )),
+          child: Text(
+            "No Events",
+            style: TextStyle(color: Colors.black54),
+          ),
+        ),
       );
-    return Flexible(
-      child: ListView.builder(
-        physics: BouncingScrollPhysics(),
-        padding: EdgeInsets.fromLTRB(0, 0, 0, 100),
-        shrinkWrap: true,
-        itemCount: eventsMap.length,
-        itemBuilder: (context, index) {
-          return EventCard(eventsMap[index]);
-        },
-      ),
+    }
+    return ListView.builder(
+      physics: NeverScrollableScrollPhysics(),
+      padding: EdgeInsets.fromLTRB(0, 0, 0, 100),
+      shrinkWrap: true,
+      itemCount: eventsMap.length,
+      itemBuilder: (context, index) {
+        return EventCard(eventsMap[index]);
+      },
     );
   }
 }

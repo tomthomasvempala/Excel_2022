@@ -20,17 +20,15 @@ class BottomNavigation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FABBottomAppBar(
-      
       centerItemText: '',
       color: Colors.grey,
       selectedColor: primaryColor,
-      notchedShape: CircularNotchedRectangle(),
       onTabSelected: onSelect,
       items: [
-        FABBottomAppBarItem(iconData: FontAwesomeIcons.house, text: ''),
-        FABBottomAppBarItem(iconData: FontAwesomeIcons.compass, text: ''),
-        FABBottomAppBarItem(iconData: FontAwesomeIcons.calendar, text: ''),
-        FABBottomAppBarItem(iconData: Icons.account_circle, text: ''),
+        FABBottomAppBarItem(iconName: "home", text: ''),
+        FABBottomAppBarItem(iconName: "discovery", text: ''),
+        FABBottomAppBarItem(iconName: "calendar", text: ''),
+        FABBottomAppBarItem(iconName: "profile", text: ''),
       ],
     );
   }

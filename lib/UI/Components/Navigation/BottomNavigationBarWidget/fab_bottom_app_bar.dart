@@ -1,11 +1,12 @@
+import 'package:excelapp/UI/Themes/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../Providers/navigationProvider.dart';
 
 class FABBottomAppBarItem {
-  FABBottomAppBarItem({this.iconData, this.text});
-  IconData iconData;
+  FABBottomAppBarItem({this.iconName, this.text});
+  String iconName;
   String text;
 }
 
@@ -40,13 +41,6 @@ class FABBottomAppBar extends StatefulWidget {
 class FABBottomAppBarState extends State<FABBottomAppBar> {
   int _selectedIndex = 0;
 
-  // _updateIndex(int index) {
-  //   widget.onTabSelected(index);
-  //   setState(() {
-  //     _selectedIndex = index;
-  //   });
-  // }
-
   @override
   Widget build(BuildContext context) {
     final myNavIndex = Provider.of<MyNavigationIndex>(context);
@@ -60,15 +54,18 @@ class FABBottomAppBarState extends State<FABBottomAppBar> {
         },
       );
     });
-    items.insert(items.length >> 1, _buildMiddleTabItem());
+    // items.insert(items.length >> 1, _buildMiddleTabItem());
 
     return BottomAppBar(
       notchMargin: 10,
-      shape: widget.notchedShape,
-      child: Row(
-        mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: items,
+      child: Container(
+        height: 68,
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        child: Row(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: items,
+        ),
       ),
       color: widget.backgroundColor,
     );
@@ -101,29 +98,27 @@ class FABBottomAppBarState extends State<FABBottomAppBar> {
     Color color = _selectedIndex == index ? widget.selectedColor : widget.color;
     return Expanded(
       child: Container(
-        margin: EdgeInsets.symmetric(horizontal: 10),
+        margin: EdgeInsets.symmetric( vertical: 8, horizontal: 4),
         child: Material(
           type: MaterialType.transparency,
           child: InkWell(
             borderRadius: BorderRadius.circular(30.0),
-            splashColor: Color.fromARGB(255, 214, 249, 255),
-          highlightColor: Color.fromARGB(255, 214, 249, 255),
+            splashColor: white200,
+          highlightColor: white200,
             onTap: () => onPressed(index),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Container(
-                  margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                  padding: EdgeInsets.fromLTRB(3, 10, 3, 10),
+                  padding: EdgeInsets.symmetric(vertical: 12),
                   decoration: BoxDecoration(
                       color: _selectedIndex == index
-                          ? Color.fromARGB(255, 214, 249, 255)
+                          ? blue100
                           : Colors.transparent,
                       borderRadius: BorderRadius.circular(30)),
                   alignment: Alignment.center,
-                  child:
-                      Icon(item.iconData, color: color, size: widget.iconSize),
+                  child: Image.asset(_selectedIndex == index? "assets/icons/${item.iconName}_filled.png" : "assets/icons/${item.iconName}.png", height: 26),
                 ),
               ],
             ),
