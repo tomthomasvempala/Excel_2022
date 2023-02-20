@@ -176,7 +176,7 @@ class ScheduleEvent extends StatelessWidget {
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) =>
-                                                EventPage(eventSchedule.id)));
+                                                EventPage(eventSchedule.id,heroname: 'scheduleIcon',)));
                                   },
                                   child: Text(
                                     "View Event",
