@@ -9,8 +9,8 @@ import '../../../Services/API/favourites_api.dart';
 
 class EventPage extends StatefulWidget {
   final int eventId;
-  final bool isHero;
-  EventPage(this.eventId,{this.isHero=true});
+  final String heroname;
+  EventPage(this.eventId,{this.heroname='eventIcon'});
   @override
   _EventPageState createState() => _EventPageState();
 }
@@ -85,7 +85,7 @@ class _EventPageState extends State<EventPage> {
                 
                   ChangeNotifierProvider<FavouritesStatus>(create: (c)=>FavouritesStatus.instance),
               ],
-              child: EventPageBody(eventDetails: snapshot.data));
+              child: EventPageBody(eventDetails: snapshot.data,heroname: widget.heroname,));
           } else {
             return Stack(
               fit: StackFit.expand,

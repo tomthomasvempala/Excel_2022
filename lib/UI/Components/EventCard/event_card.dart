@@ -13,7 +13,8 @@ import 'package:shimmer/shimmer.dart';
 class EventCard extends StatefulWidget {
   final Event event;
   final bool first;
-  EventCard(this.event,{this.first=false});
+  final String heroname;
+  EventCard(this.event,{this.first=false,this.heroname='profileIcon'});
 
   @override
   State<EventCard> createState() => _EventCardState();
@@ -83,7 +84,8 @@ class _EventCardState extends State<EventCard> {
                   addToFavourites,
                   deleteFromFavourites,
                   isLoading,
-                  likeState)
+                  likeState,
+                  widget.heroname)
               : Shimmer.fromColors(
                   baseColor: Color.fromARGB(255, 238, 240, 240),
                   highlightColor: Color.fromARGB(255, 255, 255, 255),
@@ -108,7 +110,8 @@ _buildCard(
     Function addToFavourites,
     Function deleteFromFavourites,
     bool isLoading,
-    bool likeState) {
+    bool likeState,
+    String heroname){
   return Column(
     children: [
       Container(
@@ -128,7 +131,7 @@ _buildCard(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                 Hero(
-                  tag: 'eventIcon${event.id}',
+                  tag: '${heroname}${event.id}',
                   child: Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(21),
@@ -245,7 +248,7 @@ _buildCard(
                                           context,
                                           MaterialPageRoute(
                                               builder: (context) =>
-                                                  EventPage(event.id))).then((value) {
+                                                  EventPage(event.id,heroname:heroname,))).then((value) {
 
                                                     getFavouritedStatus();
                                                   });
