@@ -24,7 +24,7 @@ class HighlightsCard extends StatelessWidget {
         ? blue500
         : v % 3 == 1
             ? green500
-            : Color(0xFF104164);
+            : Color.fromARGB(255, 13, 53, 81);
   }
 
   @override

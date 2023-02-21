@@ -81,7 +81,7 @@ class FullPageViewState extends State<FullPageView> {
                     width: double.infinity,
                     // Placeholder when it doesnt Load
                     placeholder: (context, url) => Container(
-                      color: primaryColor,
+                      color: secondaryColor,
                       height: double.infinity,
                       width: double.infinity,
                       child: Center(
