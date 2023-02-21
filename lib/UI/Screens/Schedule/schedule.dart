@@ -29,6 +29,7 @@ class _ScheduleState extends State<Schedule> {
     if (result2 == "error") 
       return;
     print("schedule fetched, added to DB & updated in UI");
+    print(result2);
     estream.add(result2);
     return;
   }

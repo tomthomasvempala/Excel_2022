@@ -91,13 +91,13 @@ class SchedulePage extends StatelessWidget {
   }
 
   Widget schedule(dayNumber) {
-    List<ScheduleModel> day0 = scheduleData["day0"];
+    List<ScheduleModel> day0 = scheduleData["day1"];
     day0.sort((a, b) =>
         DateTime.parse(a.datetime).compareTo(DateTime.parse(b.datetime)));
-    List<ScheduleModel> day1 = scheduleData["day1"];
+    List<ScheduleModel> day1 = scheduleData["day2"];
     day1.sort((a, b) =>
         DateTime.parse(a.datetime).compareTo(DateTime.parse(b.datetime)));
-    List<ScheduleModel> day2 = scheduleData["day2"];
+    List<ScheduleModel> day2 = scheduleData["day3"];
     day2.sort((a, b) =>
         DateTime.parse(a.datetime).compareTo(DateTime.parse(b.datetime)));
     // List<ScheduleModel> day3 = scheduleData["day3"];
