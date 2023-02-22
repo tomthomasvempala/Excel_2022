@@ -75,7 +75,7 @@ class _LatestNewsSectionState extends State<LatestNewsSection> {
                     child: Center(
                       child: Column(
                         children: <Widget>[
-                          Text("Failed to fetch Event"),
+                          Text("Failed to fetch News"),
                           SizedBox(height: 20),
                           ElevatedButton(
                             style: ElevatedButton.styleFrom(
