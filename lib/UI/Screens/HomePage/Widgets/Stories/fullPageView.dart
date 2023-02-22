@@ -24,6 +24,7 @@ class FullPageViewState extends State<FullPageView> {
   List combinedList;
   List listLengths;
   int selectedIndex;
+  List<Map<String, dynamic>> newList;
   PageController _pageController;
 
   nextPage(index) {
@@ -50,9 +51,13 @@ class FullPageViewState extends State<FullPageView> {
 
   @override
   void initState() {
-    combinedList = getStoryList(storiesMapList);
-    listLengths = getStoryLengths(storiesMapList);
+    newList = [];
+    newList.add(storiesMapList[storyNumber]);
+    combinedList = getStoryList(newList);
+    listLengths = getStoryLengths(newList);
     selectedIndex = getInitialIndex(storyNumber, storiesMapList);
+    selectedIndex = 0;
+
     super.initState();
   }
 
@@ -135,7 +140,7 @@ class FullPageViewState extends State<FullPageView> {
                           margin: EdgeInsets.all(2),
                           height: 2.5,
                           decoration: BoxDecoration(
-                              color: Color(0xff444444),
+                              color: Colors.white,
                               borderRadius: BorderRadius.circular(20),
                               boxShadow: [
                                 BoxShadow(blurRadius: 2, color: primaryColor)
@@ -151,7 +156,7 @@ class FullPageViewState extends State<FullPageView> {
                           margin: EdgeInsets.all(2),
                           height: 2.5,
                           decoration: BoxDecoration(
-                            color: Colors.white,
+                            color: Color(0xff444444),
                             borderRadius: BorderRadius.circular(20),
                             boxShadow: [
                               BoxShadow(blurRadius: 2, color: primaryColor)
@@ -167,8 +172,8 @@ class FullPageViewState extends State<FullPageView> {
                 alignment: Alignment.centerLeft,
                 child: Text(
                   ' ' * 5 +
-                      storiesMapList[getStoryIndex(
-                          listLengths, selectedIndex, storiesMapList)]['name'],
+                      newList[getStoryIndex(
+                          listLengths, selectedIndex, newList)]['name'],
                   style: TextStyle(
                       color: Colors.white,
                       shadows: [Shadow(blurRadius: 10, color: Colors.black)],
