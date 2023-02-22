@@ -89,12 +89,13 @@ class ScheduleEvent extends StatelessWidget {
             Expanded(
               child: InkWell(
                 onTap: () {
-                  // Navigator.push(
-                  //   context,
-                  //   MaterialPageRoute(
-                  //     builder: (context) => EventPage(eventSchedule.id),
-                  //   ),
-                  // );
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => EventPage(
+                                eventSchedule.id,
+                                heroname: 'scheduleIcon',
+                              )));
                 },
                 radius: 30,
                 borderRadius: BorderRadius.circular(30),
@@ -122,30 +123,29 @@ class ScheduleEvent extends StatelessWidget {
                             //   height: 50,
                             // ),
                             child: Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(21),
-                                color: Color.fromARGB(255, 14, 152, 232),
-                              ),
-                              child: Padding(
-                                padding: EdgeInsets.all(12.25),
-                                child: ClipRRect(
-                                  child:
-                                      (eventSchedule.icon.startsWith("Microsoft"))
-                                          ? (Image.asset(
-                                              "assets/events/eventLogo.png",
-                                              //event.icon,
-                                              width: 31.5,
-                                              height: 31.5,
-                                              fit: BoxFit.contain))
-                                          : CachedNetworkImage(
-                                              imageUrl: eventSchedule.icon,
-                                              width: 31.5,
-                                              height: 31.5,
-                                              fit: BoxFit.contain,
-                                            ),
-                                ),
-                              ),
-                            )),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(21),
+                            color: Color.fromARGB(255, 14, 152, 232),
+                          ),
+                          child: Padding(
+                            padding: EdgeInsets.all(12.25),
+                            child: ClipRRect(
+                              child: (eventSchedule.icon
+                                      .startsWith("Microsoft"))
+                                  ? (Image.asset("assets/events/eventLogo.png",
+                                      //event.icon,
+                                      width: 31.5,
+                                      height: 31.5,
+                                      fit: BoxFit.contain))
+                                  : CachedNetworkImage(
+                                      imageUrl: eventSchedule.icon,
+                                      width: 31.5,
+                                      height: 31.5,
+                                      fit: BoxFit.contain,
+                                    ),
+                            ),
+                          ),
+                        )),
                         SizedBox(
                           width: 12,
                         ),
@@ -172,8 +172,10 @@ class ScheduleEvent extends StatelessWidget {
                                     Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                            builder: (context) =>
-                                                EventPage(eventSchedule.id,heroname: 'scheduleIcon',)));
+                                            builder: (context) => EventPage(
+                                                  eventSchedule.id,
+                                                  heroname: 'scheduleIcon',
+                                                )));
                                   },
                                   child: Text(
                                     "View Event",

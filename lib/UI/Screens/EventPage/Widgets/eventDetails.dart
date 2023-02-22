@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:excelapp/Models/event_details.dart';
+import 'package:excelapp/UI/Themes/colors.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
@@ -29,7 +30,7 @@ class _MoreEventDetailsState extends State<MoreEventDetails> {
       initialIndex: 0,
       length: 4,
       child: Container(
-        color: Color(0xffECF4F5),
+        color: white200,
         child: Column(
           children: [
             SizedBox(height: 15),
@@ -116,8 +117,11 @@ class _MoreEventDetailsState extends State<MoreEventDetails> {
         child: ListView(
           padding: EdgeInsets.symmetric(vertical: 0, horizontal: 18),
           children: [
-            eventHeadDetails(eventhead1['name'], eventhead1['phoneNumber'], eventhead1['email']),
-            eventHeadDetails(eventhead2['name'], eventhead2['phoneNumber'], eventhead2['email']),
+            const SizedBox(height: 8),
+            eventHeadDetails(eventhead1['name'], eventhead1['phoneNumber'],
+                eventhead1['email']),
+            eventHeadDetails(eventhead2['name'], eventhead2['phoneNumber'],
+                eventhead2['email']),
           ],
         ),
       );
@@ -177,14 +181,15 @@ class _MoreEventDetailsState extends State<MoreEventDetails> {
     );
   }
 
-  Widget eventHeadDetails(String eventHeadName,String eventHeadNumber,String eventHeadEmail){
+  Widget eventHeadDetails(
+      String eventHeadName, String eventHeadNumber, String eventHeadEmail) {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 15, horizontal: 6),
       width: MediaQuery.of(context).size.width * 1,
       decoration: BoxDecoration(
         border: Border(
           bottom: BorderSide(
-            color: Colors.grey,
+            color: white400,
             width: 1,
           ),
         ),
@@ -200,7 +205,7 @@ class _MoreEventDetailsState extends State<MoreEventDetails> {
                     fontFamily: pfontFamily,
                     fontSize: 16,
                     height: 1.3,
-                    color: Color(0xff3D4747),
+                    color: black400,
                     fontWeight: FontWeight.w700,
                   )),
               // SizedBox(
@@ -220,27 +225,33 @@ class _MoreEventDetailsState extends State<MoreEventDetails> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                IconButton(onPressed: ()async{
-                  final Uri launchUri = Uri(
-                    scheme: 'tel',
-                    path: eventHeadNumber,
-                  );
-                  await launchUrl(launchUri);
-                }, icon: Icon(Icons.phone_in_talk_rounded),color: Colors.blue,iconSize: 28,),
-                IconButton(onPressed: ()async{
-                  Uri launchUri = Uri(
-                    scheme: 'mailto',
-                    path: eventHeadEmail,
-                  );
-                  if(await canLaunchUrl(launchUri) != null){
+                IconButton(
+                  onPressed: () async {
+                    final Uri launchUri = Uri(
+                      scheme: 'tel',
+                      path: eventHeadNumber,
+                    );
                     await launchUrl(launchUri);
-                  }
-                  else{
-                    throw 'Could not launch';
-                  }
-
-
-                }, icon: Icon(Icons.mail_outline_rounded),color: Colors.blue,iconSize: 28),
+                  },
+                  icon:
+                      Image.asset("assets/icons/call.png", height: 24),
+                ),
+                IconButton(
+                    onPressed: () async {
+                      Uri launchUri = Uri(
+                        scheme: 'mailto',
+                        path: eventHeadEmail,
+                      );
+                      if (await canLaunchUrl(launchUri) != null) {
+                        await launchUrl(launchUri);
+                      } else {
+                        throw 'Could not launch';
+                      }
+                    },
+                    icon:
+                      Image.asset("assets/icons/message.png", height: 24),
+                    color: Colors.blue,
+                    iconSize: 28),
               ],
             ),
           ),

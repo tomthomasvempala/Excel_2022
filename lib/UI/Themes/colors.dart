@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 const Color white100 = Color(0xFFFBFFFF);
-const Color white200 = Color(0xFFECF4F5);
+const Color white200 = Color.fromARGB(255, 227, 237, 238);
 const Color white300 = Color(0xFFE4EDEF);
 const Color white400 = Color(0xFFD3E1E4);
 

@@ -3,6 +3,7 @@ import 'package:excelapp/Models/event_details.dart';
 import 'package:excelapp/UI/Screens/EventPage/Widgets/eventDescription.dart';
 import 'package:excelapp/UI/Screens/EventPage/Widgets/eventDetails.dart';
 import 'package:excelapp/UI/Screens/EventPage/Widgets/registerButton.dart';
+import 'package:excelapp/UI/Themes/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:excelapp/UI/constants.dart';
 import 'package:excelapp/UI/Components/LikeButton/likeButton.dart';
@@ -10,7 +11,7 @@ import 'package:excelapp/UI/Components/LikeButton/likeButton.dart';
 class EventPageBody extends StatelessWidget {
   final EventDetails eventDetails;
   final String heroname;
-  EventPageBody({this.eventDetails,this.heroname = 'eventIcon'});
+  EventPageBody({this.eventDetails, this.heroname = 'eventIcon'});
 
   @override
   Widget build(BuildContext context) {
@@ -32,14 +33,14 @@ class EventPageBody extends StatelessWidget {
         height: deviceHeight,
         child: Column(
           children: <Widget>[
+            SafeArea(
+              bottom: false,
+              child: Container(),
+            ),
             Container(
-              color: Color(0xffECF4F5),
+              color: white200,
               child: Column(
                 children: [
-                  SafeArea(
-                    bottom: false,
-                    child: Container(),
-                  ),
                   SizedBox(height: 10),
                   Container(
                     alignment: Alignment.centerLeft,
@@ -53,7 +54,7 @@ class EventPageBody extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    margin: EdgeInsets.fromLTRB(35,10,35,10),
+                    margin: EdgeInsets.fromLTRB(35, 10, 35, 10),
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -72,7 +73,9 @@ class EventPageBody extends StatelessWidget {
                             ),
                           ),
                         ),
-                        SizedBox(width: 20,),
+                        SizedBox(
+                          width: 20,
+                        ),
                         Hero(
                           tag: '${this.heroname}${eventDetails.id}',
                           child: Container(
@@ -90,19 +93,20 @@ class EventPageBody extends StatelessWidget {
                                 //   width: 31.5,
                                 //   height: 31.5,
                                 // ),
-                                child:(eventDetails.icon.startsWith("Microsoft"))?(
-                                  Image.asset(
-                                    "assets/events/eventLogo.png",
-                                    //event.icon,
-                                    width: 31.5,
-                                    height: 31.5,
-                                  )
-                                ): CachedNetworkImage(
-                                  imageUrl: eventDetails.icon,
-                                  width: 31.5,
-                                  height: 31.5,
-                                  fit: BoxFit.contain,
-                                ),
+                                child:
+                                    (eventDetails.icon.startsWith("Microsoft"))
+                                        ? (Image.asset(
+                                            "assets/events/eventLogo.png",
+                                            //event.icon,
+                                            width: 31.5,
+                                            height: 31.5,
+                                          ))
+                                        : CachedNetworkImage(
+                                            imageUrl: eventDetails.icon,
+                                            width: 31.5,
+                                            height: 31.5,
+                                            fit: BoxFit.contain,
+                                          ),
                               ),
                             ),
                           ),
@@ -155,7 +159,7 @@ class EventPageBody extends StatelessWidget {
                     Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(50),
-                        color: Color(0xffECF4F5),
+                        color: white200,
                       ),
                       child: Padding(
                           padding: EdgeInsets.all(10),

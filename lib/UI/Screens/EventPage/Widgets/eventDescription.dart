@@ -1,3 +1,4 @@
+import 'package:excelapp/UI/Themes/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:excelapp/Models/event_details.dart';
 import 'package:excelapp/UI/constants.dart';
@@ -29,7 +30,7 @@ Widget getEventDetails(
   return Hero(
     tag: 'EventDescription',
     child: Container(
-      color: Color(0xffECF4F5),
+      color: white200,
       child: Column(
         children: <Widget>[
           Row(
@@ -120,7 +121,7 @@ Widget detailBox(
     width: width,
 
     decoration: BoxDecoration(
-        color: Color(0xFFFBFFFF), borderRadius: BorderRadius.circular(24)),
+        color: white100, borderRadius: BorderRadius.circular(24)),
     child: Row(
       mainAxisAlignment: MainAxisAlignment.start,
       children: <Widget>[
