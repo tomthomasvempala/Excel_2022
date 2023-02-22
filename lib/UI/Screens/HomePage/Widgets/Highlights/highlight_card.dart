@@ -88,14 +88,19 @@ class HighlightsCard extends StatelessWidget {
                                 SizedBox(
                                   height: 5,
                                 ),
-                                Text(
-                                  highlights.name,
-                                  textAlign: TextAlign.left,
-                                  style: TextStyle(
-                                      fontFamily: pfontFamily,
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.w800,
-                                      color: Colors.white),
+                                Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      highlights.name,
+                                      textAlign: TextAlign.left,
+                                      style: TextStyle(
+                                          fontFamily: pfontFamily,
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.w800,
+                                          color: Colors.white),
+                                    ),
+                                    Image.asset("assets/icons/arrow.png", height: 14),
+                                  ],
                                 ),
                                 
                               ],
