@@ -20,7 +20,7 @@ class _LatestNewsSectionState extends State<LatestNewsSection> {
   List<News> news = [];
   bool dataLoaded = false;
   var page = 0;
-  final pageSize = 5;
+  final pageSize = 4;
 
   bool isLoadMoreRunning = false;
   bool isLastPage = false;
