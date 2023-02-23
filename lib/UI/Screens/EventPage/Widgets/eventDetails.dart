@@ -44,8 +44,11 @@ class _MoreEventDetailsState extends State<MoreEventDetails>
 
       setState(() {
         if (selectedIndex < 3) {
-          var lines = contents[selectedIndex].split(" ").length / 5.0;
-          height = lines < 15 ? 560 : lines * 30;
+          print(contents[selectedIndex].split("\n").length);
+          var lines = (contents[selectedIndex].split(" ").length) / 5.0;
+          lines +=
+              lines < 30 ? (contents[selectedIndex].split("\n").length) : 0;
+          height = lines < 20 ? 580 : lines * 30;
         } else
           height = 560;
       });
@@ -137,44 +140,44 @@ class _MoreEventDetailsState extends State<MoreEventDetails>
     }
 
     return Padding(
-          padding: padding,
-          child: Html(
-            data: content,
-            customTextStyle: (node, baseStyle) {
-              if (node is dom.Element)
-                switch (node.localName) {
-                  case "h2":
-                    return TextStyle(
-                        fontFamily: pfontFamily,
-                        fontSize: 18,
-                        height: 1.3,
-                        color: Color(0xff3D4747));
-                  case "p":
-                    return TextStyle(
-                        fontFamily: pfontFamily,
-                        fontSize: 14.7,
-                        height: 1.5,
-                        color: Color(0xff3D4747));
-                  case "li":
-                    return TextStyle(
-                        fontFamily: pfontFamily,
-                        fontSize: 14.7,
-                        height: 1.7,
-                        color: Color(0xff3D4747));
-                }
-              return TextStyle(
-                  fontFamily: pfontFamily,
-                  fontSize: 14.7,
-                  height: 1.5,
-                  color: Color(0xff3D4747));
-            },
-            defaultTextStyle: TextStyle(
-                color: Color.fromARGB(255, 61, 71, 71),
-                fontFamily: pfontFamily,
-                height: 1.7,
-                fontSize: 14.5,
-                fontWeight: FontWeight.w400),
-          ),
+      padding: padding,
+      child: Html(
+        data: content,
+        customTextStyle: (node, baseStyle) {
+          if (node is dom.Element)
+            switch (node.localName) {
+              case "h2":
+                return TextStyle(
+                    fontFamily: pfontFamily,
+                    fontSize: 18,
+                    height: 1.3,
+                    color: Color(0xff3D4747));
+              case "p":
+                return TextStyle(
+                    fontFamily: pfontFamily,
+                    fontSize: 14.7,
+                    height: 1.5,
+                    color: Color(0xff3D4747));
+              case "li":
+                return TextStyle(
+                    fontFamily: pfontFamily,
+                    fontSize: 14.7,
+                    height: 1.7,
+                    color: Color(0xff3D4747));
+            }
+          return TextStyle(
+              fontFamily: pfontFamily,
+              fontSize: 14.7,
+              height: 1.5,
+              color: Color(0xff3D4747));
+        },
+        defaultTextStyle: TextStyle(
+            color: Color.fromARGB(255, 61, 71, 71),
+            fontFamily: pfontFamily,
+            height: 1.7,
+            fontSize: 14.5,
+            fontWeight: FontWeight.w400),
+      ),
     );
   }
 
