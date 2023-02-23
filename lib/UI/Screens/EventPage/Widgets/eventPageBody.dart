@@ -41,101 +41,104 @@ class EventPageBody extends StatelessWidget {
                     bottom: false,
                     child: Container(),
                   ),
-                  Container(
-                    child: Column(
-                      children: [
-                        Column(
-                          children: [
-                            SizedBox(height: 10),
-                            Container(
-                              alignment: Alignment.centerLeft,
-                              child: IconButton(
-                                icon: new Icon(Icons.arrow_back),
-                                iconSize: 30.0,
-                                color: Color(0xFF1C1F20),
-                                onPressed: () {
-                                  Navigator.pop(context);
-                                },
+                  Expanded(
+                    child: SingleChildScrollView(
+                      physics: BouncingScrollPhysics(),
+                      child: Column(
+                        children: [
+                          Column(
+                            children: [
+                              SizedBox(height: 10),
+                              Container(
+                                alignment: Alignment.centerLeft,
+                                child: IconButton(
+                                  icon: new Icon(Icons.arrow_back),
+                                  iconSize: 30.0,
+                                  color: Color(0xFF1C1F20),
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                  },
+                                ),
                               ),
-                            ),
-                            Container(
-                              margin: EdgeInsets.fromLTRB(35, 10, 35, 10),
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Flexible(
-                                    child: Text(
-                                      eventDetails.name,
-                                      maxLines: 3,
-                                      style: TextStyle(
-                                        overflow: TextOverflow.ellipsis,
-                                        decoration: TextDecoration.none,
-                                        fontFamily: pfontFamily,
-                                        fontSize: 32.0,
-                                        fontWeight: FontWeight.w900,
-                                        color: textColor,
-                                      ),
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width: 20,
-                                  ),
-                                  Hero(
-                                    tag: '${this.heroname}${eventDetails.id}',
-                                    child: Container(
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(21),
-                                        color: Color.fromARGB(255, 14, 152, 232),
-                                      ),
-                                      child: Padding(
-                                        padding: EdgeInsets.all(12.25),
-                                        child: ClipRRect(
-                                          //Change this to Image.network when image server is up
-                                          // child: Image.asset(
-                                          //   "assets/events/eventLogo.png",
-                                          //   //event.icon,
-                                          //   width: 31.5,
-                                          //   height: 31.5,
-                                          // ),
-                                          child: (eventDetails.icon
-                                                  .startsWith("Microsoft"))
-                                              ? (Image.asset(
-                                                  "assets/events/eventLogo.png",
-                                                  //event.icon,
-                                                  width: 31.5,
-                                                  height: 31.5,
-                                                ))
-                                              : CachedNetworkImage(
-                                                  imageUrl: eventDetails.icon,
-                                                  width: 31.5,
-                                                  height: 31.5,
-                                                  fit: BoxFit.contain,
-                                                ),
+                              Container(
+                                margin: EdgeInsets.fromLTRB(35, 10, 35, 10),
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Flexible(
+                                      child: Text(
+                                        eventDetails.name,
+                                        maxLines: 3,
+                                        style: TextStyle(
+                                          overflow: TextOverflow.ellipsis,
+                                          decoration: TextDecoration.none,
+                                          fontFamily: pfontFamily,
+                                          fontSize: 32.0,
+                                          fontWeight: FontWeight.w900,
+                                          color: textColor,
                                         ),
                                       ),
                                     ),
-                                  ),
-                                ],
+                                    SizedBox(
+                                      width: 20,
+                                    ),
+                                    Hero(
+                                      tag: '${this.heroname}${eventDetails.id}',
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(21),
+                                          color: Color.fromARGB(255, 14, 152, 232),
+                                        ),
+                                        child: Padding(
+                                          padding: EdgeInsets.all(12.25),
+                                          child: ClipRRect(
+                                            //Change this to Image.network when image server is up
+                                            // child: Image.asset(
+                                            //   "assets/events/eventLogo.png",
+                                            //   //event.icon,
+                                            //   width: 31.5,
+                                            //   height: 31.5,
+                                            // ),
+                                            child: (eventDetails.icon
+                                                    .startsWith("Microsoft"))
+                                                ? (Image.asset(
+                                                    "assets/events/eventLogo.png",
+                                                    //event.icon,
+                                                    width: 31.5,
+                                                    height: 31.5,
+                                                  ))
+                                                : CachedNetworkImage(
+                                                    imageUrl: eventDetails.icon,
+                                                    width: 31.5,
+                                                    height: 31.5,
+                                                    fit: BoxFit.contain,
+                                                  ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
-                            ),
-                          ],
-                        ),
-                            
-                        //Event Details
-                            
-                        getEventDetails(
-                            eventDetails: eventDetails,
-                            detailed: true,
-                            height: deviceHeight / 12.681,
-                            width: deviceWidth / 2.477),
-                            
-                        Container(
-                          child: MoreEventDetails(
-                            eventDetails: eventDetails,
+                            ],
                           ),
-                        ),
-                      ],
+                              
+                          //Event Details
+                              
+                          getEventDetails(
+                              eventDetails: eventDetails,
+                              detailed: true,
+                              height: deviceHeight / 12.681,
+                              width: deviceWidth / 2.477),
+                              
+                          Container(
+                            child: MoreEventDetails(
+                              eventDetails: eventDetails,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ],

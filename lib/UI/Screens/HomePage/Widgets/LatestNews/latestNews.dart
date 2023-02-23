@@ -33,6 +33,7 @@ class _LatestNewsSectionState extends State<LatestNewsSection> {
 
       try {
         final newItems = await fetchAndStoreNewsFromNet(page, pageSize);
+        await Future.delayed(Duration(seconds: 2));
         isLastPage = newItems.length < pageSize;
         page += 1;
 
@@ -161,19 +162,19 @@ class _LatestNewsSectionState extends State<LatestNewsSection> {
                                 ),
                               )
                             : Center(),
-                    SizedBox(height: 80),
                   ],
                 );
               } else {
                 return Column(
                   children: [
+                    SizedBox(height: 24),
                     waiting(),
-                    SizedBox(height: 80),
                   ],
                 );
               }
             },
-          )
+          ),
+          SizedBox(height: 80),
         ],
       ),
     );
@@ -194,7 +195,7 @@ class _LatestNewsSectionState extends State<LatestNewsSection> {
         decoration: BoxDecoration(
             color: Colors.white, borderRadius: BorderRadius.circular(32)),
         height: 140,
-        margin: EdgeInsets.fromLTRB(24, 20, 24, 0),
+        margin: EdgeInsets.fromLTRB(24, 0, 24, 20),
       ),
       baseColor: white300,
       highlightColor: white400,

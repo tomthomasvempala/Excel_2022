@@ -182,9 +182,7 @@ _buildCard(
                               fontFamily: "mulish",
                               fontSize: 14),
                         ),
-                        SizedBox(
-                          height: 5,
-                        ),
+                        event.desc != null ? SizedBox(height: 6) : SizedBox(height: 2),
                         event.desc != null
                             ? SizedBox(
                                 width: MediaQuery.of(context).size.width * 0.46,
@@ -314,11 +312,11 @@ _buildCard(
                                             ? FaIcon(
                                                 FontAwesomeIcons.solidHeart,
                                                 color: Colors.redAccent,
-                                                size: 20)
+                                                size: 17)
                                             : FaIcon(FontAwesomeIcons.heart,
                                                 color: Color.fromARGB(
                                                     255, 179, 193, 197),
-                                                size: 18),
+                                                size: 17),
                                       ),
                                     ),
                             ),

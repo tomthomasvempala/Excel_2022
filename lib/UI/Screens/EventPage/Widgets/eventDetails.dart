@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:excelapp/Models/event_details.dart';
+import 'package:excelapp/UI/Screens/CampusAmbassador/AmbassadorPage/referedUsers.dart';
 import 'package:excelapp/UI/Themes/colors.dart';
 
 import 'package:flutter/material.dart';
@@ -18,7 +19,40 @@ class MoreEventDetails extends StatefulWidget {
   State<MoreEventDetails> createState() => _MoreEventDetailsState();
 }
 
-class _MoreEventDetailsState extends State<MoreEventDetails> {
+class _MoreEventDetailsState extends State<MoreEventDetails>
+    with TickerProviderStateMixin {
+  double height = 800.0;
+  int selectedIndex;
+  String content;
+  List<String> contents = [];
+  double lines;
+  TabController _controller;
+
+  @override
+  void initState() {
+    _controller = TabController(length: 4, vsync: this, initialIndex: 0);
+
+    contents.add(widget.eventDetails.about);
+    contents.add(widget.eventDetails.format);
+    contents.add(widget.eventDetails.rules);
+
+    var lines = contents[0].split(" ").length / 6.0;
+    height = lines < 15 ? 560 : lines * 30;
+
+    _controller.addListener(() {
+      selectedIndex = _controller.index;
+
+      setState(() {
+        if (selectedIndex < 3) {
+          var lines = contents[selectedIndex].split(" ").length / 5.0;
+          height = lines < 15 ? 560 : lines * 30;
+        } else
+          height = 560;
+      });
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     print(widget.eventDetails.eventHead1);
@@ -31,10 +65,13 @@ class _MoreEventDetailsState extends State<MoreEventDetails> {
       length: 4,
       child: Container(
         color: white200,
+        height: height,
         child: Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
             SizedBox(height: 15),
             TabBar(
+              controller: _controller,
               padding: EdgeInsets.fromLTRB(7, 0, 7, 0),
               indicatorSize: TabBarIndicatorSize.tab,
               indicatorWeight: 3,
@@ -61,130 +98,98 @@ class _MoreEventDetailsState extends State<MoreEventDetails> {
                 ),
               ],
             ),
-            TabBarView(
-              physics: BouncingScrollPhysics(),
-              children: [
-                showEventDetails(1, boxPadding),
-                showEventDetails(2, boxPadding),
-                showEventDetails(3, boxPadding),
-                showEventDetails(4, boxPadding),
-              ],
+            Expanded(
+              child: Container(
+                color: white100,
+                child: TabBarView(
+                  controller: _controller,
+                  physics: BouncingScrollPhysics(),
+                  children: [
+                    showEventDetails(0, boxPadding),
+                    showEventDetails(1, boxPadding),
+                    showEventDetails(2, boxPadding),
+                    contactTab(),
+                  ],
+                ),
+              ),
             ),
           ],
         ),
       ),
-      // new Scaffold(
-      //   appBar: AppBar(
-      //     toolbarHeight: 10,
-      //     leading: SizedBox(),
-      //     backgroundColor: Color(0xFFEDF5F6),
-      //     // floating: true,
-      //     // pinned: true,
-      //     // snap: true,
-      //     bottom: new
-      //   ),
-      //   body: new
-      // ),
     );
   }
 
   Widget showEventDetails(pageNumber, padding) {
-    String content;
-
-    if (pageNumber == 1)
-      content = widget.eventDetails.about ??
-          "This is event is about an event. Please consult Ashish for more content in dummy data in the backend.";
-    else if (pageNumber == 2)
-      content = (widget.eventDetails.format != null)
-          ? widget.eventDetails.format.replaceAll('<h2/>', "</h2>")
-          : "No event format";
-    else if (pageNumber == 3)
-      content =
-          widget.eventDetails.rules ?? "Rules are not specified for this event";
-    else if (pageNumber == 4) {
-      var eventhead1 = json.decode(widget.eventDetails.eventHead1);
-      var eventhead2 = json.decode(widget.eventDetails.eventHead2);
-
-      // String head1 =
-      //     "<h3> ${eventhead1['name']}</h3>\n<p>Ph:  ${eventhead1['phoneNumber']}</p>\n<p>Email: ${eventhead1['email']}</p><br>\n";
-      // String head2 =
-      //     "<h3> ${eventhead2['name']}</h3>\n<p>Ph:  ${eventhead2['phoneNumber']}</p>\n<p>Email: ${eventhead2['email']}</p>";
-      // content = head1 + head2;
-
-      return ListView(
-        shrinkWrap: true,
-        children: [
-          Container(
-            color: Colors.white,
-            padding: EdgeInsets.symmetric(vertical: 0, horizontal: 18),
-            child: Column(
-              
-              children: [
-                const SizedBox(height: 8),
-                eventHeadDetails(eventhead1['name'], eventhead1['phoneNumber'],
-                    eventhead1['email']),
-                eventHeadDetails(eventhead2['name'], eventhead2['phoneNumber'],
-                    eventhead2['email']),
-              ],
-            ),
-          ),
-        ],
-      );
+    switch (pageNumber) {
+      case 0:
+        content = widget.eventDetails.about ??
+            "This is event is about an event. Please consult Ashish for more content in dummy data in the backend.";
+        break;
+      case 1:
+        content = (widget.eventDetails.format != null)
+            ? widget.eventDetails.format.replaceAll('<h2/>', "</h2>")
+            : "No event format";
+        break;
+      case 2:
+        content = widget.eventDetails.rules ??
+            "Rules are not specified for this event";
+        break;
     }
-    return ListView(
-      shrinkWrap: true,
-      children: [
-        Container(
-          decoration: BoxDecoration(color: Colors.white),
-          child: Padding(
-                padding: padding,
-                // child: Text(
-                //   content,
-                //   style: TextStyle(
-                //       fontFamily: pfontFamily,
-                //       fontSize: 14,
-                //       height: 1.5,
-                //       color: Color(0xff3D4747)),
-                // ),
-                child: Html(
-                  data: content,
-                  customTextStyle: (node, baseStyle) {
-                    if (node is dom.Element)
-                      switch (node.localName) {
-                        case "h2":
-                          return TextStyle(
-                              fontFamily: pfontFamily,
-                              fontSize: 18,
-                              height: 1.3,
-                              color: Color(0xff3D4747));
-                        case "p":
-                          return TextStyle(
-                              fontFamily: pfontFamily,
-                              fontSize: 14.7,
-                              height: 1.5,
-                              color: Color(0xff3D4747));
-                        case "li":
-                          return TextStyle(
-                              fontFamily: pfontFamily,
-                              fontSize: 14.7,
-                              height: 1.7,
-                              color: Color(0xff3D4747));
-                      }
+
+    return Padding(
+          padding: padding,
+          child: Html(
+            data: content,
+            customTextStyle: (node, baseStyle) {
+              if (node is dom.Element)
+                switch (node.localName) {
+                  case "h2":
+                    return TextStyle(
+                        fontFamily: pfontFamily,
+                        fontSize: 18,
+                        height: 1.3,
+                        color: Color(0xff3D4747));
+                  case "p":
                     return TextStyle(
                         fontFamily: pfontFamily,
                         fontSize: 14.7,
                         height: 1.5,
                         color: Color(0xff3D4747));
-                  },
-                  defaultTextStyle: TextStyle(
-                      color: Color.fromARGB(255, 61, 71, 71),
-                      fontFamily: pfontFamily,
-                      height: 1.7,
-                      fontSize: 14.5,
-                      fontWeight: FontWeight.w400),
-                ),),
-          
-        ),
+                  case "li":
+                    return TextStyle(
+                        fontFamily: pfontFamily,
+                        fontSize: 14.7,
+                        height: 1.7,
+                        color: Color(0xff3D4747));
+                }
+              return TextStyle(
+                  fontFamily: pfontFamily,
+                  fontSize: 14.7,
+                  height: 1.5,
+                  color: Color(0xff3D4747));
+            },
+            defaultTextStyle: TextStyle(
+                color: Color.fromARGB(255, 61, 71, 71),
+                fontFamily: pfontFamily,
+                height: 1.7,
+                fontSize: 14.5,
+                fontWeight: FontWeight.w400),
+          ),
+    );
+  }
+
+  Widget contactTab() {
+    var eventhead1 = json.decode(widget.eventDetails.eventHead1);
+    var eventhead2 = json.decode(widget.eventDetails.eventHead2);
+    return ListView(
+      physics: NeverScrollableScrollPhysics(),
+      padding: EdgeInsets.symmetric(vertical: 0, horizontal: 18),
+      children: [
+        const SizedBox(height: 8),
+        eventHeadDetails(
+            eventhead1['name'], eventhead1['phoneNumber'], eventhead1['email']),
+        eventHeadDetails(
+            eventhead2['name'], eventhead2['phoneNumber'], eventhead2['email']),
       ],
     );
   }
@@ -241,8 +246,7 @@ class _MoreEventDetailsState extends State<MoreEventDetails> {
                     );
                     await launchUrl(launchUri);
                   },
-                  icon:
-                      Image.asset("assets/icons/call.png", height: 24),
+                  icon: Image.asset("assets/icons/call.png", height: 24),
                 ),
                 IconButton(
                     onPressed: () async {
@@ -256,8 +260,7 @@ class _MoreEventDetailsState extends State<MoreEventDetails> {
                         throw 'Could not launch';
                       }
                     },
-                    icon:
-                      Image.asset("assets/icons/message.png", height: 24),
+                    icon: Image.asset("assets/icons/message.png", height: 24),
                     color: Colors.blue,
                     iconSize: 28),
               ],
