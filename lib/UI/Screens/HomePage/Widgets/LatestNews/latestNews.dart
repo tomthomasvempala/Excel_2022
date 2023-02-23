@@ -33,7 +33,6 @@ class _LatestNewsSectionState extends State<LatestNewsSection> {
 
       try {
         final newItems = await fetchAndStoreNewsFromNet(page, pageSize);
-        await Future<void>.delayed(const Duration(seconds: 1));
         isLastPage = newItems.length < pageSize;
         page += 1;
 
