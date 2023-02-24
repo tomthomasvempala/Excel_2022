@@ -37,7 +37,7 @@ class _MoreEventDetailsState extends State<MoreEventDetails>
     contents.add(widget.eventDetails.rules);
 
     var lines = contents[0].split(" ").length / 6.0;
-    height = lines < 15 ? 560 : lines * 30;
+    height = lines < 20 ? 600 : lines * 30;
 
     _controller.addListener(() {
       selectedIndex = _controller.index;
