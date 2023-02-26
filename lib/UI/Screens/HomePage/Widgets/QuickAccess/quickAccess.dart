@@ -85,7 +85,7 @@ class _QuickAccessBarState extends State<QuickAccessBar> {
                   side: MaterialStateProperty.all(
                     BorderSide(
                       color: white300,
-                      width: 1.2,
+                      width: inverted ?  1.2 : 0,
                     ),
                   ),
                   backgroundColor:

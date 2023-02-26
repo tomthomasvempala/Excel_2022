@@ -256,13 +256,14 @@ class _ProfilePageState extends State<ProfilePage>
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   CircleAvatar(
-                                    radius: 42.5,
+                                    radius: 38,
                                     backgroundImage:
                                         CachedNetworkImageProvider(snapshot.data.picture),
                                   ),
                                   ElevatedButton(
                                     style: ElevatedButton.styleFrom(
                                       padding: EdgeInsets.all(10),
+                                      elevation: 0,
                                       backgroundColor: Color(0xd0fcd1cc),
                                       shape: CircleBorder(
                                         side: BorderSide(
@@ -307,7 +308,7 @@ class _ProfilePageState extends State<ProfilePage>
                                 ),
                               ),
                               SizedBox(
-                                height: 12,
+                                height: 14,
                               ),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.start,
@@ -319,6 +320,7 @@ class _ProfilePageState extends State<ProfilePage>
                                   editProfileButton(context,snapshot.data),
                                 ],
                               ),
+                              SizedBox(height: 4),
                               TabBar(
                                   indicatorColor:
                                       Color.fromARGB(255, 14, 152, 232),
@@ -434,14 +436,14 @@ class _ProfilePageState extends State<ProfilePage>
       //minWidth: MediaQuery.of(context).size.width / 2,
       child: TextButton(
         style: TextButton.styleFrom(
-          padding: EdgeInsets.fromLTRB(24, 12, 24, 12),
+          padding: EdgeInsets.fromLTRB(24, 14, 24, 14),
           backgroundColor: primaryColor,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(40),
           ),
         ),
         child: Text(
-          "Show QR Code",
+          "Show Profile",
           style: TextStyle(
               color: Colors.white,
               fontFamily: pfontFamily,

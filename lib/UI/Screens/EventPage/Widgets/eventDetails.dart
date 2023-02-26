@@ -35,25 +35,29 @@ class _MoreEventDetailsState extends State<MoreEventDetails>
     contents.add(widget.eventDetails.about);
     contents.add(widget.eventDetails.format);
     contents.add(widget.eventDetails.rules);
-
-    var lines = contents[0].split(" ").length / 6.0;
-    height = lines < 20 ? 600 : lines * 30;
+    height = calcHeight(contents[0]);
 
     _controller.addListener(() {
       selectedIndex = _controller.index;
 
       setState(() {
         if (selectedIndex < 3) {
-          print(contents[selectedIndex].split("\n").length);
-          var lines = (contents[selectedIndex].split(" ").length) / 5.0;
-          lines +=
-              lines < 30 ? (contents[selectedIndex].split("\n").length) : 0;
-          height = lines < 20 ? 580 : lines * 30;
+          height = calcHeight(contents[selectedIndex]);
         } else
           height = 560;
       });
     });
     super.initState();
+  }
+
+  double calcHeight(String content) {
+    if (content != null) {
+      double lines = (content.split(" ").length) / 5.0;
+      double height = lines < 25 ? 600 : lines * 30;
+      height += lines < 30 ? (content.split("\n")?.length) : 0;
+      return height;
+    }
+    return 580.0;
   }
 
   @override

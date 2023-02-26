@@ -11,7 +11,7 @@ class CampusAmbassador extends StatelessWidget {
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.fromLTRB(20,12,20,12),
+          padding: const EdgeInsets.fromLTRB(20,10,20,12),
           child: Divider(
             color: white400,
             thickness: 2,
@@ -20,6 +20,7 @@ class CampusAmbassador extends StatelessWidget {
         Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(32),
+            border: Border.all(color: white300, width: 1.2),
             color: white100,
           ),
           margin: EdgeInsets.symmetric(horizontal: 24, vertical: 20),
@@ -29,7 +30,7 @@ class CampusAmbassador extends StatelessWidget {
               alignment: Alignment.topLeft,
               children: [
                 Container(
-                  margin: EdgeInsets.only(top: 120),
+                  margin: EdgeInsets.only(top: 112),
                   child: Image(
                     // image: NetworkImage(news.image),
                     image: AssetImage("assets/ca_bg.png"),
@@ -99,7 +100,7 @@ class CampusAmbassador extends StatelessWidget {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.fromLTRB(20,12,20,4),
+          padding: const EdgeInsets.fromLTRB(20,12,20,2),
           child: Divider(
             color: white400,
             thickness: 2,

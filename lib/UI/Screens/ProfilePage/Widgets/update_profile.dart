@@ -1,15 +1,14 @@
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:excelapp/Accounts/account_services.dart';
 import 'package:excelapp/Models/user_model.dart';
 import 'package:excelapp/UI/Components/AlertDialog/alertDialog.dart';
 import 'package:excelapp/UI/Components/LoadingUI/alertDialog.dart';
 import 'package:excelapp/UI/Components/LoadingUI/snackBar.dart';
+import 'package:excelapp/UI/Themes/colors.dart';
 import 'package:excelapp/UI/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:searchable_paginated_dropdown/searchable_paginated_dropdown.dart';
-
 
 class UpdateProfile extends StatefulWidget {
   final User user;
@@ -338,9 +337,10 @@ class _UpdateProfileState extends State<UpdateProfile> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.white70,
+        backgroundColor: white200,
         shadowColor: null,
-        elevation: 1,
+        elevation: 0,
+        toolbarHeight: 64,
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           color: secondaryColor,
@@ -368,6 +368,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
           child: Form(
             key: _formKey,
             child: SingleChildScrollView(
+              physics: BouncingScrollPhysics(),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
@@ -388,7 +389,8 @@ class _UpdateProfileState extends State<UpdateProfile> {
                             backgroundColor: Colors.white38,
                             child: CircleAvatar(
                               radius: 53,
-                              backgroundImage: CachedNetworkImageProvider(_picture),
+                              backgroundImage:
+                                  CachedNetworkImageProvider(_picture),
                             ),
                           ),
                         ),
@@ -640,59 +642,57 @@ class _UpdateProfileState extends State<UpdateProfile> {
                     height: 30,
                   ),
 
-                  SizedBox(height: 20),
+                  // SizedBox(height: 20),
                   // Select Category
-                  Padding(
-                    padding: EdgeInsets.fromLTRB(40, 0, 0, 0),
-                    child: Container(
-                      width: MediaQuery.of(context).size.width / 2,
-                      child: DropdownButtonFormField(
-                          decoration: InputDecoration(
-                            border: OutlineInputBorder(
-                              borderSide: BorderSide(color: primaryColor),
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: secondaryColor),
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                            labelText: "Institute Type",
-                            contentPadding: EdgeInsets.all(16),
+                  Container(
+                    width: MediaQuery.of(context).size.width,
+                    child: DropdownButtonFormField(
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(
+                            borderSide: BorderSide(color: primaryColor),
+                            borderRadius: BorderRadius.circular(20),
                           ),
-                          //border: OutlineInputBorder()),
-                          items:
-                              _categories.map<DropdownMenuItem<String>>((val) {
-                            return DropdownMenuItem<String>(
-                              value: val,
-                              child: Text(
-                                val,
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 14,
-                                ),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: secondaryColor),
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          labelText: "Institute Type",
+                          icon: Icon(Icons.location_on_outlined),
+                          contentPadding: EdgeInsets.all(16),
+                        ),
+                        icon: Icon(Icons.keyboard_arrow_down),
+                        //border: OutlineInputBorder()),
+                        items: _categories.map<DropdownMenuItem<String>>((val) {
+                          return DropdownMenuItem<String>(
+                            value: val,
+                            child: Text(
+                              val,
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 14,
                               ),
-                            );
-                          }).toList(),
-                          hint: Text(
-                            _categories[_categoryId] ?? "Select Category",
-                            style: TextStyle(color: Colors.black),
-                          ),
-                          onChanged: (value) {
-                            setState(() {
-                              _categoryId = _categories.indexOf(value);
+                            ),
+                          );
+                        }).toList(),
+                        hint: Text(
+                          _categories[_categoryId] ?? "Select Category",
+                          style: TextStyle(color: Colors.black),
+                        ),
+                        onChanged: (value) {
+                          setState(() {
+                            _categoryId = _categories.indexOf(value);
 
-                              //measureList.add(measure);
-                            });
-                            getInstitutions();
-                          },
-                          onSaved: (value) {
-                            setState(() {
-                              _categoryId = _categories.indexOf(value);
-                            });
-                          }),
-                    ),
+                            //measureList.add(measure);
+                          });
+                          getInstitutions();
+                        },
+                        onSaved: (value) {
+                          setState(() {
+                            _categoryId = _categories.indexOf(value);
+                          });
+                        }),
                   ),
-                  SizedBox(height: 30),
+                  SizedBox(height: 16),
                   // Select Institution
 
                   (_categoryId != null &&
@@ -701,10 +701,11 @@ class _UpdateProfileState extends State<UpdateProfile> {
                               ? (collegeInstitutions.length > 0)
                               : (schoolInstitutions.length > 0)))
                       ? Container(
-                          margin: EdgeInsets.symmetric(horizontal: 5),
+                          margin: EdgeInsets.fromLTRB(40, 0, 0, 0),
+                          padding: EdgeInsets.all(8),
                           decoration: BoxDecoration(
-                            border: Border.all(color: Colors.black12),
-                            borderRadius: BorderRadius.circular(3),
+                            border: Border.all(color: black200),
+                            borderRadius: BorderRadius.circular(24),
                           ),
                           // child: SearchableDropdown.single(
                           //   underline: Center(),
@@ -840,8 +841,9 @@ class _UpdateProfileState extends State<UpdateProfile> {
   }
 
   Widget saveButton() {
-    return Padding(
+    return Container(
       padding: const EdgeInsets.fromLTRB(0, 6, 24, 6),
+      margin: EdgeInsets.symmetric(vertical: 4),
       child: TextButton(
         style: TextButton.styleFrom(
           padding: EdgeInsets.fromLTRB(24, 8, 24, 8),

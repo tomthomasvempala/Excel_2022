@@ -18,7 +18,25 @@ class EventPageBody extends StatelessWidget {
     Widget registerButton;
 
     if (eventDetails.needRegistration == false && eventDetails.button == null)
-      registerButton = SizedBox();
+      registerButton = Container(
+        width: 240,
+        height: 50,
+        margin: EdgeInsets.only(right: 18),
+        decoration: BoxDecoration(
+            color: white200,
+            borderRadius: BorderRadius.circular(60),
+            border: Border.all(color: white300, width: 1.2)),
+        alignment: Alignment.center,
+        child: Text(
+          "No Registration",
+          style: TextStyle(
+            fontWeight: FontWeight.w700,
+            fontFamily: "mulish",
+            color: black200,
+            fontSize: 14,
+          ),
+        ),
+      );
     else
       registerButton = RegisterButton(eventDetails: eventDetails);
 
@@ -64,7 +82,8 @@ class EventPageBody extends StatelessWidget {
                                 margin: EdgeInsets.fromLTRB(35, 10, 35, 10),
                                 child: Row(
                                   crossAxisAlignment: CrossAxisAlignment.center,
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
                                     Flexible(
                                       child: Text(
@@ -87,8 +106,10 @@ class EventPageBody extends StatelessWidget {
                                       tag: '${this.heroname}${eventDetails.id}',
                                       child: Container(
                                         decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(21),
-                                          color: Color.fromARGB(255, 14, 152, 232),
+                                          borderRadius:
+                                              BorderRadius.circular(21),
+                                          color:
+                                              Color.fromARGB(255, 14, 152, 232),
                                         ),
                                         child: Padding(
                                           padding: EdgeInsets.all(12.25),
@@ -123,15 +144,15 @@ class EventPageBody extends StatelessWidget {
                               ),
                             ],
                           ),
-                              
+
                           //Event Details
-                              
+
                           getEventDetails(
                               eventDetails: eventDetails,
                               detailed: true,
                               height: deviceHeight / 12.681,
                               width: deviceWidth / 2.477),
-                              
+
                           Container(
                             child: MoreEventDetails(
                               eventDetails: eventDetails,
@@ -153,7 +174,8 @@ class EventPageBody extends StatelessWidget {
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(40), topRight: Radius.circular(40)),
+                    topLeft: Radius.circular(40),
+                    topRight: Radius.circular(40)),
                 boxShadow: [
                   new BoxShadow(
                     color: Color.fromARGB(94, 28, 31, 32),

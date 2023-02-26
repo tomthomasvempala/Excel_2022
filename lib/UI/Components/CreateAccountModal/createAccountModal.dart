@@ -9,6 +9,8 @@ import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:searchable_paginated_dropdown/searchable_paginated_dropdown.dart';
 
+import '../../Themes/colors.dart';
+
 void showCreateAccountModal(context, User user) {
   showModalBottomSheet<dynamic>(
       isScrollControlled: true,
@@ -265,6 +267,7 @@ class _CreateAccountModalState extends State<CreateAccountModal> {
         child: Form(
           key: _formKey,
           child: SingleChildScrollView(
+            physics: BouncingScrollPhysics(),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
@@ -487,54 +490,53 @@ class _CreateAccountModalState extends State<CreateAccountModal> {
                   height: 30,
                 ),
                 // Select Category
-                Padding(
-                  padding: EdgeInsets.fromLTRB(40, 0, 0, 0),
-                  child: Container(
-                    width: MediaQuery.of(context).size.width / 2,
-                    child: DropdownButtonFormField(
-                        decoration: InputDecoration(
-                          border: OutlineInputBorder(
-                            borderSide: BorderSide(color: primaryColor),
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: secondaryColor),
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          labelText: "Institute Type",
-                          contentPadding: EdgeInsets.all(16),
+                Container(
+                  width: MediaQuery.of(context).size.width,
+                  child: DropdownButtonFormField(
+                      decoration: InputDecoration(
+                        icon: Icon(Icons.location_on_outlined),
+                        border: OutlineInputBorder(
+                          borderSide: BorderSide(color: primaryColor),
+                          borderRadius: BorderRadius.circular(20),
                         ),
-                        //border: OutlineInputBorder()),
-                        items: _categories.map<DropdownMenuItem<String>>((val) {
-                          return DropdownMenuItem<String>(
-                            value: val,
-                            child: Text(
-                              val,
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 14,
-                              ),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: secondaryColor),
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        labelText: "Institute Type",
+                        contentPadding: EdgeInsets.all(16),
+                      ),
+                      icon: Icon(Icons.keyboard_arrow_down),
+                      //border: OutlineInputBorder()),
+                      items: _categories.map<DropdownMenuItem<String>>((val) {
+                        return DropdownMenuItem<String>(
+                          value: val,
+                          child: Text(
+                            val,
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 14,
                             ),
-                          );
-                        }).toList(),
-                        hint: Text(
-                          _categories[_categoryId] ?? "Select Category",
-                          style: TextStyle(color: Colors.black),
-                        ),
-                        onChanged: (value) {
-                          setState(() {
-                            _categoryId = _categories.indexOf(value);
+                          ),
+                        );
+                      }).toList(),
+                      hint: Text(
+                        _categories[_categoryId] ?? "Select Category",
+                        style: TextStyle(color: Colors.black),
+                      ),
+                      onChanged: (value) {
+                        setState(() {
+                          _categoryId = _categories.indexOf(value);
 
-                            //measureList.add(measure);
-                          });
-                          getInstitutions();
-                        },
-                        onSaved: (value) {
-                          setState(() {
-                            _categoryId = _categories.indexOf(value);
-                          });
-                        }),
-                  ),
+                          //measureList.add(measure);
+                        });
+                        getInstitutions();
+                      },
+                      onSaved: (value) {
+                        setState(() {
+                          _categoryId = _categories.indexOf(value);
+                        });
+                      }),
                 ),
                 SizedBox(height: 30),
                 // Select Institution
@@ -545,10 +547,11 @@ class _CreateAccountModalState extends State<CreateAccountModal> {
                             ? (collegeInstitutions.length > 0)
                             : (schoolInstitutions.length > 0)))
                     ? Container(
-                        // margin: EdgeInsets.symmetric(horizontal: 5),
+                        margin: EdgeInsets.fromLTRB(40, 0, 0, 0),
+                        padding: EdgeInsets.all(8),
                         decoration: BoxDecoration(
-                          border: Border.all(color: Colors.black12),
-                          borderRadius: BorderRadius.circular(3),
+                          border: Border.all(color: black200),
+                          borderRadius: BorderRadius.circular(24),
                         ),
                         // child: SearchableDropdown.single(
                         //   underline: Center(),
