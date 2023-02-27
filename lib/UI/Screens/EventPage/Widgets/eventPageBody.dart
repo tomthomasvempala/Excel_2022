@@ -3,6 +3,7 @@ import 'package:excelapp/Models/event_details.dart';
 import 'package:excelapp/UI/Screens/EventPage/Widgets/eventDescription.dart';
 import 'package:excelapp/UI/Screens/EventPage/Widgets/eventDetails.dart';
 import 'package:excelapp/UI/Screens/EventPage/Widgets/registerButton.dart';
+import 'package:excelapp/UI/Themes/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:excelapp/UI/constants.dart';
 import 'package:excelapp/UI/Components/LikeButton/likeButton.dart';
@@ -10,14 +11,32 @@ import 'package:excelapp/UI/Components/LikeButton/likeButton.dart';
 class EventPageBody extends StatelessWidget {
   final EventDetails eventDetails;
   final String heroname;
-  EventPageBody({this.eventDetails,this.heroname = 'eventIcon'});
+  EventPageBody({this.eventDetails, this.heroname = 'eventIcon'});
 
   @override
   Widget build(BuildContext context) {
     Widget registerButton;
 
     if (eventDetails.needRegistration == false && eventDetails.button == null)
-      registerButton = SizedBox();
+      registerButton = Container(
+        width: 240,
+        height: 50,
+        margin: EdgeInsets.only(right: 18),
+        decoration: BoxDecoration(
+            color: white200,
+            borderRadius: BorderRadius.circular(60),
+            border: Border.all(color: white300, width: 1.2)),
+        alignment: Alignment.center,
+        child: Text(
+          "No Registration",
+          style: TextStyle(
+            fontWeight: FontWeight.w700,
+            fontFamily: "mulish",
+            color: black200,
+            fontSize: 14,
+          ),
+        ),
+      );
     else
       registerButton = RegisterButton(eventDetails: eventDetails);
 
@@ -27,110 +46,130 @@ class EventPageBody extends StatelessWidget {
     return Scaffold(
       //backgroundColor: Color(0xffECF4F5),
       resizeToAvoidBottomInset: true,
-      backgroundColor: Colors.white,
-      body: Container(
-        height: deviceHeight,
-        child: Column(
-          children: <Widget>[
-            Container(
-              color: Color(0xffECF4F5),
+      backgroundColor: white200,
+      body: Stack(
+        children: [
+          Align(
+            alignment: Alignment.topCenter,
+            child: Container(
+              height: deviceHeight,
               child: Column(
-                children: [
+                children: <Widget>[
                   SafeArea(
                     bottom: false,
                     child: Container(),
                   ),
-                  SizedBox(height: 10),
-                  Container(
-                    alignment: Alignment.centerLeft,
-                    child: IconButton(
-                      icon: new Icon(Icons.arrow_back),
-                      iconSize: 30.0,
-                      color: Color(0xFF1C1F20),
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                    ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.fromLTRB(35,10,35,10),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Flexible(
-                          child: Text(
-                            eventDetails.name,
-                            maxLines: 3,
-                            style: TextStyle(
-                              overflow: TextOverflow.ellipsis,
-                              decoration: TextDecoration.none,
-                              fontFamily: pfontFamily,
-                              fontSize: 32.0,
-                              fontWeight: FontWeight.w900,
-                              color: textColor,
-                            ),
-                          ),
-                        ),
-                        SizedBox(width: 20,),
-                        Hero(
-                          tag: '${this.heroname}${eventDetails.id}',
-                          child: Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(21),
-                              color: Color.fromARGB(255, 14, 152, 232),
-                            ),
-                            child: Padding(
-                              padding: EdgeInsets.all(12.25),
-                              child: ClipRRect(
-                                //Change this to Image.network when image server is up
-                                // child: Image.asset(
-                                //   "assets/events/eventLogo.png",
-                                //   //event.icon,
-                                //   width: 31.5,
-                                //   height: 31.5,
-                                // ),
-                                child:(eventDetails.icon.startsWith("Microsoft"))?(
-                                  Image.asset(
-                                    "assets/events/eventLogo.png",
-                                    //event.icon,
-                                    width: 31.5,
-                                    height: 31.5,
-                                  )
-                                ): CachedNetworkImage(
-                                  imageUrl: eventDetails.icon,
-                                  width: 31.5,
-                                  height: 31.5,
-                                  fit: BoxFit.contain,
+                  Expanded(
+                    child: SingleChildScrollView(
+                      physics: BouncingScrollPhysics(),
+                      child: Column(
+                        children: [
+                          Column(
+                            children: [
+                              SizedBox(height: 10),
+                              Container(
+                                alignment: Alignment.centerLeft,
+                                child: IconButton(
+                                  icon: new Icon(Icons.arrow_back),
+                                  iconSize: 30.0,
+                                  color: Color(0xFF1C1F20),
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                  },
                                 ),
                               ),
+                              Container(
+                                margin: EdgeInsets.fromLTRB(35, 10, 35, 10),
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Flexible(
+                                      child: Text(
+                                        eventDetails.name,
+                                        maxLines: 3,
+                                        style: TextStyle(
+                                          overflow: TextOverflow.ellipsis,
+                                          decoration: TextDecoration.none,
+                                          fontFamily: pfontFamily,
+                                          fontSize: 32.0,
+                                          fontWeight: FontWeight.w900,
+                                          color: textColor,
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      width: 20,
+                                    ),
+                                    Hero(
+                                      tag: '${this.heroname}${eventDetails.id}',
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(21),
+                                          color:
+                                              Color.fromARGB(255, 14, 152, 232),
+                                        ),
+                                        child: Padding(
+                                          padding: EdgeInsets.all(12.25),
+                                          child: ClipRRect(
+                                            //Change this to Image.network when image server is up
+                                            // child: Image.asset(
+                                            //   "assets/events/eventLogo.png",
+                                            //   //event.icon,
+                                            //   width: 31.5,
+                                            //   height: 31.5,
+                                            // ),
+                                            child: (eventDetails.icon
+                                                    .startsWith("Microsoft"))
+                                                ? (Image.asset(
+                                                    "assets/events/eventLogo.png",
+                                                    //event.icon,
+                                                    width: 31.5,
+                                                    height: 31.5,
+                                                  ))
+                                                : CachedNetworkImage(
+                                                    imageUrl: eventDetails.icon,
+                                                    width: 31.5,
+                                                    height: 31.5,
+                                                    fit: BoxFit.contain,
+                                                  ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+
+                          //Event Details
+
+                          getEventDetails(
+                              eventDetails: eventDetails,
+                              detailed: true,
+                              height: deviceHeight / 12.681,
+                              width: deviceWidth / 2.477),
+
+                          Container(
+                            child: MoreEventDetails(
+                              eventDetails: eventDetails,
                             ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 ],
               ),
             ),
-
-            //Event Details
-
-            getEventDetails(
-                eventDetails: eventDetails,
-                detailed: true,
-                height: deviceHeight / 12.681,
-                width: deviceWidth / 2.477),
-
-            Expanded(
-              child: Container(
-                child: MoreEventDetails(
-                  eventDetails: eventDetails,
-                ),
-              ),
-            ),
-            Container(
-              // height: 86,
+          ),
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Container(
+              height: 90,
               padding: EdgeInsetsDirectional.only(bottom: 20),
               decoration: BoxDecoration(
                 color: Colors.white,
@@ -155,7 +194,7 @@ class EventPageBody extends StatelessWidget {
                     Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(50),
-                        color: Color(0xffECF4F5),
+                        color: white200,
                       ),
                       child: Padding(
                           padding: EdgeInsets.all(10),
@@ -164,11 +203,9 @@ class EventPageBody extends StatelessWidget {
                   ]),
                 ],
               ),
-            )
-
-            // For Hero Widget
-          ],
-        ),
+            ),
+          )
+        ],
       ),
     );
   }

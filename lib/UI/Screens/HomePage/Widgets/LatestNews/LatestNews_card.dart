@@ -5,10 +5,12 @@ import 'package:excelapp/UI/Screens/HomePage/Widgets/socialIcons.dart';
 import 'package:excelapp/UI/Themes/colors.dart';
 import 'package:excelapp/UI/constants.dart';
 import 'package:flutter/material.dart';
+
 import 'package:excelapp/Services/API/favourites_api.dart';
 
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
+import 'package:readmore/readmore.dart';
 
 class LastestNewsCard extends StatefulWidget {
   final News news;
@@ -21,12 +23,20 @@ class LastestNewsCard extends StatefulWidget {
 class _LastestNewsCardState extends State<LastestNewsCard> {
   @override
   bool likeState = false;
+  bool _readMore = true;
+  String content;
   getFavouritedStatus(id) async {
     bool isFavourited = await FavouritesAPI.isFavourited(id);
     setState(() {
       likeState = isFavourited;
     });
   }
+
+  // @override
+  // void initState() {
+  //   content = widget.news.content.replaceAll("\n", " ");
+  //   super.initState();
+  // }
 
   Widget build(BuildContext context) {
     return Container(
@@ -85,28 +95,45 @@ class _LastestNewsCardState extends State<LastestNewsCard> {
                 children: [
                   Text(
                     widget.news.title,
+                    maxLines: 2,
                     style: headingStyle,
                     textAlign: TextAlign.left,
                   ),
                   SizedBox(
                     height: 8,
                   ),
-                  Text(
+                  ReadMoreText(
                     widget.news.content,
-                    textAlign: TextAlign.left,
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(fontSize: 14, color: black300, height: 1.4,),
+                    trimLines: 4,
+                    trimCollapsedText: " read more",
+                    trimExpandedText: "\nshow less",
+                    style: TextStyle(
+                      fontSize: 14,
+                      color: black300,
+                      height: 1.5,
+                    ),
+                    colorClickableText: black400,
+                    trimMode: TrimMode.Line,
+                    callback: readMoreCallback(),
+                    moreStyle: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w700,
+                    ),
+                    lessStyle: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w700,
+                    ),
                   ),
                   SizedBox(
-                    height: 16,
+                    height: 20,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       InkWell(
                         onTap: () {
-                          if (widget.news.link != null || widget.news.link != "") {
+                          if (widget.news.link != null ||
+                              widget.news.link != "") {
                             if (widget.news.link.length >= 3)
                               launchURL((widget.news.link.startsWith("http")
                                   ? widget.news.link
@@ -115,8 +142,8 @@ class _LastestNewsCardState extends State<LastestNewsCard> {
                               Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) =>
-                                              EventPage(int.parse(widget.news.link))))
+                                          builder: (context) => EventPage(
+                                              int.parse(widget.news.link))))
                                   .then((value) {
                                 getFavouritedStatus(widget.news.link);
                               });
@@ -124,18 +151,21 @@ class _LastestNewsCardState extends State<LastestNewsCard> {
                           }
                         },
                         child: Text(
-                          'Click Here',
+                          'Learn More',
                           style: TextStyle(
                               color: primaryColor,
                               fontSize: 12,
-                              fontWeight: FontWeight.w600,
+                              fontWeight: FontWeight.w700,
                               fontFamily: pfontFamily),
                         ),
                       ),
                       Text(
                         dateMsgGenerator(widget.news.date),
                         style: TextStyle(
-                            color: black100, fontSize: 12, fontFamily: pfontFamily),
+                          color: black100,
+                          fontSize: 12,
+                          fontFamily: pfontFamily,
+                        ),
                       ),
                     ],
                   ),
@@ -146,6 +176,18 @@ class _LastestNewsCardState extends State<LastestNewsCard> {
         ),
       ),
     );
+  }
+
+  readMoreCallback(){
+    setState(() {
+      _readMore = ! _readMore;
+      print(_readMore);
+
+      if(_readMore)
+        content = widget.news.content.replaceAll("\n", " ");
+      else  
+        content = widget.news.content;
+    });
   }
 
   dateMsgGenerator(String postTime) {

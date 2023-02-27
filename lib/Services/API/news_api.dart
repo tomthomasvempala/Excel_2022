@@ -11,10 +11,10 @@ fetchNewsFromStorage() async {
   return newsData.map<News>((news) => News.fromJson(news)).toList();
 }
 
-fetchAndStoreNewsFromNet() async {
+fetchAndStoreNewsFromNet(int page, int limit) async {
   print("-    News: Network Fetch    -");
   try {
-    var response = await http.get(Uri.parse(APIConfig.newsbaseUrl));
+    var response = await http.get(Uri.parse("${APIConfig.newsbaseUrl}/?page=${page}&limit=${limit}"));
     List responseData = json.decode(response.body); //
     // List responseData = [{"id":100,"name":"Event Name","image":"url"}];
     await HiveDB.storeData(valueName: "news", value: responseData);

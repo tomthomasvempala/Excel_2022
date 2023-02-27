@@ -1,4 +1,5 @@
 import 'package:excelapp/Models/schedule_model.dart';
+import 'package:excelapp/UI/Themes/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:excelapp/UI/Screens/Schedule/Widgets/generateScheduleCardList.dart';
 
@@ -50,7 +51,7 @@ class SchedulePage extends StatelessWidget {
             ];
           },
           body: Container(
-            color: Color(0xffECF4F5),
+            color: white200,
             child: new TabBarView(
               physics: BouncingScrollPhysics(),
               children: [
