@@ -30,11 +30,10 @@ class _LatestNewsSectionState extends State<LatestNewsSection> {
     if (!isLoadMoreRunning && !isLastPage) {
       setState(() {
         isLoadMoreRunning = true;
-        if(page == 0){
-curr_page = page;
-news = [];
+        if (page == 0) {
+          curr_page = page;
+          news = [];
         }
-          
       });
 
       try {
