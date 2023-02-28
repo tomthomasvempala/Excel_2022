@@ -900,6 +900,7 @@ class _RegisterButtonState extends State<RegisterButton> {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(40),
                   color: registered ? white200 : blue500,
+                  border: Border.all(width: registered ? 1.2 : 0, color: white300,)
                 ),
                 alignment: Alignment.center,
                 child:

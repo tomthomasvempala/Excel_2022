@@ -188,7 +188,7 @@ class EventPageBody extends StatelessWidget {
                 children: [
                   SizedBox(height: 8),
                   Image.asset('assets/icons/divider.png'),
-                  SizedBox(height: 8),
+                  SizedBox(height: 12),
                   Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                     registerButton,
                     Container(
