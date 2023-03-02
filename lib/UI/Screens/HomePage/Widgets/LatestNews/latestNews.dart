@@ -1,4 +1,5 @@
 import 'dart:async';
+
 import 'package:excelapp/Models/latest_news.dart';
 import 'package:excelapp/Services/API/news_api.dart';
 import 'package:excelapp/UI/Screens/HomePage/Widgets/LatestNews/data.dart';
@@ -9,10 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:shimmer/shimmer.dart';
 
-GlobalKey<_LatestNewsSectionState> globalKey = GlobalKey();
-
 class LatestNewsSection extends StatefulWidget {
-  LatestNewsSection({Key key}) : super(key: key);
   @override
   State<LatestNewsSection> createState() => _LatestNewsSectionState();
 }
@@ -21,26 +19,23 @@ class _LatestNewsSectionState extends State<LatestNewsSection> {
   StreamController<dynamic> estream;
   List<News> news = [];
   bool dataLoaded = false;
-  var curr_page = 0;
+  var page = 0;
+  final pageSize = 4;
 
   bool isLoadMoreRunning = false;
   bool isLastPage = false;
 
-  fetchfromNet(page) async {
+  fetchfromNet() async {
     if (!isLoadMoreRunning && !isLastPage) {
       setState(() {
         isLoadMoreRunning = true;
-        if (page == 0) {
-          curr_page = page;
-          news = [];
-        }
       });
 
       try {
-        final newItems = await fetchAndStoreNewsFromNet(page, 4);
+        final newItems = await fetchAndStoreNewsFromNet(page, pageSize);
         await Future.delayed(Duration(seconds: 2));
-        isLastPage = newItems.length < 4;
-        curr_page += 1;
+        isLastPage = newItems.length < pageSize;
+        page += 1;
 
         if (newItems.isNotEmpty) {
           setState(() {
@@ -62,7 +57,7 @@ class _LatestNewsSectionState extends State<LatestNewsSection> {
   void initState() {
     estream = StreamController<dynamic>();
     // initialisePage();
-    fetchfromNet(0);
+    fetchfromNet();
     super.initState();
   }
 
@@ -117,7 +112,7 @@ class _LatestNewsSectionState extends State<LatestNewsSection> {
                           onPressed: () {
                             isLoadMoreRunning = false;
                             isLastPage = false;
-                            fetchfromNet(curr_page);
+                            fetchfromNet();
                           },
                           child: Text(
                             "Retry",
@@ -158,7 +153,7 @@ class _LatestNewsSectionState extends State<LatestNewsSection> {
                         ? waiting()
                         : (!isLastPage)
                             ? TextButton(
-                                onPressed: () => fetchfromNet(curr_page),
+                                onPressed: () => fetchfromNet(),
                                 child: Text(
                                   "Load more",
                                   style: TextStyle(

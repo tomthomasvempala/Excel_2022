@@ -36,7 +36,8 @@ class _ProfilePageState extends State<ProfilePage>
   List<Event> _favouritedEvents = [];
   List<Event> _registeredEvents = [];
 
-  TabController tabController;
+  
+  TabController tabController;  
 
   var userDetails;
   @override
@@ -47,9 +48,9 @@ class _ProfilePageState extends State<ProfilePage>
     userDetails = viewUserProfile();
     _isProfileUpdated = widget.isProfileUpdated;
     authService = AuthService();
-    RegistrationAPI.fetchRegisteredEvents();
     fetchFavourites();
     fetchRegistrations();
+    RegistrationAPI.fetchRegisteredEvents();
   }
 
   Future fetchFavourites() async {
@@ -78,6 +79,9 @@ class _ProfilePageState extends State<ProfilePage>
       return user;
     }
   }
+
+
+
 
   logoutUser() async {
     final alertDialog = alertBox("Please Wait");
@@ -253,8 +257,8 @@ class _ProfilePageState extends State<ProfilePage>
                                 children: [
                                   CircleAvatar(
                                     radius: 38,
-                                    backgroundImage: CachedNetworkImageProvider(
-                                        snapshot.data.picture),
+                                    backgroundImage:
+                                        CachedNetworkImageProvider(snapshot.data.picture),
                                   ),
                                   ElevatedButton(
                                     style: ElevatedButton.styleFrom(
@@ -313,7 +317,7 @@ class _ProfilePageState extends State<ProfilePage>
                                   SizedBox(
                                     width: 12,
                                   ),
-                                  editProfileButton(context, snapshot.data),
+                                  editProfileButton(context,snapshot.data),
                                 ],
                               ),
                               SizedBox(height: 4),
@@ -394,40 +398,26 @@ class _ProfilePageState extends State<ProfilePage>
   Widget Registered() {
     return Container(
       color: Color(0xffECF4F5),
-      child: RefreshIndicator(
-        onRefresh: () async {
-          await RegistrationAPI.fetchRegisteredEvents();
-          await fetchRegistrations();
-          return Future<void>.delayed(const Duration(seconds: 1));
-        },
-        child: ListView.builder(
-          physics: BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+      child: ListView.builder(
+          physics: BouncingScrollPhysics(),
           itemCount: _registeredEvents.length,
-          // shrinkWrap: true,
+          shrinkWrap: true,
           itemBuilder: (_, index) {
-            return EventCard(_registeredEvents[index], first: index == 0);
-          },
-        ),
-      ),
+            return EventCard(_registeredEvents[index],first: index==0);
+          }),
     );
   }
 
   Widget Favorites() {
     return Container(
       color: Color(0xffECF4F5),
-      child: RefreshIndicator(
-        onRefresh: () async {
-          await fetchFavourites();
-          return Future<void>.delayed(const Duration(seconds: 1));
-        },
-        child: ListView.builder(
-          physics: BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+      child: ListView.builder(
+          physics: BouncingScrollPhysics(),
+          shrinkWrap: true,
           itemCount: _favouritedEvents.length,
           itemBuilder: (_, index) {
-            return EventCard(_favouritedEvents[index], first: index == 0);
-          },
-        ),
-      ),
+            return EventCard(_favouritedEvents[index],first: index==0);
+          }),
     );
   }
 
@@ -484,7 +474,7 @@ class _ProfilePageState extends State<ProfilePage>
     );
   }
 
-  Widget editProfileButton(BuildContext context, User user) {
+  Widget editProfileButton(BuildContext context,User user) {
     return ButtonTheme(
       //minWidth: MediaQuery.of(context).size.width / 2,
       child: TextButton(
@@ -503,11 +493,11 @@ class _ProfilePageState extends State<ProfilePage>
               fontWeight: FontWeight.w700,
               fontSize: 11),
         ),
-        onPressed: () async {
+        onPressed: () async{
           Navigator.push(context, MaterialPageRoute(builder: (context) {
             return UpdateProfile(_user);
           })).then((value) {
-            setState(() {
+            setState((){
               userDetails = viewUserProfile();
             });
           });

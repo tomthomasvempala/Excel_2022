@@ -53,7 +53,7 @@ class _MoreEventDetailsState extends State<MoreEventDetails>
   double calcHeight(String content) {
     if (content != null) {
       double lines = (content.split(" ").length) / 5.0;
-      double height = lines < 25 ? 640 : lines * 30;
+      double height = lines < 25 ? 600 : lines * 30;
       height += lines < 30 ? (content.split("\n")?.length) : 0;
       return height;
     }

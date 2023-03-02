@@ -27,35 +27,32 @@ class _HomePageState extends State<HomePage> {
               child: Container(),
             ),
             Expanded(
-              child: RefreshIndicator(
-                onRefresh: () => globalKey.currentState.fetchfromNet(0),
-                child: SingleChildScrollView(
-                  scrollDirection: Axis.vertical,
-                  physics: BouncingScrollPhysics(),
-                  child: Container(
-                    color: white200,
-                    child: Column(
-                      children: <Widget>[
-                        Container(
-                          child: Column(
-                            children: [
-                              ExcelTitle(),
-                              QuickAccessBar(),
-                              HighlightsSection(),
-                            ],
-                          ),
-                          decoration: BoxDecoration(
-                            color: white100,
-                            border: Border(
-                                bottom: BorderSide(color: white300, width: 1.2)),
-                          ),
+              child: SingleChildScrollView(
+                scrollDirection: Axis.vertical,
+                physics: BouncingScrollPhysics(),
+                child: Container(
+                  color: white200,
+                  child: Column(
+                    children: <Widget>[
+                      Container(
+                        child: Column(
+                          children: [
+                            ExcelTitle(),
+                            QuickAccessBar(),
+                            HighlightsSection(),
+                          ],
                         ),
-                        Discover(),
-                        CampusAmbassador(),
-                        LatestNewsSection(key: globalKey,),
-                        const SizedBox(height: 30)
-                      ],
-                    ),
+                        decoration: BoxDecoration(
+                          color: white100,
+                          border: Border(
+                              bottom: BorderSide(color: white300, width: 1.2)),
+                        ),
+                      ),
+                      Discover(),
+                      CampusAmbassador(),
+                      LatestNewsSection(),
+                      const SizedBox(height: 30)
+                    ],
                   ),
                 ),
               ),
