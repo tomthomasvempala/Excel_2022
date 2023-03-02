@@ -13,6 +13,7 @@ import 'package:excelapp/UI/Screens/EventPage/Widgets/joinTeamPage.dart';
 import 'package:excelapp/UI/Screens/EventPage/Widgets/viewTeam.dart';
 import 'package:excelapp/UI/Screens/EventPage/eventPage.dart';
 import 'package:excelapp/UI/Screens/HomePage/Widgets/Drawer/drawer.dart';
+import 'package:excelapp/UI/Themes/colors.dart';
 import 'package:excelapp/UI/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -898,7 +899,8 @@ class _RegisterButtonState extends State<RegisterButton> {
                 height: 50,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(40),
-                  color: Color.fromARGB(255, 14, 152, 232),
+                  color: registered ? white200 : blue500,
+                  border: Border.all(width: registered ? 1.2 : 0, color: white300,)
                 ),
                 alignment: Alignment.center,
                 child:
@@ -910,7 +912,7 @@ class _RegisterButtonState extends State<RegisterButton> {
                             Text(
                               buttonText ?? '',
                               style: TextStyle(
-                                  color: Colors.white,
+                                  color: registered? black300 : white100,
                                   fontFamily: "mulish",
                                   fontWeight: FontWeight.w700,
                                   fontSize: 14),
@@ -919,7 +921,7 @@ class _RegisterButtonState extends State<RegisterButton> {
                               width: 10,
                             ),
                             Icon(Icons.arrow_forward,
-                                size: 19, color: Colors.white)
+                                size: 19, color: registered? black300 : white100)
                           ],
                         ),
                   // Text(
@@ -944,7 +946,7 @@ class _RegisterButtonState extends State<RegisterButton> {
               height: widget.eventDetails.isTeam &&
                       registered &&
                       widget.eventDetails.entryFee != null
-                  ? 15
+                  ? 12
                   : 0,
             ),
             widget.eventDetails.isTeam &&
@@ -973,7 +975,7 @@ class _RegisterButtonState extends State<RegisterButton> {
                                 : Row(
                                     children: [
                                       Text(
-                                        "Payment Form",
+                                        "Complete Payment",
                                         style: TextStyle(
                                             color: Colors.white,
                                             fontFamily: "mulish",

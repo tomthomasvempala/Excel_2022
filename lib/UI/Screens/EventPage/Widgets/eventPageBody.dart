@@ -169,7 +169,6 @@ class EventPageBody extends StatelessWidget {
           Align(
             alignment: Alignment.bottomCenter,
             child: Container(
-              height: 90,
               padding: EdgeInsetsDirectional.only(bottom: 20),
               decoration: BoxDecoration(
                 color: Colors.white,
@@ -185,10 +184,11 @@ class EventPageBody extends StatelessWidget {
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisSize: MainAxisSize.min,
                 children: [
                   SizedBox(height: 8),
                   Image.asset('assets/icons/divider.png'),
-                  SizedBox(height: 8),
+                  SizedBox(height: 12),
                   Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                     registerButton,
                     Container(
